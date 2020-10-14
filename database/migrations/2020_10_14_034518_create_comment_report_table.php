@@ -18,7 +18,7 @@ class CreateCommentReportTable extends Migration
             $table->integer('comment_id');
             $table->integer('comment_user_id')->nullable();
             $table->integer('comment_post_id')->nullable();
-            $table->string('comment_report_content')->nullable();
+            $table->string('comment_report_content',5000)->nullable();
             $table->integer('comment_report_user_id')->nullable();
             $table->timestamps();
         });
