@@ -16,7 +16,7 @@ class CreateErrorTable extends Migration
         Schema::create('error', function (Blueprint $table) {
             $table->bigIncrements('error_id');
             $table->string('error_url')->nullable();
-            $table->string('error_content')->nullable();
+            $table->string('error_content',5000)->nullable();
             $table->timestamps();
         });
     }
