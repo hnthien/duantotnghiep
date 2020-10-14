@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ URL::asset('images') }}/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tác Giả</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
+</head>
+
+<body>
+<header class="header">
+        @include('header');
+    </header>
+    <main class="content col-margin--top ">
+        <div class=" col-margin--bottom">
+            <ul class="list-horizontal">
+                <li><a href="index.html"><b><i  class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
+                <li><a href="#">Journalist <i class="fas fa-angle-right"></i></a></li>
+            </ul>
+        </div>
+        <section class="section">
+            <div class="row">
+
+                <div class="col-8 background-white ">
+                    <article>
+                        <div class="row popular-post ">
+                            <h1 class="col-12 col-margin-left" style="font-size: 30px;">Journalist</h1>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                            <div class="col-4 popular-post col-padding  ">
+                                <div class="col-position post">
+                                    <img src="{{ URL::asset('images/user') }}/photo-5-1584724728351316096626.jpg" class="img " />
+                                    <a class="post__see" href="{{url('/article_with_the_author')}}">Xem Bài Viết</a>
+                                </div>
+                                <h3 class="text-bold">Name : DeoThemes</h3>
+                                <p>Số bài viết: </p>
+                                <p>Giới Thiệu: </p>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+                <div class="col-4">
+                    <aside>
+                        <div class="popular-post col-padding">
+                            <h2>POPULAR POSTS</h2>
+                            <div class="row col-padding">
+                                <div class="col-2">
+                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
+                                </div>
+                                <div class="col-10 col-margin-left">
+                                    <a href="news.html">
+                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                    </a>
+                                    <ul class="list-horizontal">
+                                        <li>
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li>
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row col-padding">
+                                <div class="col-2">
+                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
+                                </div>
+                                <div class="col-10 col-margin-left">
+                                    <a href="news.html">
+                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                    </a>
+                                    <ul class="list-horizontal">
+                                        <li>
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li>
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row col-padding">
+                                <div class="col-2">
+                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
+                                </div>
+                                <div class="col-10 col-margin-left">
+                                    <a href="news.html">
+                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                    </a>
+                                    <ul class="list-horizontal">
+                                        <li>
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li>
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row col-padding">
+                                <div class="col-2">
+                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
+                                </div>
+                                <div class="col-10 col-margin-left">
+                                    <a href="news.html">
+                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                    </a>
+                                    <ul class="list-horizontal">
+                                        <li>
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li>
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popular-post col-padding ">
+                            <h2>CATEGORIES</h2>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="list-vertical list-category">
+                                        <li>
+                                            <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>World</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Lifestyle</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Business</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Fashion</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Investment</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Technology</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="popular-post col-padding">
+                            <h2>LET'S HANG OUT ON SOCIAL</h2>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
+                                    <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
+                                    <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="#"><button class="btn col-margin--bottom background-orangered"><i class="fab fa-google-plus-g"></i> GOOGLE</button></a>
+                                    <a href="#"><button class="btn col-margin--bottom background-orchid"><i class="fab fa-instagram"></i> INSTAGRAM</button></a>
+                                    <a href="#"><button class="btn background-oranger"><i class="fas fa-rss"></i>RSS</button></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+       @include('footer');
+    </footer>
+</body>
+
+</html>

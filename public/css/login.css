@@ -1,0 +1,56 @@
+.form {
+    text-align: center;
+}
+
+.form__name {
+    text-align: center;
+    font-weight: bold;
+    color: rgb(44, 43, 43);
+    font-size: 40px;
+}
+
+.form__input {
+    position: relative;
+}
+
+ ::placeholder {
+    color: rgb(58, 57, 57);
+}
+
+.form__input i {
+    position: absolute;
+    top: 33px;
+    left: 10px;
+    color: rgb(58, 57, 57);
+}
+
+.form__input input {
+    width: 100%;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    margin: 20px 0px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid rgb(58, 57, 57);
+}
+
+.form__button {
+    width: 100%;
+    padding: 15px;
+    margin: 40px 0px;
+    border: none;
+    border-radius: 50px;
+    color: rgb(58, 57, 57);
+    font-weight: bold;
+}
+
+.form__text {
+    color: rgb(201, 200, 200);
+    margin: 20px;
+}
+
+.form__text a {
+    color: rgb(58, 57, 57);
+    text-decoration: transparent;
+    font-weight: bold;
+}
