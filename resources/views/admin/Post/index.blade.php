@@ -1,30 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{{ URL::asset('images')}}/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý bài viết - T20 News</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
-</head>
-
-<body>
-    <div class="row ">
-
-        <header class=" col-margin--none">
-        @include('../admin/header');
-
-
-
-        </header>
+@extends('layouts.admin')
+@section('admin','Quản lý bài viết - T20 News')
+@section('content')
         <main class="col-10 background-white">
             <section class="section col-padding  ">
                 <h1>Quản lý bài viết</h1>
                 <div class="row">
                     <div class="col-2">
-                        <a class="col-margin--bottom" href="{{url('/user/new_post')}}"><button class="btn background-greed">New Post</button></a>
+                        <a class="col-margin--bottom" href="{{url('/post/new_post')}}"><button class="btn background-greed">New Post</button></a>
                     </div>
                     <form class=" col-4 search" method="POST">
                         <input class="search__input" type="search" placeholder="Search......" />
@@ -59,9 +41,5 @@
 
             </section>
         </main>
-    </div>
-
-
-</body>
-
-</html>
+@endsection
+   
