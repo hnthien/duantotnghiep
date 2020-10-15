@@ -661,6 +661,18 @@ footer {
         font-size: 15px;
     }
     /* menu */
+    .menu {
+        display: block;
+    }
+    .menu .col-9 {
+        width: 100%;
+    }
+    .menu .col-2 {
+        width: 100%;
+    }
+    .menu .col-1 {
+        width: 100%;
+    }
     .icon {
         display: block;
     }

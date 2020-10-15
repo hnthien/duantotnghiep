@@ -21,7 +21,7 @@
 </div>
 </div>
 <hr>
-<div class="row">
+<div class="row menu">
 
 <div class="col-2 icon  col-padding" id="icon">
     <a class="" href="javascript:void(0);" onclick="myFunction()" href="">
