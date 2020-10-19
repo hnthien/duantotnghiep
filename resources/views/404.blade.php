@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="{{ URL::asset('images') }}/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 not found</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
-</head>
-
-<body>
-<header class="header">
-        @include('header');
-    </header>
+@extends('layouts.client')
+@section('client','404 not found')
+@section('content')
     <main class="content col-margin--top ">
 
         <div class=" col-margin--bottom">
@@ -154,10 +141,4 @@
             </div>
         </section>
     </main>
-
-    <footer>
-       @include('footer');
-    </footer>
-</body>
-
-</html>
+@endsection    

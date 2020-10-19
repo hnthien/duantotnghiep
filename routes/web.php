@@ -13,6 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::group(['prefix'=>'client'],function(){
+//     Route::get('/', function () {
+//         return view('index');
+//     });
+//     Route::get('/news', function () {
+//         return view('news');
+//     });
+//     Route::get('/login', function () {
+//         return view('login');
+//     });
+//     Route::get('/registration', function () {
+//         return view('registration');
+//     });
+//     Route::get('/search', function () {
+//         return view('search');
+//     });
+//     Route::get('/catergories',function(){
+//         return view('catergories');
+//     });
+//     Route::get('/author',function(){
+//         return view('author');
+//     });
+//     Route::get('/article_with_the_author',function(){
+//         return view('article_with_the_author');
+//     });
+//     Route::get('/article_with_the_author',function(){
+//         return view('article_with_the_author');
+//     });
+//     Route::get('/account',function(){
+//         return view('account');
+//     });
+//     Route::get('/404',function(){
+//         return view('404');
+//     });
+// });
+//
 Route::get('/', function () {
     return view('index');
 });

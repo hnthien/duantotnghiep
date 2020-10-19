@@ -29,11 +29,15 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" id="password" placeholder="********" />
                     </div>
-                    <button class="form__button btn">LOGIN</button>
+                   
+                    <div class="btn--hover">
+                          <button class="btn__button">LOGIN</button>
+                          <div class="btn__hover"></div>
+                      </div>
                     <div class="form__text">Do not have an account ?<a class="hover-underlined " href="{{url('/registration')}}">Register</a></div>
                 </form>
                 <div class="text-align--center">
-                    <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
+                    <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                     <p>© 2018 T20News | Made by T20</p>
                 </div>
 
