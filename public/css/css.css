@@ -202,7 +202,7 @@ h4 {
     padding: 15px 19px;
     box-sizing: border-box;
     border-radius: 50%;
-    bottom: 15%;
+    bottom: 120px;
     right: 1%;
     z-index: 21;
     background: rgb(160, 6, 6);
@@ -223,7 +223,7 @@ h4 {
     padding: 15px 22px;
     box-sizing: border-box;
     border-radius: 50%;
-    bottom: 6%;
+    bottom: 60px;
     right: 1%;
     z-index: 21;
     background: rgb(160, 6, 6);
@@ -657,6 +657,10 @@ footer {
         padding: 3% 10px;
         font-size: 14px;
     }
+    .error,
+    .feedback {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -740,6 +744,11 @@ footer {
     }
     .list-horizontal li a {
         font-size: 15px;
+    }
+    /* error */
+    .error,
+    .feedback {
+        display: none;
     }
     /* menu */
     .menu {

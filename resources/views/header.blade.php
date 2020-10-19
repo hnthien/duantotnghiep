@@ -1,29 +1,5 @@
   <div class="row col-padding">
 
-<<<<<<< HEAD
-<div class="col-3 text-align--center ">
-    <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" alt="logo" /></a>
-</div>
-<div class="col-4  ">
-    <form class="search" method="POST">
-        <span class="item"><i class="fa fa-search"></i></span>
-        <input class="search__input" type="search" placeholder="Search......" />
-    </form>
-</div>
-<div class="col-3 text-align--center col-margin--top  ">
-    <a href="#"><i style="font-size: 20px;" class="fab fa-facebook-f"></i></a>
-    <a href="#"><i style="font-size: 20px;" class="fab fa-twitter"></i></a>
-    <a href="#"><i style="font-size: 20px;" class="fab fa-google-plus-g"></i></a>
-    <a href="#"><i style="font-size: 20px;" class="fab fa-youtube"></i></a>
-    <a href="#"><i style="font-size: 20px;" class="fab fa-instagram"></i></a>
-</div>
-<div class="col-2 col-margin--top text-align--center text-bold">
-    <a class="hover-underlined" href="{{url('/login')}}">Login</a> | <a class="hover-underlined" href="{{url('/registration')}}">Registration</a>
-</div>
-</div>
-<hr>
-<div class="row menu">
-=======
       <div class="col-3 text-align--center ">
           <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" alt="logo" /></a>
       </div>
@@ -46,7 +22,6 @@
   </div>
   <hr>
   <div class="row menu">
->>>>>>> blade_templates
 
       <div class="col-2 icon  col-padding" id="icon">
           <a class="" href="javascript:void(0);" onclick="myFunction()" href="">
