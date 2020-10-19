@@ -44,9 +44,11 @@
                         </div>
                     </div>
 
+                    <div class="btn--hover">
+                          <button class="btn__button">REGISTER</button>
+                          <div class="btn__hover"></div>
+                      </div>
 
-
-                    <button class="form__button btn">REGISTER</button>
                     <div class="form__text">Do not have an account ?<a class="hover-underlined " href="{{url('/registration')}}">Register</a></div>
                 </form>
                 <div class="text-align--center">

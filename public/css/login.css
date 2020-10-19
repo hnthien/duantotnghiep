@@ -6,7 +6,8 @@
     text-align: center;
     font-weight: bold;
     color: rgb(44, 43, 43);
-    font-size: 40px;
+    font-size: 35px;
+    margin: 25px 0px;
 }
 
 .form__input {
@@ -19,7 +20,7 @@
 
 .form__input i {
     position: absolute;
-    top: 33px;
+    top: 34px;
     left: 10px;
     color: rgb(58, 57, 57);
 }
@@ -34,14 +35,53 @@
     border-bottom: 2px solid rgb(58, 57, 57);
 }
 
-.form__button {
+.form__input textarea {
+    width: 100%;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    margin: 20px 0px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid rgb(58, 57, 57);
+}
+
+.btn__button {
     width: 100%;
     padding: 15px;
-    margin: 40px 0px;
     border: none;
     border-radius: 50px;
-    color: rgb(58, 57, 57);
+    background: rgb(160, 6, 6);
+    color: white;
     font-weight: bold;
+}
+
+.btn--hover {
+    overflow: hidden;
+    position: relative;
+    margin: 40px 0px;
+    border-radius: 50px;
+}
+
+.btn__hover {
+    position: absolute;
+    top: 0px;
+    width: 30px;
+    height: 50px;
+    background: white;
+    z-index: 10;
+    left: -100px;
+    transition: left 0.5s;
+    transform: skewX(-20deg);
+}
+
+.btn--hover:hover .btn__button {
+    background: black;
+    transition: background 0.5s;
+}
+
+.btn--hover:hover .btn__hover {
+    left: 110%;
+    transition: left 0.5s;
 }
 
 .form__text {

@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="{{ URL::asset('images') }}/favicon.ico" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />
 </head>
 
 <body>
