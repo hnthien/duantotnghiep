@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="row ">
+    <div class="row">
         <header class=" col-margin--none">
            @include('../admin/header');
 

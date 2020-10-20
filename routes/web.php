@@ -106,3 +106,13 @@ Route::get('/post/edit',function(){
 Route::get('/post/new_post',function(){
     return view('admin.post.new_post');
 });
+//category
+Route::get('/category',function(){
+    return view('admin.category.index');
+});
+Route::get('/category/edit',function(){
+    return view('admin.category.edit');
+});
+Route::get('/category/new_category',function(){
+    return view('admin.category.new_category');
+});

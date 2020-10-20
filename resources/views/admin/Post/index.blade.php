@@ -3,7 +3,9 @@
 @section('content')
         <main class="col-10 background-white">
             <section class="section col-padding  ">
-                <h1>Quản lý bài viết</h1>
+            <div class="row popular-post ">
+            <h1 class="col-12 col-center" style="font-size: 30px;">Quản Lý Bài Viết</h1>
+        </div>
                 <div class="row">
                     <div class="col-2">
                         <a class="col-margin--bottom" href="{{url('/post/new_post')}}"><button class="btn background-greed">New Post</button></a>
@@ -14,6 +16,7 @@
                 </div>
 
                 <br>
+                <div class="popular-post col-padding">
                 <div class="row text-bold background-gray color-white text-align--center ">
                     <div class="col-1 col-padding">Id</div>
                     <div class="col-2 col-padding">Ảnh </div>
@@ -31,12 +34,12 @@
                     <div class="col-3 col-padding--top">Admin</div>
                     <div class="col-1 "><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></div>
                     <div class="col-1 ">
-                        <a href="{{url('/user/edit')}}">
+                        <a href="{{url('/post/edit')}}">
                             <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
                         </a>
                     </div>
                 </div>
-
+                </div>
 
 
             </section>

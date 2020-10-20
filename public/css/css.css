@@ -241,6 +241,10 @@ h4 {
 
 /* col */
 
+.col-height {
+    height: 140px;
+}
+
 .col-padding {
     padding: 15px 25px;
     box-sizing: border-box;
@@ -262,6 +266,10 @@ h4 {
 
 .col-left {
     text-align: left;
+}
+
+.col-center {
+    text-align: center;
 }
 
 .col-position {
@@ -347,6 +355,10 @@ h4 {
     background: rgb(58, 57, 57);
 }
 
+.background-linet-gray {
+    background: rgba(233, 233, 233, 0.795);
+}
+
 .background-black {
     background: #050505;
 }
@@ -360,6 +372,30 @@ h4 {
 
 .color-white {
     color: white;
+}
+
+.color-red {
+    color: rgb(160, 6, 6);
+}
+
+.color-blue {
+    color: rgb(4, 4, 160);
+}
+
+.color-brown {
+    color: rgb(112, 65, 7);
+}
+
+.color-green {
+    color: rgb(3, 97, 8);
+}
+
+.color-light-blue {
+    color: royalblue;
+}
+
+.color-young-green {
+    color: rgb(21, 212, 15);
 }
 
 
@@ -378,6 +414,7 @@ h4 {
     font-weight: bold;
     box-sizing: border-box;
     border: none;
+    box-shadow: 0 0px 11px rgba(0, 0, 0, 0.38);
 }
 
 .btn:hover {
@@ -391,6 +428,7 @@ h4 {
     color: white;
     font-weight: bold;
     border: none;
+    box-shadow: 0 0px 11px rgba(0, 0, 0, 0.38);
 }
 
 .btn-admin:hover {
@@ -574,9 +612,12 @@ footer {
 
 .header-admin {
     position: fixed;
-    padding: 45px 30px;
+    padding-top: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
     height: 100%;
     box-sizing: border-box;
+    box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
 }
 
 
@@ -586,15 +627,21 @@ footer {
     position: relative;
     padding: 15px 0px;
     margin-top: 5px;
+    width: 100%;
 }
 
 .list-vertical-admin li a {
-    padding: 15px 15px;
+    position: relative;
+    padding: 10px 0px;
     text-transform: uppercase;
-    width: 90%;
+    width: 100%;
     font-weight: bold;
     font-size: 14px;
     color: rgb(58, 57, 57);
+}
+
+.list-vertical-admin li .fa-angle-right {
+    float: right;
 }
 
 .list-vertical-admin li:hover a {
