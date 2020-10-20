@@ -116,3 +116,31 @@ Route::get('/category/edit',function(){
 Route::get('/category/new_category',function(){
     return view('admin.category.new_category');
 });
+//comment
+Route::get('/comment',function(){
+    return view('admin.comment.index');
+});
+
+Route::get('/comment/detail_comment',function(){
+    return view('admin.comment.detail_comment');
+});
+//feedback
+Route::get('/feedback',function(){
+    return view('admin.feedback.index');
+});
+
+Route::get('/feedback/detail_feedback',function(){
+    return view('admin.feedback.detail_feedback');
+});
+//report
+Route::get('/report',function(){
+    return view('admin.report.index');
+});
+
+Route::get('/report/detail_report',function(){
+    return view('admin.report.detail_report');
+});
+//error
+Route::get('/error',function(){
+    return view('admin.error.index');
+});

@@ -23,19 +23,19 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href=""><i class="fas fa-clipboard-list"></i>Bình luận  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/comment')}}"><i class="fas fa-clipboard-list"></i>Bình luận  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href=""><i class="fas fa-clipboard-list"></i>Đóng Góp Ý Kiến  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/feedback')}}"><i class="fas fa-clipboard-list"></i>Đóng Góp Ý Kiến  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href=""><i class="fas fa-clipboard-list"></i>Báo Cáo Vi Phạm  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/report')}}"><i class="fas fa-clipboard-list"></i>Báo Cáo Vi Phạm  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href=""><i class="fas fa-clipboard-list"></i>Báo Cáo Lỗi  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/error')}}"><i class="fas fa-clipboard-list"></i>Báo Cáo Lỗi  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                     </ul>

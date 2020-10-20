@@ -18,6 +18,7 @@ class CreateErrorTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('error_url')->nullable();
             $table->string('error_content',5000)->nullable();
+            $table->integer('error_status')->nullable();
             $table->timestamps();
         });
     }

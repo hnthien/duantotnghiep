@@ -18,6 +18,7 @@ class CreateFeedbackTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('feedback_title')->nullable();
             $table->string('feedback_content',5000)->nullable();
+            $table->integer('feedback_status')->nullable();
             $table->timestamps();
         });
     }
