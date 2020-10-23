@@ -2,6 +2,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,12 +56,7 @@ Route::get('/', function () {
 Route::get('/news', function () {
     return view('news');
 });
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/registration', function () {
-    return view('registration');
-});
+
 Route::get('/search', function () {
     return view('search');
 });
@@ -143,4 +139,22 @@ Route::get('/report/detail_report',function(){
 //error
 Route::get('/error',function(){
     return view('admin.error.index');
+});
+
+Auth::routes();
+
+
+Route::get('/home',function(){
+    return view('home');
+});
+
+Route::group(['prefix'=>'user'],function(){
+    Route::get('/profile/{name}', function(){
+        return view('account');
+    });
+    //
+    Route::get('/change_password','HomeController@password');
+    Route::post('/edit_password/{id}','HomeController@edit_password');
+    Route::get('/successfully','HomeController@index1');
+
 });

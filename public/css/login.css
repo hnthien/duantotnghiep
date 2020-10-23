@@ -25,13 +25,21 @@
     color: rgb(58, 57, 57);
 }
 
-.form__input input {
+.box_input input {
     width: 100%;
-    padding: 15px 30px;
+    padding: 15px 35px;
     box-sizing: border-box;
-    margin: 20px 0px;
+    margin-top: 20px;
     background: none;
     border: none;
+    border-bottom: 2px solid rgb(58, 57, 57);
+}
+
+.box {
+    width: 100%;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
     border-bottom: 2px solid rgb(58, 57, 57);
 }
 
@@ -45,11 +53,15 @@
     border-bottom: 2px solid rgb(58, 57, 57);
 }
 
+.col-padding-btn {
+    padding: 8px;
+}
+
 .btn__button {
     width: 100%;
-    padding: 15px;
+    box-sizing: border-box;
     border: none;
-    border-radius: 50px;
+    border-radius: 4px;
     background: rgb(160, 6, 6);
     color: white;
     font-weight: bold;
@@ -58,8 +70,7 @@
 .btn--hover {
     overflow: hidden;
     position: relative;
-    margin: 40px 0px;
-    border-radius: 50px;
+    border-radius: 4px;
 }
 
 .btn__hover {

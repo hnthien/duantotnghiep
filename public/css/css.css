@@ -93,7 +93,12 @@ li {
 
 a {
     text-decoration: none;
-    color: rgb(58, 57, 57);
+    color: rgb(32, 31, 31);
+}
+
+a:hover {
+    text-decoration: none;
+    color: gray;
 }
 
 h4 {
@@ -197,9 +202,9 @@ h4 {
 }
 
 .feedback {
-    width: 50px;
-    height: 50px;
-    padding: 15px 19px;
+    width: 40px;
+    height: 40px;
+    padding: 10px 13px;
     box-sizing: border-box;
     border-radius: 50%;
     bottom: 120px;
@@ -218,9 +223,9 @@ h4 {
 }
 
 .error {
-    width: 50px;
-    height: 50px;
-    padding: 15px 22px;
+    width: 40px;
+    height: 40px;
+    padding: 10px 16px;
     box-sizing: border-box;
     border-radius: 50%;
     bottom: 60px;
@@ -437,6 +442,56 @@ h4 {
 }
 
 
+/* menuheader */
+
+.menuheader {
+    margin-top: 0px;
+    position: relative;
+    z-index: 10;
+}
+
+.menuheader li {
+    float: left;
+}
+
+.menuheader .menuheaderli {
+    position: relative;
+    text-align: left;
+    padding: 10px;
+}
+
+.menuheaderli li a {
+    text-align: left;
+    font-weight: normal;
+}
+
+.menuheaderli .menuheaderli__droplist li {
+    padding: 10px 0px;
+    text-align: left;
+}
+
+.menuheaderli .menuheaderli__droplist {
+    opacity: 0;
+    z-index: 10;
+    width: 100%;
+    right: 20px;
+    top: 140%;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute;
+    background: white;
+    pointer-events: none;
+}
+
+.menuheaderli:hover .menuheaderli__droplist {
+    z-index: 10;
+    opacity: 1;
+    pointer-events: initial;
+    top: 100%;
+    transition: top 0.5s, opacity 0.5s;
+}
+
+
 /* menu */
 
 .header {
@@ -459,7 +514,7 @@ h4 {
     padding: 15px 15px;
     text-transform: uppercase;
     font-weight: bold;
-    color: rgb(58, 57, 57);
+    color: rgb(0, 0, 0);
 }
 
 .menu-nav__ul li a:hover {
@@ -586,7 +641,7 @@ h4 {
 /* footer */
 
 footer {
-    background: #050505;
+    background: #000000;
     padding: 50px;
 }
 
@@ -858,6 +913,11 @@ footer {
     /* .dispaly-none {
         display: none;
     } */
+    /*  */
+    .menuheaderli .menuheaderli__droplist li {
+        width: 100%;
+    }
+    /*  */
     body {
         font-size: 13px;
     }
@@ -913,6 +973,15 @@ footer {
         margin: 0px 5px;
     }
     .popular-post .row .col-10 {
+        width: 75%;
+    }
+    .menuheader {
+        display: flex;
+    }
+    .menuheader .col-3 {
+        width: 25%;
+    }
+    .menuheader .col-9 {
         width: 75%;
     }
 }
