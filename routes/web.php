@@ -158,3 +158,5 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('/successfully','HomeController@index1');
 
 });
+Route::post('reset-password', 'ResetPasswordController@sendMail');
+Route::put('reset-password/{token}', 'ResetPasswordController@reset');
