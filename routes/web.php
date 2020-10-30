@@ -1,8 +1,10 @@
 <?php
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,42 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::group(['prefix'=>'client'],function(){
-//     Route::get('/', function () {
-//         return view('index');
-//     });
-//     Route::get('/news', function () {
-//         return view('news');
-//     });
-//     Route::get('/login', function () {
-//         return view('login');
-//     });
-//     Route::get('/registration', function () {
-//         return view('registration');
-//     });
-//     Route::get('/search', function () {
-//         return view('search');
-//     });
-//     Route::get('/catergories',function(){
-//         return view('catergories');
-//     });
-//     Route::get('/author',function(){
-//         return view('author');
-//     });
-//     Route::get('/article_with_the_author',function(){
-//         return view('article_with_the_author');
-//     });
-//     Route::get('/article_with_the_author',function(){
-//         return view('article_with_the_author');
-//     });
-//     Route::get('/account',function(){
-//         return view('account');
-//     });
-//     Route::get('/404',function(){
-//         return view('404');
-//     });
-// });
-//
+
 Route::get('/', function () {
     return view('index');
 });
@@ -80,18 +47,22 @@ Route::get('/404',function(){
 });
 //admin
 Route::get('/admin',function(){
-    return view('admin.index');
+    if (Auth::check())
+    {
+        if(Auth::user()->role_user == 0){
+            return redirect(url('/'));
+        }else{
+            return view('admin.index');
+            // return redirect()->action('HomeController@admin');
+        }
+    } else {
+        return redirect(url('/login'));
+    }
 });
+
 //user
-Route::get('/user',function(){
-    return view('admin.user.index');
-});
-Route::get('/user/edit',function(){
-    return view('admin.user.edit');
-});
-Route::get('/user/new_user',function(){
-    return view('admin.user.new_user');
-});
+Route::get('/admin/home','HomeController@admin');
+
 //post
 Route::get('/post',function(){
     return view('admin.post.index');
@@ -147,14 +118,45 @@ Auth::routes();
 Route::get('/home',function(){
     return view('home');
 });
-
+// phần ngon phần này làm ngon nên đừng đụng vào với lại nếu làm ở phần admin thêm vào đây
+Route::group(['prefix'=>'admin'],function(){
+    // account admin
+    Route::group(['prefix'=>'user'],function(){
+            Route::get('/','Admin_UserController@index');
+            Route::get('/search','Admin_UserController@search');
+            Route::get('/edit/{id}','Admin_UserController@edit');
+            Route::post('/updata/{id}','Admin_UserController@updata');
+            Route::get('/delete/{id}','Admin_UserController@delete');
+    });
+    //feedback
+    Route::group(['prefix'=>'feedback'],function(){
+        Route::get('/','FeedbackController@index');
+        Route::get('/search','FeedbackController@search');
+        Route::get('/detail_feedback/{id}','FeedbackController@detail_feedback');
+        Route::post('/create_feedback','FeedbackController@create_feedback');
+   
+    });
+   //error
+   Route::group(['prefix'=>'error'],function(){
+    Route::get('/','ErrorController@index');
+    Route::get('/search','ErrorController@search');
+    Route::get('/detail_error/{id}','ErrorController@detail_error');
+    Route::post('/create_error','ErrorController@create_error');
+    });
+});
+//người dùng client
 Route::group(['prefix'=>'user'],function(){
     Route::get('/profile/{name}', function(){
         return view('account');
     });
     //
+    Route::get('/successful',function(){
+        return view('successful');
+    });
     Route::get('/change_password','HomeController@password');
     Route::post('/edit_password/{id}','HomeController@edit_password');
     Route::get('/successfully','HomeController@index1');
+    Route::get('/logout','HomeController@logout');
+    Route::post('/account','HomeController@account');
 
 });

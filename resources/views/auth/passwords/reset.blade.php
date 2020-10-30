@@ -4,9 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"> <h1 class="form__name">{{ __('Reset Password') }}</h1></div>
-
+            <div class="card box-shadow">
+                <div> <h1 class="form__name">{{ __('Reset Password') }}</h1></div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
@@ -51,16 +50,18 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
+                            <div class="btn--hover">
+                                    <button type="submit" class="btn__button col-padding-btn"> {{ __('Reset Password') }}</button>
+                                    <div class="btn__hover"></div>
+                                </div>
+                               
                             </div>
                         </div>
                     </form>
                 </div>
-                <div style="text-align: center;" class="card-footer">
+                <div style="text-align: center;margin-top: 40px;" >
                         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-                        <p>© 2018 T20News | Made by T20</p>
+                        <p style="margin-top: 10px;">© 2018 T20News | Made by T20</p>
                     </div>
             </div>
         </div>

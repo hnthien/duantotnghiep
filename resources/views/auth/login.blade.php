@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card box-shadow">
                     <h1 class="form__name">{{ __('LOGIN') }}</h1>
-             
-
-                <div class="card-body">
+                   
+               
+                <div class="card-body ">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -70,9 +70,9 @@
 
 
                 </div>
-                <div style="text-align: center;margin-top: 50px;" >
+                <div style="text-align: center;margin-top: 40px;" >
                     <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-                    <p>© 2018 T20News | Made by T20</p>
+                    <p style="margin-top: 10px;">© 2018 T20News | Made by T20</p>
                 </div>
             </div>
         </div>

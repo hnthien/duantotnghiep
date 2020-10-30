@@ -8,6 +8,10 @@
     <title>@yield('admin')</title>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ URL::asset('js') }}/images.js"></script>
+    <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -18,7 +22,7 @@
         
         <header class=" col-margin--none">
             
-           @include('../admin/header');
+           @include('../admin/header')
 
         </header>
         

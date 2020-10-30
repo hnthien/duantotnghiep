@@ -35,19 +35,35 @@
     border-bottom: 2px solid rgb(58, 57, 57);
 }
 
+.box_input input:focus {
+    border-radius: none;
+    border-bottom: none;
+}
+
 .box {
     width: 100%;
     padding: 15px 10px;
     box-sizing: border-box;
     margin-top: 10px;
-    border-bottom: 2px solid rgb(58, 57, 57);
+    border: none;
+    background: rgba(128, 128, 128, 0.288);
+}
+
+.box_input select {
+    width: 100%;
+    padding: 15px 35px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    background: none;
+    border: none;
+    background: rgba(128, 128, 128, 0.288);
 }
 
 .form__input textarea {
     width: 100%;
     padding: 15px 30px;
     box-sizing: border-box;
-    margin: 20px 0px;
+    margin-top: 19px;
     background: none;
     border: none;
     border-bottom: 2px solid rgb(58, 57, 57);

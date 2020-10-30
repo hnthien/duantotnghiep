@@ -10,18 +10,19 @@
     <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />
+    <script src="{{ URL::asset('js') }}/images.js"></script>
 </head>
 
 <body>
    
     <header class="header">
-        @include('header');
+        @include('header')
     </header>
    
         @yield('content')
    
     <footer>
-       @include('footer');
+       @include('footer')
     </footer>
 </body>
 

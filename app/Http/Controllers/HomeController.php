@@ -23,6 +23,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function logout()
+    {
+        Auth::logout();
+        return ;
+    }
+    //admin
+    public function admin(Request $request){
+        $user = User::all();
+        $number = 0;
+        for($i=1;$i>$number;$i++){
+            foreach($user as $row){
+                if(($row->role_user)==0){
+                    $number+1;
+                }
+            }
+        }
+        echo $number;
+        return view('admin.index');
+    }
+    //
     public function index()
     {
         return view('index');
@@ -36,32 +56,61 @@ class HomeController extends Controller
     {     
         return view('auth.change_password');
     }
+    public function account(Request $request)
+    {     
+        //   $request->validate([
+        //     'email' => 'required|email',
+
+        // ]);
+        $news = User::find( Auth::user()->id);
+        if ($request->hasFile('images_user')) {
+            $news->images_user = $request->file('images_user')->getClientOriginalName();
+            $request->file('images_user')->move(public_path('images/user'),   $request->file('images_user')->getClientOriginalName());
+           
+            
+        }
+        $news->name= $request->name;
+        $news->phone_user= $request->phone_user;
+        $news->address_user=$request->address_user;
+        $news->save();
+        return redirect(url('/account'));
+    }
     public function edit_password(Request $request,$id)
     {
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        //     'newpassword' => 'required',
+        //     'confirmpassword' => 'required|same:newpassword',
+
+        // ]);
        if(($request->email) == null or ($request->password) == null or ($request->newpassword) == null or ($request->confirmpassword)==null){
-        echo"<script>alert(' Không được để trống các ô !');</script>";
+        echo"The input field is required.";
        }else{
         $email = $request->email;
         $password = $request->password;
-        $result1=User::where('email',$email)->find($id);
-        if($result1){          
+        $result=User::where('email',$email)->find($id);
+        if($result){          
             if(Hash::check($password, Auth::user()->password)){
                 if($request->newpassword == $request->confirmpassword ){
                     $news = User::find($id);
                     $news->password = Hash::make($request->confirmpassword);
                     $news->save();
-                    echo"<script>alert(' Đã Thay Đổi Mật Khẩu !');</script>";
+                    echo "<script>alert(' Successfully!');</script>";
+                    echo "<div class='alert alert-success' style='color:green'>Đã đổi mật khẩu thành công</div>";
+                    // return redirect(url('/user/logout'));
                 }else{
-                    echo"<script>alert(' Mật khẩu mới và xác nhận mật khẩu không giống nhau !');</script>";
+                    echo"Confirmpassword is incorrect.";
                 }
             }else{
-             echo "<script>alert(' Sai Mật Khẩu !')</script>";                    
+             echo "Password is incorrect.";                    
             }
         }else{       
-         echo "<script>alert(' Sai Email !')</script>";        
+         echo "Email is incorrect.";        
         }     
        }
        return;
    
     }
+   
 }

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card box-shadow">
             <h1 class="form__name">{{ __('REGISTER') }}</h1>
                 <div class="card-body">
                     
@@ -17,7 +17,7 @@
                             <div class="col-md-6">
                            
                                
-                                <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
                            
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail Address') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Password') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -59,14 +59,14 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><b>{{ __('Confirm Password') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" placeholder="Password confirm"  type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" placeholder="Password confirm"  type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="phone_user" class="col-md-4 col-form-label text-md-right"><b>{{ __('Phone') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="phone_user" placeholder="Phone" type="number" class="form-control @error('phone_user') is-invalid @enderror" name="phone_user" value="{{ old('phone_user') }}" required autocomplete="phone_user">
+                                <input id="phone_user" placeholder="Phone" type="number" class="form-control @error('phone_user') is-invalid @enderror" name="phone_user" value="{{ old('phone_user') }}"  autocomplete="phone_user">
 
                                 @error('phone_user')
                                     <span class="invalid-feedback" role="alert">
@@ -88,9 +88,9 @@
                     </form>
                 </div>
 
-                <div style="text-align: center;margin-top: 50px;" >
+                <div style="text-align: center;margin-top: 40px;" >
                         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-                        <p>© 2018 T20News | Made by T20</p>
+                        <p style="margin-top: 10px;">© 2018 T20News | Made by T20</p>
                     </div>
 
             </div>

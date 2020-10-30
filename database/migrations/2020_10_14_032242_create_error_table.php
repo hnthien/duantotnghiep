@@ -17,6 +17,7 @@ class CreateErrorTable extends Migration
             $table->bigIncrements('error_id');
             $table->integer('user_id')->nullable();
             $table->string('error_url')->nullable();
+            $table->string('error_title')->nullable();//new
             $table->string('error_content',5000)->nullable();
             $table->integer('error_status')->nullable();
             $table->timestamps();

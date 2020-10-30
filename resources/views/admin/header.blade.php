@@ -11,7 +11,7 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/user')}}"><i class="fas fa-users"></i>Người dùng  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/admin/user')}}"><i class="fas fa-users"></i>Người dùng  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
@@ -27,7 +27,7 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/feedback')}}"><i class="fas fa-clipboard-list"></i>Đóng Góp Ý Kiến  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/admin/feedback')}}"><i class="fas fa-clipboard-list"></i>Đóng Góp Ý Kiến  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
@@ -35,7 +35,7 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/error')}}"><i class="fas fa-clipboard-list"></i>Báo Cáo Lỗi  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('admin/error')}}"><i class="fas fa-clipboard-list"></i>Báo Cáo Lỗi  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                     </ul>

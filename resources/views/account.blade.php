@@ -17,26 +17,55 @@
                 <div class="row popular-post ">
                     <h1 class="col-12 col-margin-left" style="font-size: 30px;">User Profile</h1>
                 </div>
-                <form class="popular-post col-padding">
+                <form action="{{url('user/account')}}" method="POST" class="box-shadow col-padding background-white" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
-                        <div class="col-3 col-position">
-                            <img src="{{ URL::asset('images/user') }}/{{Auth::user()->images_user}}" class="img " />
+                    <div class="col-3">
+                            <img name="images_user" src="{{ URL::asset('images/user') }}/{{Auth::user()->images_user}}" class="img " />
 
-                            <button type="submit" style="position: absolute;left:0px;bottom: 0px;" class="btn background-gray col-border--none">Lưu</button>
-
+                            <button type="submit"   class="btn background-gray col-border--none">Lưu</button>
                         </div>
-                        <div class="col-9 col-margin-left">
+                        <div class="col-9 col-col-margin-left ">
+                            <span class="text-bold "><i class="fas fa-user-edit"></i>Introduce something interesting.</span>
+                            <br>
+                          <textarea name="address_user"  style="height: 90%;width: 100%;margin-top:10px ;padding:10px;box-sizing: border-box;">{{ Auth::user()->address_user }}</textarea>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <div class="form__input box_input">
-                            <i class="fas fa-user"></i>
-                                <input type="text" name="error_url" id="error_url" value="{{ Auth::user()->name }}" />
+                                <i class="fas fa-user"></i>
+                                <input type="text" name="name" id="name" value="{{ Auth::user()->name }}" />
+                            </div>
+                            <div class="box">
+                                <i class="fas fa-envelope"></i>
+                               <span style="font-size: 15px;">{{ Auth::user()->email}}</span> 
+                               
                             </div>
                             <div class="form__input box_input">
-                            <i class="fas fa-envelope"></i>
-                                <input type="text" name="error_url" id="error_url" value="{{ Auth::user()->email}}" />
+                                <i class="fas fa-phone-alt"></i>
+                                <input type="text" name="phone_user" id="phone_user" value="{{ Auth::user()->phone_user}}" />
                             </div>
-                            <div class="form__input box_input">
-                            <i class="fas fa-phone-alt"></i>
-                                <input type="text" name="error_url" id="error_url" value="{{ Auth::user()->phone_user}}" />
+                           
+                         
+                            <div class="form__input box_input col-margin--top">
+                                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                                <div class="file-upload">
+                                    <button class="btn background-gray col-border--none" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+                                    <div class="image-upload-wrap">
+                                        <input class="file-upload-input" name="images_user" id="images_user" type='file' onchange="readURL(this);"  />
+                                        <div class="drag-text">
+                                            <h3>Drag and drop a file or select add Image</h3>
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box">
                             <i class="fas fa-user-circle"></i>

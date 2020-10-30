@@ -23,14 +23,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .box-shadow {
+    box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
+}
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light  ">
             <div class="container">
-                <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-
+               
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

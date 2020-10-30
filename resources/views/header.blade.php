@@ -16,14 +16,13 @@
           <a href="#"><i style="font-size: 20px;" class="fab fa-youtube"></i></a>
           <a href="#"><i style="font-size: 20px;" class="fab fa-instagram"></i></a>
       </div>
-      <div class="col-2  text-align--center text-bold">
+      <div class="col-2  text-align--center ">
           @if (Route::has('login'))
-
           @auth
           <ul class="menuheader row">
               <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px" src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
               <li class="menuheaderli col-9">
-                  <a>@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></a>
+                  <a href="#" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></a>
                   <ul class="menuheaderli__droplist">
                       <li>
                           <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -45,13 +44,11 @@
 
           @else
           <div class="col-margin--top">
-              <a href="{{ route('login') }}">Login</a> |
+          <i class="fas fa-user-circle"></i> <a href="{{ route('login') }}">Đăng Nhập</a>
 
-              @if (Route::has('register'))
-              <a href="{{ route('register') }}">Register</a>
           </div>
 
-          @endif
+         
           @endauth
 
           @endif
@@ -59,10 +56,20 @@
   </div>
 
   <hr>
+  <script>
+      function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "menu-none") {
+              x.className += "responsive";
+          } else {
+              x.className = "menu-none";
+          }
+      }
+  </script>
   <div class="row menu">
 
       <div class="col-2 icon  col-padding" id="icon">
-          <a class="" href="javascript:void(0);" onclick="myFunction()" href="">
+          <a href="javascript:void(0);" onclick="myFunction()">
               <i class="fas fa-stream col-padding--top"></i>
           </a>
       </div>
@@ -141,7 +148,7 @@
 
 
                   <li>
-                      <a href="{{url('/author')}}">Tác Giả</a>
+                      <a href="{{url('/catergories')}}">Sức Khỏe</a>
                       <span class="hover-dash"></span>
                   </li>
 
@@ -151,14 +158,6 @@
       <div class="col-1"></div>
   </div>
   <script>
-      function myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "menu-none") {
-              x.className += " responsive";
-          } else {
-              x.className = "menu-none";
-          }
-      }
       $(document).ready(function() {
           $('#error').click(function() {
               $("#error_box").show();
@@ -192,31 +191,36 @@
               <div class="col-4"></div>
               <div class="col-4 popular-post col-padding col-position">
                   <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
-                  <form method="GET" class="form col-padding">
-                      <h3 class="form__name">FEEDBACK</h3>
+                  <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data" class="form col-padding">
+                  @csrf  
+                  <h3 class="form__name">FEEDBACK</h3>
                       <div class="form__input box_input">
-                          <i class="fas fa-wave-square"></i>
-                          <input type="text" name="error_url" id="error_url" placeholder=" Title..." />
+                          <i class="fas fa-heading"></i>
+                          <input type="text" name="feedback_title" id="feedback_title" placeholder=" Title..." />
+                          <samp class="text-danger"><b>{{ $errors->first('feedback_title') }}</b></samp>
                       </div>
                       <div class="form__input">
                           <i class="fas fa-comment-alt"></i>
-                          <textarea name="error_content" rows="5"></textarea>
+                          <textarea name="feedback_content" rows="5"></textarea>
+                          <samp class="text-danger"><b>{{ $errors->first('feedback_content') }}</b></samp>
                       </div>
                       @if(Auth::user() == null)
                       <div>Vui lòng đăng nhập để gửi góp ý</div>
                       <br>
-                      <div class="btn--hover">                   
-                      <a  href="{{ route('login') }}"><div class="btn__button col-padding">Đăng Nhập</div></a>                                                                       
+                      <div class="btn--hover">
+                          <a href="{{ route('login') }}">
+                              <div class="btn__button col-padding">Đăng Nhập</div>
+                          </a>
                           <div class="btn__hover"></div>
                       </div>
                       @else
-                      <div class="btn--hover">
-                          <button class="btn__button col-padding">Gửi</button>
+                      <div class="btn--hover col-margin--top">
+                          <button type="submit" class="btn__button col-padding">Gửi</button>
                           <div class="btn__hover"></div>
                       </div>
                       @endif
                   </form>
-                  <div class="text-align--center">
+                  <div class="text-align--center " style="margin-top: 100px;">
                       <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                       <p>© 2018 T20News | Made by T20</p>
                   </div>
@@ -235,31 +239,41 @@
               <div class="col-4"></div>
               <div class="col-4 popular-post col-padding col-position">
                   <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
-                  <form method="GET" class="form col-padding">
-                      <h3 class="form__name">ERROR</h3>
+                  <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data" class="form col-padding">
+                  @csrf 
+                  <h3 class="form__name">ERROR</h3>
                       <div class="form__input box_input">
                           <i class="fas fa-wave-square"></i>
                           <input type="text" name="error_url" id="error_url" placeholder=" Error url..." />
-                      </div>
+                          <samp class="text-danger"><b>{{ $errors->first('error_url') }}</b></samp>
+                        </div>
+                        <div class="form__input box_input">
+                        <i class="fas fa-heading"></i>
+                          <input type="text" name="error_title" id="error_title" placeholder=" Error title..." />
+                          <samp class="text-danger"><b>{{ $errors->first('error_title') }}</b></samp>
+                        </div>
                       <div class="form__input">
                           <i class="fas fa-comment-alt"></i>
                           <textarea name="error_content" rows="5"></textarea>
+                          <samp class="text-danger"><b>{{ $errors->first('error_content') }}</b></samp>
                       </div>
                       @if(Auth::user() == null)
                       <span>Vui lòng đăng nhập để báo lỗi</span>
                       <br>
-                      <div class="btn--hover">                            
-                         <a  href="{{ route('login') }}"><div class="btn__button col-padding">Đăng Nhập</div></a>                                                                       
+                      <div class="btn--hover">
+                          <a href="{{ route('login') }}">
+                              <div class="btn__button col-padding">Đăng Nhập</div>
+                          </a>
                           <div class="btn__hover"></div>
                       </div>
                       @else
-                      <div class="btn--hover">
-                          <button class="btn__button col-padding">Báo Lỗi</button>
+                      <div class="btn--hover col-margin--top">
+                          <button type="submit" class="btn__button col-padding">Báo Lỗi</button>
                           <div class="btn__hover"></div>
                       </div>
                       @endif
                   </form>
-                  <div class="text-align--center">
+                  <div class="text-align--center" style="margin-top: 100px;">
                       <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                       <p>© 2018 T20News | Made by T20</p>
                   </div>

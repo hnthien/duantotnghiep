@@ -5,14 +5,27 @@
 
     <section class="section col-padding  ">
     <div class="row popular-post ">
-            <h1 class="col-12 col-center" style="font-size: 30px;">Ý Kiến Người Dùng</h1>
+        <h1 class="col-12 col-center" style="font-size: 30px;">Ý Kiến Người Dùng</h1>
         </div>
+        <?php
+        $user = new App\User();
+        $data1 = $user->all();
+        ?>
         <div class="popular-post col-padding">
-        <p>Người gửi: hn thien</p> <p>Ngày gửi:21/10/2020</p>
-        <h3>Tiêu đề:</h3>
+        <p>Người gửi:  
+            @foreach($data1 as $row)
+            @if($row->id == $data->user_id)
+            {{$row->name}} <br>
+            Email: 
+            {{$row->email}}
+            @endif
+            @endforeach</p> 
+        <p>Ngày gửi: @php echo substr($data->created_at ,0,10) @endphp</p>
+        <p>Lúc: @php echo substr($data->created_at ,10,3).' giờ '.substr($data->created_at ,14,2).' phút' @endphp</p>
+        <h3>Tiêu đề: {{$data->feedback_title}}</h3>
         <h3>Nội dung:</h3>
         <p class="popular-post col-padding">
-            xin chào toi là ba la bala....
+        {{$data->feedback_content}}
         </p>
       
      
