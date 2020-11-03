@@ -61,7 +61,7 @@ Route::get('/admin',function(){
 });
 
 //user
-Route::get('/admin/home','HomeController@admin');
+
 
 //post
 Route::get('/post',function(){
@@ -92,13 +92,7 @@ Route::get('/comment/detail_comment',function(){
     return view('admin.comment.detail_comment');
 });
 //feedback
-Route::get('/feedback',function(){
-    return view('admin.feedback.index');
-});
 
-Route::get('/feedback/detail_feedback',function(){
-    return view('admin.feedback.detail_feedback');
-});
 //report
 Route::get('/report',function(){
     return view('admin.report.index');
@@ -108,9 +102,7 @@ Route::get('/report/detail_report',function(){
     return view('admin.report.detail_report');
 });
 //error
-Route::get('/error',function(){
-    return view('admin.error.index');
-});
+
 
 Auth::routes();
 
@@ -124,9 +116,10 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'user'],function(){
             Route::get('/','Admin_UserController@index');
             Route::get('/search','Admin_UserController@search');
-            Route::get('/edit/{id}','Admin_UserController@edit');
+            Route::post('/edit/{id}','Admin_UserController@edit');
             Route::post('/updata/{id}','Admin_UserController@updata');
-            Route::get('/delete/{id}','Admin_UserController@delete');
+            Route::post('/delete/{id}','Admin_UserController@delete');
+            Route::post('/delete_all','Admin_UserController@delete_all');
     });
     //feedback
     Route::group(['prefix'=>'feedback'],function(){
@@ -153,9 +146,19 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('/successful',function(){
         return view('successful');
     });
+    Route::get('/logged',function(){
+        return view('logged');
+    });
+    Route::get('/register',function(){
+        return view('register');
+    });
+    Route::get('/dong-gop-y-kien',function(){
+        return view('feedback');
+    });
     Route::get('/change_password','HomeController@password');
-    Route::post('/edit_password/{id}','HomeController@edit_password');
-    Route::get('/successfully','HomeController@index1');
+    // Route::post('/edit_password/{id}','HomeController@edit_password');
+    Route::post('/edit_pass/{id}','HomeController@edit_pass');
+    // Route::get('/successfully','HomeController@index1');
     Route::get('/logout','HomeController@logout');
     Route::post('/account','HomeController@account');
 

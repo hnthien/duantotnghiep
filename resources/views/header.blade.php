@@ -22,21 +22,21 @@
           <ul class="menuheader row">
               <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px" src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
               <li class="menuheaderli col-9">
-                  <a href="#" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></a>
+                  <span href="#" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></span>
                   <ul class="menuheaderli__droplist">
                       <li>
                           <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                              <i class="fas fa-sign-out-alt"></i>{{ __('Đăng Xuất') }}
+                              <i class="fas fa-sign-out-alt"></i>{{ __('Đăng xuất') }}
                           </a>
 
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                               @csrf
                           </form>
                       </li>
-                      <li><a href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i class="fas fa-info-circle"></i>Thông Tin</a></li>
-                      <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi Mật Khẩu</a></li>
+                      <li><a href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
+                      <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi mật khẩu</a></li>
                       @if(Auth::user()->role_user == 1 or Auth::user()->role_user == 2 or Auth::user()->role_user == 3 )
-                      <li> <a href="{{url('/admin')}}"><i class="fas fa-users-cog"></i>Vào Admin</a></li>
+                      <li> <a href="{{url('/admin')}}"><i class="fas fa-users-cog"></i>Vào admin</a></li>
                       @endif
                   </ul>
               </li>
@@ -44,7 +44,7 @@
 
           @else
           <div class="col-margin--top">
-          <i class="fas fa-user-circle"></i> <a href="{{ route('login') }}">Đăng Nhập</a>
+          <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ route('login') }}">Đăng nhập</a>
 
           </div>
 
@@ -54,8 +54,12 @@
           @endif
       </div>
   </div>
-
-  <hr>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10"><hr></div>
+    <div class="col-1"></div>
+</div>
+ 
   <script>
       function myFunction() {
           var x = document.getElementById("myTopnav");
@@ -80,45 +84,45 @@
           <nav class="menu-nav ">
               <ul class="menu-nav__ul text-align--center  ">
                   <li>
-                      <a href="{{url('/')}}">Trang Chủ</a>
+                      <a href="{{url('/')}}"><i class="fas fa-home"></i>Trang chủ</a>
                       <span class="hover-dash"></span>
                   </li>
                   <li class="menu-drop col-position ">
-                      <a href="#">Danh Mục <i class="fas fa-caret-down"></i></a>
+                      <a href="#">Danh mục <i class="fas fa-caret-down"></i></a>
                       <span class="hover-dash"></span>
                       <ul class="menu-drop__list">
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Xã Hội</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Xã hội</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Pháp Luật</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Pháp luật</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Thế Giới</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Thế giới</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Kinh Doanh</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Kinh doanh</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Công Nghệ</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Công nghệ</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Sức Khỏe</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Sức khỏe</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Thể Thao</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Thể thao</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Giải Trí</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Giải trí</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Đời Sống</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Đời sống</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Giáo Dục</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Giáo dục</a>
                           </li>
                           <li>
-                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Du Lịch</a>
+                              <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Du lịch</a>
                           </li>
                           <li>
                               <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Xe</a>
@@ -126,29 +130,29 @@
                       </ul>
                   </li>
                   <li>
-                      <a href="{{url('/catergories')}}">Xã Hội</a>
+                      <a href="{{url('/catergories')}}">Xã hội</a>
                       <span class="hover-dash"></span>
                   </li>
                   <li>
-                      <a href="{{url('/catergories')}}">Pháp Luật</a>
+                      <a href="{{url('/catergories')}}">Pháp luật</a>
                       <span class="hover-dash"></span>
                   </li>
                   <li>
-                      <a href="{{url('/catergories')}}">Thế Giới</a>
+                      <a href="{{url('/catergories')}}">Thế giới</a>
                       <span class="hover-dash"></span>
                   </li>
                   <li>
-                      <a href="{{url('/catergories')}}">Kinh Doanh</a>
+                      <a href="{{url('/catergories')}}">Kinh doanh</a>
                       <span class="hover-dash"></span>
                   </li>
                   <li>
-                      <a href="{{url('/catergories')}}">Công Nghệ</a>
+                      <a href="{{url('/catergories')}}">Công nghệ</a>
                       <span class="hover-dash"></span>
                   </li>
 
 
                   <li>
-                      <a href="{{url('/catergories')}}">Sức Khỏe</a>
+                      <a href="{{url('/catergories')}}">Sức khỏe</a>
                       <span class="hover-dash"></span>
                   </li>
 
@@ -196,16 +200,17 @@
                   <h3 class="form__name">FEEDBACK</h3>
                       <div class="form__input box_input">
                           <i class="fas fa-heading"></i>
-                          <input type="text" name="feedback_title" id="feedback_title" placeholder=" Title..." />
-                          <samp class="text-danger"><b>{{ $errors->first('feedback_title') }}</b></samp>
+                          <input type="text" name="feedback_title" class="@error('feedback_title') is-invalid @enderror" value="{{ old('feedback_title') }}" id="feedback_title" placeholder=" Title..." />
+                          <span  class="text-danger"><b>{{ $errors->first('feedback_title') }}</b></span>
                       </div>
                       <div class="form__input">
                           <i class="fas fa-comment-alt"></i>
-                          <textarea name="feedback_content" rows="5"></textarea>
-                          <samp class="text-danger"><b>{{ $errors->first('feedback_content') }}</b></samp>
+                          <textarea name="feedback_content" class="@error('feedback_content') is-invalid @enderror" rows="5">{{ old('feedback_content') }}</textarea>
+                          <span class="text-danger"><b>{{ $errors->first('feedback_content') }}</b></span>
                       </div>
                       @if(Auth::user() == null)
-                      <div>Vui lòng đăng nhập để gửi góp ý</div>
+                      <br>
+                      <div class="color-red">Vui lòng đăng nhập để gửi góp ý</div>
                       <br>
                       <div class="btn--hover">
                           <a href="{{ route('login') }}">
@@ -244,21 +249,22 @@
                   <h3 class="form__name">ERROR</h3>
                       <div class="form__input box_input">
                           <i class="fas fa-wave-square"></i>
-                          <input type="text" name="error_url" id="error_url" placeholder=" Error url..." />
+                          <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{ old('error_url') }}" id="error_url" placeholder=" Error url..." />
                           <samp class="text-danger"><b>{{ $errors->first('error_url') }}</b></samp>
                         </div>
                         <div class="form__input box_input">
                         <i class="fas fa-heading"></i>
-                          <input type="text" name="error_title" id="error_title" placeholder=" Error title..." />
+                          <input type="text" name="error_title" class="@error('error_title') is-invalid @enderror" value="{{ old('error_title') }}" id="error_title" placeholder=" Error title..." />
                           <samp class="text-danger"><b>{{ $errors->first('error_title') }}</b></samp>
                         </div>
                       <div class="form__input">
                           <i class="fas fa-comment-alt"></i>
-                          <textarea name="error_content" rows="5"></textarea>
+                          <textarea name="error_content" class="@error('error_content') is-invalid @enderror" rows="5">{{ old('error_content') }}</textarea>
                           <samp class="text-danger"><b>{{ $errors->first('error_content') }}</b></samp>
                       </div>
                       @if(Auth::user() == null)
-                      <span>Vui lòng đăng nhập để báo lỗi</span>
+                      <br>
+                      <div class="color-red" >Vui lòng đăng nhập để báo lỗi</div>
                       <br>
                       <div class="btn--hover">
                           <a href="{{ route('login') }}">

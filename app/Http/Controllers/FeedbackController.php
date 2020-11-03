@@ -36,7 +36,7 @@ class FeedbackController extends Controller
         $feedback->feedback_content= $request->feedback_content;
         $feedback->feedback_status=0;
         $feedback->save();
-        return redirect(url('user/successful'));
+        return redirect(url('user/successful'))->with('status','Cám ơn bạn đã đóng góp ý kiến.');;
     }
 
     /**

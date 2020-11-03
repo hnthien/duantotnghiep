@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('admin','Đóng Góp Ý Kiến - T20 News')
 @section('content')
-<main class="col-10 background-white">
+<main >
 
-    <section class="section col-padding  ">
+    <section class="section ">
     <div class="row popular-post ">
         <h1 class="col-12 col-center" style="font-size: 30px;">Ý Kiến Người Dùng</h1>
         </div>

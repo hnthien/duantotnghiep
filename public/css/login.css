@@ -20,24 +20,25 @@
 
 .form__input i {
     position: absolute;
-    top: 34px;
+    top: 35px;
     left: 10px;
     color: rgb(58, 57, 57);
 }
 
 .box_input input {
     width: 100%;
-    padding: 15px 35px;
+    padding: 15px 30px;
     box-sizing: border-box;
     margin-top: 20px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid rgb(58, 57, 57);
+}
+
+.is-invalid {
+    border: 1px solid rgb(236, 0, 0);
+    box-shadow: 0 0 0 .2rem rgba(227, 52, 47, .25)
 }
 
 .box_input input:focus {
-    border-radius: none;
-    border-bottom: none;
+    outline: 0;
 }
 
 .box {
@@ -64,9 +65,10 @@
     padding: 15px 30px;
     box-sizing: border-box;
     margin-top: 19px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid rgb(58, 57, 57);
+}
+
+.form__input textarea:focus {
+    outline: 0;
 }
 
 .col-padding-btn {

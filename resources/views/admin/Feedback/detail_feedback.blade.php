@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 @section('admin','Đóng Góp Ý Kiến - T20 News')
 @section('content')
-<main class="col-10 background-white">
+<main >
 
-    <section class="section col-padding  ">
-    <div class="row popular-post ">
-        <h1 class="col-12 col-center" style="font-size: 30px;">Ý Kiến Người Dùng</h1>
+    <section class="section">
+    <div class="col-margin--bottom">
+            <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Chi tiết phản hồi</h1>
+            <hr>
+            <span style="font-size: 12px; font-weight: bold;">Phản hồi <i class="fas fa-angle-right"></i>Chi tiết phản hồi</span>
         </div>
         <?php
         $user = new App\User();

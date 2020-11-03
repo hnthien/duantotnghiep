@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 @section('admin','Quản lý vi phạm - T20 News')
 @section('content')
-<main class="col-10 background-white">
+<main >
 
-    <section class="section col-padding  ">
-    <div class="row popular-post ">
-            <h1 class="col-12 col-center" style="font-size: 30px;">Quản Lý Vi Phạm</h1>
+    <section class="section">
+    <div class="col-margin--bottom">
+            <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Quản lý vi phạm</h1>
+            <hr>
+            <span style="font-size: 12px; font-weight: bold;">Vi Phạm <i class="fas fa-angle-right"></i>Quản lý vi phạm</span>
         </div>
         <div class="row">
             <form class=" col-4 search" method="POST">

@@ -14,7 +14,7 @@
                 <div class="col-8">
                     <article>
                         <div class="row popular-post ">
-                            <h1 class="col-12 col-margin-left" style="font-size: 30px;">World</h1>
+                            <h1 class="col-12 col-margin-left" style="font-size: 30px;padding: 10px;">World</h1>
                         </div>
 
 
@@ -114,85 +114,85 @@
                 </div>
                 <div class="col-4">
                     <aside>
-                        <div class="popular-post col-padding">
-                            <h2>POPULAR POSTS</h2>
-                            <div class="row col-padding">
-                                <div class="col-2">
-                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
-                                </div>
-                                <div class="col-10 col-margin-left">
-                                    <a href="news.html">
-                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                    </a>
-                                    <ul class="list-horizontal">
-                                        <li>
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li>
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
+                    <div class="popular-post col-padding">
+                        <h2>POPULAR POSTS</h2>
+                        <div class="row ">
+                            <div class="col-2">
+                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
                             </div>
-                            <div class="row col-padding">
-                                <div class="col-2">
-                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
-                                </div>
-                                <div class="col-10 col-margin-left">
-                                    <a href="news.html">
-                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                    </a>
-                                    <ul class="list-horizontal">
-                                        <li>
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li>
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row col-padding">
-                                <div class="col-2">
-                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
-                                </div>
-                                <div class="col-10 col-margin-left">
-                                    <a href="news.html">
-                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                    </a>
-                                    <ul class="list-horizontal">
-                                        <li>
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li>
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row col-padding">
-                                <div class="col-2">
-                                    <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
-                                </div>
-                                <div class="col-10 col-margin-left">
-                                    <a href="news.html">
-                                        <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                    </a>
-                                    <ul class="list-horizontal">
-                                        <li>
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li>
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="col-10 col-margin-left">
+                                <a href="{{url('/news')}}">
+                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                </a>
+                                <ul class="list-horizontal">
+                                    <li>
+                                        <span>by</span>
+                                        <a href="#">DeoThemes</a>
+                                    </li>
+                                    <li>
+                                        Jan 21, 2018
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                        <div class="row ">
+                            <div class="col-2">
+                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
+                            </div>
+                            <div class="col-10 col-margin-left">
+                                <a href="{{url('/news')}}">
+                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                </a>
+                                <ul class="list-horizontal">
+                                    <li>
+                                        <span>by</span>
+                                        <a href="#">DeoThemes</a>
+                                    </li>
+                                    <li>
+                                        Jan 21, 2018
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-2">
+                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
+                            </div>
+                            <div class="col-10 col-margin-left">
+                                <a href="{{url('/news')}}">
+                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                </a>
+                                <ul class="list-horizontal">
+                                    <li>
+                                        <span>by</span>
+                                        <a href="#">DeoThemes</a>
+                                    </li>
+                                    <li>
+                                        Jan 21, 2018
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-2">
+                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
+                            </div>
+                            <div class="col-10 col-margin-left">
+                                <a href="{{url('/news')}}">
+                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                                </a>
+                                <ul class="list-horizontal">
+                                    <li>
+                                        <span>by</span>
+                                        <a href="#">DeoThemes</a>
+                                    </li>
+                                    <li>
+                                        Jan 21, 2018
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                         <div class="popular-post col-padding ">
                             <h2>CATEGORIES</h2>
                             <div class="row">

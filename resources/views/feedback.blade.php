@@ -1,99 +1,41 @@
 @extends('layouts.client')
-@section('client','Profile '.Auth::user()->name )
+@section('client','Đóng góp ý kiến')
 @section('content')
-<main class="content">
+<main class="content col-margin--top ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
             <li><a href="index.html"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
-            <li><a href="#">Account <i class="fas fa-angle-right"></i></a></li>
-
+            <li><a href="#">Góp ý</a></li>
         </ul>
     </div>
-
-
-    <section class="section reponsive_8_4">
+    <section class="section ">
         <div class="row">
             <div class="col-8 ">
-                <div class="row popular-post ">
-                    <h1 class="col-12 col-margin-left" style="font-size: 30px;">User Profile</h1>
+                <div class="row">
+               
+
+
                 </div>
-                <form action="{{url('user/account')}}" method="POST" class="box-shadow col-padding background-white" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                    <div class="col-3">
-                            <img name="images_user" src="{{ URL::asset('images/user') }}/{{Auth::user()->images_user}}" class="img " />
+                <div>
 
-                            <button type="submit"   class="btn background-gray col-border--none">Lưu</button>
-                        </div>
-                        <div class="col-9 col-col-margin-left ">
-                            <span class="text-bold "><i class="fas fa-user-edit"></i>Introduce something interesting.</span>
-                            <br>
-                          <textarea name="intro_user"  style="height: 90%;width: 100%;margin-top:10px ;padding:10px;box-sizing: border-box;">{{ Auth::user()->intro_user }}</textarea>
+                    <?php
+
+                    use Illuminate\Support\Facades\Auth;
+
+                    $feedback = new App\Feedback();
+                    $data = $feedback->where('user_id', Auth::user()->id)->get();
+                    ?>
+                    <h1>Ý kiến Đã đóng góp</h1>
+                    <hr>
+                    @foreach($data as $row)
+                    <div class="popular-post col-padding">
+                       <div style="text-align: right;">@if($row->feedback_status == 0)<i style="color:red;" title="chưa xem" class="fas fa-eye"></i>@else<i style="color:green;" title="góp ý của bạn đã được xem" class="fas fa-eye"></i>@endif</div>
+                       <span><b>Tiêu đề: {{$row->feedback_title}}</b></span>
+                       <p>Nội dung: {{$row->feedback_content}}</p> 
                     </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form__input box_input">
-                                <i class="fas fa-user"></i>
-                                <input type="text" name="name" id="name" value="{{ Auth::user()->name }}" />
-                            </div>
-                            <div class="box">
-                                <i class="fas fa-envelope"></i>
-                               <span style="font-size: 15px;">{{ Auth::user()->email}}</span> 
-                               
-                            </div>
-                            <div class="form__input box_input">
-                                <i class="fas fa-phone-alt"></i>
-                                <input type="text" name="phone_user" id="phone_user" value="{{ Auth::user()->phone_user}}" />
-                            </div>
-                           
-                         
-                            <div class="form__input box_input col-margin--top">
-                                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-                                <div class="file-upload">
-                                    <button class="btn background-gray col-border--none" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                    @endforeach
 
-                                    <div class="image-upload-wrap">
-                                        <input class="file-upload-input" name="images_user" id="images_user" type='file' onchange="readURL(this);"  />
-                                        <div class="drag-text">
-                                            <h3>Drag and drop a file or select add Image</h3>
-                                        </div>
-                                    </div>
-                                    <div class="file-upload-content">
-                                        <img class="file-upload-image" src="#" alt="your image" />
-                                        <div class="image-title-wrap">
-                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box">
-                            <i class="fas fa-user-circle"></i>
-                              
-                                @if(Auth::user()->role_user == 0)
-                                <span>Người Dùng</span>
-                                @else
-                                @if(Auth::user()->role_user == 1)
-                                <span>Tác Giả</span>
-                                @else
-                                @if(Auth::user()->role_user == 2)
-                                <span>Kiểm Duyệt</span>
-                                @else
-                                @if(Auth::user()->role_user == 3)
-                                <span>Admin</span>
-                                @endif
-                                @endif
-                                @endif
-                                @endif
-                                
-                            </div>
-                           
-
-                        </div>
-                    </div>
-                </form>
-
-
+                </div>
             </div>
 
             <div class="col-4">
@@ -105,7 +47,7 @@
                                 <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
                             </div>
                             <div class="col-10 col-margin-left">
-                                <a href="news.html">
+                                <a href="#">
                                     <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
                                 </a>
                                 <ul class="list-horizontal">
@@ -124,7 +66,7 @@
                                 <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
                             </div>
                             <div class="col-10 col-margin-left">
-                                <a href="news.html">
+                                <a href="#">
                                     <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
                                 </a>
                                 <ul class="list-horizontal">
@@ -143,7 +85,7 @@
                                 <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
                             </div>
                             <div class="col-10 col-margin-left">
-                                <a href="news.html">
+                                <a href="#">
                                     <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
                                 </a>
                                 <ul class="list-horizontal">
@@ -162,7 +104,7 @@
                                 <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
                             </div>
                             <div class="col-10 col-margin-left">
-                                <a href="news.html">
+                                <a href="#">
                                     <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
                                 </a>
                                 <ul class="list-horizontal">
@@ -177,15 +119,37 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="popular-post col-padding background-white">
-                            <h2>NEWSLETTER</h2>
-                            <p><i class="far fa-envelope"></i> Subscribe for our daily news</p>
-                            <form class="row" method="GET">
-                                <div class="col-9"><input class="input col-border" type="email" placeholder="Email..." /></div>
-                                <div class="col-3"> <button class="btn background-gray col-border"> <i class="fas fa-paper-plane"></i></button> </div>
-                            </form>
-                        </div> -->
-                    <div class="popular-post col-padding background-white">
+                    <div class="popular-post col-padding ">
+                        <h2>CATEGORIES</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="list-vertical list-category">
+                                    <li>
+                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>World</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Lifestyle</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Business</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Fashion</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Investment</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Technology</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="popular-post col-padding">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
                             <div class="col-6">
@@ -200,11 +164,43 @@
                             </div>
                         </div>
                     </div>
+                    <div class="popular-post col-padding">
+                        <h2> RELATED ARTICLES</h2>
+                        <div class="post-contect">
+                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/review/review_post_1.jpg" alt="review post" />
+                            <a href="{{url('/news')}}">
+                                <h4>UN’s WFP Building Up Blockchain-Based Payments System</h4>
+                            </a>
+                            <ul class="list-horizontal">
+                                <li>
+                                    <span>by</span>
+                                    <a href="#">DeoThemes</a>
+                                </li>
+                                <li>
+                                    Jan 21, 2018
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="post-contect">
+                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/review/review_post_2.jpg" alt="review post" />
+                            <a href="{{url('/news')}}">
+                                <h4>4 credit card tips to make business travel easier</h4>
+                            </a>
+                            <ul class="list-horizontal">
+                                <li>
+                                    <span>by</span>
+                                    <a href="#">DeoThemes</a>
+                                </li>
+                                <li>
+                                    Jan 21, 2018
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
                 </aside>
             </div>
         </div>
     </section>
-
 </main>
 @endsection

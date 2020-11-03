@@ -36,14 +36,17 @@
         })
     })
 </script>
-<main class="col-10 background-white">
+<main >
 
-    <section class="section col-padding  ">
-        <div class="row popular-post ">
-            <h1 class="col-12 col-center" style="font-size: 30px;">Lỗi Người Dùng Báo Cáo</h1>
+    <section class="section">
+    <div class="col-margin--bottom">
+            <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Quản lý bug</h1>
+            <hr>
+            <span style="font-size: 12px; font-weight: bold;">Bug <i class="fas fa-angle-right"></i>Quản lý bug</span>
         </div>
         <div class="row">
             <form class=" col-4 search" method="POST">
+            <span class="item"><i class="fa fa-search"></i></span>
                 <input class="search__input" id="search" type="search" placeholder="Search......" />
                 <div class="results_search"  id="SearchResults"></div>
             </form>
@@ -75,7 +78,7 @@
                 @foreach($not_seen as $row)
                 <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
                     <div class="col-1 col-padding">{{$row->error_id}}</div>
-                    <div class="col-2 col-padding">@if($row->error_status == 0)<span style="color: red;">Chưa xem</span>@else<span style="color:green;">Đã Xem</span>@endif</div>
+                    <div class="col-2 col-padding">@if($row->error_status == 0)<span style="color: red;"><i title="chưa xem" class="fas fa-eye"></i>Chưa xem</span>@endif</div>
                     <div class="col-4 col-padding--top text-bold">{{$row->error_title}}</div>
                     <div class="col-3 col-padding--top">
                         @foreach($data1 as $row1)
@@ -97,7 +100,7 @@
                 @foreach($watched as $row)
                 <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
                     <div class="col-1 col-padding">{{$row->error_id}}</div>
-                    <div class="col-2 col-padding">@if($row->error_status == 0)<span style="color: red;">Chưa xem</span>@else<span style="color:green;">Đã Xem</span>@endif</div>
+                    <div class="col-2 col-padding">@if($row->error_status == 0)<span style="color: red;">Chưa xem</span>@else<span style="color:green;"><i title="đã xem" class="fas fa-eye"></i> Đã Xem</span>@endif</div>
                     <div class="col-4 col-padding--top text-bold">{{$row->error_title}}</div>
                     <div class="col-3 col-padding--top">
                         @foreach($data1 as $row1)

@@ -23,10 +23,11 @@ class CreatePostTable extends Migration
             $table->string('post_tag')->nullable();
             $table->string('post_intro',1000)->nullable();
             $table->string('post_image')->nullable();
-            $table->string('post_content',12000)->nullable();
+            $table->longText('post_content')->nullable();
             $table->integer('post_view')->nullable();
             $table->integer('post_dislike')->nullable();
             $table->integer('post_like')->nullable();
+            $table->string('article_notes',2000)->nullable();
             $table->timestamps();
         });
     }

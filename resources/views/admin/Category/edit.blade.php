@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 @section('admin','Quản lý chủ đề - Edit user')
 @section('content')
-        <main class="col-10 background-white">
-        <section class="section col-padding  ">
-        <div class="row popular-post ">
-            <h1 class="col-12 col-center" style="font-size: 30px;">Chỉnh Sửa Chủ Đề</h1>
+        <main >
+        <section class="section ">
+        <div class="col-margin--bottom">
+            <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Đổi tên chủ đề</h1>
+            <hr>
+            <span style="font-size: 12px; font-weight: bold;">Chủ đề <i class="fas fa-angle-right"></i>Đổi tên chủ đề</span>
         </div>
         <div class="col-2"> <a class="col-margin--bottom" href="new_user.html"><button class="btn background-greed">New User</button></a>
         </div>

@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 @section('admin','Quản lý người dùng - Edit user')
 @section('content')
-<main class="col-10 background-white">
-    <section class="section col-padding  ">
-        <div class="row popular-post ">
-            <h1 class="col-12 col-center" style="font-size: 30px;">Chỉnh Sửa Người Dùng</h1>
+<main >
+    <section class="section ">
+    <div class="col-margin--bottom">
+            <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Cấp quyền tài khoản</h1>
+            <hr>
+            <span style="font-size: 12px; font-weight: bold;">Người dùng <i class="fas fa-angle-right"></i>Cấp quyền tài khoản</span>
         </div>
         <div class="col-2">    </div>
         <br>
@@ -19,7 +21,7 @@
                 <div class="col-9 col-margin-left col-position ">
                 <span class="text-bold" ><i class="fas fa-user-edit"></i>Giới Thiệu.</span>
 
-                <div style="height:100%;width: 100%;padding-top:10px; overflow: auto;">{{$data->address_user }}</div>
+                <div style="height:100%;width: 100%;padding-top:10px; overflow: auto;">{{$data->intro_user }}</div>
 
 
                 </div>
@@ -70,6 +72,29 @@
                             <option selected value="3">Admin</option>
                             @else
                             @endif
+                            @endif
+                            @endif
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form__input box_input ">
+                        <i class="fas fa-user-circle"></i>
+                        <select name="guilty_user">
+                            @if($data->guilty_user==0)
+                            <option selected value="0">Bình thường</option>
+                            <option value="1">Cấm bình luận 1 ngày</option>
+                            <option value="2">Cấm bình luận 10 ngày</option>                          
+                            @else
+                            @if($data->guilty_user==1)
+                            <option value="0">Bình thường</option>
+                            <option selected value="1">Cấm bình luận 1 ngày</option>
+                            <option value="2">Cấm bình luận 10 ngày</option>                          
+                            @else
+                            @if($data->guilty_user==2)
+                            <option value="0">Bình thường</option>
+                            <option value="1">Cấm bình luận 1 ngày</option>
+                            <option selected  value="2">Cấm bình luận 10 ngày</option>  
+                            @else                       
                             @endif
                             @endif
                             @endif

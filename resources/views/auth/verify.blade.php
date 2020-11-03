@@ -19,7 +19,7 @@
                 </div>
                 <div style="text-align: center;margin-top: 50px;" >
                         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-                        <p style="margin-top: 10px;">© 2018 T20News | Made by T20</p>
+                        <p style="margin-top: 10px;"><a style="color: black;" class="btn-link" href="{{url('/') }}">Trang chủ</a> | © 2018 T20News | Made by T20</p>
                     </div>
             </div>
         </div>

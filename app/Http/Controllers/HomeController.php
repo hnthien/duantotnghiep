@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function logout()
     {
         Auth::logout();
-        return ;
+        return redirect(url('/login'))->with('log','Password changed successfully.');
     }
     //admin
     public function admin(Request $request){
@@ -47,10 +47,6 @@ class HomeController extends Controller
     {
         return view('index');
     }
-    public function index1()
-    {
-    return view('home'); 
-    }
     // password edit
     public function password()
     {     
@@ -58,10 +54,6 @@ class HomeController extends Controller
     }
     public function account(Request $request)
     {     
-        //   $request->validate([
-        //     'email' => 'required|email',
-
-        // ]);
         $news = User::find( Auth::user()->id);
         if ($request->hasFile('images_user')) {
             $news->images_user = $request->file('images_user')->getClientOriginalName();
@@ -71,7 +63,7 @@ class HomeController extends Controller
         }
         $news->name= $request->name;
         $news->phone_user= $request->phone_user;
-        $news->address_user=$request->address_user;
+        $news->intro_user=$request->intro_user;
         $news->save();
         return redirect(url('/account'));
     }
@@ -109,6 +101,39 @@ class HomeController extends Controller
          echo "Email is incorrect.";        
         }     
        }
+       return;
+   
+    }
+    // edit pass
+    public function edit_pass(Request $request,$id)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'newpassword' => 'required',
+            'confirmpassword' => 'required|same:newpassword',
+
+        ]);
+      
+        $email = $request->email;
+        $password = $request->password;
+        $result=User::where('email',$email)->find($id);
+        if($result){          
+            if(Hash::check($password, Auth::user()->password)){
+               
+                    $news = User::find($id);
+                    $news->password = Hash::make($request->confirmpassword);
+                    $news->save();
+                return redirect(url('/user/logout'));
+               
+            }else{
+                return redirect()->action('HomeController@password')->with('pass','Password is incorrect.');                  
+            }
+        }else{       
+            return redirect()->action('HomeController@password')->with('email','Email is incorrect.');                  
+       
+        }     
+       
        return;
    
     }

@@ -1,17 +1,15 @@
 @extends('layouts.app')
-@section('app','Dashboard')
+@section('app','Đăng ký thành công')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div style="margin-top: 60px;" class="card box-shadow">
-            <h1 class="form__name">Dashboard</h1>
-                <div class="card-body">
-                @if (session('status'))
+            <h1 class="form__name">Đăng ký thành công</h1>
+                <div class="card-body">              
                 <div style="text-align: center;" class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-                @endif
+                You are logged in!
+                </div>             
                 <div style="text-align: center;margin-top: 40px;">
                     <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                     <br>

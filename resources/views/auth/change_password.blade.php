@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('app','Change Passwword')
 @section('content')
-<div class="container" >
-    <div class="row justify-content-center" >
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card box-shadow" >
+            <div class="card box-shadow">
                 <h1 class="form__name">CHANGE PASSWORD</h1>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(function() {
                         $('#form_comment').submit(function(event) {
@@ -42,28 +42,37 @@
 
                         })
                     })
-                </script>
+                </script> -->
                 <div class="card-body">
-                <div class="row form-group"  >
-            <div  class="col-md-4"></div>
-            <div class="col-md-6">
-                <span id="review" style="position:absolute;top:14%;color:red;font-weight: bold;"></span>
-            </div>
-            
-            </div>
-                <br>
-                    <form method="POST" id='form_comment' action="{{url('/user/edit_password')}}/{{Auth::user()->id}}" enctype="multipart/form-data">
-                    @csrf 
-                   
+                    <div class="row form-group">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                            <span id="review" style="position:absolute;top:14%;color:red;font-weight: bold;">
+                            </span>
+                        </div>
+
+                    </div>
+                    <br>
+                    <form method="POST" id='form_comment' action="{{url('/user/edit_pass')}}/{{Auth::user()->id}}" enctype="multipart/form-data">
+                        @csrf
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right"><b>Email</b></label>
 
                             <div class="col-md-6">
 
 
-                                <input id="email" type="text" placeholder="email" class="form-control" name="email" value="" autocomplete="email" autofocus>
+                                <input id="email" type="text" placeholder="email" class="form-control  @if (session('email'))is-invalid @endif @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
 
-                                <span class="text-danger"><b>{{ $errors->first('email') }}</b></span>
+                                <span class="text-danger"><b>
+                                        @if (session('email'))
+                                       
+                                            {{ session('email') }}
+                                       
+                                        @endif
+                                        {{ $errors->first('email') }}
+
+                                    </b></span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -72,8 +81,13 @@
                             <div class="col-md-6">
 
 
-                                <input id="password" type="password" placeholder="password" class="form-control" name="password" value="" autocomplete="password" autofocus>
-                                <span class="text-danger"><b>{{ $errors->first('password') }}</b></span>
+                                <input id="password" type="password" placeholder="password" class="form-control @if (session('pass'))is-invalid @endif @error('pass') is-invalid @enderror" name="password" value="{{ old('pass') }}" autocomplete="password" autofocus>
+                                <span class="text-danger"><b>
+                                        @if (session('pass'))                                      
+                                            {{ session('pass') }}                                    
+                                        @endif
+                                        {{ $errors->first('password') }}
+                                    </b></span>
 
                             </div>
                         </div>
@@ -83,7 +97,7 @@
                             <div class="col-md-6">
 
 
-                                <input id="newpassword" type="password" placeholder="New Password" class="form-control " name="newpassword" value="" autocomplete="newpassword" autofocus>
+                                <input id="newpassword" type="password" placeholder="New Password" class="form-control @error('newpassword') is-invalid @enderror " name="newpassword" value="{{ old('newpassword') }}" autocomplete="newpassword" autofocus>
                                 <span class="text-danger"><b>{{ $errors->first('newpassword') }}</b></span>
 
                             </div>
@@ -94,7 +108,7 @@
                             <div class="col-md-6">
 
 
-                                <input id="confirmpassword" type="password" placeholder="Confirm Password" class="form-control " name="confirmpassword" value="" autocomplete="confirmpassword" autofocus>
+                                <input id="confirmpassword" type="password" placeholder="Confirm Password " class="form-control @error('confirmpassword') is-invalid @enderror " name="confirmpassword" value="{{ old('confirmpassword') }}" autocomplete="confirmpassword" autofocus>
                                 <span class="text-danger"><b>{{ $errors->first('confirmpassword') }}</b></span>
 
                             </div>
@@ -114,8 +128,8 @@
                 </div>
                 <div style="text-align: center;margin-top: 40px;">
                     <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-                   <br>
-                    <p style="margin-top: 10px;">© 2018 T20News | Made by T20</p>
+                    <br>
+                    <p style="margin-top: 10px;"><a style="color: black;" class="btn-link" href="{{url('/') }}">Trang chủ</a> | © 2018 T20News | Made by T20</p>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@ class ErrorController extends Controller
         $error->error_content = $request->error_content;
         $error->error_status = 0;
         $error->save();
-        return redirect(url('user/successful'));
+        return redirect(url('user/successful'))->with('status','Cám ơn bạn đã báo lỗi ! Chúng tôi sẽ tìm cách nhanh nhất để fix nó');
     }
 
     /**

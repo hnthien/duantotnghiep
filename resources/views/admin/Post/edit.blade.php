@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 @section('admin','Quản lý bài viết - Edit post')
 @section('content')
-<main class="col-10 background-white">
-    <section class="section col-padding  ">
-        <div class="row popular-post ">
-            <h1 class="col-12 col-center" style="font-size: 30px;">Chỉnh Sửa Bài Viết</h1>
+<main >
+    <section class="section ">
+    <div class="col-margin--bottom">
+            <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Chỉnh sửa bài viết</h1>
+            <hr>
+            <span style="font-size: 12px; font-weight: bold;">Bài viết <i class="fas fa-angle-right"></i>Chỉnh sửa bài viết</span>
         </div>
 
         <form method="GET" enctype="multipart/form-data">

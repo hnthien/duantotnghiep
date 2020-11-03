@@ -8644,7 +8644,8 @@ a.text-warning:hover {
 }
 
 .text-danger {
-    color: #e3342f!important
+    color: #e3342f!important;
+    font-size: 12px;
 }
 
 a.text-danger:focus,

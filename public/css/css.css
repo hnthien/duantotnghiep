@@ -2,6 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     /* background: #ffffff; */
     margin: 0px;
+    color: rgb(41, 40, 40);
 }
 
 .row {
@@ -25,7 +26,6 @@ body {
 
 .col-4 {
     width: 33.333%;
-    margin: 0px 5px;
 }
 
 .col-5 {
@@ -72,7 +72,7 @@ body {
 }
 
 .content {
-    width: 90%;
+    width: 85%;
     margin: 0px auto;
 }
 
@@ -85,7 +85,7 @@ body {
 /*  */
 
 i {
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 ul {
@@ -128,6 +128,10 @@ textarea {
     resize: none;
 }
 
+textarea:focus {
+    outline: 0;
+}
+
 p {
     margin: 0px;
 }
@@ -136,7 +140,7 @@ p {
 /* test color */
 
 .text-color-white {
-    color: white
+    color: rgb(107, 105, 105)
 }
 
 .text-bold {
@@ -218,6 +222,7 @@ p {
     outline: none;
     opacity: 0;
     cursor: pointer;
+    outline: 0;
 }
 
 .image-upload-wrap {
@@ -490,6 +495,10 @@ p {
     color: rgb(58, 57, 57);
 }
 
+.color-light-gray {
+    color: rgb(145, 145, 145);
+}
+
 .color-white {
     color: white;
 }
@@ -525,6 +534,7 @@ p {
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
+    outline: 0;
 }
 
 .btn {
@@ -534,7 +544,11 @@ p {
     font-weight: bold;
     box-sizing: border-box;
     border: none;
-    box-shadow: 0 0px 11px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.699);
+}
+
+.btn:focus {
+    outline: 0;
 }
 
 .btn:hover {
@@ -548,7 +562,11 @@ p {
     color: white;
     font-weight: bold;
     border: none;
-    box-shadow: 0 0px 11px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.699);
+}
+
+.btn-admin:focus {
+    outline: 0;
 }
 
 .btn-admin:hover {
@@ -610,6 +628,7 @@ p {
 /* menu */
 
 .header {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
     margin-bottom: 20px;
     background: #ffffff;
     box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
@@ -732,6 +751,7 @@ p {
     border-radius: 5px;
     padding: 15px 40px;
     width: 100%;
+    outline: 0;
 }
 
 .search .search__input::placeholder {
@@ -758,16 +778,19 @@ p {
 /* popular-post */
 
 .text-danger {
-    color: #e3342f
+    color: #e3342f!important;
+    font-size: 12px;
 }
 
 .box-shadow {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
     box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
 }
 
 .popular-post {
     background: #ffffff;
     margin-bottom: 20px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
     box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
 }
 
@@ -781,7 +804,7 @@ p {
 footer {
     box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
     padding: 50px;
-    background: #ffffff;
+    background: rgb(0, 0, 0);
 }
 
 
@@ -806,10 +829,23 @@ footer {
 
 .header-admin {
     position: fixed;
-    padding-top: 45px;
+    top: 65px;
+    padding-top: 0px;
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
+    margin-right: 5px;
+    width: 230px;
+    box-sizing: border-box;
+    box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
+}
+
+.header-admintop {
+    z-index: 20;
+    position: fixed;
+    height: 65px;
+    background: white;
+    width: 100%;
     box-sizing: border-box;
     box-shadow: 0 1.1px 5.3px rgba(0, 0, 0, 0.013), 0 3.6px 17.9px rgba(0, 0, 0, 0.033), 0 16px 80px rgba(0, 0, 0, 0.07);
 }
@@ -819,19 +855,19 @@ footer {
 
 .menu-nav .list-vertical-admin li {
     position: relative;
-    padding: 15px 0px;
+    padding: 15px 10px;
     margin-top: 5px;
-    width: 100%;
+    box-sizing: border-box;
 }
 
 .list-vertical-admin li a {
     position: relative;
-    padding: 10px 0px;
-    text-transform: uppercase;
+    padding: 25px 10px;
+    /* text-transform: uppercase; */
     width: 100%;
     font-weight: bold;
     font-size: 14px;
-    color: rgb(58, 57, 57);
+    color: rgb(145, 145, 145);
 }
 
 .list-vertical-admin li .fa-angle-right {
@@ -839,11 +875,19 @@ footer {
 }
 
 .list-vertical-admin li:hover a {
-    color: red;
+    color: white;
+    transition: color 0.5s;
+}
+
+.list-vertical-admin li:hover {
+    background: rgba(128, 128, 128, 0.322);
+    border-radius: 2px;
+    transition: background 0.5s;
 }
 
 .list-vertical-admin li:hover .hover-dash {
-    width: 90%;
+    background-color: rgba(128, 128, 128);
+    width: 100%;
     transition: width 0.5s;
 }
 
@@ -1087,6 +1131,9 @@ footer {
     }
     .popular-post .row .col-9 {
         width: 75%;
+    }
+    .popular-post .col-margin-left {
+        margin-left: 0px
     }
     .post .row {
         display: flex;

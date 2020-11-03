@@ -5,13 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                    <h1 class="form__name">{{ __('LOGIN') }}</h1>
-                   
-               
+                <h1 class="form__name">{{ __('LOGIN') }}</h1>
+
+
                 <div class="card-body ">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        @if (session('log'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('log') }}
+                        </div> 
+                        @endif
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right "><b>{{ __('E-Mail Address') }}</b></label>
 
@@ -61,18 +65,19 @@
 
                                 @if (Route::has('password.request'))
                                 <a style="color: black;" class="btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('Forgot Your Password ?') }}
                                 </a>
                                 @endif
+                                <a style="color: black;" class="btn-link" href="{{url('/') }}">Trang chủ</a>
                             </div>
                         </div>
                     </form>
 
 
                 </div>
-                <div style="text-align: center;margin-top: 40px;" >
+                <div style="text-align: center;margin-top: 40px;">
                     <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
-                    <p style="margin-top: 10px;">© 2018 T20News | Made by T20</p>
+                    <p style="margin-top: 10px;"><a style="color: black;" class="btn-link" href="{{url('/') }}">Trang chủ</a> | © 2018 T20News | Made by T20</p>
                 </div>
             </div>
         </div>
