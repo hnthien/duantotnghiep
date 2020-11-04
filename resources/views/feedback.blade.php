@@ -23,13 +23,14 @@
                     use Illuminate\Support\Facades\Auth;
 
                     $feedback = new App\Feedback();
-                    $data = $feedback->where('user_id', Auth::user()->id)->get();
+                    $data = $feedback->where('user_id', Auth::user()->id)->orderBy('feedback_id', 'DESC')->get();
                     ?>
                     <h1>Ý kiến Đã đóng góp</h1>
                     <hr>
                     @foreach($data as $row)
                     <div class="popular-post col-padding">
                        <div style="text-align: right;">@if($row->feedback_status == 0)<i style="color:red;" title="chưa xem" class="fas fa-eye"></i>@else<i style="color:green;" title="góp ý của bạn đã được xem" class="fas fa-eye"></i>@endif</div>
+                       <p>Lúc @php echo substr($row->created_at ,10,3).' giờ '.substr($row->created_at ,14,2).' phút' @endphp ngày @php echo substr($row->created_at ,0,10) @endphp</p>                                  
                        <span><b>Tiêu đề: {{$row->feedback_title}}</b></span>
                        <p>Nội dung: {{$row->feedback_content}}</p> 
                     </div>

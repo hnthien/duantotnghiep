@@ -72,12 +72,12 @@
                 <?php
                    $feedback = new App\Feedback();
                    $data = $feedback->all();
-                   $number = 1;                                  
+                   $number = 0;                                  
                         foreach($data as $row){                       
                            $nub = $number++;                                                                 
                         }
                        
-                        echo  '<b>'.$nub.'</b>';      
+                        echo  '<b>'.$number.'</b>';      
                 ?>
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
@@ -96,12 +96,12 @@
                 <?php
                    $error = new App\Error();
                    $data = $error->all();
-                   $number = 1;                                  
+                   $number = 0;                                  
                         foreach($data as $row){                       
                            $nub = $number++;                                                                 
                         }
                        
-                        echo  '<b>'.$nub.'</b>';      
+                        echo  '<b>'.$number.'</b>';      
                 ?>
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">

@@ -116,6 +116,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'user'],function(){
             Route::get('/','Admin_UserController@index');
             Route::get('/search','Admin_UserController@search');
+            Route::get('/editt/{id}','Admin_UserController@edit');
             Route::post('/edit/{id}','Admin_UserController@edit');
             Route::post('/updata/{id}','Admin_UserController@updata');
             Route::post('/delete/{id}','Admin_UserController@delete');

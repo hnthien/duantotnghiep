@@ -47,66 +47,91 @@
             </form>
         </div>
         <br>
-        <form  method="POST">
-            @csrf
-           
-            <div class="row">
-                <div class="col-4 col-margin--bottom">
-                    <button type="submit" onclick="return window.confirm('Đại ca có chắc muốn đuổi tất cả bọn nó ra khỏi hội !');" formaction="{{url('admin/user/delete_all')}}" class="btn background-red">Delete all select</button>
+        <div class="row">
+            <form class="col-12" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-4 col-margin--bottom">
+                        <button type="submit" onclick="return window.confirm('Đại ca có chắc muốn đuổi tất cả bọn nó ra khỏi hội !');" formaction="{{url('admin/user/delete_all')}}" class="btn background-red">Delete all select</button>
+                    </div>
+                    <div class="col-6 col-padding color-red">
+                        @if (session('notification'))
+                        <b>{{ session('notification') }}</b>
+                        @endif
+                    </div>
                 </div>
-                <div class="col-6 col-padding color-red">
-                    @if (session('notification'))
-                    <b>{{ session('notification') }}</b>
-                    @endif
-                </div>
-            </div>
 
-            <div class="popular-post ">
-                <div class="row  background-gray color-white text-align--center ">
-                    <div class="col-1 col-padding"><input type="checkbox" class="selectall" /></div>
-                    <div class="col-1 col-padding">Id</div>
-                    <div class="col-1 col-padding">Ảnh</div>
-                    <div class="col-2 col-padding">User name</div>
-                    <div class="col-2 col-padding">Email</div>
-                    <div class="col-2 col-padding">Phone</div>
-                    <div class="col-1 col-padding">Role</div>
-                    <div class="col-1 col-padding">Delete</div>
-                    <div class="col-1 col-padding">Role</div>
-                </div>
-                @foreach ($data as $row)
-                <div class="row col-border-bottom text-align--center  col-padding--top ">
-                    <div class="col-1 col-padding--top"><input type="checkbox" name="ids[]" class="selectbox" value="{{$row->id}}" /></div>
-                    <div class="col-1 col-padding--top"><samp>{{$row->id}}</samp></div>
-                    <div class="col-1 ">
-                        <img src="{{ URL::asset('images/user') }}/{{$row->images_user}}" style="width:50px;height:50px;border-radius:50%" />
+                <div class="popular-post ">
+                    <div class="row  background-gray color-white text-align--center ">
+                        <div class="col-1 col-padding"><input type="checkbox" class="selectall" /></div>
+                        <div class="col-1 col-padding">Id</div>
+                        <div class="col-1 col-padding">Ảnh</div>
+                        <div class="col-2 col-padding">User name</div>
+                        <div class="col-2 col-padding">Email</div>
+                        <div class="col-2 col-padding">Phone</div>
+                        <div class="col-1 col-padding">Role</div>
+                        <div class="col-1 col-padding">Delete</div>
+                        <div class="col-1 col-padding">Edit</div>
+
                     </div>
-                    <div class="col-2 col-padding--top"><samp>{{$row->name}}</samp></div>
-                    <div class="col-2 col-padding--top"><samp>{{$row->email}}</samp></div>
-                    <div class="col-2 col-padding--top"><samp>{{$row->phone_user}}</samp></div>
-                    <div class="col-1 col-padding--top">
-                        @if($row->role_user == 0)
-                        <samp>Người dùng</samp>
-                        @else
-                        @if($row->role_user == 1)
-                        <samp>Kiểm Duyệt</samp>
-                        @else
-                        @if($row->role_user == 2)
-                        <samp>Nhà Báo</samp>
-                        @else
-                        <samp>Admin</samp>
-                        @endif
-                        @endif
-                        @endif
+                    @foreach ($data as $row)
+                    <div class="row col-border-bottom text-align--center  col-padding--top ">
+                        <div class="col-1 col-padding--top"><input type="checkbox" name="ids[]" class="selectbox" value="{{$row->id}}" /></div>
+                        <div class="col-1 col-padding--top"><samp>{{$row->id}}</samp></div>
+                        <div class="col-1 ">
+                            <img src="{{ URL::asset('images/user') }}/{{$row->images_user}}" style="width:50px;height:50px;border-radius:50%" />
+                        </div>
+                        <div class="col-2 col-padding--top"><samp>{{$row->name}}</samp></div>
+                        <div class="col-2 col-padding--top"><samp>{{$row->email}}</samp></div>
+                        <div class="col-2 col-padding--top"><samp>{{$row->phone_user}}</samp></div>
+                        <div class="col-1 col-padding--top">
+                            @if($row->role_user == 0)
+                            <samp>Người dùng</samp>
+                            @else
+                            @if($row->role_user == 1)
+                            <samp>Kiểm Duyệt</samp>
+                            @else
+                            @if($row->role_user == 2)
+                            <samp>Nhà Báo</samp>
+                            @else
+                            <samp>Admin</samp>
+                            @endif
+                            @endif
+                            @endif
+                        </div>
+                        <!-- <div class="col-1 col-padding--top"><a href="{{url('admin/user/delete')}}/{{$row->id}}" onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');"><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></div>
+                        <div class="col-1 col-padding--top"><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
+                    -->
+                        <div class="col-1 col-padding--top"><button  onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');" formaction="{{url('admin/user/delete')}}/{{$row->id}}" class="btn-admin background-red"><i class="fas fa-trash"></i></button></div>
+                        <div class="col-1 col-padding--top"><button formaction="{{url('admin/user/edit')}}/{{$row->id}}" class="btn-admin background-blue"><i class="fas fa-edit"></i></button></div>                 
+                       
+                      
                     </div>
-                    <div class="col-1 "><a href="{{url('admin/user/delete')}}/{{$row->id}}"><button onclick="return window.confirm('Đại ca muốn đuổi thàng này này chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></div>
-                    <div class="col-1 "><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button formaction="{{url('admin/user/edit')}}/{{$row->id}}" class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
-     
+                    @endforeach
                 </div>
-                @endforeach
-            </div>
-        </form>
-        @foreach($data as $row)
-         @endforeach
+            </form>
+            <!-- <div class="col-2">
+                <div class="row">
+                    <div  class="col-12 col-margin--bottom">
+                        <div style=" padding: 22.5px;"></div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="row  background-gray color-white text-align--center ">
+                        <div style="padding:16px 0px" class="col-6">Delete</div>
+                        <div style="padding:16px 0px" class="col-6">Edit</div>
+                    </div>
+                    @foreach($data as $row)
+                    <div class="row col-border-bottom text-align--center ">
+                        <div style="padding:14.5px 0px" class="col-6 "><a href="{{url('admin/user/delete')}}/{{$row->id}}" onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');"><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></div>
+                        <div style="padding:14.5px 0px" class="col-6 "><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
+                    </div>
+                    @endforeach
+                </div>
+            </div> -->
+        </div>
+
+
         <div style="position: relative;left: 40%;text-align: center;width:20%">{!!$data->links()!!}</div>
 
     </section>

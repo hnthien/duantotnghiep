@@ -25,8 +25,6 @@ class CreatePostTable extends Migration
             $table->string('post_image')->nullable();
             $table->longText('post_content')->nullable();
             $table->integer('post_view')->nullable();
-            $table->integer('post_dislike')->nullable();
-            $table->integer('post_like')->nullable();
             $table->string('article_notes',2000)->nullable();
             $table->timestamps();
         });

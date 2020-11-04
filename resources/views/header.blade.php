@@ -22,7 +22,7 @@
           <ul class="menuheader row">
               <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px" src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
               <li class="menuheaderli col-9">
-                  <span href="#" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></span>
+                  <span style="text-transform: capitalize" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></span>
                   <ul class="menuheaderli__droplist">
                       <li>
                           <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -193,7 +193,8 @@
       <div class="feedback_box " id="feedback_box">
           <div class="row col-margin--top">
               <div class="col-4"></div>
-              <div class="col-4 popular-post col-padding col-position">
+              <div class="col-4 col-padding ">
+                  <div style="height: 600px;" class="popular-post col-position col-padding--bottom col-padding--top">
                   <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                   <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data" class="form col-padding">
                   @csrf  
@@ -225,11 +226,14 @@
                       </div>
                       @endif
                   </form>
-                  <div class="text-align--center " style="margin-top: 100px;">
+                  <div class="text-align--center " style="margin-top: 10px;">
                       <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                       <p>© 2018 T20News | Made by T20</p>
                   </div>
 
+
+                  </div>
+                  
               </div>
               <div class="col-4"></div>
           </div>
@@ -242,8 +246,9 @@
       <div class="error_box " id="error_box">
           <div class="row col-margin--top">
               <div class="col-4"></div>
-              <div class="col-4 popular-post col-padding col-position">
-                  <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
+              <div class="col-4 col-padding">
+              <div style="height: 600px;" class="popular-post col-position col-padding--bottom col-padding--top">
+              <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                   <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data" class="form col-padding">
                   @csrf 
                   <h3 class="form__name">ERROR</h3>
@@ -279,11 +284,11 @@
                       </div>
                       @endif
                   </form>
-                  <div class="text-align--center" style="margin-top: 100px;">
+                  <div class="text-align--center" style="margin-top: 10px;">
                       <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                       <p>© 2018 T20News | Made by T20</p>
                   </div>
-
+              </div>
               </div>
               <div class="col-4"></div>
           </div>

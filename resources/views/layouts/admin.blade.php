@@ -29,7 +29,7 @@
                     <ul class="menuheader row " style="margin-bottom: 0px;">
                         <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px" src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
                         <li class="menuheaderli col-9">
-                            <a>{{ Auth::user()->name }} <i class="fas fa-caret-down"></i></a>
+                            <p style="text-transform: capitalize">{{ Auth::user()->name }} <i class="fas fa-caret-down"></i></p>
                             <ul class="menuheaderli__droplist">
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
