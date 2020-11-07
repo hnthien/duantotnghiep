@@ -10,7 +10,7 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/post')}}"><i class="fas fa-clipboard-list"></i>Bài viết <i class="fas fa-angle-right"></i></a>
+                            <a href="{{route('post.index')}}"><i class="fas fa-clipboard-list"></i>Bài viết  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>

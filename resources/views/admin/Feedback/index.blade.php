@@ -76,7 +76,7 @@
             </div>
             <!-- not_seen_box  -->
             <div id='not_seen_box'>
-                @foreach($not_seen as $row)
+                @foreach($not_seen as doing $row)
                 <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
                     <div class="col-1 col-padding">{{$row->feedback_id}}</div>
                     <div class="col-2 col-padding">@if($row->feedback_status == 0)<span style="color: red;"><i title="chưa xem" class="fas fa-eye"></i>Chưa xem</span>@endif</div>
