@@ -64,25 +64,13 @@ Route::get('/admin',function(){
 
 
 //post
-Route::get('/post',function(){
-    return view('admin.post.index');
-});
-Route::get('/post/edit',function(){
-    return view('admin.post.edit');
-});
-Route::get('/post/new_post',function(){
-    return view('admin.post.new_post');
-});
+// Route::resource('post',PostController::class);
+
 //category
-Route::get('/category',function(){
-    return view('admin.category.index');
-});
-Route::get('/category/edit',function(){
-    return view('admin.category.edit');
-});
-Route::get('/category/new_category',function(){
-    return view('admin.category.new_category');
-});
+
+Route::resource('category', CategoryController::class);
+
+
 //comment
 Route::get('/comment',function(){
     return view('admin.comment.index');
@@ -136,6 +124,15 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/search','ErrorController@search');
     Route::get('/detail_error/{id}','ErrorController@detail_error');
     Route::post('/create_error','ErrorController@create_error');
+    });
+    //post
+    Route::group(['prefix'=>'post'],function(){
+        Route::get('/','PostController@index')->name('post.index');
+        Route::get('/create_post_view','PostController@create_posts')->name('view_create_post');
+        Route::post('/create_post','PostController@create_post');
+        Route::get('/edit/{id}','PostController@edit');
+        Route::post('/update/{id}','PostController@update');
+        Route::get('/delete/{id}','PostController@destroy');
     });
 });
 //người dùng client

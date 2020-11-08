@@ -75,6 +75,7 @@
                 <th>Chi Tiết</th>
             </tr>
             <!-- not_seen_box  -->
+
            
                 @foreach($not_seen as $row)
                 <tr id='not_seen_box'>
@@ -82,6 +83,7 @@
                     <td >@if($row->feedback_status == 0)<span style="color: red;"><i title="chưa xem" class="fas fa-eye"></i>Chưa xem</span>@endif</td>
                     <td >{{$row->feedback_title}}</td>
                     <td >
+
                         @foreach($data1 as $row1)
                         @if($row1->id == $row->user_id)
                         {{$row1->name}}<br>

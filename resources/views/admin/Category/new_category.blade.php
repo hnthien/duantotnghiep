@@ -8,18 +8,22 @@
             <hr>
             <span style="font-size: 12px; font-weight: bold;">Chủ đề <i class="fas fa-angle-right"></i>Thêm chủ đề</span>
         </div>
-        <div class="col-2"> <a class="col-margin--bottom" href="new_user.html"><button class="btn background-greed">New User</button></a>
+        <div class="col-2"> <a class="col-margin--bottom" href="new_user.html"><button type="submit" class="btn background-greed">New User</button></a>
         </div>
         <br>
-        <form method="GET">
+        
+        <form action="{{route('category.store')}}" method="post">
+        @csrf
             <div class="popular-post col-padding">
-                    <h3>ID:</h3>
-                    <input class="input" type="text" name="name_post" />
                     <h3>Tên Chủ Đề:</h3>
-                    <input class="input" type="text" name="name_post" />
+                    <input class="input" type="text" name="category_title"/>
+                    <h3>Branch:</h3>
+                    <input class="input" type="text" name="category_branch"/>
+                    <h3>Intro:</h3>
+                    <input class="input" type="text" name="category_intro"/>
             </div>
             <div class="row col-3">
-                <button class="btn background-greed">Thêm</button>
+                <button type="submit" class="btn background-greed">Thêm</button>
             </div>
 
         </form>
