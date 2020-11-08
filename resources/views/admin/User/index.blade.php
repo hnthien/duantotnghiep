@@ -61,30 +61,29 @@
                     </div>
                 </div>
 
-                <div class="popular-post ">
-                    <div class="row  background-gray color-white text-align--center ">
-                        <div class="col-1 col-padding"><input type="checkbox" class="selectall" /></div>
-                        <div class="col-1 col-padding">Id</div>
-                        <div class="col-1 col-padding">Ảnh</div>
-                        <div class="col-2 col-padding">User name</div>
-                        <div class="col-2 col-padding">Email</div>
-                        <div class="col-2 col-padding">Phone</div>
-                        <div class="col-1 col-padding">Role</div>
-                        <div class="col-1 col-padding">Delete</div>
-                        <div class="col-1 col-padding">Edit</div>
-
-                    </div>
+                <table class="popular-post col-12 ">
+                    <tr>
+                        <th><input type="checkbox" class="selectall" /></th>
+                        <th >Id</th>
+                        <th >Ảnh</th>
+                        <th >User name</th>
+                        <th >Email</th>
+                        <th >Phone</div>
+                        <th >Role</th>
+                        <th >Delete</th>
+                        <th >Edit</th>
+                    </tr>
                     @foreach ($data as $row)
-                    <div class="row col-border-bottom text-align--center  col-padding--top ">
-                        <div class="col-1 col-padding--top"><input type="checkbox" name="ids[]" class="selectbox" value="{{$row->id}}" /></div>
-                        <div class="col-1 col-padding--top"><samp>{{$row->id}}</samp></div>
-                        <div class="col-1 ">
+                    <tr >
+                        <td><input type="checkbox" name="ids[]" class="selectbox" value="{{$row->id}}" /></td>
+                        <td ><samp>{{$row->id}}</samp></td>
+                        <td >
                             <img src="{{ URL::asset('images/user') }}/{{$row->images_user}}" style="width:50px;height:50px;border-radius:50%" />
-                        </div>
-                        <div class="col-2 col-padding--top"><samp>{{$row->name}}</samp></div>
-                        <div class="col-2 col-padding--top"><samp>{{$row->email}}</samp></div>
-                        <div class="col-2 col-padding--top"><samp>{{$row->phone_user}}</samp></div>
-                        <div class="col-1 col-padding--top">
+                        </td>
+                        <td ><samp>{{$row->name}}</samp></td>
+                        <td ><samp>{{$row->email}}</samp></td>
+                        <td ><samp>{{$row->phone_user}}</samp></td>
+                        <td >
                             @if($row->role_user == 0)
                             <samp>Người dùng</samp>
                             @else
@@ -98,37 +97,17 @@
                             @endif
                             @endif
                             @endif
-                        </div>
+                        </td>
                         <!-- <div class="col-1 col-padding--top"><a href="{{url('admin/user/delete')}}/{{$row->id}}" onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');"><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></div>
                         <div class="col-1 col-padding--top"><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
                     -->
-                        <div class="col-1 col-padding--top"><button  onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');" formaction="{{url('admin/user/delete')}}/{{$row->id}}" class="btn-admin background-red"><i class="fas fa-trash"></i></button></div>
-                        <div class="col-1 col-padding--top"><button formaction="{{url('admin/user/edit')}}/{{$row->id}}" class="btn-admin background-blue"><i class="fas fa-edit"></i></button></div>                 
-                       
-                      
-                    </div>
+                        <td ><button  onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');" formaction="{{url('admin/user/delete')}}/{{$row->id}}" class="btn-admin background-red"><i class="fas fa-trash"></i></button></td>
+                        <td ><button formaction="{{url('admin/user/edit')}}/{{$row->id}}" class="btn-admin background-blue"><i class="fas fa-edit"></i></button></td>                                                    
+                    </tr>
                     @endforeach
-                </div>
+                </table>
             </form>
-            <!-- <div class="col-2">
-                <div class="row">
-                    <div  class="col-12 col-margin--bottom">
-                        <div style=" padding: 22.5px;"></div>
-                    </div>
-                </div>
-                <div class="popular-post">
-                    <div class="row  background-gray color-white text-align--center ">
-                        <div style="padding:16px 0px" class="col-6">Delete</div>
-                        <div style="padding:16px 0px" class="col-6">Edit</div>
-                    </div>
-                    @foreach($data as $row)
-                    <div class="row col-border-bottom text-align--center ">
-                        <div style="padding:14.5px 0px" class="col-6 "><a href="{{url('admin/user/delete')}}/{{$row->id}}" onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');"><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></div>
-                        <div style="padding:14.5px 0px" class="col-6 "><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
-                    </div>
-                    @endforeach
-                </div>
-            </div> -->
+       
         </div>
 
 
