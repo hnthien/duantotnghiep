@@ -1,6 +1,6 @@
 
 @foreach($search_results as $row)
-<a class="row" href="{{url('admin/user/editt')}}/{{$row->id}}">
+<a style="padding: 5px;box-sizing: border-box;" class="row" href="{{url('admin/user/editt')}}/{{$row->id}}">
     <img class="col-2" src="{{ URL::asset('images/user') }}/{{$row->images_user}}" style="width:40px;" />
     <samp class="col-10 ">{{$row->name}}<br>
     {{$row->email}}<br>

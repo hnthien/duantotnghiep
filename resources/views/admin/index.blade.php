@@ -9,54 +9,45 @@
             <span style="font-size: 12px; font-weight: bold;">Dashboard <i class="fas fa-angle-right"></i>News Dashboard </span>
         </div>
         <div class="row">
-        <div class="col-4 popular-post col-padding col-height">
+            <div class="col-4 popular-post col-padding col-height">
                 <h4 class="color-young-green"><i class="fas fa-user-shield"></i>Kiểm Duyệt</h4>
                 <p>Number of Moderators</p>
-                <?php
-                   $user = new App\User();
-                   $data = $user->all();
-                   $number = 0;                                  
-                        foreach($data as $row){
-                        if($row->role_user == 1){
-                             $number++;
-                        }                                                 
-                        }
-                       
-                        echo  '<b>'.$number.'</b>';      
+                <?php            
+                $number = 0;
+                foreach ($user as $rowu) {
+                    if ($rowu->role_user == 1) {
+                        $number++;
+                    }
+                }
+                echo  '<b>' . $number . '</b>';
                 ?>
-               
-               
+
+
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-young-green"><i class="fas fa-user-edit"></i>Nhà Báo</h4>
                 <p>Number of Journalists</p>
-                <?php
-                   $user = new App\User();
-                   $data = $user->all();
-                   $number = 0;                                  
-                        foreach($data as $row){
-                        if($row->role_user==2){
-                            $number++;
-                        }                                                
-                        }
-                       
-                        echo  '<b>'.$number.'</b>';      
+                <?php               
+                $number = 0;
+                foreach ($user as $u) {
+                    if ($rowu->role_user == 2) {
+                        $number++;
+                    }
+                }
+                echo  '<b>' . $number . '</b>';
                 ?>
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-blue"><i class="fas fa-users"></i>Người dùng</h4>
                 <p>Number of User</p>
-                <?php
-                   $user = new App\User();
-                   $data = $user->all();
-                   $number = 0;                                  
-                        foreach($data as $row){
-                        if($row->role_user==0){
-                            $number++;
-                        }                                                 
-                        }
-                       
-                        echo  '<b>'.$number.'</b>';      
+                <?php             
+                $number = 0;
+                foreach ($user as $rowu) {
+                    if ($rowu->role_user == 0) {
+                        $number++;
+                    }
+                }
+                echo  '<b>' . $number . '</b>';
                 ?>
             </div>
         </div>
@@ -64,65 +55,110 @@
             <div class="col-4 popular-post col-padding col-height">
                 <h4 class="color-light-blue"><i class="fas fa-comments"></i>Bình Luận</h4>
                 <p>Number of Comments</p>
-                
+
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-light-blue"><i class="fas fa-comment-dots"></i>Đóng Góp Ý kiến</h4>
                 <p>Number of Feedback</p>
                 <?php
-                   $feedback = new App\Feedback();
-                   $data = $feedback->all();
-                   $number = 0;                                  
-                        foreach($data as $row){                       
-                           $nub = $number++;                                                                 
-                        }
-                       
-                        echo  '<b>'.$number.'</b>';      
+                $number = 0;
+                foreach ($feedback as $rowf) {
+                    $nub = $number++;
+                }
+
+                echo  '<b>' . $number . '</b>';
                 ?>
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-brown"> <i class="fas fa-marker"></i>Bài Viết</h4>
                 <p>Number of Articles</p>
+                <?php               
+                $number = 0;
+                foreach ($post as $row) {
+                    $nub = $number++;
+                }
+
+                echo  '<b>' . $number . '</b>';
+                ?>
             </div>
         </div>
         <div class="row">
-        <div class="col-4 popular-post col-padding col-height">
+            <div class="col-4 popular-post col-padding col-height">
                 <h4 class="color-red"><i class="fas fa-exclamation-triangle"></i>Báo Cáo Vi Phạm</h4>
                 <p>Number of Violation Reports</p>
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-red"><i class="fas fa-exclamation-circle"></i>Báo Cáo Lỗi</h4>
                 <p>Number of Bug</p>
-                <?php
-                   $error = new App\Error();
-                   $data = $error->all();
-                   $number = 0;                                  
-                        foreach($data as $row){                       
-                           $nub = $number++;                                                                 
-                        }
-                       
-                        echo  '<b>'.$number.'</b>';      
+                <?php               
+                $number = 0;
+                foreach ($error as $rowe) {
+                    $nub = $number++;
+                }
+
+                echo  '<b>' . $number . '</b>';
                 ?>
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-green"><i class="fas fa-th-list"></i>Chủ Đề</h4>
                 <p>Number of Categories</p>
+                <?php               
+                $number = 0;
+                foreach ($category as $rowc) {
+                    $nub = $number++;
+                }
+
+                echo  '<b>' . $number . '</b>';
+                ?>
             </div>
         </div>
     </section>
     <section>
-    <div class="col-margin--bottom">
+        <div class="col-margin--bottom">
             <h1 class="col-12" style="font-size: 20px;margin:10px 0px">News new</h1>
             <hr>
             <span style="font-size: 12px; font-weight: bold;">Tin tức mới cập nhật.</span>
         </div>
-    <div class="row background-gray color-white text-align--center col-padding">
-        <div class="col-1">#</div>
-        <div class="col-3">Name news</div>
-        <div class="col-4">Intro</div>
-        <div class="col-2">Status</div>
-        <div class="col-2">Iournalist</div>
-        </div>
+        <table>
+            <tr>
+                <th>#id</th>
+                <th>Image</th>
+                <th>Name news</th>
+                <th>Intro</th>
+                <th>Category</th>
+                <th>View</th>
+                <th>Iournalist</th>
+            </tr>
+            @foreach($post as $row)
+            <tr>
+                <td>{{$row->post_id}} </td>
+                <td>
+                <img width="140px" height="80px" src="{{ URL::asset('images/post_image') }}/{{$row->post_image}}" alt="logo" />
+
+                </td>
+                <td><b>{{$row->post_title}}</b></td>
+                <td>{{$row->post_intro}}</td>
+                <td style="width:150px;text-align: center;">
+                    @foreach($row->category_id as $tag)
+                    @foreach($category as $cate)
+                    @if($cate->category_id == $tag)
+                    <span class="col-border-category">{{$cate->category_title}}</span>
+                    @endif
+                    @endforeach
+                    @endforeach
+                </td>
+                <td>{{$row->post_view}}</td>
+                <td> 
+                    @foreach($user as $row2)
+                     @if($row2->id == $row->user_id)
+                     {{$row2->email}}<br>
+                    {{$row2->name}}
+                    @endif
+                    @endforeach
+                </td>
+            </tr>
+            @endforeach
+        </table>
     </section>
 </main>
 @endsection

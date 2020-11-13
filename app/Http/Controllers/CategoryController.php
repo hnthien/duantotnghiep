@@ -15,8 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categorys = Category::all();
-        return view('admin.category.index', compact('categorys'));
+        $categorys = Category::where('category_branch',0)->orderBy('category_id','DESC')->paginate(9);
+        $categorys_branch = Category::orderBy('category_id','DESC')->get();
+        return view('admin.category.index', compact('categorys','categorys_branch'));
             
        
     }
@@ -26,9 +27,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function new_category()
     {
         return view('admin.category.new_category');
+    }
+    public function new_category_branch($category_id)
+    {
+        $categorys = Category::find($category_id);
+        return view('admin.category.new_category_branch',compact('categorys'));
     }
 
     /**
@@ -37,20 +43,29 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create_category(Request $request)
     {
         $request->validate([
             'category_title' => 'required',
-            'category_branch' => 'required',
-            'category_intro' => 'required',
         ]);
-        $ca = new Category([
-        'category_title' => $request->get('category_title'),
-        'category_branch' => $request->get('category_branch'),
-        'category_intro' => $request->get('category_intro'),
+        $categorys = new Category();
+        $categorys->category_title = $request->category_title;
+        $categorys->category_intro = $request->category_intro;
+        $categorys->category_branch = 0;     
+        $categorys->save();
+        return redirect()->action('CategoryController@index');
+    }
+    public function create_category_branch(Request $request , $category_id)
+    {
+        $request->validate([
+            'category_title' => 'required',
         ]);
-        $ca->save();
-        return view('admin.category.index');
+        $categorys = new Category();
+        $categorys->category_title = $request->category_title;
+        $categorys->category_intro = $request->category_intro;    
+        $categorys->category_branch = $category_id; 
+        $categorys->save();
+        return redirect()->action('CategoryController@index');
     }
 
     /**
@@ -89,11 +104,10 @@ class CategoryController extends Controller
             'category_title' =>'required',
         ]);
         $categorys = Category::find($category_id);
-        $categorys->category_title = $request->get('category_title');
-        $categorys->category_branch = $request->get('category_branch');
-        $categorys->category_intro = $request->get('category_intro');
+        $categorys->category_title = $request->category_title;
+        $categorys->category_intro = $request->category_intro;
         $categorys->save();
-        return redirect()->route('category.index');
+        return redirect()->action('CategoryController@index');
     }
 
     /**
@@ -102,10 +116,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($category_id)
+    public function delete($category_id)
     {
         $categorys = Category::find($category_id);
         $categorys->delete();
-        return redirect()->route('category.index');
+        return redirect()->action('CategoryController@index');
     }
 }

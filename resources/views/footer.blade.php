@@ -25,46 +25,39 @@
                     <li><a href="{{url('/404')}}" class="text-color-white"><i class="fas fa-angle-right"></i>404</a></li>
                 </ul>
             </div>
-            <div style="background: none;" class="col-4 post">
+            <div style="background: none;" class="col-4 post">            
                 <h2 class="text-color-white">Popular Post</h2>
+                @php 
+                $post = new App\Post();
+                $data_post = $post->orderBy('post_id','DESC')->take(2)->get();
+                $user = new App\User();
+                $data_user = $user::all();
+                @endphp
+                @foreach($data_post as $row_post)
                 <div class="row ">
                     <div class="col-2">
-                        <img width="80px" class=" img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
+                        <img width="80px" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
                     </div>
                     <div class="col-10 col-margin-left ">
-                        <a href="{{url('/news')}}">
-                            <h4 class="text-color-white">Follow These Smartphone Habits of Successful Entrepreneurs</h4>
+                        <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+                            <h4 class="text-color-white">{{$row_post->post_title}}</h4>
                         </a>
                         <ul class="list-horizontal">
                             <li class="text-color-white">
                                 <span>by</span>
-                                <a href="#">DeoThemes</a>
+                                @foreach($data_user as $row_user)
+                                @if($row_user->id == $row_post->user_id)
+                                <a  style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                @endif
+                                @endforeach
                             </li>
-                            <li class="text-color-white">
-                                Jan 21, 2018
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-2">
-                        <img width="80px" class=" img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
-                    </div>
-                    <div class="col-10 col-margin-left ">
-                        <a href="{{url('/news')}}">
-                            <h4 class="text-color-white">Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                        </a>
-                        <ul class="list-horizontal">
-                            <li class="text-color-white">
-                                <span>by</span>
-                                <a href="#">DeoThemes</a>
-                            </li>
-                            <li class="text-color-white">
-                                Jan 21, 2018
+                            <li style="font-size: 15px;" class="text-color-white">
+                             @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,0,10) ; @endphp
                             </li>
                         </ul>
                     </div>
                 </div>
+                @endforeach
 
 
 

@@ -99,8 +99,7 @@
                 </tr>
                 @endforeach
 
-                <div style="position: relative;left: 40%;text-align: center;width:20%">{!!$not_seen->links()!!}</div>
-           
+              
             <!-- watched_box  -->
            
                 @foreach($watched as $row)
@@ -125,11 +124,12 @@
                 </tr>
                 @endforeach
 
-                <div style="position: relative;left: 40%;text-align: center;width:20%">{!!$watched->links()!!}</div>
-          
+              
 
         </table>
-
+        <div id='not_seen_box' style="position: relative;left: 40%;text-align: center;width:20%">{!!$not_seen->links()!!}</div>
+        <div  id='watched_box' style="position: relative;left: 40%;text-align: center;width:20%">{!!$watched->links()!!}</div>
+          
 
     </section>
 </main>
