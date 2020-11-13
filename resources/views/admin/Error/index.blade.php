@@ -37,8 +37,7 @@
     })
 </script>
 <main>
-
-    <section class="section">
+    <section >
         <div class="col-margin--bottom">
             <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Quản lý bug</h1>
             <hr>
@@ -65,73 +64,71 @@
         $data1 = $user->all();
         ?>
         <br>
-        <div class="popular-post col-padding">
-            <div class="row text-bold background-gray color-white text-align--center ">
-                <div class="col-1 col-padding">ID</div>
-                <div class="col-2 col-padding">Trạng Thái</div>
-                <div class="col-3 col-padding">Tiêu Đề</div>
-                <div class="col-2 col-padding">Người Gửi</div>
-                <div class="col-2 col-padding">Date</div>
-                <div class="col-2 col-padding">Chi Tiết</div>
-            </div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Trạng Thái</th>
+                <th>Tiêu Đề</th>
+                <th>Người Gửi</th>
+                <th>Date</th>
+                <th>Chi Tiết</th>
+            </tr>
             <!-- not_seen_box  -->
-            <div id='not_seen_box'>
+           
                 @foreach($not_seen as $row)
-                <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
-                    <div class="col-1 col-padding">{{$row->error_id}}</div>
-                    <div class="col-2 col-padding">@if($row->error_status == 0)<span style="color: red;"><i title="chưa xem" class="fas fa-eye"></i>Chưa xem</span>@endif</div>
-                    <div class="col-3 col-padding--top text-bold">{{$row->error_title}}</div>
-                    <div class="col-2 col-padding--top">
+                <tr id='not_seen_box'>
+                    <td>{{$row->error_id}}</td>
+                    <td>@if($row->error_status == 0)<span style="color: red;"><i title="chưa xem" class="fas fa-eye"></i>Chưa xem</span>@endif</td>
+                    <td>{{$row->error_title}}</td>
+                    <td>
                         @foreach($data1 as $row1)
                         @if($row1->id == $row->user_id)
                         {{$row1->name}}<br>
                         {{$row1->email}}
                         @endif
                         @endforeach
-                    </div>
-                    <div class="col-2 col-padding--top">
+                    </td>
+                    <td>
                         <p>@php echo substr($row->created_at ,0,10) @endphp</p>
                         <p> @php echo substr($row->created_at ,10,3).' giờ '.substr($row->created_at ,14,2).' phút' @endphp</p>
 
-                    </div>
-                    <div class="col-2 "><a href="{{url('/admin/error/detail_error')}}/{{$row->error_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
+                    </td>
+                    <td><a href="{{url('/admin/error/detail_error')}}/{{$row->error_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
 
-                </div>
+                </tr>
                 @endforeach
-
-                <div style="position: relative;left: 40%;text-align: center;width:20%">{!!$not_seen->links()!!}</div>
-            </div>
             <!-- watched_box  -->
-            <div id='watched_box'>
+           
                 @foreach($watched as $row)
-                <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
-                    <div class="col-1 col-padding">{{$row->error_id}}</div>
-                    <div class="col-2 col-padding">@if($row->error_status == 0)<span style="color: red;">Chưa xem</span>@else<span style="color:green;"><i title="đã xem" class="fas fa-eye"></i> Đã Xem</span>@endif</div>
-                    <div class="col-3 col-padding--top text-bold">{{$row->error_title}}</div>
-                    <div class="col-2 col-padding--top">
+                <tr id='watched_box'>
+                 <td>{{$row->error_id}}</td>
+                    <td>@if($row->error_status == 0)<span style="color: red;">Chưa xem</span>@else<span style="color:green;"><i title="đã xem" class="fas fa-eye"></i> Đã Xem</span>@endif</td>
+                    <td>{{$row->error_title}}</td>
+                    <td>
                         @foreach($data1 as $row1)
                         @if($row1->id == $row->user_id)
                         {{$row1->name}}<br>
                         {{$row1->email}}
                         @endif
                         @endforeach
-                    </div>
-                    <div class="col-2 col-padding--top">
+                    </td>
+                    <td>
                         <p>@php echo substr($row->created_at ,0,10) @endphp</p>
                         <p>@php echo substr($row->created_at ,10,3).' giờ '.substr($row->created_at ,14,2).' phút' @endphp</p>
 
-                    </div>
-                    <div class="col-2 "><a href="{{url('/admin/error/detail_error')}}/{{$row->error_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
+                    </td>
+                    <td><a href="{{url('/admin/error/detail_error')}}/{{$row->error_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
 
-                </div>
+                </tr>
                 @endforeach
 
-                <div style="position: relative;left: 40%;text-align: center;width:20%">{!!$watched->links()!!}</div>
-            </div>
+              
 
-        </div>
+        </table>
 
-
+        <div id='watched_box' style="position: relative;left: 40%;text-align: center;width:20%">{!!$watched->links()!!}</div>         
+        <div id='not_seen_box' style="position: relative;left: 40%;text-align: center;width:20%">{!!$not_seen->links()!!}</div>
+            
     </section>
 </main>
 @endsection

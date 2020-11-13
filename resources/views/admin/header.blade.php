@@ -10,11 +10,11 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{route('post.index')}}"><i class="fas fa-clipboard-list"></i>Bài viết  <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/admin/post')}}"><i class="fas fa-clipboard-list"></i>Bài viết  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/category')}}"><i class="fas fa-clipboard-list"></i>Chủ đề <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/admin/category')}}"><i class="fas fa-clipboard-list"></i>Chủ đề <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>

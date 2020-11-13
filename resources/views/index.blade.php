@@ -280,14 +280,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="popular-post col-padding background-white">
-                            <h2>NEWSLETTER</h2>
-                            <p><i class="far fa-envelope"></i> Subscribe for our daily news</p>
-                            <form class="row" method="GET">
-                                <div class="col-9"><input class="input col-border" type="email" placeholder="Email..." /></div>
-                                <div class="col-3"> <button class="btn background-gray col-border"> <i class="fas fa-paper-plane"></i></button> </div>
-                            </form>
-                        </div> -->
                     <div class="popular-post col-padding background-white">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
@@ -656,24 +648,16 @@
                         <div class="row">
                             <div class="col-12">
                                 <ul class="list-vertical list-category">
+                                    @foreach($category as $row_category)
+                                    @php
+                                    $slug = Str::slug($row_category->category_title,'-');
+                                    @endphp
+                                    @if($row_category->category_branch == 0)
                                     <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>World</a>
+                                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><i class="fas fa-angle-right"></i>{{$row_category->category_title}}</a>
                                     </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Lifestyle</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Business</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Fashion</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Investment</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Technology</a>
-                                    </li>
+                                    @endif
+                                    @endforeach
                                 </ul>
                             </div>
 

@@ -76,24 +76,24 @@
                     @foreach ($data as $row)
                     <tr >
                         <td><input type="checkbox" name="ids[]" class="selectbox" value="{{$row->id}}" /></td>
-                        <td ><samp>{{$row->id}}</samp></td>
+                        <td >{{$row->id}}</td>
                         <td >
                             <img src="{{ URL::asset('images/user') }}/{{$row->images_user}}" style="width:50px;height:50px;border-radius:50%" />
                         </td>
-                        <td ><samp>{{$row->name}}</samp></td>
-                        <td ><samp>{{$row->email}}</samp></td>
-                        <td ><samp>{{$row->phone_user}}</samp></td>
+                        <td ><b>{{$row->name}}</b></td>
+                        <td >{{$row->email}}</td>
+                        <td >{{$row->phone_user}}</td>
                         <td >
                             @if($row->role_user == 0)
-                            <samp>Người dùng</samp>
+                           Người dùng
                             @else
                             @if($row->role_user == 1)
-                            <samp>Kiểm Duyệt</samp>
+                            Kiểm Duyệt
                             @else
                             @if($row->role_user == 2)
-                            <samp>Nhà Báo</samp>
+                           Nhà Báo
                             @else
-                            <samp>Admin</samp>
+                            Admin
                             @endif
                             @endif
                             @endif

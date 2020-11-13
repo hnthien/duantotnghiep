@@ -8,22 +8,17 @@
             <hr>
             <span style="font-size: 12px; font-weight: bold;">Chủ đề <i class="fas fa-angle-right"></i>Đổi tên chủ đề</span>
         </div>
-        <div class="col-2"> <a class="col-margin--bottom" href="new_user.html"><button class="btn background-greed">New User</button></a>
-        </div>
-        <br>
-        <form method="post" action="{{route('category.update',$categorys->category_id)}}">
-        @method('PATCH') 
+         <br>
+        <form method="post" action="{{url('admin/category/update')}}/{{ $categorys->category_id}}">
         @csrf
             <div class=" popular-post col-padding">
                     <h3>Tên Chủ Đề:</h3>
                     <input class="input" type="text" name="category_title" value="{{$categorys->category_title}}" />
-                    <h3>Branch</h3>
-                    <input class="input" type="number" name="category_branch" value="{{$categorys->category_branch}}" />
-                    <h3>Intro</h3>
+                  <h3>Intro</h3>
                     <input class="input" type="text" name="category_intro" value="{{$categorys->category_intro}}" />
             </div>
             <div class="row col-3">
-                <button class="btn background-greed">Lưu</button>
+                <button type="submit" class="btn background-greed">Lưu</button>
             </div>
 
         </form>

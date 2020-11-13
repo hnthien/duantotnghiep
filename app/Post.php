@@ -8,11 +8,16 @@ class Post extends Model
 {
     protected $primaryKey = 'post_id';
     protected $table ="post";
+    protected $casts = [
+        'post_tag' => 'array',
+        'category_id' => 'array',
+    ];
     protected $fillable = [
         'post_id',
         'user_id',
         'category_id',
         'post_status',
+        'censor_status',
         'post_title',
         'post_slug',
         'post_tag',
