@@ -39,7 +39,7 @@ $slug = Str::slug($categorys->category_title,'-');
                             <a class="list-theme background-blue" href="{{url('/category/')}}/{{$slug}}/{{$categorys->category_id}}">{{$categorys->category_title}}</a>
                         </div>
                         <div class="col-8 col-margin-left">
-                            <a href="news.html">
+                            <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
                                 <h3>{{$row_post->post_title}}</h3>
                             </a>
                             <ul class="list-horizontal">
@@ -47,7 +47,7 @@ $slug = Str::slug($categorys->category_title,'-');
                                     <span>by</span>
                                     @foreach($user as $row_user)
                                     @if($row_user->id == $row_post->user_id)
-                                    <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                    <a style="text-transform: capitalize" href="">{{$row_user->name}}</a>
                                     @endif
                                     @endforeach
                                 </li>
