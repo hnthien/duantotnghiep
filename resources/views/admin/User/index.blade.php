@@ -51,10 +51,10 @@
             <form class="col-12" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-4 col-margin--bottom">
+                    <div class="col-2 col-margin--bottom">
                         <button type="submit" onclick="return window.confirm('Đại ca có chắc muốn đuổi tất cả bọn nó ra khỏi hội !');" formaction="{{url('admin/user/delete_all')}}" class="btn background-red">Delete all select</button>
                     </div>
-                    <div class="col-6 col-padding color-red">
+                    <div class="col-10 col-padding color-red">
                         @if (session('notification'))
                         <b>{{ session('notification') }}</b>
                         @endif

@@ -25,7 +25,7 @@
                     <li><a href="{{url('/404')}}" class="text-color-white"><i class="fas fa-angle-right"></i>404</a></li>
                 </ul>
             </div>
-            <div style="background: none;" class="col-4 post">            
+            <div style="background: none;" class="col-5 post">            
                 <h2 class="text-color-white">Popular Post</h2>
                 @php 
                 $post = new App\Post();
@@ -34,15 +34,15 @@
                 $data_user = $user::all();
                 @endphp
                 @foreach($data_post as $row_post)
-                <div class="row ">
-                    <div class="col-2">
-                        <img width="80px" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+                <div class="row col-margin--bottom">
+                    <div class="col-3">
+                        <img width="100%" height="100%" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
                     </div>
-                    <div class="col-10 col-margin-left ">
+                    <div class="col-9 col-margin-left ">
                         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
-                            <h4 class="text-color-white">{{$row_post->post_title}}</h4>
+                            <h4 style="margin: 0px;" class="text-color-white">{{$row_post->post_title}}</h4>
                         </a>
-                        <ul class="list-horizontal">
+                        <ul class="list-horizontal font-size-13">
                             <li class="text-color-white">
                                 <span>by</span>
                                 @foreach($data_user as $row_user)
@@ -51,7 +51,7 @@
                                 @endif
                                 @endforeach
                             </li>
-                            <li style="font-size: 15px;" class="text-color-white">
+                            <li  class="text-color-white">
                              @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,0,10) ; @endphp
                             </li>
                         </ul>
@@ -62,7 +62,7 @@
 
 
             </div>
-            <div class="col-3 ">
+            <div class="col-2 ">
                 <h2 class="text-color-white">Fage</h2>
 
             </div>
