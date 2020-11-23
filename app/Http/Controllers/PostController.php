@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Post_like;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Carbon;
+
 
 class PostController extends Controller
 {
@@ -19,11 +21,28 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $user = User::all();
         $category = Category::all();
         $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
-        return view('admin.post.index',compact('posts','category','user'));
+       
+        return view('admin.post.index', compact('posts', 'category', 'user'));
+    }
+    public function is_approved()
+    {
+        $user = User::all();
+        $category = Category::all();
+        $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
+       
+        return view('admin.post.is_approved', compact('posts', 'category', 'user'));
+    }
+    public function is_not_approved()
+    {
+        $user = User::all();
+        $category = Category::all();
+        $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
+       
+        return view('admin.post.is_not_approved', compact('posts', 'category', 'user'));
     }
 
     /**
@@ -32,9 +51,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function new_post()
-    {    $categorys_branch = Category::all();
-        $categorys = Category::where('category_branch',0)->get();
-        return view('admin.post.new_post',compact('categorys','categorys_branch'));
+    {
+        $categorys_branch = Category::all();
+        $categorys = Category::where('category_branch', 0)->get();
+        return view('admin.post.new_post', compact('categorys', 'categorys_branch'));
     }
 
     /**
@@ -45,47 +65,47 @@ class PostController extends Controller
      */
     public function create_post(Request $request)
     {
-      
+
         $request->validate([
-            'post_title'=> 'required',
-            'category_id'=>'required',
-            'post_slug'=>'required',
-            'post_intro'=>'required',
+            'post_title' => 'required',
+            'category_id' => 'required',
+            'post_slug' => 'required',
+            'post_intro' => 'required',
             'post_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'post_tag'=>'required',
-            'post_content'=>'required',
+            'post_tag' => 'required',
+            'post_content' => 'required',
 
         ]);
         $posts = new Post();
         $posts->post_title = $request->post_title;
         $array_category_id = array();
-        foreach ($request->category_id as $category_id) {          
+        foreach ($request->category_id as $category_id) {
             array_push($array_category_id, $category_id);
         }
         $posts->category_id = $array_category_id;
         $posts->user_id = Auth::user()->id;
         $posts->post_slug = $request->post_slug;
-        if($request->post_status ==1 ){
+        if ($request->post_status == 1) {
             $posts->post_status = $request->post_status;
-        }else{
+        } else {
             $posts->post_status = 0;
         }
-        $posts->censor_status= 0;
+        $posts->censor_status = 0;
         $posts->post_view = 0;
-        $posts->post_intro = $request->post_intro;       
+        $posts->post_intro = $request->post_intro;
         $file = $request->file('post_image');
         $posts['post_image'] = $file->getClientOriginalName();
         $file->move(public_path('images/post_image'), $file->getClientOriginalName());
-        $posts->post_tag = preg_split('/,/',$request->post_tag);
+        $posts->post_tag = preg_split('/,/', $request->post_tag);
         $posts->post_content = $request->post_content;
         $posts->save();
         return redirect()->action('PostController@index');
-
     }
 
-    public function create_posts(){
+    public function create_posts()
+    {
         $categorys = Category::all();
-        return view('admin.post.new_post',compact('categorys'));
+        return view('admin.post.new_post', compact('categorys'));
     }
 
     /**
@@ -96,13 +116,11 @@ class PostController extends Controller
      */
     public function url(Request $request)
     {
-         $categoryname = $request->post_title;
+        $categoryname = $request->post_title;
 
-         $slug = Str::slug($categoryname,'-');
+        $slug = Str::slug($categoryname, '-');
 
-         return response()->json(['slug'=>$slug]);
-
-       
+        return response()->json(['slug' => $slug]);
     }
 
     /**
@@ -111,12 +129,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($post_slug,$id)
+    public function edit($post_slug, $id)
     {
         $categorys_branch = Category::all();
-        $categorys = Category::where('category_branch',0)->get();
+        $categorys = Category::where('category_branch', 0)->get();
         $post = Post::find($id);
-        return view('admin.post.edit',compact('post','categorys','categorys_branch'));
+        return view('admin.post.edit', compact('post', 'categorys', 'categorys_branch'));
     }
 
     /**
@@ -126,38 +144,38 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$post_id)
+    public function update(Request $request, $post_id)
     {
         $array_category_id = array();
-        foreach ($request->category_id as $category_id) {          
+        foreach ($request->category_id as $category_id) {
             array_push($array_category_id, $category_id);
         }
         $request->validate([
-            'post_title'=> 'required',
-            'category_id'=>'required',
-            'post_slug'=>'required',
-            'post_intro'=>'required',
+            'post_title' => 'required',
+            'category_id' => 'required',
+            'post_slug' => 'required',
+            'post_intro' => 'required',
             'post_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'post_tag'=>'required',
-            'post_content'=>'required',
+            'post_tag' => 'required',
+            'post_content' => 'required',
         ]);
-        $posts =Post::find($post_id);
+        $posts = Post::find($post_id);
         $posts->post_title = $request->post_title;
         $posts->category_id = $array_category_id;
         $posts->user_id = Auth::user()->id;
-        if($request->post_status ==1 ){
+        if ($request->post_status == 1) {
             $posts->post_status = $request->post_status;
-        }else{
+        } else {
             $posts->post_status = 0;
         }
         $posts->post_slug = $request->post_slug;
         $posts->post_intro = $request->post_intro;
         if ($request->hasFile('post_image')) {
             $posts->post_image = $request->file('post_image')->getClientOriginalName();
-            $request->file('post_image')->move(public_path('images/post_image'),   $request->file('post_image')->getClientOriginalName());           
+            $request->file('post_image')->move(public_path('images/post_image'),   $request->file('post_image')->getClientOriginalName());
         }
 
-        $posts->post_tag = preg_split('/,/',$request->post_tag);;
+        $posts->post_tag = preg_split('/,/', $request->post_tag);;
         $posts->post_content = $request->post_content;
         $posts->save();
         return redirect()->action('PostController@index');
@@ -176,43 +194,88 @@ class PostController extends Controller
         return redirect()->action('PostController@index');
     }
     public function search(Request $request)
-    {      
-            $keyword = $request->keyword;
-            if($keyword == null or $keyword == " "){
-    
-            }else{
-                $user = User::all();
-                $search_results = Post::where('post_title','like','%'.$keyword.'%')->orderBy('post_id', 'DESC')->get();    
-                return view('admin.post.search_results',compact('search_results','user'));
-            }  
+    {
+        $keyword = $request->keyword;
+        if ($keyword == null or $keyword == " ") {
+        } else {
+            $user = User::all();
+            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->get();
+            return view('admin.post.search_results', compact('search_results', 'user'));
+        }
     }
-    public function view_post($post_slug,$id)
-     {  
+    // view post
+    public function view_post($post_slug, $id)
+    {
         $categorys_branch = Category::all();
+        $categorys = Category::where('category_branch', 0)->get();
         $user = User::all();
+        //post
         $post = Post::find($id);
-        $post->post_view =($post->post_view) + 1;
+        $post->post_view = ($post->post_view) + 1;
         $post->save();
+        //like
+        $post_like = new Post_like();
+      
+        $check_user_idd = Post_like::where('user_id',  Auth::user()->id)->doesntExist();
+        $check_post_idd = Post_like::where('post_id', $id)->doesntExist();
+        $check_user_id = Post_like::where('user_id',  Auth::user()->id)->exists();
+        if ($check_user_idd) {
+            $post_like->user_id = Auth::user()->id;
+            $post_like->post_id = $id;
+            $post_like->post_dislike = 0;
+            $post_like->post_like = 0;
+            $post_like->save();
+            
+        }else {
+            if ($check_user_id)
+            {
+                if($check_post_idd) 
+                { $post_like->user_id = Auth::user()->id;
+                    $post_like->post_id = $id;
+                    $post_like->post_dislike = 0;
+                    $post_like->post_like = 0;
+                    $post_like->save();
+                }      
+               
+               
+            } 
+        };
+        //time
         Carbon::setLocale('vi');
-        $dt = Carbon::create(substr($post->created_at,0,4),substr($post->created_at,5,2),substr($post->created_at ,8,2),substr($post->created_at ,11,2),substr($post->created_at ,14,2),substr($post->created_at ,17,2));
+        $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
-        return view('news',compact('post','user','categorys_branch','date'));
+        return view('news', compact('post', 'user', 'categorys_branch','categorys', 'date'));
     }
-    public function view_post_category($category_title,$id)
+    public function view_post_category($category_title, $id)
     {
+
         $user = User::all();
         $categorys = Category::find($id);
         $category_branch = Category::all();
+        $post1 =  Post::orderBy('post_id', 'DESC')->take(4)->get();
+        $post2 = Post::inRandomOrder('post_id')->offset(2)->limit(1)->get();
         $post = Post::orderBy('post_id', 'DESC')->paginate(9);
-        return view('catergories',compact('post','categorys','user','category_branch'));
+        return view('catergories', compact('post', 'categorys', 'user', 'category_branch', 'post1', 'post2'));
     }
-    public function view_post_category_branch($category_title,$id)
+    //   search_post
+
+    public function search_post(Request $request)
     {
+        $keyword = $request->keyword;
+        if ($keyword == null or $keyword == " ") {
+        } else {
+            $user = User::all();
+            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(10)->get();
+            return view('search_results', compact('search_results', 'user'));
+        }
+    }
+    public function search_posts(Request $request)
+    {
+
+        $keyword = $request->keyword;
         $user = User::all();
-        $category_branch = Category::find($id);
-        $categorys = Category::all();
-        $post = Post::orderBy('post_id', 'DESC')->paginate(9);
-        return view('catergories_branch',compact('post','user','category_branch','categorys'));
+        $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(20)->get();
+        return view('search', compact('search_results', 'user', 'keyword'));
     }
 }

@@ -201,85 +201,9 @@
             </div>
             <div class="col-4 ">
                 <aside>
-                    <div class="popular-post col-padding">
-                        <h2>POPULAR POSTS</h2>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- popular_posts -->
+                   @include('popular_posts')
+                   <!-- end popular_posts -->
                     <div class="popular-post col-padding background-white">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
@@ -643,56 +567,12 @@
 
                         </a>
                     </div>
-                    <div class="popular-post col-padding ">
-                        <h2>CATEGORIES</h2>
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="list-vertical list-category">
-                                    @foreach($category as $row_category)
-                                    @php
-                                    $slug = Str::slug($row_category->category_title,'-');
-                                    @endphp
-                                    @if($row_category->category_branch == 0)
-                                    <li>
-                                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><i class="fas fa-angle-right"></i>{{$row_category->category_title}}</a>
-                                    </li>
-                                    @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="popular-post col-padding">
-                        <h2>RECOMMENDED</h2>
-                        <div>
-                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/review/review_post_1.jpg" alt="review post" />
-                            <h4>UN’s WFP Building Up Blockchain-Based Payments System</h4>
-                            <ul class="list-horizontal">
-                                <li>
-                                    <span>by</span>
-                                    <a href="#">DeoThemes</a>
-                                </li>
-                                <li>
-                                    Jan 21, 2018
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/review/review_post_2.jpg" alt="review post" />
-                            <h4>4 credit card tips to make business travel easier</h4>
-                            <ul class="list-horizontal">
-                                <li>
-                                    <span>by</span>
-                                    <a href="#">DeoThemes</a>
-                                </li>
-                                <li>
-                                    Jan 21, 2018
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!-- category -->
+                    @include('list_categories')
+                     <!-- end category -->
+                    <!-- recommended -->
+                    @include('recommended')
+                     <!-- end recommended -->
                 </aside>
             </div>
         </div>

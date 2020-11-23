@@ -63,7 +63,7 @@
                 <?php
                 $number = 0;
                 foreach ($feedback as $rowf) {
-                    $nub = $number++;
+                   $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -75,7 +75,7 @@
                 <?php               
                 $number = 0;
                 foreach ($post as $row) {
-                    $nub = $number++;
+                   $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -93,7 +93,7 @@
                 <?php               
                 $number = 0;
                 foreach ($error as $rowe) {
-                    $nub = $number++;
+                    $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -105,7 +105,7 @@
                 <?php               
                 $number = 0;
                 foreach ($category as $rowc) {
-                    $nub = $number++;
+                     $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';

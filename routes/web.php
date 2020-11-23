@@ -125,6 +125,8 @@ Route::group(['prefix' => 'admin'], function () {
     //post
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'PostController@index');
+        Route::get('/is_approved', 'PostController@is_approved');
+        Route::get('/is_not_approved', 'PostController@is_not_approved');
         Route::get('/url', 'PostController@url');
         Route::get('/new_post', 'PostController@new_post');
         Route::post('/create_post', 'PostController@create_post');
@@ -165,7 +167,7 @@ Route::group(['prefix' => 'user'], function () {
     });
     Route::get('/change_password', 'HomeController@password');
     // Route::post('/edit_password/{id}','HomeController@edit_password');
-    Route::post('/edit_pass/{id}', 'HomeController@edit_pass');
+    Route::post('/edit_pass', 'HomeController@edit_pass');
     // Route::get('/successfully','HomeController@index1');
     Route::get('/logout', 'HomeController@logout');
     Route::post('/account', 'HomeController@account');
@@ -173,13 +175,21 @@ Route::group(['prefix' => 'user'], function () {
 //News client
 Route::group(['prefix' => 'post'], function () {
     Route::get('/{url}/{id}', 'PostController@view_post');
+    Route::get('/search', 'PostController@search_post');
+    Route::post('/searchs', 'PostController@search_posts');
 });
 // category client
 Route::group(['prefix' => 'category'], function () {
     Route::get('/{category_title}/{id}', 'PostController@view_post_category');
 });
-Route::group(['prefix' => 'category_branch'], function () {
-    Route::get('/{category_title}/{id}', 'PostController@view_post_category_branch');
+// Route::group(['prefix' => 'category_branch'], function () {
+//     Route::get('/{category_title}/{id}', 'PostController@view_post_category_branch');
+// });
+
+// post like
+Route::group(['prefix' => 'post_like'], function () {
+    Route::post('/like/{id}', 'PostLikeController@post_like');
+    Route::get('/{id}', 'PostLikeController@view_like');
 });
 // index
 Route::get('/', function () {

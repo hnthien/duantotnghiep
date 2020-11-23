@@ -4,9 +4,9 @@
 <main class="content col-margin--top ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
-            <li><a href="index.html"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
-            <li><a href="#">News <i class="fas fa-angle-right"></i></a></li>
-            <li><a href="#">Lifestyle</a></li>
+            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
+            <li class="color-red text-bold">Tin Tức <i class="fas fa-angle-right"></i></li>
+            <li class="color-red text-bold">{{$post->post_title}}</li>
         </ul>
     </div>
     <section class="section ">
@@ -17,25 +17,46 @@
                         <h1 class="text-title-post">{{$post->post_title}}</h1>
                         <div class="col-position ">
                             @foreach($categorys_branch as $category)
-                            @foreach($post->category_id as $category_id)
+                            @foreach($post->category_id as $category_id)                         
                             @if($category_id == $category->category_id)
-                            <a href="#"><button class="col-border-categorys">{{$category->category_title}}</button></a>
+                            @if($loop->first)
+                            @foreach($categorys as $row_category)
+                            @php
+                            $slug = Str::slug($row_category->category_title,'-');
+                            @endphp
+                            @if($category->category_branch == $row_category->category_id )                            
+                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><button class="col-border-categorys">{{$row_category->category_title}}</button></a>
+                            @endif                          
+                            @endforeach
                             @endif
+                            @endif
+                            @endforeach
+                            @endforeach
+                            <!--  -->
+                            @foreach($categorys_branch as $category)
+                            @foreach($post->category_id as $category_id)
+                            @php
+                            $slug = Str::slug($category->category_title,'-');
+                            @endphp
+                            @if($category_id == $category->category_id)                         
+                            <a href="{{url('/category/')}}/{{$slug}}/{{$category->category_id}}"><button class="col-border-categorys">{{$category->category_title}}</button></a>
+                            @endif
+                           
                             @endforeach
                             @endforeach
 
                         </div>
                         <div class="clearfix"></div>
                         <br>
-                        <div class="row col-margin--bottom">
-                            <div class="col-8">
+                        <div class="row ">
+                            <div class="col-6">
                                 <ul class="list-horizontal">
                                     <li>
-                                        <span>By</span>
+                                        <span>by</span>
 
                                         @foreach($user as $row_user)
                                         @if($row_user->id == $post->user_id)
-                                        <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                        <a href="#">{{$row_user->name}}</a>
                                         @endif
                                         @endforeach
 
@@ -45,11 +66,25 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-4 col-right">
-                                <span><i class="fas fa-eye"></i>{{$post->post_view}}</span>&ensp;
+
+                        </div>
+                        <!-- like -->
+                        <script>
+                            $(document).ready(function() {
+                                $('#post_like').load("{{url('post_like')}}/{{$post->post_id}}");
+                            })
+                        </script>
+                        <div class="row col-margin--bottom">
+                            <div style="margin-left: 0px;" class="col-4" id="post_like"">
+
+                                </div>
+                            <div style="padding-top: 10px;box-sizing: border-box;" class="col-8 col-right">
+                                <span>{{$post->post_view}} view</span>&ensp;
                                 <span> <i class="fas fa-comments"></i>98K</span>
                             </div>
                         </div>
+                        
+                        <!-- endlike -->
                         <div class="text-contect-post">
                             @php echo $post->post_content @endphp
                         </div>
@@ -58,8 +93,8 @@
                             <i class="fas fa-tags"></i>
                             @foreach($post->post_tag as $tag)
                             <a href="#">
-                            <span class="col-border-categorys">{{$tag}}</span>
-                            </a>                         
+                                <button class="col-border-categorys ">{{$tag}}</button>
+                            </a>
                             @endforeach
                         </div>
 
@@ -79,115 +114,12 @@
 
             <div class="col-4">
                 <aside>
-                    <div class="popular-post col-padding">
-                        <h2>POPULAR POSTS</h2>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="#">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="#">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="#">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="#">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-post col-padding ">
-                        <h2>CATEGORIES</h2>
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="list-vertical list-category">
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>World</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Lifestyle</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Business</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Fashion</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Investment</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Technology</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                     <!-- popular_posts -->
+                     @include('popular_posts')
+                    <!-- end popular_posts -->
+                    <!-- category -->
+                    @include('list_categories')
+                     <!-- end category -->
                     <div class="popular-post col-padding">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
@@ -203,39 +135,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="popular-post col-padding">
-                        <h2> RELATED ARTICLES</h2>
-                        <div class="post-contect">
-                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/review/review_post_1.jpg" alt="review post" />
-                            <a href="{{url('/news')}}">
-                                <h4>UN’s WFP Building Up Blockchain-Based Payments System</h4>
-                            </a>
-                            <ul class="list-horizontal">
-                                <li>
-                                    <span>by</span>
-                                    <a href="#">DeoThemes</a>
-                                </li>
-                                <li>
-                                    Jan 21, 2018
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="post-contect">
-                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/review/review_post_2.jpg" alt="review post" />
-                            <a href="{{url('/news')}}">
-                                <h4>4 credit card tips to make business travel easier</h4>
-                            </a>
-                            <ul class="list-horizontal">
-                                <li>
-                                    <span>by</span>
-                                    <a href="#">DeoThemes</a>
-                                </li>
-                                <li>
-                                    Jan 21, 2018
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!-- recommended -->
+                    @include('recommended')
+                     <!-- end recommended -->
 
                 </aside>
             </div>

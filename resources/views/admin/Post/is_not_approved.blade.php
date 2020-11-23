@@ -41,13 +41,9 @@
         </div>
 
         <br>
-        <div class="row">
-        <div class="col-2">
-                <a href="{{url('admin/post')}}">
-                    <button id="your_all" class="btn background-gray">All articles</button>
-                </a>
 
-            </div>
+
+        <div class="row">
             <div class="col-2">
                 <a href="{{url('admin/post/is_not_approved')}}">
                     <button id="your_is_not_approved" class="btn background-red">My unapproved articles</button>
@@ -58,22 +54,26 @@
                     <button id="your_is_approved" class="btn background-greed">My approved articles</button>
                 </a>
             </div>
-           
+            <div class="col-2">
+                <a href="{{url('admin/post')}}">
+                    <button id="your_all" class="btn background-gray">All articles</button>
+                </a>
+
+            </div>
             <div class="col-5">
             </div>
 
         </div>
         <br>
         <div class="row">
-            <div class="col-3"> 
-                <p id="all_p" class="color-light-gray" style="font-size:12px;">Tất cả bài viết.</p>
+            <div class="col-3">
+            <p id="is_not_approved_p" class="color-light-gray" style="font-size:12px;">Bài viết của tôi chưa được phê duyệt.</p>
             </div>
             <div class="col-6"></div>
             <div class="col-3">
-             <div  style="text-align: center;float: right;">{!!$posts->links()!!}</div>
+                <div style="text-align: center;float: right;">{!!$posts->links()!!}</div>
             </div>
         </div>
-       
         
         <br>
         <table class="popular-post col-padding">
@@ -91,8 +91,13 @@
                     <th>Update</th>
                 </tr>
             </thead>
+
+
             <tbody>
+
                 @foreach($posts as $p)
+                @if($p->user_id == Auth::user()->id)
+                @if($p->post_status == 1 or $p->post_status == 0 or $p->post_status == 3 )
                 <tr class="font-size-13">
                     <td>{{$p->post_id}}</td>
                     <td>
@@ -138,18 +143,17 @@
                     </td>
                     <td><a href="{{url('admin/post/delete')}}/{{$p->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> </td>
                     <td>
-                        @if(Auth::user()->role_user == 3)
                         <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
                             <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
                         </a>
-                        @endif
                     </td>
                 </tr>
+                @endif
+                @endif
                 @endforeach
             </tbody>
-
         </table>
-       
+        
 
 
 

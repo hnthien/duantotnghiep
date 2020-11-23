@@ -53,7 +53,7 @@
 
                     </div>
                     <br>
-                    <form method="POST" id='form_comment' action="{{url('/user/edit_pass')}}/{{Auth::user()->id}}" enctype="multipart/form-data">
+                    <form method="POST" id='form_comment' action="{{url('/user/edit_pass')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
