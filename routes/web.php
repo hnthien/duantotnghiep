@@ -11,6 +11,7 @@ use App\Category;
 use App\Feedback;
 use App\User;
 use App\Error;
+use Illuminate\Support\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +24,7 @@ use App\Error;
 */
 
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Route::get('/search', function () {
     return view('search');
@@ -58,8 +57,9 @@ Route::get('/admin', function () {
             $feedback = Feedback::all();
             $error = Error::all();
             $user = User::all();
+            $post_all =  Post::all();
             $post =  Post::orderBy('post_id', 'DESC')->take(6)->get();
-            return view('admin.index', compact('post', 'category', 'user', 'feedback', 'error'));
+            return view('admin.index', compact('post','post_all', 'category', 'user', 'feedback', 'error'));
         }
     } else {
         return redirect(url('/login'));
@@ -193,8 +193,13 @@ Route::group(['prefix' => 'post_like'], function () {
 });
 // index
 Route::get('/', function () {
+    
+    $popular_post = Post::whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(3)->take(5)->get();
+    $popular_post1 = Post::whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->take(1)->get();
+    $popular_post2 = Post::whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(1)->take(2)->get();
     $category = Category::all();
+    $category_p = Category::where('category_branch',0)->take(12)->get();
     $user = User::all();
-    $post =  Post::orderBy('post_id', 'DESC')->get();
-    return view('index', compact('post', 'category', 'user'));
+    $post =  Post::orderBy('post_id', 'DESC')->take(30)->get();
+    return view('index', compact('post', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
 });

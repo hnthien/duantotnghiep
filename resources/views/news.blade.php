@@ -6,7 +6,28 @@
         <ul class="list-horizontal">
             <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
             <li class="color-red text-bold">Tin Tức <i class="fas fa-angle-right"></i></li>
-            <li class="color-red text-bold">{{$post->post_title}}</li>
+            @foreach($categorys_branch as $category)
+            @if($post->category_id == $category->category_id)
+            @foreach($categorys as $row_category)
+            @php
+            $slug = Str::slug($row_category->category_title,'-');
+            @endphp
+            @if($category->category_branch == $row_category->category_id )
+            <li class="color-red text-bold"> <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a> <i class="fas fa-angle-right"></i> </li>
+            @endif
+            @endforeach
+            @endif
+            @endforeach
+            <li class="color-red text-bold">
+                @foreach($categorys_branch as $category)
+                @php
+                $slug = Str::slug($category->category_title,'-');
+                @endphp
+                @if($post->category_id == $category->category_id)
+                <a href="{{url('/category/')}}/{{$slug}}/{{$category->category_id}}">{{$category->category_title}}</a>
+                @endif
+                @endforeach
+            </li>
         </ul>
     </div>
     <section class="section ">
@@ -17,32 +38,25 @@
                         <h1 class="text-title-post">{{$post->post_title}}</h1>
                         <div class="col-position ">
                             @foreach($categorys_branch as $category)
-                            @foreach($post->category_id as $category_id)                         
-                            @if($category_id == $category->category_id)
-                            @if($loop->first)
+                            @if($post->category_id == $category->category_id)
                             @foreach($categorys as $row_category)
                             @php
                             $slug = Str::slug($row_category->category_title,'-');
                             @endphp
-                            @if($category->category_branch == $row_category->category_id )                            
-                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><button class="col-border-categorys">{{$row_category->category_title}}</button></a>
-                            @endif                          
-                            @endforeach
-                            @endif
+                            @if($category->category_branch == $row_category->category_id )
+                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><button class="col-border-categorys_title">{{$row_category->category_title}}</button></a>
                             @endif
                             @endforeach
+                            @endif
                             @endforeach
                             <!--  -->
                             @foreach($categorys_branch as $category)
-                            @foreach($post->category_id as $category_id)
                             @php
                             $slug = Str::slug($category->category_title,'-');
                             @endphp
-                            @if($category_id == $category->category_id)                         
+                            @if($post->category_id == $category->category_id)
                             <a href="{{url('/category/')}}/{{$slug}}/{{$category->category_id}}"><button class="col-border-categorys">{{$category->category_title}}</button></a>
                             @endif
-                           
-                            @endforeach
                             @endforeach
 
                         </div>
@@ -78,12 +92,12 @@
                             <div style="margin-left: 0px;" class="col-4" id="post_like"">
 
                                 </div>
-                            <div style="padding-top: 10px;box-sizing: border-box;" class="col-8 col-right">
+                            <div style=" padding-top: 10px;box-sizing: border-box;" class="col-8 col-right">
                                 <span>{{$post->post_view}} view</span>&ensp;
                                 <span> <i class="fas fa-comments"></i>98K</span>
                             </div>
                         </div>
-                        
+
                         <!-- endlike -->
                         <div class="text-contect-post">
                             @php echo $post->post_content @endphp
@@ -114,12 +128,12 @@
 
             <div class="col-4">
                 <aside>
-                     <!-- popular_posts -->
-                     @include('popular_posts')
+                    <!-- popular_posts -->
+                    @include('popular_posts')
                     <!-- end popular_posts -->
                     <!-- category -->
                     @include('list_categories')
-                     <!-- end category -->
+                    <!-- end category -->
                     <div class="popular-post col-padding">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
@@ -137,7 +151,7 @@
                     </div>
                     <!-- recommended -->
                     @include('recommended')
-                     <!-- end recommended -->
+                    <!-- end recommended -->
 
                 </aside>
             </div>

@@ -1,7 +1,7 @@
 @php
 $dtt = new Illuminate\Support\Carbon;
 $post = new App\Post();
-$popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(7),$dt = $dtt::now()])->orderBy('post_view','DESC')->take(10)->get();
+$popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(7),$dt = $dtt::now()])->orderBy('post_view','DESC')->take(8)->get();
 $user = new App\User();
 $data_user = $user::all();
 @endphp
@@ -13,7 +13,7 @@ $data_user = $user::all();
     @foreach($popular_post as $row_post)
     <div class="row ">
         <div style="margin-left: 0px;" class="col-3">
-            <img class="img height-image"  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+            <img class="img "  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
         </div>
         <div class="col-9">
             <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">

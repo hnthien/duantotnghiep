@@ -68,8 +68,7 @@
                                     {{ __('Forgot Your Password ?') }}
                                 </a>
                                 @endif
-                                <a style="color: black;" class="btn-link" href="{{url('/') }}">Trang chủ</a>
-                            </div>
+                                            </div>
                         </div>
                     </form>
 

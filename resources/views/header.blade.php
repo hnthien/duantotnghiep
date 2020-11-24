@@ -31,7 +31,7 @@
 
         });
         $('#category_show1').click(function() {
-            $("#list_category_menu").hide('slow');
+            $("#list_category_menu").hide();
             $("#category_show").show();
             $("#category_show1").hide();
         });
@@ -42,27 +42,28 @@
         //   });
 
 
-       
-            $('#search').keyup(function() {
-                var keyword = $('#search').val();
-                $.ajax({
-                    url: "{{url('post/search')}}",
-                    type: "get",
-                    data: {
-                        keyword: keyword
-                    },
-                    success: function(res) {
-                        $('#SearchResults').html(res);
-                    },
-                    error: function(error) {
-                        alert('lỗi');
-                    }
-                })
 
+        $('#search').keyup(function() {
+            var keyword = $('#search').val();
+            $.ajax({
+                url: "{{url('post/search')}}",
+                type: "get",
+                data: {
+                    keyword: keyword
+                },
+                success: function(res) {
+                    $('#SearchResults').html(res);
+                },
+                error: function(error) {
+                    alert('lỗi');
+                }
             })
-      
+
+        })
+
 
     });
+   
 </script>
 <div class="row col-padding">
 
@@ -71,9 +72,9 @@
     </div>
     <div class="col-4  ">
         <form class="search" method="POST" action="{{url('post/searchs')}}">
-        @csrf
+            @csrf
             <span class="item"><i class="fa fa-search"></i></span>
-            <input class="search__input" type="search" placeholder="Search......" name="keyword"  id="search"/>
+            <input class="search__input" type="search" placeholder="Search......" name="keyword" id="search" />
             <div class="results_search" id="SearchResults" style="padding-top: 5px ;box-sizing: border-box;"></div>
         </form>
     </div>
@@ -139,90 +140,116 @@
             x.className = "menu-none";
         }
     }
+
+    jQuery(document).ready(function($) {
+        var $filter = $('.nav_menu');
+        var $filterSpacer = $('<div />', {
+            "class": "vnkings-spacer",
+            "height": $filter.outerHeight()
+        });
+        if ($filter.length > 0) {
+            $(window).scroll(function() {
+                if (!$filter.hasClass("fix") && $(window).scrollTop() > $filter.offset().top) {
+                    $filter.before($filterSpacer);
+                    $filter.addClass("fix");
+                } else if ($filter.hasClass("fix") && $(window).scrollTop() < $filterSpacer.offset().top) {
+                    $filter.removeClass("fix");
+                    $filterSpacer.remove();
+                }
+            });
+        }
+
+    });
 </script>
-<div class="row menu">
 
-    <div class="col-2 icon  col-padding" id="icon">
-        <a href="javascript:void(0);" onclick="myFunction()">
-            <i class="fas fa-stream col-padding--top"></i>
-        </a>
+<div class="nav_menu">
+
+    <div class="row menu">
+        <div class="col-2 icon  col-padding" id="icon">
+            <a href="javascript:void(0);" onclick="myFunction()">
+                <i class="fas fa-stream col-padding--top"></i>
+            </a>
+        </div>
+        <div class="col-2 ">
+
+        </div>
+        <div class="col-9 menu-none " id="myTopnav">
+            <nav class="menu-nav ">
+                <ul class="menu-nav__ul text-align--center  ">
+                    <li>
+                        <a href="{{url('/')}}"><i class="fas fa-home"></i>Trang chủ</a>
+                        <span class="hover-dash"></span>
+                    </li>
+
+                    @php
+                    $category = new App\Category();
+                    $data = $category->where('category_branch',0)->take(6)->get();
+                    @endphp
+                    @foreach($data as $row_category)
+                    @php
+                    $slug = Str::slug($row_category->category_title,'-');
+                    @endphp
+                    <li>
+                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
+                        <span class="hover-dash"></span>
+                    </li>
+                    @endforeach
+
+                    <li class="menu-drop col-position ">
+                        <a id="category_show" href="#">Danh mục <i class="fas fa-caret-down"></i></a>
+                        <a id="category_show1" href="#">Danh mục <i class="fas fa-times-circle"></i></a>
+                        <span class="hover-dash"></span>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+        </div>
+        <div class="col-1"></div>
     </div>
-    <div class="col-2 ">
 
-    </div>
-    <div class="col-9 menu-none " id="myTopnav">
-        <nav class="menu-nav ">
-            <ul class="menu-nav__ul text-align--center  ">
-                <li>
-                    <a href="{{url('/')}}"><i class="fas fa-home"></i>Trang chủ</a>
-                    <span class="hover-dash"></span>
-                </li>
-
+    <div class="list_category_menu" id="list_category_menu">
+        <div class="row">
+            <div style=" margin-bottom: 0px;" class="col-1"></div>
+            <ul class="col-10 list_category__li">
                 @php
                 $category = new App\Category();
-                $data = $category->where('category_branch',0)->take(6)->get();
+                $data = $category->where('category_branch',0)->take(12)->get();
+                $data_branch = $category->all();
                 @endphp
                 @foreach($data as $row_category)
                 @php
                 $slug = Str::slug($row_category->category_title,'-');
                 @endphp
-                <li>
-                    <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
-                    <span class="hover-dash"></span>
+                <li class=" col-2 col-float">
+                    <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">
+                        <div class="vertical_tiles"></div>{{$row_category->category_title}}
+                    </a>
+                    <ul class="list_category__li__ul">
+                        @foreach($data_branch as $row_category_branch)
+                        @php
+                        $slug = Str::slug( $row_category_branch->category_title,'-');
+                        @endphp
+                        @if($row_category->category_id ==$row_category_branch->category_branch )
+                        <li>
+                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}">{{$row_category_branch->category_title}}</a>
+                        </li>
+                        @endif
+                        @endforeach
+                    </ul>
+
                 </li>
                 @endforeach
-
-                <li class="menu-drop col-position ">
-                    <a id="category_show" href="#">Danh mục <i class="fas fa-caret-down"></i></a>
-                    <a id="category_show1" href="#">Danh mục <i class="fas fa-times-circle"></i></a>
-                    <span class="hover-dash"></span>
-                </li>
-
-
-
             </ul>
-        </nav>
+            <div class="col-1"></div>
+        </div>
+
     </div>
-    <div class="col-1"></div>
 </div>
 
-<div class="list_category_menu" id="list_category_menu">
-    <div class="row">
-        <div style=" margin-bottom: 0px;" class="col-1"></div>
-        <ul class="col-10 list_category__li">
-            @php
-            $category = new App\Category();
-            $data = $category->where('category_branch',0)->get();
-            $data_branch = $category->all();
-            @endphp
-            @foreach($data as $row_category)
-            @php
-            $slug = Str::slug($row_category->category_title,'-');
-            @endphp
-            <li class=" col-2 col-float">
-                <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">
-                    <div class="vertical_tiles"></div>{{$row_category->category_title}}
-                </a>
-                <ul class="list_category__li__ul">
-                    @foreach($data_branch as $row_category_branch)
-                    @php
-                    $slug = Str::slug( $row_category_branch->category_title,'-');
-                    @endphp
-                    @if($row_category->category_id ==$row_category_branch->category_branch )
-                    <li>
-                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}">{{$row_category_branch->category_title}}</a>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
 
-            </li>
-            @endforeach
-        </ul>
-        <div class="col-1"></div>
-    </div>
 
-</div>
 <!-- feedback -->
 <div class="col-position">
     <div class="feedback_box " id="feedback_box">
