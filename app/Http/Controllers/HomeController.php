@@ -6,6 +6,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Post;
+use App\Category;
+use Illuminate\Support\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -100,5 +103,6 @@ class HomeController extends Controller
        return;
    
     }
+   
    
 }

@@ -10,7 +10,6 @@ class Post extends Model
     protected $table ="post";
     protected $casts = [
         'post_tag' => 'array',
-        'category_id' => 'array',
     ];
     protected $fillable = [
         'post_id',

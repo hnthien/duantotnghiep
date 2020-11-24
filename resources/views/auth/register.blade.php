@@ -38,7 +38,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+                                     </div>
                         </div>
 
                         <div class="form-group row">
@@ -62,7 +62,7 @@
                                 <input id="password-confirm" placeholder="Password confirm"  type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <label for="phone_user" class="col-md-4 col-form-label text-md-right"><b>{{ __('Phone') }}</b></label>
 
                             <div class="col-md-6">
@@ -73,9 +73,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+                                <span style="font-size:12px;color:darkgray">Gợi ý: Sử dụng email của bản thân để lấy lại mật khẩu khi quên.</span>              
+                            </div>                           
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <div class="btn--hover">
@@ -88,7 +88,7 @@
                     </form>
                 </div>
 
-                <div style="text-align: center;margin-top: 40px;" >
+                <div style="text-align: center;" >
                         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
                         <p style="margin-top: 10px;"><a style="color: black;" class="btn-link" href="{{url('/') }}">Trang chủ</a> | © 2018 T20News | Made by T20</p>
                     </div>

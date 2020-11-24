@@ -80,31 +80,46 @@
 
                 <h3>Chủ Đề Đã Chọn:</h3>
 
-                @foreach($categorys_branch as $ct)
-                @foreach($post->category_id as $category_id)
-                @if($category_id == $ct->category_id)
-                <span style="padding:10px">
-                    <input type="checkbox" checked name="category_id[]" class="selectbox" value="{{$ct->category_id}}" />{{$ct->category_title}}
-                </span>
-                @endif
-                @endforeach
-                @endforeach
+              
                 <h3>Chủ Đề:</h3>
                 @foreach($categorys as $row_categorys)
                 <ul style="margin:0px" class="col-3 col-float">
+                    @if($row_categorys->category_id == $post->category_id)
                     <li style="padding:10px">
-                        <input type="checkbox" name="category_id[]" class="selectbox" value="{{$row_categorys->category_id}}" />{{$row_categorys->category_title}}
+                        <input type="radio" checked name="category_id" class="selectbox" value="{{$row_categorys->category_id}}" />{{$row_categorys->category_title}}
                         <ul style="margin-left: 15px;">
                             @foreach($categorys_branch as $row_categorys_branch)
                             @if($row_categorys_branch->category_branch == $row_categorys->category_id )
                             <li style="padding:5px">
-                                <input type="checkbox" name="category_id[]" class="selectbox" value="{{$row_categorys_branch->category_id}}" />{{$row_categorys_branch->category_title}}
+                                <input type="radio" name="category_id" class="selectbox" value="{{$row_categorys_branch->category_id}}" />{{$row_categorys_branch->category_title}}
                             </li>
                             @endif
                             @endforeach
                         </ul>
 
                     </li>
+                    @else
+                    <li style="padding:10px">
+                        <input type="radio" name="category_id" class="selectbox" value="{{$row_categorys->category_id}}" />{{$row_categorys->category_title}}
+                        <ul style="margin-left: 15px;">
+                            @foreach($categorys_branch as $row_categorys_branch)
+                            @if($row_categorys_branch->category_branch == $row_categorys->category_id )
+                            @if($row_categorys_branch->category_id == $post->category_id )
+                            <li style="padding:5px">
+                                <input type="radio" checked name="category_id" class="selectbox" value="{{$row_categorys_branch->category_id}}" />{{$row_categorys_branch->category_title}}
+                            </li>
+                            @else
+                            <li style="padding:5px">
+                                <input type="radio" name="category_id" class="selectbox" value="{{$row_categorys_branch->category_id}}" />{{$row_categorys_branch->category_title}}
+                            </li>
+                            @endif
+                            @endif
+                            @endforeach
+                        </ul>
+
+                    </li>
+                    @endif
+
                 </ul>
                 @endforeach
 

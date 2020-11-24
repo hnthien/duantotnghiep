@@ -26,10 +26,7 @@
                             <button type="submit"   class="btn background-gray col-border--none">Lưu</button>
                         </div>
                         <div class="col-9 col-col-margin-left ">
-                            <span class="text-bold "><i class="fas fa-user-edit"></i>Introduce something interesting.</span>
-                            <br>
-                          <textarea name="intro_user"  style="height: 90%;width: 100%;margin-top:10px ;padding:10px;box-sizing: border-box;">{{ Auth::user()->intro_user }}</textarea>
-                    </div>
+                           </div>
                     </div>
                     <div class="row">
                         <div class="col-12">

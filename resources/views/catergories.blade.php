@@ -35,19 +35,22 @@ $slug = Str::slug($categorys->category_title,'-');
                     @if($row_category_branch->category_branch == $categorys->category_id)
                     <h2>
                         <div class="vertical_tiles"></div> {{$row_category_branch->category_title}}
+
                     </h2>
                     <div style="padding: 5px;" class="row popular-post ">
-                        @foreach($post1 as $row_post1)
-                        @foreach($row_post1->category_id as $category_id)
-                        @if($category_id == $row_category_branch->category_id)
-                        <div class="col-3 col-position ">
-                            <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post1->post_image}}" alt="image post" />
-                            <a href="{{url('/post')}}/{{$row_post1->post_slug}}/{{$row_post1->post_id}}">
-                                <h3>{{$row_post1->post_title}}</h3>
+                    @php
+                    $data = new App\Post();
+                    $post_category1 = $data::where('category_id',$row_category_branch->category_id)->orderBy('post_id', 'DESC')->take(4)->get();
+                    @endphp
+                        @foreach($post_category1 as $row_post_category1)                        
+                        @if($row_post_category1->category_id == $row_category_branch->category_id)                      
+                        <div class="col-3 col-position">
+                            <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
+                            <a href="{{url('/post')}}/{{$row_post_category1->post_slug}}/{{$row_post_category1->post_id}}">
+                                <h3>{{$row_post_category1->post_title}}</h3>
                             </a>
-                        </div>
-                        @endif
-                        @endforeach
+                        </div>                      
+                        @endif                      
                         @endforeach
                     </div>
                     @endif
@@ -60,11 +63,8 @@ $slug = Str::slug($categorys->category_title,'-');
                     <h2>
                         <div class="vertical_tiles"></div> Mới Nhất
                     </h2>
-
-                    @foreach($post as $row_post)
-                    @foreach($row_post->category_id as $category_id)
-                    @if($category_id == $categorys->category_id )
-
+                    @foreach($post_category as $row_post)                
+                    @if($row_post->category_id == $categorys->category_id )
                     <div style="padding: 5px;" class="row popular-post ">
                         <div class="col-4 col-position ">
                             <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
@@ -90,19 +90,17 @@ $slug = Str::slug($categorys->category_title,'-');
                             <p class="color-light-gray font-size-13">{{$row_post->post_intro}}</p>
 
                         </div>
-
                     </div>
-                    @endif
-                    @endforeach
+                    @endif                  
                     @endforeach
                 </article>
-                <div style="text-align: center">{!!$post->links()!!}</div>
+                <div style="text-align: center">{!!$post_category->links()!!}</div>
             </div>
             <div class="col-4">
                 <aside>
-                     <!-- popular_posts -->
-                     @include('popular_posts')
-                   <!-- end popular_posts -->
+                    <!-- popular_posts -->
+                    @include('popular_posts')
+                    <!-- end popular_posts -->
                     <!-- category -->
                     @include('list_categories')
                     <!-- end category -->

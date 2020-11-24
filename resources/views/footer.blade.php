@@ -14,19 +14,17 @@
 
             </div>
             <div class="col-2 ">
-                <h2 class="text-color-white">Useful Links</h2>
+                <h2 class="text-color-white">Liên kết hữu ích</h2>
                 <ul class="list-vertical">
 
                     <li><a href="#"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
-                    <li><a href="{{url('/user/dong-gop-y-kien')}}" class="text-color-white"><i class="fas fa-angle-right"></i>Góp Ý</a></li>
-                    <li><a href="#" class="text-color-white"><i class="fas fa-angle-right"></i>Liên Hệ</a> </li>
                     <li><a href="{{url('/account')}}" class="text-color-white"><i class="fas fa-angle-right"></i>Tác Giả</a></li>
                     <li><a href="#" class="text-color-white"><i class="fas fa-angle-right"></i>Search Results</a></li>
                     <li><a href="{{url('/404')}}" class="text-color-white"><i class="fas fa-angle-right"></i>404</a></li>
                 </ul>
             </div>
             <div style="background: none;" class="col-5 post">            
-                <h2 class="text-color-white">Popular Post</h2>
+                <h2 class="text-color-white">Tin mới nhất</h2>
                 @php 
                 $post = new App\Post();
                 $data_post = $post->orderBy('post_id','DESC')->take(2)->get();

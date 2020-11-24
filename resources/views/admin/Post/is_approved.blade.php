@@ -105,13 +105,13 @@
                     <td>{{$p->post_title}}</td>
                     <td>{{$p->post_intro}}</td>
                     <td>
-                        @foreach($p->category_id as $tag)
+                       
                         @foreach($category as $row)
-                        @if($row->category_id == $tag)
+                        @if($row->category_id == $p->category_id)
                         <span class="col-border-category">{{$row->category_title}}</span>
                         @endif
                         @endforeach
-                        @endforeach
+                       
                     </td>
                     <td>
                         @foreach($user as $row1)
