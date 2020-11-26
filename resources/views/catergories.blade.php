@@ -4,7 +4,7 @@
 @php
 $slug = Str::slug($categorys->category_title,'-');
 @endphp
-<main class="content col-margin--top ">
+<main class="content col-margin--top col-padding ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
             <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
@@ -35,22 +35,30 @@ $slug = Str::slug($categorys->category_title,'-');
                     @if($row_category_branch->category_branch == $categorys->category_id)
                     <h2>
                         <div class="vertical_tiles"></div> {{$row_category_branch->category_title}}
-
                     </h2>
-                    <div style="padding: 5px;" class="row popular-post ">
                     @php
-                    $data = new App\Post();
-                    $post_category1 = $data::where('category_id',$row_category_branch->category_id)->orderBy('post_id', 'DESC')->take(4)->get();
+                    $post = new App\Post();
+                    $data_post = $post->all();
+                    $nub = 0;
+                    foreach($data_post as $row_data_post)
+                    {if($row_data_post->category_id ==$row_category_branch->category_id){$nub++;}}
                     @endphp
-                        @foreach($post_category1 as $row_post_category1)                        
-                        @if($row_post_category1->category_id == $row_category_branch->category_id)                      
+                    <p class="color-light-gray" style="font-size:12px;">Tổng số bài viết là {{$nub}}.</p>
+                    <br>
+                    <div style="padding: 5px;" class="row popular-post ">
+                        @php
+                        $data = new App\Post();
+                        $post_category1 = $data::where('category_id',$row_category_branch->category_id)->orderBy('post_id', 'DESC')->take(4)->get();
+                        @endphp
+                        @foreach($post_category1 as $row_post_category1)
+                        @if($row_post_category1->category_id == $row_category_branch->category_id)
                         <div class="col-3 col-position">
                             <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
                             <a href="{{url('/post')}}/{{$row_post_category1->post_slug}}/{{$row_post_category1->post_id}}">
                                 <h3>{{$row_post_category1->post_title}}</h3>
                             </a>
-                        </div>                      
-                        @endif                      
+                        </div>
+                        @endif
                         @endforeach
                     </div>
                     @endif
@@ -63,7 +71,16 @@ $slug = Str::slug($categorys->category_title,'-');
                     <h2>
                         <div class="vertical_tiles"></div> Mới Nhất
                     </h2>
-                    @foreach($post_category as $row_post)                
+                    @php
+                    $post = new App\Post();
+                    $data_post = $post->all();
+                    $nub = 0;
+                    foreach($data_post as $row_data_post)
+                    {if($row_data_post->category_id ==$categorys->category_id){$nub++;}}
+                    @endphp
+                    <p class="color-light-gray" style="font-size:12px;">Tổng số bài viết là {{$nub}}.</p>
+                    <br>
+                    @foreach($post_categoryt as $row_post)
                     @if($row_post->category_id == $categorys->category_id )
                     <div style="padding: 5px;" class="row popular-post ">
                         <div class="col-4 col-position ">
@@ -79,7 +96,7 @@ $slug = Str::slug($categorys->category_title,'-');
                                     <span>by</span>
                                     @foreach($user as $row_user)
                                     @if($row_user->id == $row_post->user_id)
-                                    <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                     @endif
                                     @endforeach
                                 </li>
@@ -91,10 +108,10 @@ $slug = Str::slug($categorys->category_title,'-');
 
                         </div>
                     </div>
-                    @endif                  
+                    @endif
                     @endforeach
                 </article>
-                <div style="text-align: center">{!!$post_category->links()!!}</div>
+                <div style="text-align: center">{!!$post_categoryt->links()!!}</div>
             </div>
             <div class="col-4">
                 <aside>

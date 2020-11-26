@@ -25,23 +25,23 @@ class PostController extends Controller
         $user = User::all();
         $category = Category::all();
         $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
-       
+
         return view('admin.post.index', compact('posts', 'category', 'user'));
     }
     public function is_approved()
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
-       
+        $posts = Post::where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(9);
+
         return view('admin.post.is_approved', compact('posts', 'category', 'user'));
     }
     public function is_not_approved()
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
-       
+        $posts = Post::where('post_status', 0)->orWhere('post_status', 1)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(9);
+
         return view('admin.post.is_not_approved', compact('posts', 'category', 'user'));
     }
 
@@ -78,10 +78,6 @@ class PostController extends Controller
         ]);
         $posts = new Post();
         $posts->post_title = $request->post_title;
-        // $array_category_id = array();
-        // foreach ($request->category_id as $category_id) {
-        //     array_push($array_category_id, $category_id);
-        // }
         $posts->category_id = $request->category_id;
         $posts->user_id = Auth::user()->id;
         $posts->post_slug = $request->post_slug;
@@ -96,7 +92,7 @@ class PostController extends Controller
         $file = $request->file('post_image');
         $posts['post_image'] = $file->getClientOriginalName();
         $file->move(public_path('images/post_image'), $file->getClientOriginalName());
-        $posts->post_tag = preg_split('/,/', $request->post_tag);
+        $posts->post_tag = preg_split("/[,]+/", $request->post_tag);
         $posts->post_content = $request->post_content;
         $posts->save();
         return redirect()->action('PostController@index');
@@ -163,19 +159,27 @@ class PostController extends Controller
         $posts->post_title = $request->post_title;
         $posts->category_id = $request->category_id;
         $posts->user_id = Auth::user()->id;
-        if ($request->post_status == 1) {
+        if ($request->post_status != 0) {
             $posts->post_status = $request->post_status;
-        } else {
+        }
+        if ($request->post_status == 0) {
             $posts->post_status = 0;
         }
+        if ($request->post_status == 2) {
+            if (Auth::user()->role_user == 3 or Auth::user()->role_user == 2) {
+                $posts->censor_id = Auth::user()->id;
+            }
+        }
+
         $posts->post_slug = $request->post_slug;
         $posts->post_intro = $request->post_intro;
         if ($request->hasFile('post_image')) {
             $posts->post_image = $request->file('post_image')->getClientOriginalName();
             $request->file('post_image')->move(public_path('images/post_image'),   $request->file('post_image')->getClientOriginalName());
         }
+        $tag = preg_split("/[,]+/", $request->post_tag);
 
-        $posts->post_tag = preg_split('/,/', $request->post_tag);;
+        $posts->post_tag = $tag;
         $posts->post_content = $request->post_content;
         $posts->save();
         return redirect()->action('PostController@index');
@@ -214,47 +218,32 @@ class PostController extends Controller
         $post->post_view = ($post->post_view) + 1;
         $post->save();
         //like
-        // $post_like = new Post_like();
-      
-        // $check_user_idd = Post_like::where('user_id',  Auth::user()->id)->doesntExist();
-        // $check_post_idd = Post_like::where('post_id', $id)->doesntExist();
-        // $check_user_id = Post_like::where('user_id',  Auth::user()->id)->exists();
-        // if ($check_user_idd) {
-        //     $post_like->user_id = Auth::user()->id;
-        //     $post_like->post_id = $id;
-        //     $post_like->post_dislike = 0;
-        //     $post_like->post_like = 0;
-        //     $post_like->save();
-            
-        // }else {
-        //     if ($check_user_id)
-        //     {
-        //         if($check_post_idd) 
-        //         { $post_like->user_id = Auth::user()->id;
-        //             $post_like->post_id = $id;
-        //             $post_like->post_dislike = 0;
-        //             $post_like->post_like = 0;
-        //             $post_like->save();
-        //         }      
-               
-               
-        //     } 
-        // };
+        if (Auth::check()) {
+            $post_like = new Post_like();
+            $check_user_idd = Post_like::where('user_id',  Auth::user()->id)->where('post_id', $id)->doesntExist();
+            if ($check_user_idd) {
+                $post_like->user_id = Auth::user()->id;
+                $post_like->post_id = $id;
+                $post_like->post_dislike = 0;
+                $post_like->post_like = 0;
+                $post_like->save();
+            }
+        }
         //time
         Carbon::setLocale('vi');
         $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
-        return view('news', compact('post', 'user', 'categorys_branch','categorys', 'date'));
+        return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date'));
     }
-    public function view_post_category($category_title,$id)
+    public function view_post_category($category_title, $id)
     {
 
         $user = User::all();
         $categorys = Category::find($id);
         $category_branch = Category::all();
-        $post_category = Post::orderBy('post_id', 'DESC')->paginate(9);
-        return view('catergories', compact('post_category', 'categorys', 'user', 'category_branch',));
+        $post_categoryt = Post::where('category_id', $id)->orderBy('post_id', 'DESC')->paginate(10);
+        return view('catergories', compact('post_categoryt', 'categorys', 'user', 'category_branch',));
     }
     //   search_post
 
@@ -264,10 +253,11 @@ class PostController extends Controller
         if ($keyword == null or $keyword == " ") {
         } else {
             $user = User::all();
-            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(10)->get();
+            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orWhere('post_tag', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(10)->get();
             return view('search_results', compact('search_results', 'user'));
         }
     }
+
     public function search_posts(Request $request)
     {
 
@@ -275,5 +265,12 @@ class PostController extends Controller
         $user = User::all();
         $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(20)->get();
         return view('search', compact('search_results', 'user', 'keyword'));
+    }
+    public function search_posts_tag(Request $request, $tag)
+    {
+        $keyword = $tag;
+        $user = User::all();
+        $search_results = Post::orderBy('post_id', 'DESC')->get();
+        return view('search_tag', compact('search_results', 'user', 'keyword'));
     }
 }

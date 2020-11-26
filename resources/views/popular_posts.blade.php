@@ -15,16 +15,16 @@ $data_user = $user::all();
         <div style="margin-left: 0px;" class="col-3">
             <img class="img "  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
         </div>
-        <div class="col-9">
+        <div class="col-9 ">
             <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
-                <h4 class="h4_reponsive" style="margin: 0px;">{{$row_post->post_title}}</h4>
+                <h4 class="font-size-13" style="margin: 0px;">{{$row_post->post_title}}</h4>
             </a>
-            <ul class="list-horizontal font-size-13">
+            <ul style="font-size: 12px;" class="list-horizontal color-light-gray">
                 <li>
                     <span>by</span>
                     @foreach($data_user as $row_user)
                     @if($row_user->id == $row_post->user_id)
-                    <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                     @endif
                     @endforeach
                 </li>

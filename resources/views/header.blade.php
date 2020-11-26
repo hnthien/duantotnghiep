@@ -35,14 +35,7 @@
             $("#category_show").show();
             $("#category_show1").hide();
         });
-        //   $('.content').click(function() {
-        //       $("#list_category_menu").hide('slow');
-        //       $("#category_show").show();
-        //       $("#category_show1").hide();
-        //   });
-
-
-
+        
         $('#search').keyup(function() {
             var keyword = $('#search').val();
             $.ajax({
@@ -69,12 +62,13 @@
 
     <div class="col-3 text-align--center ">
         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" alt="logo" /></a>
+        <p class="color-light-gray" style="font-size:12px;">Website thử nghiệm.</p>
     </div>
     <div class="col-4  ">
         <form class="search" method="POST" action="{{url('post/searchs')}}">
             @csrf
             <span class="item"><i class="fa fa-search"></i></span>
-            <input class="search__input" type="search" placeholder="Search......" name="keyword" id="search" />
+            <input class="search__input" type="search" placeholder="Tìm kiếm bài viết......" name="keyword" id="search" />
             <div class="results_search" id="SearchResults" style="padding-top: 5px ;box-sizing: border-box;"></div>
         </form>
     </div>
@@ -91,11 +85,11 @@
         <ul class="menuheader row">
             <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px" src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
             <li class="menuheaderli col-9">
-                <span style="text-transform: capitalize" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></span>
+                <span style="text-transform: capitalize" class="text-bold">@php echo substr(Auth::user()->name ,0,14) @endphp <i class="fas fa-caret-down"></i></span>
                 <ul class="menuheaderli__droplist">
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i>{{ __('Đăng xuất') }}
+                            <i class="fas fa-sign-out-alt"></i>{{ __('Logout') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -113,7 +107,7 @@
 
         @else
         <div class="col-margin--top">
-            <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ route('login') }}">Đăng nhập</a>
+            <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ route('login') }}">Login</a>
 
         </div>
 
@@ -170,10 +164,10 @@
                 <i class="fas fa-stream col-padding--top"></i>
             </a>
         </div>
-        <div class="col-2 ">
+        <div class="col-1 ">
 
         </div>
-        <div class="col-9 menu-none " id="myTopnav">
+        <div class="col-10 menu-none " id="myTopnav">
             <nav class="menu-nav ">
                 <ul class="menu-nav__ul text-align--center  ">
                     <li>

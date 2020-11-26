@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post_like;
 use App\Post;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class PostLikeController extends Controller
@@ -58,9 +59,13 @@ class PostLikeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function search_posts_tag(Request $request,$tag)
     {
-        //
+        $keyword = $tag;
+        $user = User::all();
+        $search_results = Post::where('post_tag', 'like', '%' . $tag . '%')->orderBy('post_id', 'DESC')->take(20)->get();
+        return view('search', compact('search_results', 'user', 'keyword'));
+
     }
 
     /**

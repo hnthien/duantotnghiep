@@ -97,7 +97,7 @@
 
                 @foreach($posts as $p)
                 @if($p->user_id == Auth::user()->id)
-                @if($p->post_status == 1 or $p->post_status == 0 or $p->post_status == 3 )
+               
                 <tr class="font-size-13">
                     <td>{{$p->post_id}}</td>
                     <td>
@@ -135,7 +135,7 @@
                         <span class="col-border-category background-greed color-white">Đã đăng</span>
                         @else
                         @if($p->post_status == 3)
-                        <span class="col-border-category background-greed color-white">Không Được phê duyệt</span>
+                        <span class="col-border-category background-orangered color-white">Không Được phê duyệt</span>
                         @endif
                         @endif
                         @endif
@@ -149,7 +149,7 @@
                     </td>
                 </tr>
                 @endif
-                @endif
+               
                 @endforeach
             </tbody>
         </table>

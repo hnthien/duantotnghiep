@@ -85,7 +85,7 @@
 </script>
 <div class="row col-border-bottom">
     <div class="col-6">
-        
+        @if(Auth::check())
         @foreach($post_like as $row_post_like)
         @if($row_post_like->user_id == Auth::user()->id)
         @if($row_post_like->post_like == 0 and $row_post_like->post_dislike == 0)
@@ -102,7 +102,9 @@
         @endif
         @endif
         @endforeach
-     
+        @else
+        <button class="btn_like" type='submit' title="Tôi thích bài viết này"><i  class="fas fa-thumbs-up " ></i></button>
+        @endif
        
           
        <!--  -->                  
@@ -120,6 +122,7 @@
         @endphp
     </div>
     <div class="col-6"> 
+        @if(Auth::check())
         @foreach($post_like as $row_post_like)
         @if($row_post_like->user_id == Auth::user()->id)
         @if($row_post_like->post_like == 0 and $row_post_like->post_dislike == 0)
@@ -136,7 +139,10 @@
         @endif
         @endif
         @endforeach
-      
+        @else
+        <button class="btn_like"  type='submit'  title="Tôi không thích bài viết này"><i class="fas fa-thumbs-down"></i></button>
+        @endif
+      <!--  -->
         @php
         $dislike = 0;
         foreach($post_like as $row_post_like) {
@@ -150,3 +156,7 @@
         @endphp
     </div>
 </div>
+@if(Auth::check())
+@else
+<p class="color-light-gray font-size-13"><a href="{{ route('login') }}">Đăng nhập</a>  để like bài viết này</p>
+@endif

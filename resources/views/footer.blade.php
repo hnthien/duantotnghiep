@@ -18,12 +18,9 @@
                 <ul class="list-vertical">
 
                     <li><a href="#"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
-                    <li><a href="{{url('/account')}}" class="text-color-white"><i class="fas fa-angle-right"></i>Tác Giả</a></li>
-                    <li><a href="#" class="text-color-white"><i class="fas fa-angle-right"></i>Search Results</a></li>
-                    <li><a href="{{url('/404')}}" class="text-color-white"><i class="fas fa-angle-right"></i>404</a></li>
                 </ul>
             </div>
-            <div style="background: none;" class="col-5 post">            
+            <div style="background: none;" class="col-4 post">            
                 <h2 class="text-color-white">Tin mới nhất</h2>
                 @php 
                 $post = new App\Post();
@@ -33,10 +30,10 @@
                 @endphp
                 @foreach($data_post as $row_post)
                 <div class="row col-margin--bottom">
-                    <div class="col-3">
-                        <img width="100%" height="100%" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+                    <div class="col-4">
+                        <img width="100%"  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
                     </div>
-                    <div class="col-9 col-margin-left ">
+                    <div class="col-8 col-margin-left ">
                         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
                             <h4 style="margin: 0px;" class="text-color-white">{{$row_post->post_title}}</h4>
                         </a>
@@ -45,7 +42,7 @@
                                 <span>by</span>
                                 @foreach($data_user as $row_user)
                                 @if($row_user->id == $row_post->user_id)
-                                <a  style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                <a  style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                 @endif
                                 @endforeach
                             </li>
@@ -60,7 +57,7 @@
 
 
             </div>
-            <div class="col-2 ">
+            <div class="col-3 ">
                 <h2 class="text-color-white">Fage</h2>
 
             </div>

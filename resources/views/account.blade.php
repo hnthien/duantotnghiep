@@ -26,6 +26,7 @@
                             <button type="submit"   class="btn background-gray col-border--none">Lưu</button>
                         </div>
                         <div class="col-9 col-col-margin-left ">
+                            {{Auth::user()->intro_user}}
                            </div>
                     </div>
                     <div class="row">

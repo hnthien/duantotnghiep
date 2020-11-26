@@ -2,7 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     /* background: #ffffff; */
     margin: 0px;
-    color: rgb(41, 40, 40);
+    color: rgb(58, 57, 57);
     font-size: 15px;
 }
 
@@ -29,6 +29,7 @@ body {
 
 .col-4 {
     width: 33.333%;
+    padding: 0px 5px;
     box-sizing: border-box;
 }
 
@@ -156,7 +157,7 @@ li {
 
 a {
     text-decoration: none;
-    color: rgb(32, 31, 31);
+    color: rgb(58, 57, 57);
 }
 
 a:hover {
@@ -551,6 +552,7 @@ p {
 
 .col-border-bottom {
     border-bottom: 1px rgb(77, 77, 77) solid;
+    margin: 4px 0px;
 }
 
 .font-size-13 {
@@ -726,7 +728,7 @@ p {
     overflow: visible;
     position: fixed !important;
     top: 0;
-    z-index: 1001;
+    z-index: 18;
     background: white;
     border-bottom: 1px solid rgba(156, 156, 156, 0.664);
 }
@@ -785,6 +787,10 @@ p {
 
 /* menu */
 
+.menu-none {
+    display: contents;
+}
+
 .header {
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
     margin-bottom: 20px;
@@ -805,7 +811,7 @@ p {
 .menu-nav__ul li a {
     padding: 15px 15px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: rgb(58, 57, 57);
 }
 
 .menu-nav__ul li a:hover {
@@ -1181,6 +1187,9 @@ footer {
 }
 
 @media only screen and (max-width: 1024px) {
+    .fix {
+        position: relative !important;
+    }
     /* list-horizontal  */
     .list-horizontal li {
         margin-left: 5px;
@@ -1198,7 +1207,7 @@ footer {
         display: none;
     }
     /* menu */
-    .menu {
+    /* .menu {
         display: block;
     }
     .menu .col-9 {
@@ -1235,7 +1244,7 @@ footer {
         display: block;
         text-align: left;
         border-right: none;
-    }
+    } */
     /* drop */
     .menu-drop .menu-drop__list {
         display: none;
@@ -1308,6 +1317,47 @@ footer {
 }
 
 @media only screen and (max-width: 768px) {
+    .menu {
+        display: block;
+    }
+    .menu .col-9 {
+        width: 100%;
+    }
+    .menu .col-2 {
+        width: 100%;
+    }
+    .menu .col-1 {
+        width: 100%;
+    }
+    .icon {
+        display: block;
+    }
+    .menu-none .menu-nav {
+        display: none;
+    }
+    .menu-none.responsive .menu-nav {
+        float: none;
+        display: block;
+        text-align: left;
+        border-right: none;
+    }
+    .menu-none.responsive {
+        position: relative;
+    }
+    .menu-none.responsive #icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .menu-nav .menu-nav__ul li {
+        float: none;
+        display: block;
+        text-align: left;
+        border-right: none;
+    }
+    .fix {
+        position: relative !important;
+    }
     .height_post {
         height: 100%;
     }

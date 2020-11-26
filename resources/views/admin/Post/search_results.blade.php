@@ -1,15 +1,28 @@
 
-@foreach($search_results as $row)
-<a style="padding: 5px;box-sizing: border-box;" class="row" href="{{url('admin/post/edit')}}/{{$row->post_slug}}/{{$row->post_id}}">
-   <img class="col-3" src="{{ URL::asset('images/post_image') }}/{{$row->post_image}}" />
-    <samp class="col-9">
-    <samp style="text-transform: capitalize;font-weight: bold;">{{$row->post_title}}</samp><br>
-    @foreach($user as $row1)
-    @if($row1->id == $row->user_id)
-    {{$row1->email}}
-    {{$row1->name}}
-    @endif
-    @endforeach
-    </samp>
-</a>
+@foreach($search_results as $row_post)
+<div style="margin-top: 5px;" class="row">
+    <div class="col-3">
+        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" />
+    </div>
+    <div class="col-9">
+        <a  href="{{url('admin/post/edit')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+            <h4 style="margin: 0px;" class="font-size-13">{{$row_post->post_title}}</h4>
+        </a>
+        <ul class="list-horizontal font-size-13">
+            <li class="text-color-white">
+                <span>by</span>
+                @foreach($user as $row_user)
+                @if($row_user->id == $row_post->user_id)
+                <a href="#">{{$row_user->name}}</a>
+                @endif
+                @endforeach
+            </li>
+            <li >
+                @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+            </li>
+        </ul>
+
+    </div>
+</div>
+<hr>
 @endforeach

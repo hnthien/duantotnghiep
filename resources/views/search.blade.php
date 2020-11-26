@@ -10,7 +10,7 @@
                     <form class="search col-margin--bottom" method="POST"  action="{{url('post/searchs')}}">
                     @csrf
                         <span class="item"><i class="fa fa-search"></i></span>
-                        <input class="search__input" type="search"  name="keyword" placeholder="Search for articles" />
+                        <input class="search__input" type="search" value="{{$keyword}}" name="keyword" placeholder="Tìm kiếm bài viết...." />
                     </form>
                     <h4 style="margin-left: 0px;" class="col-margin--bottom">Từ Khóa đã tìm kiếm " {{$keyword}} ".</h4>
                     @foreach($search_results as $row_post)
@@ -40,6 +40,8 @@
                         </div>
 
                     </div>
+                    
+                   
                     @endforeach
                 </article>
             </div>
