@@ -85,6 +85,7 @@
                     <th>Giới thiệu</th>
                     <th style="width:100px;text-align: center;">Chủ đề</th>
                     <th style="width:100px;text-align: center;">Người viết</th>
+                    <th style="width:100px;text-align: center;">Người phê duyệt</th>
                     <th style="width:80px;text-align: center;">Date</th>
                     <th>Status</th>
                     <th>Delete</th>
@@ -96,7 +97,7 @@
 
                 @foreach($posts as $p)
                 @if($p->user_id == Auth::user()->id)
-                @if($p->post_status == 2 )
+              
                 <tr class="font-size-13">
                     <td>{{$p->post_id}}</td>
                     <td>
@@ -120,6 +121,13 @@
                         @endif
                         @endforeach
                     </td>
+                    <td>
+                        @foreach($user as $row1)
+                        @if($row1->id == $p->censor_id)
+                        {{$row1->name}}
+                        @endif
+                        @endforeach
+                    </td>
                     <td style="font-size: 14px;">
                         <p> @php echo substr($p->created_at ,10,3).':'.substr($p->created_at ,14,2).'<br>'; echo substr($p->created_at ,0,10) ; @endphp</p>
                     </td>
@@ -134,7 +142,7 @@
                         <span class="col-border-category background-greed color-white">Đã đăng</span>
                         @else
                         @if($p->post_status == 3)
-                        <span class="col-border-category background-greed color-white">Không Được phê duyệt</span>
+                        <span class="col-border-category background-orangered color-white">Không Được phê duyệt</span>
                         @endif
                         @endif
                         @endif
@@ -148,7 +156,7 @@
                     </td>
                 </tr>
                 @endif
-                @endif
+               
                 @endforeach
             </tbody>
 

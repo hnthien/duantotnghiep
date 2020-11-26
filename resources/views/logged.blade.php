@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div style="margin-top: 60px;" class="card box-shadow">
-            <h1 class="form__name">Đăng nhập thành công</h1>
+            <h1 class="form__name">Logged In Successfully</h1>
                 <div class="card-body">              
                 <div style="text-align: center;" class="alert alert-success" role="alert">
                 You are logged in!

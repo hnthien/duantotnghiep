@@ -1,7 +1,7 @@
 @extends('layouts.client')
 @section('client',$post->post_title)
 @section('content')
-<main class="content col-margin--top ">
+<main class="content col-margin--top col-padding">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
             <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
@@ -32,8 +32,8 @@
     </div>
     <section class="section ">
         <div class="row">
-            <div class="col-8 ">
-                <div class="row">
+            <div class="col-8  ">
+                <div class="row ">
                     <div class=" popular-post post-contect">
                         <h1 class="text-title-post">{{$post->post_title}}</h1>
                         <div class="col-position ">
@@ -44,7 +44,7 @@
                             $slug = Str::slug($row_category->category_title,'-');
                             @endphp
                             @if($category->category_branch == $row_category->category_id )
-                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><button class="col-border-categorys_title">{{$row_category->category_title}}</button></a>
+                            <a href="{{url('/category')}}/{{$slug}}/{{$row_category->category_id}}"><button class="col-border-categorys_title">{{$row_category->category_title}}</button></a>
                             @endif
                             @endforeach
                             @endif
@@ -55,7 +55,7 @@
                             $slug = Str::slug($category->category_title,'-');
                             @endphp
                             @if($post->category_id == $category->category_id)
-                            <a href="{{url('/category/')}}/{{$slug}}/{{$category->category_id}}"><button class="col-border-categorys">{{$category->category_title}}</button></a>
+                            <a href="{{url('/category')}}/{{$slug}}/{{$category->category_id}}"><button class="col-border-categorys">{{$category->category_title}}</button></a>
                             @endif
                             @endforeach
 
@@ -63,14 +63,14 @@
                         <div class="clearfix"></div>
                         <br>
                         <div class="row ">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <ul class="list-horizontal">
                                     <li>
                                         <span>by</span>
 
                                         @foreach($user as $row_user)
                                         @if($row_user->id == $post->user_id)
-                                        <a href="#">{{$row_user->name}}</a>
+                                        <a href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                         @endif
                                         @endforeach
 
@@ -106,10 +106,11 @@
                         <div>
                             <i class="fas fa-tags"></i>
                             @foreach($post->post_tag as $tag)
-                            <a href="#">
+                            <a href="{{url('/posts/searchs')}}/{{$tag}}">
                                 <button class="col-border-categorys ">{{$tag}}</button>
                             </a>
                             @endforeach
+                           
                         </div>
 
                     </div>

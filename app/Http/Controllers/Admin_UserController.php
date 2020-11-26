@@ -79,6 +79,7 @@ class Admin_UserController extends Controller
        $user = User::find($id);
        $user->role_user=$request->role_user;
        $user->guilty_user=$request->guilty_user;
+       $user->intro_user= $request->intro_user;
        $user->save();
        return redirect()->action('Admin_UserController@index');
     }

@@ -18,7 +18,7 @@
                                 <span>by</span>
                                 @foreach($user as $row_user)
                                 @if($row_user->id == $row_pp->user_id)
-                                <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                 @endif
                                 @endforeach
                             </li>
@@ -48,7 +48,7 @@
                             <span>by</span>
                             @foreach($user as $row_user)
                             @if($row_user->id == $row_pp->user_id)
-                            <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                            <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                             @endif
                             @endforeach
                         </li>
@@ -72,7 +72,7 @@
                             <span>by</span>
                             @foreach($user as $row_user)
                             @if($row_user->id == $row_pp->user_id)
-                            <a style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                            <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                             @endif
                             @endforeach
                         </li>
@@ -123,7 +123,7 @@
                                         <span>by</span>
                                         @foreach($user as $row_user)
                                         @if($row_user->id == $row_post->user_id)
-                                        <a href="#">{{$row_user->name}}</a>
+                                        <a href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                         @endif
                                         @endforeach
                                     </li>
@@ -232,8 +232,8 @@
             </h2>
             @php
             $data = new App\Post();
-            $post_all = $data::all();
-            $post_category = $data::where('category_id',$row_categorys->category_id)->orderBy('post_id', 'DESC')->take(1)->get();
+            $post_all = $data::where('post_status',2)->get();
+            $post_category = $data::where('post_status',2)->where('category_id',$row_categorys->category_id)->orderBy('post_id', 'DESC')->take(1)->get();
             $data_ct = new App\Category();
             $category_ct = $data_ct::where('category_branch',$row_categorys->category_id)->take(2)->get();
             @endphp
@@ -242,9 +242,10 @@
             <a href="{{url('/post')}}/{{$row_post_category->post_slug}}/{{$row_post_category->post_id}}">
                 <h3>{{$row_post_category->post_title}}</h3>
             </a>
+            @endforeach
             @foreach($category_ct as $row_category_ct)
             @foreach($post_all as $row_post_all)
-            @if($row_post_all->category_id ==$row_category_ct->category_id )
+            @if($row_post_all->category_id == $row_category_ct->category_id )
             <div class="row col-border-top">
                 <div class="col-4">
                     <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}" alt="image post" />
@@ -263,7 +264,7 @@
             @endif
             @endforeach
             @endforeach
-            @endforeach
+            
         </div>
         @endforeach
     </section>

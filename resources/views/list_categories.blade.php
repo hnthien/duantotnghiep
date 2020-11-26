@@ -4,17 +4,19 @@
         <div class="col-12">
             <ul class="list-vertical list-category">
                 @php
-                $category = new App\Category();
-                $data_category = $category->where('category_branch',0)->get();
+                $category = new App\Category();        
+                $data_category = $category->where('category_branch',0)->get();                      
                 @endphp
                 @foreach($data_category as $row_category)
                 @php
                 $slug = Str::slug($row_category->category_title,'-');
                 @endphp
-                
+
                 <li>
-                    <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}"><i class="fas fa-angle-right"></i>{{$row_category->category_title}}</a>
-                </li>            
+                    <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">
+                        <i class="fas fa-angle-right"></i>{{$row_category->category_title}}                     
+                    </a>
+                </li>
                 @endforeach
             </ul>
         </div>

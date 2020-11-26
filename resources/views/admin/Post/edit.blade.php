@@ -143,12 +143,30 @@
                 @include('ckfinder::setup')
                 <span class="text-danger"><b>{{ $errors->first('post_content') }}</b></span>
                 <br>
-                @if($post->post_status == 0)
-                <input type="checkbox" name="post_status" class="selectbox" value="1" />Lưu bản nháp
-                @endif
                 @if($post->post_status == 1)
                 <input checked type="checkbox" name="post_status" class="selectbox" value="1" />Lưu bản nháp
                 @endif
+               
+                @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 2)
+                <select name="post_status">
+                    @if($post->post_status == 0)
+                    <option selected value="0">Đang phê duyệt</option>
+                    <option value="2">Phê duyệt</option>
+                    <option value="3">Không được phê duyệt</option>
+                    @endif
+                    @if($post->post_status == 2)
+                    <option selected value="2">Phê duyệt</option>
+                    <option value="0">Đang phê duyệt</option>
+                    <option value="3">Không được phê duyệt</option>
+                    @endif
+                    @if($post->post_status == 3)
+                    <option selected value="3">Không được phê duyệt</option>
+                    <option value="0">Đang phê duyệt</option>
+                    <option value="2">Phê duyệt</option>
+                    @endif                  
+                </select>
+                @endif
+                
             </div>
             <br>
             <div class="row col-3">

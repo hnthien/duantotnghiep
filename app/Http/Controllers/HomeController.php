@@ -50,6 +50,13 @@ class HomeController extends Controller
     {
         return view('index');
     }
+    //author
+    public function author($name,$id)
+    {
+        $user_author= User::find($id);
+        $post_author = Post::where('user_id',$id)->orderBy('post_id', 'DESC')->paginate(10);
+        return view('author', compact('user_author', 'post_author'));
+    }
     // password edit
     public function password()
     {     

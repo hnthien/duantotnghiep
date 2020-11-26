@@ -20,9 +20,9 @@
                     <button class="btn background-greed">+ Add New Category</button>
                 </a>
             </div>
-            <form class=" col-4 search" method="POST">
-                <input class="search__input" type="search" placeholder="Search......" />
-            </form>
+            <div class="col-3">
+                <div style="text-align: center;float: right;">{!!$categorys->links()!!}</div>
+            </div>
         </div>
         <br>
         <table class="popular-post col-padding">
@@ -88,7 +88,7 @@
             </tr>
             @endforeach
         </table>
-        <div style="text-align: center">{!!$categorys->links()!!}</div>
+        
     </section>
 </main>
 @endsection

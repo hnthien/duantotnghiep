@@ -20,10 +20,17 @@
                 </div>
                 <div class="col-9 col-margin-left col-position ">
                 <span class="text-bold" ><i class="fas fa-user-edit"></i>Giới Thiệu.</span>
+                <br>
+                <textarea style="resize: none;" id="intro_user" name="intro_user" cols="35" rows="300">{{$data->intro_user}}</textarea>
+                <script src="{{url('ckeditor/ckeditor.js') }}"></script>
+                <script>
+                    CKEDITOR.replace('intro_user', {
+                        filebrowserBrowseUrl: "{{route('ckfinder_browser')}}",
 
-                <div style="height:100%;width: 100%;padding-top:10px; overflow: auto;">{{$data->intro_user }}</div>
-
-
+                    });
+                </script>
+                @include('ckfinder::setup')
+                
                 </div>
 
                 
