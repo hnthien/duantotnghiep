@@ -220,7 +220,7 @@ class PostController extends Controller
         //like
         if (Auth::check()) {
             $post_like = new Post_like();
-            $check_user_idd = Post_like::where('user_id',  Auth::user()->id)->where('post_id', $id)->doesntExist();
+            $check_user_idd = Post_like::where('user_id', Auth::user()->id)->where('post_id', $id)->doesntExist();
             if ($check_user_idd) {
                 $post_like->user_id = Auth::user()->id;
                 $post_like->post_id = $id;
