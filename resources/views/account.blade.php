@@ -26,10 +26,8 @@
                             <button type="submit"   class="btn background-gray col-border--none">Lưu</button>
                         </div>
                         <div class="col-9 col-col-margin-left ">
-                            <span class="text-bold "><i class="fas fa-user-edit"></i>Introduce something interesting.</span>
-                            <br>
-                          <textarea name="intro_user"  style="height: 90%;width: 100%;margin-top:10px ;padding:10px;box-sizing: border-box;">{{ Auth::user()->intro_user }}</textarea>
-                    </div>
+                            {{Auth::user()->intro_user}}
+                           </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -97,94 +95,15 @@
             </div>
 
             <div class="col-4">
-                <aside>
-                    <div class="popular-post col-padding">
-                        <h2>POPULAR POSTS</h2>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="news.html">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="news.html">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="news.html">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row col-padding">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="news.html">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+            <aside>
+                    <!-- popular_posts -->
+                    @include('popular_posts')
+                    <!-- end popular_posts -->
+                   
+                    <div class="popular-post col-padding background-white">
+                        <h2>FAN PAGE</h2>
+
                     </div>
-                    <!-- <div class="popular-post col-padding background-white">
-                            <h2>NEWSLETTER</h2>
-                            <p><i class="far fa-envelope"></i> Subscribe for our daily news</p>
-                            <form class="row" method="GET">
-                                <div class="col-9"><input class="input col-border" type="email" placeholder="Email..." /></div>
-                                <div class="col-3"> <button class="btn background-gray col-border"> <i class="fas fa-paper-plane"></i></button> </div>
-                            </form>
-                        </div> -->
                     <div class="popular-post col-padding background-white">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
@@ -200,6 +119,9 @@
                             </div>
                         </div>
                     </div>
+                     <!-- category -->
+                     @include('list_categories')
+                    <!-- end category -->
 
                 </aside>
             </div>

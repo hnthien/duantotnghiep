@@ -14,19 +14,14 @@
 
             </div>
             <div class="col-2 ">
-                <h2 class="text-color-white">Useful Links</h2>
+                <h2 class="text-color-white">Liên kết hữu ích</h2>
                 <ul class="list-vertical">
 
                     <li><a href="#"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
-                    <li><a href="{{url('/user/dong-gop-y-kien')}}" class="text-color-white"><i class="fas fa-angle-right"></i>Góp Ý</a></li>
-                    <li><a href="#" class="text-color-white"><i class="fas fa-angle-right"></i>Liên Hệ</a> </li>
-                    <li><a href="{{url('/account')}}" class="text-color-white"><i class="fas fa-angle-right"></i>Tác Giả</a></li>
-                    <li><a href="#" class="text-color-white"><i class="fas fa-angle-right"></i>Search Results</a></li>
-                    <li><a href="{{url('/404')}}" class="text-color-white"><i class="fas fa-angle-right"></i>404</a></li>
                 </ul>
             </div>
             <div style="background: none;" class="col-4 post">            
-                <h2 class="text-color-white">Popular Post</h2>
+                <h2 class="text-color-white">Tin mới nhất</h2>
                 @php 
                 $post = new App\Post();
                 $data_post = $post->orderBy('post_id','DESC')->take(2)->get();
@@ -34,24 +29,24 @@
                 $data_user = $user::all();
                 @endphp
                 @foreach($data_post as $row_post)
-                <div class="row ">
-                    <div class="col-2">
-                        <img width="80px" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+                <div class="row col-margin--bottom">
+                    <div class="col-4">
+                        <img width="100%"  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
                     </div>
-                    <div class="col-10 col-margin-left ">
+                    <div class="col-8 col-margin-left ">
                         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
-                            <h4 class="text-color-white">{{$row_post->post_title}}</h4>
+                            <h4 style="margin: 0px;" class="text-color-white">{{$row_post->post_title}}</h4>
                         </a>
-                        <ul class="list-horizontal">
+                        <ul class="list-horizontal font-size-13">
                             <li class="text-color-white">
                                 <span>by</span>
                                 @foreach($data_user as $row_user)
                                 @if($row_user->id == $row_post->user_id)
-                                <a  style="text-transform: capitalize" href="#">{{$row_user->name}}</a>
+                                <a  style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                 @endif
                                 @endforeach
                             </li>
-                            <li style="font-size: 15px;" class="text-color-white">
+                            <li  class="text-color-white">
                              @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,0,10) ; @endphp
                             </li>
                         </ul>

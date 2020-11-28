@@ -19,7 +19,7 @@ class CreateCommentTable extends Migration
             $table->integer('post_id')->nullable();
             $table->string('comment_content',1000)->nullable();
             $table->integer('comment_status')->nullable();
-            $table->integer('comment_branch')->nullable();
+            $table->integer('comment_branch')->nullable();         
             $table->timestamps();
         });
     }

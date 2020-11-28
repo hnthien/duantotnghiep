@@ -6,6 +6,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Post;
+use App\Category;
+use Illuminate\Support\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -47,6 +50,13 @@ class HomeController extends Controller
     {
         return view('index');
     }
+    //author
+    public function author($name,$id)
+    {
+        $user_author= User::find($id);
+        $post_author = Post::where('user_id',$id)->orderBy('post_id', 'DESC')->paginate(10);
+        return view('author', compact('user_author', 'post_author'));
+    }
     // password edit
     public function password()
     {     
@@ -67,45 +77,9 @@ class HomeController extends Controller
         $news->save();
         return redirect(url('/account'));
     }
-    public function edit_password(Request $request,$id)
-    {
-        // $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        //     'newpassword' => 'required',
-        //     'confirmpassword' => 'required|same:newpassword',
-
-        // ]);
-       if(($request->email) == null or ($request->password) == null or ($request->newpassword) == null or ($request->confirmpassword)==null){
-        echo"The input field is required.";
-       }else{
-        $email = $request->email;
-        $password = $request->password;
-        $result=User::where('email',$email)->find($id);
-        if($result){          
-            if(Hash::check($password, Auth::user()->password)){
-                if($request->newpassword == $request->confirmpassword ){
-                    $news = User::find($id);
-                    $news->password = Hash::make($request->confirmpassword);
-                    $news->save();
-                    echo "<script>alert(' Successfully!');</script>";
-                    echo "<div class='alert alert-success' style='color:green'>Đã đổi mật khẩu thành công</div>";
-                    // return redirect(url('/user/logout'));
-                }else{
-                    echo"Confirmpassword is incorrect.";
-                }
-            }else{
-             echo "Password is incorrect.";                    
-            }
-        }else{       
-         echo "Email is incorrect.";        
-        }     
-       }
-       return;
    
-    }
     // edit pass
-    public function edit_pass(Request $request,$id)
+    public function edit_pass(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
@@ -113,15 +87,14 @@ class HomeController extends Controller
             'newpassword' => 'required',
             'confirmpassword' => 'required|same:newpassword',
 
-        ]);
-      
+        ]);    
         $email = $request->email;
         $password = $request->password;
-        $result=User::where('email',$email)->find($id);
+        $result = User::where('email',$email)->find(Auth::user()->id);
         if($result){          
             if(Hash::check($password, Auth::user()->password)){
                
-                    $news = User::find($id);
+                    $news = User::find(Auth::user()->id);
                     $news->password = Hash::make($request->confirmpassword);
                     $news->save();
                 return redirect(url('/user/logout'));
@@ -137,5 +110,6 @@ class HomeController extends Controller
        return;
    
     }
+   
    
 }

@@ -12,6 +12,7 @@ use App\Comment;
 use App\Feedback;
 use App\User;
 use App\Error;
+use Illuminate\Support\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +25,7 @@ use App\Error;
 */
 
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Route::get('/search', function () {
     return view('search');
@@ -34,9 +33,7 @@ Route::get('/search', function () {
 Route::get('/catergories', function () {
     return view('catergories');
 });
-Route::get('/author', function () {
-    return view('author');
-});
+
 Route::get('/article_with_the_author', function () {
     return view('article_with_the_author');
 });
@@ -59,8 +56,9 @@ Route::get('/admin', function () {
             $feedback = Feedback::all();
             $error = Error::all();
             $user = User::all();
+            $post_all =  Post::all();
             $post =  Post::orderBy('post_id', 'DESC')->take(6)->get();
-            return view('admin.index', compact('post', 'category', 'user', 'feedback', 'error'));
+            return view('admin.index', compact('post','post_all', 'category', 'user', 'feedback', 'error'));
         }
     } else {
         return redirect(url('/login'));
@@ -126,6 +124,8 @@ Route::group(['prefix' => 'admin'], function () {
     //post
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'PostController@index');
+        Route::get('/is_approved', 'PostController@is_approved');
+        Route::get('/is_not_approved', 'PostController@is_not_approved');
         Route::get('/url', 'PostController@url');
         Route::get('/new_post', 'PostController@new_post');
         Route::post('/create_post', 'PostController@create_post');
@@ -177,9 +177,11 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/dong-gop-y-kien', function () {
         return view('feedback');
     });
+    Route::get('/author/{name}/{id}','HomeController@author');
+    
     Route::get('/change_password', 'HomeController@password');
     // Route::post('/edit_password/{id}','HomeController@edit_password');
-    Route::post('/edit_pass/{id}', 'HomeController@edit_pass');
+    Route::post('/edit_pass', 'HomeController@edit_pass');
     // Route::get('/successfully','HomeController@index1');
     Route::get('/logout', 'HomeController@logout');
     Route::post('/account', 'HomeController@account');
@@ -187,23 +189,34 @@ Route::group(['prefix' => 'user'], function () {
 //News client
 Route::group(['prefix' => 'post'], function () {
     Route::get('/{url}/{id}', 'PostController@view_post');
+    Route::get('/search', 'PostController@search_post');
+    Route::post('/searchs', 'PostController@search_posts');
 });
 // category client
 Route::group(['prefix' => 'category'], function () {
     Route::get('/{category_title}/{id}', 'PostController@view_post_category');
 });
-Route::group(['prefix' => 'category_branch'], function () {
-    Route::get('/{category_title}/{id}', 'PostController@view_post_category_branch');
+// Route::group(['prefix' => 'category_branch'], function () {
+//     Route::get('/{category_title}/{id}', 'PostController@view_post_category_branch');
+// });
+
+// post like
+Route::group(['prefix' => 'post_like'], function () {
+    Route::post('/like/{id}', 'PostLikeController@post_like');
+    Route::get('/{id}', 'PostLikeController@view_like');
 });
 // index
 Route::get('/', function () {
+    
+    $popular_post = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(3)->take(5)->get();
+    $popular_post1 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->take(1)->get();
+    $popular_post2 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(1)->take(2)->get();
     $category = Category::all();
+    $category_p = Category::where('category_branch',0)->take(12)->get();
     $user = User::all();
-    $post =  Post::orderBy('post_id', 'DESC')->get();
-    return view('index', compact('post', 'category', 'user'));
+    $post =  Post::where('post_status',2)->orderBy('post_id', 'DESC')->take(30)->get();
+    return view('index', compact('post', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
 });
 
-// comment
-// giờ mi tạo model để kết nói csdl rồi
-//  đén tạo route bên web.php này xong dẫn
-//  link bên chỗ form inset coment vô
+Route::get('posts/searchs/{tag}', 'PostController@search_posts_tag');
+

@@ -4,7 +4,7 @@
 @php
 $slug = Str::slug($categorys->category_title,'-');
 @endphp
-<main class="content col-margin--top ">
+<main class="content col-margin--top col-padding ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
             <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
@@ -22,32 +22,84 @@ $slug = Str::slug($categorys->category_title,'-');
                         $slug = Str::slug($row_category_branch->category_title,'-');
                         @endphp
                         @if($row_category_branch->category_branch == $categorys->category_id)
-                        <a href="{{url('/category_branch/')}}/{{$slug}}/{{$row_category_branch->category_id}}"><button class="col-border-categorys">{{$row_category_branch->category_title}}</button></a>
+                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}"><button class="col-border-categorys">{{$row_category_branch->category_title}}</button></a>
                         @endif
                         @endforeach
                     </div>
 
-                    @foreach($post as $row_post)
-                    @foreach($row_post->category_id as $category_id)
-                    @if($category_id == $categorys->category_id )
+
+
+
+
+                    @foreach($category_branch as $row_category_branch)
+                    @if($row_category_branch->category_branch == $categorys->category_id)
+                    <h2>
+                        <div class="vertical_tiles"></div> {{$row_category_branch->category_title}}
+                    </h2>
                     @php
-                    $slug = Str::slug($categorys->category_title,'-');
+                    $post = new App\Post();
+                    $data_post = $post->all();
+                    $nub = 0;
+                    foreach($data_post as $row_data_post)
+                    {if($row_data_post->category_id ==$row_category_branch->category_id){$nub++;}}
                     @endphp
-                    <div class="row popular-post col-padding ">
+                    <p class="color-light-gray" style="font-size:12px;">Tổng số bài viết là {{$nub}}.</p>
+                    <br>
+                    <div style="padding: 5px;" class="row popular-post ">
+                        @php
+                        $data = new App\Post();
+                        $post_category1 = $data::where('category_id',$row_category_branch->category_id)->orderBy('post_id', 'DESC')->take(4)->get();
+                        @endphp
+                        @foreach($post_category1 as $row_post_category1)
+                        @if($row_post_category1->category_id == $row_category_branch->category_id)
+                        <div class="col-3 col-position">
+                            <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
+                            <a href="{{url('/post')}}/{{$row_post_category1->post_slug}}/{{$row_post_category1->post_id}}">
+                                <h3>{{$row_post_category1->post_title}}</h3>
+                            </a>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                    @endif
+                    @endforeach
+
+
+
+
+
+                    <h2>
+                        <div class="vertical_tiles"></div> Mới Nhất
+                    </h2>
+                    @php
+                    $post = new App\Post();
+                    $data_post = $post->all();
+                    $nub = 0;
+                    foreach($data_post as $row_data_post)
+                    {if($row_data_post->category_id ==$categorys->category_id){$nub++;}}
+                    @endphp
+                    <p class="color-light-gray" style="font-size:12px;">Tổng số bài viết là {{$nub}}.</p>
+                    <br>
+                    @foreach($post_categoryt as $row_post)
+                    @if($row_post->category_id == $categorys->category_id )
+                    <div style="padding: 5px;" class="row popular-post ">
                         <div class="col-4 col-position ">
-                            <img class="col-border-radius img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
-                            <a class="list-theme background-blue" href="{{url('/category/')}}/{{$slug}}/{{$categorys->category_id}}">{{$categorys->category_title}}</a>
+                            <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
+
                         </div>
                         <div class="col-8 col-margin-left">
                             <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
                                 <h3>{{$row_post->post_title}}</h3>
                             </a>
-                            <ul class="list-horizontal">
+                            <ul class="list-horizontal font-size-13">
                                 <li>
                                     <span>by</span>
                                     @foreach($user as $row_user)
                                     @if($row_user->id == $row_post->user_id)
-                                    <a style="text-transform: capitalize" href="">{{$row_user->name}}</a>
+
+
+                                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+
                                     @endif
                                     @endforeach
                                 </li>
@@ -55,127 +107,23 @@ $slug = Str::slug($categorys->category_title,'-');
                                     @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
                                 </li>
                             </ul>
-                            <p>{{$row_post->post_intro}}</p>
+                            <p class="color-light-gray font-size-13">{{$row_post->post_intro}}</p>
 
                         </div>
-
                     </div>
                     @endif
                     @endforeach
-                    @endforeach
                 </article>
-                <div style="text-align: center">{!!$post->links()!!}</div>
+                <div style="text-align: center">{!!$post_categoryt->links()!!}</div>
             </div>
             <div class="col-4">
                 <aside>
-                    <div class="popular-post col-padding">
-                        <h2>POPULAR POSTS</h2>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_1.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_2.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_3.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-2">
-                                <img class="img img-border-radius" src="https://deothemes.com/envato/deus/html/img/content/post_small/post_small_4.jpg" alt="post small" />
-                            </div>
-                            <div class="col-10 col-margin-left">
-                                <a href="{{url('/news')}}">
-                                    <h4>Follow These Smartphone Habits of Successful Entrepreneurs</h4>
-                                </a>
-                                <ul class="list-horizontal">
-                                    <li>
-                                        <span>by</span>
-                                        <a href="#">DeoThemes</a>
-                                    </li>
-                                    <li>
-                                        Jan 21, 2018
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-post col-padding ">
-                        <h2>CATEGORIES</h2>
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="list-vertical list-category">
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>World</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Lifestyle</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Business</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Fashion</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Investment</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/catergories')}}"><i class="fas fa-angle-right"></i>Technology</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <!-- popular_posts -->
+                    @include('popular_posts')
+                    <!-- end popular_posts -->
+                    <!-- category -->
+                    @include('list_categories')
+                    <!-- end category -->
 
                     <div class="popular-post col-padding">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>

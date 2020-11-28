@@ -63,7 +63,7 @@
                 <?php
                 $number = 0;
                 foreach ($feedback as $rowf) {
-                    $nub = $number++;
+                   $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -74,8 +74,8 @@
                 <p>Number of Articles</p>
                 <?php               
                 $number = 0;
-                foreach ($post as $row) {
-                    $nub = $number++;
+                foreach ($post_all as $row) {
+                   $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -93,7 +93,7 @@
                 <?php               
                 $number = 0;
                 foreach ($error as $rowe) {
-                    $nub = $number++;
+                    $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -105,7 +105,7 @@
                 <?php               
                 $number = 0;
                 foreach ($category as $rowc) {
-                    $nub = $number++;
+                     $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
@@ -139,13 +139,13 @@
                 <td><b>{{$row->post_title}}</b></td>
                 <td>{{$row->post_intro}}</td>
                 <td style="width:150px;text-align: center;">
-                    @foreach($row->category_id as $tag)
+                   
                     @foreach($category as $cate)
-                    @if($cate->category_id == $tag)
+                    @if($cate->category_id == $row->category_id)
                     <span class="col-border-category">{{$cate->category_title}}</span>
                     @endif
                     @endforeach
-                    @endforeach
+                    
                 </td>
                 <td>{{$row->post_view}}</td>
                 <td> 

@@ -30,16 +30,16 @@
             <div class="popular-post col-padding">
 
                 <h3>Tên Bài Viết:</h3>
-                <input class="input" type="text" name="post_title" id="post_title" />
+                <input class="input" type="text" name="post_title" id="post_title" value="{{ old('post_title') }}" />
                 <span class="text-danger"><b>{{ $errors->first('post_title') }}</b></span>
 
                 <h3>Url:</h3>
-                <input class="input" type="text" name="post_slug" id="post_slug" />
+                <input class="input" type="text" name="post_slug" id="post_slug" value="{{ old('post_slug') }}" />
                 <span class="text-danger"><b>{{ $errors->first('post_slug') }}</b></span>
                 <div class="row">
                     <div class="col-6">
                         <h3>Mô Tả:</h3>
-                        <textarea class="input" type="text" name="post_intro" rows="14"></textarea>
+                        <textarea class="input" type="text" name="post_intro" rows="14">{{ old('post_intro') }}</textarea>
                         <span class="text-danger"><b>{{ $errors->first('post_intro') }}</b></span>
                     </div>
                     <div class="col-6">
@@ -50,7 +50,7 @@
                                 <button class="btn background-gray col-border--none" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 
                                 <div class="image-upload-wrap">
-                                    <input class="file-upload-input" name="post_image" id="images_user" type='file' onchange="readURL(this);" />
+                                    <input class="file-upload-input" name="post_image" id="images_user" value="{{ old('post_image') }}" type='file' onchange="readURL(this);" />
                                     <div class="drag-text">
                                         <h3>Drag and drop a file or select add Image</h3>
                                     </div>
@@ -71,12 +71,12 @@
                     @foreach($categorys as $row_categorys)
                     <ul style="margin:0px" class="col-3 col-float">
                         <li style="padding:10px">
-                            <input type="checkbox" name="category_id[]" class="selectbox" value="{{$row_categorys->category_id}}" />{{$row_categorys->category_title}}
+                            <input type="radio" name="category_id" class="selectbox" value="{{$row_categorys->category_id}}" />{{$row_categorys->category_title}}
                             <ul style="margin-left: 15px;">
                                 @foreach($categorys_branch as $row_categorys_branch)
                                 @if($row_categorys_branch->category_branch == $row_categorys->category_id )
                                 <li style="padding:5px">
-                                    <input type="checkbox" name="category_id[]" class="selectbox" value="{{$row_categorys_branch->category_id}}" />{{$row_categorys_branch->category_title}}
+                                    <input type="radio" name="category_id" class="selectbox" value="{{$row_categorys_branch->category_id}}" />{{$row_categorys_branch->category_title}}
                                 </li>
                                 @endif
                                 @endforeach
@@ -89,13 +89,13 @@
                     <span class="text-danger"><b>{{ $errors->first('category_id') }}</b></span>
                     <div class="clearfix"></div>
                 <h3>Tag:</h3>
-                <input class="input" type="text" name="post_tag" />
+                <input class="input" type="text" name="post_tag" value="{{ old('post_tag') }}" />
                 <span class="text-danger"><b>{{ $errors->first('post_tag') }}</b></span>
 
             </div>
             <div class="popular-post col-padding">
                 <h3>Nội Dung:</h3>
-                <textarea id="post_content" name="post_content" cols="30" rows="100"></textarea>
+                <textarea id="post_content" name="post_content" cols="30" rows="100">{{ old('post_content') }}</textarea>
                 <script src="{{url('ckeditor/ckeditor.js') }}"></script>
                 <script>
                     CKEDITOR.replace('post_content', {
@@ -111,7 +111,7 @@
             <br>
             <div class="row col-4">
                 <button type="submit" class="btn background-greed ">Gửi Bài Phê Duyệt</button>
-                <button class="btn background-greed col-margin-left">Lưu Bản Nháp</button>
+           
             </div>
 
         </form>
