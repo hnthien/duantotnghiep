@@ -244,9 +244,7 @@ class PostController extends Controller
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
 
-        return view('news',compact('post','user','categorys_branch','date','comments'));
-        // return view('news',compact('post','user','categorys_branch','comments','date'));
-
+     
         return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date','comments'));
 
     }
