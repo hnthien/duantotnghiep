@@ -96,7 +96,10 @@ $slug = Str::slug($categorys->category_title,'-');
                                     <span>by</span>
                                     @foreach($user as $row_user)
                                     @if($row_user->id == $row_post->user_id)
+
+
                                     <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+
                                     @endif
                                     @endforeach
                                 </li>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use App\Post;
 use App\Category;
+use App\Comment;
 use App\Feedback;
 use App\User;
 use App\Error;
@@ -70,7 +71,7 @@ Route::get('/comment', function () {
     return view('admin.comment.index');
 });
 
-Route::get('/comment/detail_comment', function () {
+Route::get('/admin/comment/detail_comment', function () {
     return view('admin.comment.detail_comment');
 });
 //feedback
@@ -144,6 +145,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update/{id}', 'CategoryController@update');
         Route::get('/delete/{id}', 'CategoryController@delete');
     });
+    // comment
+    Route::group(['prefix' => 'comment'], function () {
+        Route::get('/', 'CommentController@index');
+
+        // Route::get('/new_category', 'CategoryController@new_category');
+        Route::post('/create_comment', 'CommentController@create_comment');
+        // Route::get('/new_category_branch/{id}', 'CategoryController@new_category_branch');
+        // Route::post('/create_category_branch/{id}', 'CategoryController@create_category_branch');
+        // Route::get('/edit/{id}', 'CategoryController@edit');
+        // Route::post('/update/{id}', 'CategoryController@update');
+        // Route::get('/delete/{id}', 'CategoryController@delete');
+    });
+
 });
 //người dùng client
 Route::group(['prefix' => 'user'], function () {
@@ -203,4 +217,6 @@ Route::get('/', function () {
     $post =  Post::where('post_status',2)->orderBy('post_id', 'DESC')->take(30)->get();
     return view('index', compact('post', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
 });
+
 Route::get('posts/searchs/{tag}', 'PostController@search_posts_tag');
+

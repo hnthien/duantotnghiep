@@ -18,7 +18,7 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/comment')}}"><i class="fas fa-clipboard-list"></i>Bình luận <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/admin/comment')}}"><i class="fas fa-clipboard-list"></i>Bình luận <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>
