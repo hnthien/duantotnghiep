@@ -1,5 +1,5 @@
 @extends('layouts.client')
-@section('client',$post->post_title)
+@section('client',$post->post_title,$post->post_id)
 @section('content')
 <main class="content col-margin--top ">
     <div class=" col-margin--bottom">
@@ -71,10 +71,114 @@
 
                 <div class="popular-post post-contect">
                     <h2>Bình Luận</h2>
+                    <!-- write comment zone -->
+                    <form action="{{url('admin/comment/create_comment')}}" method="post">
+                        @csrf
+                        <div class="form-comment">
+                            <div class="make-comment">
+                                <textarea name="comment_content" class="form-textarea" maxlength="4999" placeholder="Leave your comment..."></textarea>
+                                <input type=hidden name="post_id" value="{{$post->post_id}}" />
+                            </div>
+                            <button type="submit" class="btn-submit btn-style">Post Comment</button>
+                        </div>
+                    </form>
+                    <!-- views comment zone -->
+                    <div class="comment">
+                    <div class="comments-container">
+		<ul id="comments-list" class="comments-list">
+			<li>
+				<div class="comment-main-level">
+					<!-- Avatar -->
+					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							<hp class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></hp>
+							<span>20 minutes ago</span>
+							
+                                        <i class="fa fa-reply"></i>
+                            <i class="fas fa-thumbs-down"> 1</i>
+                            <i class="fas fa-thumbs-up"> 3</i>
+						</div>
+						<div class="comment-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+						</div>
+					</div>
+				</div>
+				<!-- Respuestas de los comentarios -->
+				<ul class="comments-list reply-list">
+					<li>
+						<!-- Avatar -->
+						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+						<!-- Contenedor del Comentario -->
+						<div class="comment-box">
+							<div class="comment-head">
+								<hp class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></hp>
+								<span>10 minutes ago</span>
+								<i class="fa fa-reply"></i>
+								<i class="far fa-thumbs-down"></i>
+							    <i class="far fa-thumbs-up"></i>
+							</div>
+							<div class="comment-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<!-- Avatar -->
+						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+						<!-- Contenedor del Comentario -->
+						<div class="comment-box">
+							<div class="comment-head">
+								<hp class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></hp>
+								<span>10 minutes ago</span>
+								<i class="fa fa-reply"></i>
+								<i class="far fa-thumbs-down"></i>
+							    <i class="far fa-thumbs-up"></i>
+							</div>
+							<div class="comment-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li>
+                @foreach($comments as $cmt)
+				<div class="comment-main-level">
+                    <!-- Avatar -->
+                    @foreach($user as $av)
+                    @if($cmt->user_id == $av->id)
+                    <div class="comment-avatar"><img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt=""></div>
+                   @endif
+                    @endforeach
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+                            <hp class="comment-name">
+                            @foreach($user as $av)
+                            @if($cmt->user_id == $av->id)
+                            {{$av->name}}
+                            @endif
+                            @endforeach
+                            </hp>
+							<span>10 minutes ago</span>
+                            <i class="fa fa-reply"></i>
+                            <i class="far fa-thumbs-down"></i>
+							<i class="far fa-thumbs-up"></i>
+                        </div>
+						<div class="comment-content">
+                            {{$cmt->comment_content}}
+                        </div>
+					</div>
                 </div>
-
-
-
+                @endforeach
+            </li>
+		</ul>
+	</div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-4">

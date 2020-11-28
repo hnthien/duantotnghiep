@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Comment;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -22,6 +23,7 @@ class PostController extends Controller
     { 
         $user = User::all();
         $category = Category::all();
+        $comments = Comment::all();
         $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
         return view('admin.post.index',compact('posts','category','user'));
     }
@@ -189,6 +191,7 @@ class PostController extends Controller
     public function view_post($post_slug,$id)
      {  
         $categorys_branch = Category::all();
+        $comments = Comment::all();
         $user = User::all();
         $post = Post::find($id);
         $post->post_view =($post->post_view) + 1;
@@ -197,7 +200,8 @@ class PostController extends Controller
         $dt = Carbon::create(substr($post->created_at,0,4),substr($post->created_at,5,2),substr($post->created_at ,8,2),substr($post->created_at ,11,2),substr($post->created_at ,14,2),substr($post->created_at ,17,2));
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
-        return view('news',compact('post','user','categorys_branch','date'));
+        return view('news',compact('post','user','categorys_branch','date','comments'));
+        // return view('news',compact('post','user','categorys_branch','comments','date'));
     }
     public function view_post_category($category_title,$id)
     {
