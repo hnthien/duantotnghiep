@@ -88,13 +88,21 @@
                                 $('#post_like').load("{{url('post_like')}}/{{$post->post_id}}");
                             })
                         </script>
+                       
                         <div class="row col-margin--bottom">
                             <div style="margin-left: 0px;" class="col-4" id="post_like"">
 
                                 </div>
-                            <div style=" padding-top: 10px;box-sizing: border-box;" class="col-8 col-right">
-                                <span>{{$post->post_view}} view</span>&ensp;
-                                <span> <i class="fas fa-comments"></i>98K</span>
+                                <div style=" padding-top: 10px;box-sizing: border-box;" class="col-8 col-right">
+                                <span><b>{{$post->post_view}} view </b></span>&ensp;
+                                <span> <i class="fas fa-comments"></i>
+                                @php
+                                $dislike = 0;
+                                foreach($comments as $row_comments){$dislike++;}
+                                echo '<b>' . $dislike . '</b>';
+                                @endphp
+                                
+                                </span>
                             </div>
                         </div>
 
@@ -110,7 +118,7 @@
                                 <button class="col-border-categorys ">{{$tag}}</button>
                             </a>
                             @endforeach
-                           
+
                         </div>
 
                     </div>
@@ -118,117 +126,75 @@
 
 
                 </div>
+                     <script>
+                $(document).ready(function() {
+                    $('#form_comment').submit(function(event) {
+                        event.preventDefault();
+                        var comment = $('#comment_content').val();
+                        var post_id = $('#post_id').val();
+                       
+                        $.ajax({
+                            url: "{{url('admin/comment/create_comment')}}",
+                            cache: false,
+                            type: "post",
+                            data: {
+                                comment: comment,
+                                post_id: post_id,
+                                "_token": '{{ csrf_token() }}'
+                            },
+                            success: function(data) {                             
+                                $('#comment_content').val("");                     
+                                setTimeout(function() {
+                                    $('#comment_view').load("{{url('admin/comment/comment_view')}}/{{$post->post_id}}");
+                                }, 1000);
+                            },
+                            error: function(data) {
+                               
+                            },
+                        })
 
-                <div class="popular-post post-contect">
-                    <h2>Bình Luận</h2>
+                    })
+                   
+                
+                });
+                $(document).ready(function() {
+                    $('#comment_view').load("{{url('admin/comment/comment_view')}}/{{$post->post_id}}");
+                    return;
+                });
+                </script>
+                <div class="popular-post post-contect ">
+                <h2>Bình Luận</h2>
+                    
                     <!-- write comment zone -->
-                    <form action="{{url('admin/comment/create_comment')}}" method="post">
+                    @if (Auth::check())
+                    <form id='form_comment' action="{{url('admin/comment/create_comment')}}" method="post">
                         @csrf
                         <div class="form-comment">
                             <div class="make-comment">
-                                <textarea name="comment_content" class="form-textarea" maxlength="4999" placeholder="Leave your comment..."></textarea>
-                                <input type=hidden name="post_id" value="{{$post->post_id}}" />
+                                <span class="text-danger"><b id="review"></b></span>
+                                <textarea name="comment_content" id="comment_content"  class="form-textarea" maxlength="4999" placeholder="Nhập bình luận..."></textarea>                         
+                                <input id="post_id"  type=hidden name="post_id" value="{{$post->post_id}}" />
+
                             </div>
                             <button type="submit" class="btn-submit btn-style">Post Comment</button>
                         </div>
                     </form>
+                    @else
+                    <p class="color-light-gray">Vui lòng <a href="{{ route('login') }}">đăng nhập </a> để bình luận </p>
+                    @endif
                     <!-- views comment zone -->
-                    <div class="comment">
-                    <div class="comments-container">
-		<ul id="comments-list" class="comments-list">
-			<li>
-				<div class="comment-main-level">
-					<!-- Avatar -->
-					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-					<!-- Contenedor del Comentario -->
-					<div class="comment-box">
-						<div class="comment-head">
-							<hp class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></hp>
-							<span>20 minutes ago</span>
-							
-                                        <i class="fa fa-reply"></i>
-                            <i class="fas fa-thumbs-down"> 1</i>
-                            <i class="fas fa-thumbs-up"> 3</i>
-						</div>
-						<div class="comment-content">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-						</div>
-					</div>
-				</div>
-				<!-- Respuestas de los comentarios -->
-				<ul class="comments-list reply-list">
-					<li>
-						<!-- Avatar -->
-						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-						<!-- Contenedor del Comentario -->
-						<div class="comment-box">
-							<div class="comment-head">
-								<hp class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></hp>
-								<span>10 minutes ago</span>
-								<i class="fa fa-reply"></i>
-								<i class="far fa-thumbs-down"></i>
-							    <i class="far fa-thumbs-up"></i>
-							</div>
-							<div class="comment-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-							</div>
-						</div>
-					</li>
-
-					<li>
-						<!-- Avatar -->
-						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-						<!-- Contenedor del Comentario -->
-						<div class="comment-box">
-							<div class="comment-head">
-								<hp class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></hp>
-								<span>10 minutes ago</span>
-								<i class="fa fa-reply"></i>
-								<i class="far fa-thumbs-down"></i>
-							    <i class="far fa-thumbs-up"></i>
-							</div>
-							<div class="comment-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-							</div>
-						</div>
-					</li>
-				</ul>
-			</li>
-			<li>
-                @foreach($comments as $cmt)
-				<div class="comment-main-level">
-                    <!-- Avatar -->
-                    @foreach($user as $av)
-                    @if($cmt->user_id == $av->id)
-                    <div class="comment-avatar"><img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt=""></div>
-                   @endif
-                    @endforeach
-					<!-- Contenedor del Comentario -->
-					<div class="comment-box">
-						<div class="comment-head">
-                            <hp class="comment-name">
-                            @foreach($user as $av)
-                            @if($cmt->user_id == $av->id)
-                            {{$av->name}}
-                            @endif
-                            @endforeach
-                            </hp>
-							<span>10 minutes ago</span>
-                            <i class="fa fa-reply"></i>
-                            <i class="far fa-thumbs-down"></i>
-							<i class="far fa-thumbs-up"></i>
-                        </div>
-						<div class="comment-content">
-                            {{$cmt->comment_content}}
-                        </div>
-					</div>
-                </div>
-                @endforeach
-            </li>
-		</ul>
-	</div>
+                    @if (session('report'))
+                    <script>
+                    alert("{{ session('report') }}");
+                    </script>               
+                    @endif   
+                    <div id="comment_view" >
+                       
                     </div>
+                
+                  
                 </div>
+                
             </div>
 
             <div class="col-4">

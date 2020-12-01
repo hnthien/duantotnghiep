@@ -216,11 +216,8 @@ class PostController extends Controller
     public function view_post($post_slug, $id)
     {
         $categorys_branch = Category::all();
-
-        $comments = Comment::all();
-
+        $comments = Comment::where('comment_branch', 0)->where('post_id', $id)->get();
         $categorys = Category::where('category_branch', 0)->get();
-
         $user = User::all();
         //post
         $post = Post::find($id);
@@ -243,8 +240,8 @@ class PostController extends Controller
         $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
+        
 
-      
         return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date','comments'));
 
     }

@@ -11,22 +11,359 @@
             <form class=" col-4 search" method="POST">
                 <input class="search__input" type="search" placeholder="Search......" />
             </form>
+            <div class="col-4">  
+             <div style="text-align: center;float: right;">{!!$comments->links()!!}</div>
+            </div>
         </div>
         <br>
         <div class="popular-post col-padding">
-       <h2>Tên Bài Viết</h2>
-       <p>Số lượng bình luận:</p>
+       <h2>{{$post->post_title}}</h2>
+       <p>Số lượng bình luận:
+       @php
+       $nur =0;
+       foreach($comments as $row_comments){
+           $nur++;
+       }
+       echo $nur;
+       @endphp
+       </p>
        <p>Bao nhiêu người bình luận:</p>
-       <div class="row text-bold background-gray color-white text-align--center ">
-            <div class="col-3 col-padding">Người Bình Luận</div>
-            <div class="col-6 col-padding">Nội Dung</div>
-            <div class="col-3 col-padding">Trạng Thái</div>
-        </div>
-        <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
-            <div class="col-3 col-padding">hn thiện</div>
-            <div class="col-6 col-padding">rất hay</div>
-            <div class="col-3 col-padding"><span></span>Bị ẩn vì vi phạm nguyên tắc</div>
-        </div>
+                    
+                        <div class="comments-container">
+                            <ul id="comments-list" class="comments-list">
+                                @foreach($comments as $cmt)
+                                @if($cmt->comment_status == 1)
+                                <li>
+                                <div class="row">
+                                <div class="col-11">
+                    
+                                    <div class="comment-main-level row">
+                                        <!-- Avatar -->
+                                        @foreach($user as $av)
+                                        @if($cmt->user_id == $av->id)
+                                        <div class="comment-avatar col-1"><img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt="ảnh đại diện"></div>
+                                        @endif
+                                        @endforeach
+                                        <!-- Contenedor del Comentario -->
+                                        <div class="comment-box col-11">
+                                            <div class="comment-head background-linet-gray">
+                                                <hp class="comment-name">
+                                                    @foreach($user as $av)
+                                                    @if($cmt->user_id == $av->id)
+                                                    {{$av->name}}
+                                                    @endif
+                                                    @endforeach
+                                                </hp>
+                                                @php
+                                                $carbon = new Illuminate\Support\Carbon;
+                                                $carbon::setLocale('vi');
+                                                $dt = $carbon::create(substr($cmt->created_at, 0, 4), substr($cmt->created_at, 5, 2), substr($cmt->created_at, 8, 2), substr($cmt->created_at, 11, 2), substr($cmt->created_at, 14, 2), substr($cmt->created_at, 17, 2));
+                                                $now = $carbon::now();
+                                                $datec = $dt->diffForHumans($now);
+                                                @endphp
+                                               
+                                                <span>{{$datec}}</span>
+                                               
+                                            </div>
+                                            <div class="comment-content background-linet-gray">
+                                                {{$cmt->comment_content}}
+                                                <span class="font-size-13 text-bold">Bình luận này đã bị ẩn đi</p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Respuestas de los comentarios -->
+                                    <ul class="comments-list reply-list ">
+                                        @php
+                                        $comment_branch = new App\Comment();
+                                        $data_comment_branch = $comment_branch->where('comment_branch',$cmt->comment_id)->orderBy('comment_id', 'DESC')->get()
+                                        @endphp
+                                        @foreach($data_comment_branch as $row_comment_branch)
+                                        @if($row_comment_branch->comment_status == 1)
+                                        <li >
+                                        <div class="row ">
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <!-- Avatar -->
+                                                <div class="comment-avatar col-1">
+                                                    @foreach($user as $av)
+                                                    @if($row_comment_branch->user_id == $av->id)
+                                                    <img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt="">
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                                <!-- Contenedor del Comentario -->
+                                                <div class="comment-box col-11 " >
+                                                    <div class="comment-head background-linet-gray">
+                                                        <hp class="comment-name ">
+                                                            @foreach($user as $av)
+                                                            @if($row_comment_branch->user_id == $av->id)
+                                                            {{$av->name}}
+                                                            @endif
+                                                            @endforeach
+                                                        </hp>
+                                                        @php
+                                                        $carbon = new Illuminate\Support\Carbon;
+                                                        $carbon::setLocale('vi');
+                                                        $dt = $carbon::create(substr($row_comment_branch->created_at, 0, 4), substr($row_comment_branch->created_at, 5, 2), substr($row_comment_branch->created_at, 8, 2), substr($row_comment_branch->created_at, 11, 2), substr($row_comment_branch->created_at, 14, 2), substr($row_comment_branch->created_at, 17, 2));
+                                                        $now = $carbon::now();
+                                                        $dateb = $dt->diffForHumans($now);
+                                                        @endphp
+                                                        <span>{{$dateb}}</span>
+
+                                                    </div>
+                                                    <div class="comment-content background-linet-gray">
+                                                        {{$row_comment_branch->comment_content}}
+                                                        <span class="font-size-13 text-bold">Bình luận này đã bị ẩn đi</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/0/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a> 
+                                </div>
+                                </div>
+                                        </li>
+                                        @else
+                                        <li>
+                                        <div class="row">
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <!-- Avatar -->
+                                                <div class="comment-avatar col-1">
+                                                    @foreach($user as $av)
+                                                    @if($row_comment_branch->user_id == $av->id)
+                                                    <img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt="">
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                                <!-- Contenedor del Comentario -->
+                                                <div class="comment-box col-10">
+                                                    <div class="comment-head">
+                                                        <hp class="comment-name">
+                                                            @foreach($user as $av)
+                                                            @if($row_comment_branch->user_id == $av->id)
+                                                            {{$av->name}}
+                                                            @endif
+                                                            @endforeach
+                                                        </hp>
+                                                        @php
+                                                        $carbon = new Illuminate\Support\Carbon;
+                                                        $carbon::setLocale('vi');
+                                                        $dt = $carbon::create(substr($row_comment_branch->created_at, 0, 4), substr($row_comment_branch->created_at, 5, 2), substr($row_comment_branch->created_at, 8, 2), substr($row_comment_branch->created_at, 11, 2), substr($row_comment_branch->created_at, 14, 2), substr($row_comment_branch->created_at, 17, 2));
+                                                        $now = $carbon::now();
+                                                        $dateb = $dt->diffForHumans($now);
+                                                        @endphp
+                                                        <span>{{$dateb}}</span>
+
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        {{$row_comment_branch->comment_content}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
+                                </div>
+                                </div>
+                                        </li>
+                                        @endif
+                                      
+
+                                        @endforeach
+
+                                    </ul>
+                                    </div>
+                                    <!-- cmt 0 -->
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/1/{{$cmt->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/0/{{$cmt->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a> 
+                                </div>
+                                </div>
+                                  </li>
+                                @else
+                                <li>
+                                <div class="row">
+                                <div class="col-11">
+                    
+                                    <div class="comment-main-level row">
+                                        <!-- Avatar -->
+                                        @foreach($user as $av)
+                                        @if($cmt->user_id == $av->id)
+                                        <div class="comment-avatar col-1"><img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt="ảnh đại diện"></div>
+                                        @endif
+                                        @endforeach
+                                        <!-- Contenedor del Comentario -->
+                                        <div class="comment-box col-11">
+                                            <div class="comment-head">
+                                                <hp class="comment-name">
+                                                    @foreach($user as $av)
+                                                    @if($cmt->user_id == $av->id)
+                                                    {{$av->name}}
+                                                    @endif
+                                                    @endforeach
+                                                </hp>
+                                                @php
+                                                $carbon = new Illuminate\Support\Carbon;
+                                                $carbon::setLocale('vi');
+                                                $dt = $carbon::create(substr($cmt->created_at, 0, 4), substr($cmt->created_at, 5, 2), substr($cmt->created_at, 8, 2), substr($cmt->created_at, 11, 2), substr($cmt->created_at, 14, 2), substr($cmt->created_at, 17, 2));
+                                                $now = $carbon::now();
+                                                $datec = $dt->diffForHumans($now);
+                                                @endphp
+                                               
+                                                <span>{{$datec}}</span>
+                                               
+                                            </div>
+                                            <div class="comment-content">
+                                                {{$cmt->comment_content}}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Respuestas de los comentarios -->
+                                    <ul class="comments-list reply-list ">
+                                        @php
+                                        $comment_branch = new App\Comment();
+                                        $data_comment_branch = $comment_branch->where('comment_branch',$cmt->comment_id)->orderBy('comment_id', 'DESC')->get()
+                                        @endphp
+                                        @foreach($data_comment_branch as $row_comment_branch)
+                                        @if($row_comment_branch->comment_status == 1)
+                                        <li >
+                                        <div class="row ">
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <!-- Avatar -->
+                                                <div class="comment-avatar col-1">
+                                                    @foreach($user as $av)
+                                                    @if($row_comment_branch->user_id == $av->id)
+                                                    <img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt="">
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                                <!-- Contenedor del Comentario -->
+                                                <div class="comment-box col-11 " >
+                                                    <div class="comment-head background-linet-gray">
+                                                        <hp class="comment-name ">
+                                                            @foreach($user as $av)
+                                                            @if($row_comment_branch->user_id == $av->id)
+                                                            {{$av->name}}
+                                                            @endif
+                                                            @endforeach
+                                                        </hp>
+                                                        @php
+                                                        $carbon = new Illuminate\Support\Carbon;
+                                                        $carbon::setLocale('vi');
+                                                        $dt = $carbon::create(substr($row_comment_branch->created_at, 0, 4), substr($row_comment_branch->created_at, 5, 2), substr($row_comment_branch->created_at, 8, 2), substr($row_comment_branch->created_at, 11, 2), substr($row_comment_branch->created_at, 14, 2), substr($row_comment_branch->created_at, 17, 2));
+                                                        $now = $carbon::now();
+                                                        $dateb = $dt->diffForHumans($now);
+                                                        @endphp
+                                                        <span>{{$dateb}}</span>
+
+                                                    </div>
+                                                    <div class="comment-content background-linet-gray">
+                                                        {{$row_comment_branch->comment_content}}
+                                                        <span class="font-size-13 text-bold">Bình luận này đã bị ẩn đi</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/0/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a> 
+                                </div>
+                                </div>
+                                        </li>
+                                        @else
+                                        <li>
+                                        <div class="row">
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <!-- Avatar -->
+                                                <div class="comment-avatar col-1">
+                                                    @foreach($user as $av)
+                                                    @if($row_comment_branch->user_id == $av->id)
+                                                    <img src="{{ URL::asset('images/user') }}/{{$av->images_user}}" alt="">
+                                                    @endif
+                                                    @endforeach
+                                                </div>
+                                                <!-- Contenedor del Comentario -->
+                                                <div class="comment-box col-10">
+                                                    <div class="comment-head">
+                                                        <hp class="comment-name">
+                                                            @foreach($user as $av)
+                                                            @if($row_comment_branch->user_id == $av->id)
+                                                            {{$av->name}}
+                                                            @endif
+                                                            @endforeach
+                                                        </hp>
+                                                        @php
+                                                        $carbon = new Illuminate\Support\Carbon;
+                                                        $carbon::setLocale('vi');
+                                                        $dt = $carbon::create(substr($row_comment_branch->created_at, 0, 4), substr($row_comment_branch->created_at, 5, 2), substr($row_comment_branch->created_at, 8, 2), substr($row_comment_branch->created_at, 11, 2), substr($row_comment_branch->created_at, 14, 2), substr($row_comment_branch->created_at, 17, 2));
+                                                        $now = $carbon::now();
+                                                        $dateb = $dt->diffForHumans($now);
+                                                        @endphp
+                                                        <span>{{$dateb}}</span>
+
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        {{$row_comment_branch->comment_content}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
+                                </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
+                                </div>
+                                </div>
+                                        </li>
+                                        @endif
+                                      
+
+                                        @endforeach
+
+                                    </ul>
+                                    </div>
+                                <div class="col-1">
+                                <a href="{{url('admin/comment/hidden')}}/1/{{$cmt->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
+                                </div>
+                                </div>
+                                  </li>
+                                @endif
+               
+
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+                        <!--  -->
         </div>
         
 

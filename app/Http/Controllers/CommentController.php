@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Carbon;
+use App\Comment_report;
 class CommentController extends Controller
 {
     /**
@@ -22,9 +23,8 @@ class CommentController extends Controller
     public function index()
     { 
         $user = User::all();
-        $post = Post::all();
-        $comments = Comment::all();
-        // $comments = Comment::orderBy('comment_id', 'DESC')->paginate(9);
+        $post = Post::orderBy('post_id', 'DESC')->paginate(10);
+        $comments = Comment::where('comment_branch', 0)->get();
         return view('admin.comment.index',compact('comments','post','user'));
     }
 
@@ -40,28 +40,69 @@ class CommentController extends Controller
         $comments = Comment::all();
         return view('news',compact('user', 'post', 'comments'));
     }
+    public function delete($id)
+    { 
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return back();
+    }
+    public function display_none($nur,$id)
+    { 
+        $comment = Comment::find($id);
+        $comment->comment_status = $nur;
+        $comment->save();
+        return back();
+    }
+    public function detail_comment($id)
+    { 
+        $user = User::all();
+        $post = Post::find($id);
+        $comments = Comment::where('comment_branch', 0)->where('post_id', $id)->orderBy('comment_id', 'DESC')->paginate(10);
+        return view('admin.comment.detail_comment',compact('user', 'post', 'comments'));
+    }
+   
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create_comment(Request $request)
+    public function create_comment(Request $request )
     {
-        $request->validate([
-            'comment_content' => 'required',
-        ]);
-        $comments = new Comment();
-        $comments->comment_content = $request->comment_content;
-        $comments->user_id = Auth::user()->id;
-        $comments->comment_branch = 0;// cái ni để phân nhánh
-        $comments->comment_status = 0;// cái này là trang thái 
-         //của nó , khi thấy không ổn thì bên admin minhaf thây đổi trang thái đển nó ẩn đi bên phía người dùng
-        
-        $comments->post_id = $request->post_id; //đoạn n
-        // code tiếp điok
-        $comments->save();
-        // return redirect()->action('CommentController@index');
-        return back(); //đây này   
+        if($request->comment  == null ){
+           return 'validation.required';
+        }else{         
+                $comments = new Comment();
+                $comments->comment_content = $request->comment;
+                $comments->user_id = Auth::user()->id;
+                $comments->comment_branch = 0;
+                $comments->comment_status = 0;         
+                $comments->post_id = $request->post_id;       
+                $comments->save();     
+                return;
+        }  
     }
+    public function create_comment_branch(Request $request,$id)
+    {
+        if($request->comment  == null ){
+            return 'validation.required';
+         }else{ 
+        $comments = new Comment();
+        $comments->comment_content = $request->comment;
+        $comments->user_id = Auth::user()->id;
+        $comments->comment_branch = $id;
+        $comments->comment_status = 0;
+        $comments->post_id = $request->post_id; 
+        $comments->save();
+        return back(); 
+    }   
+    }
+    public function comment_view(Request $request,$id)
+    {    $post = Post::find($id);
+         $user = User::all();
+        $comments = Comment::where('comment_branch', 0)->where('post_id', $id)->where('comment_status',0)->orderBy('comment_id', 'DESC')->take(20)->get();
+        return view('comment', compact('post','user','comments'));
+
+    }
+
 
 }

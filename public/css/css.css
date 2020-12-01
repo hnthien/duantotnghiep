@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* background: #ffffff; */
     margin: 0px;
     color: rgb(58, 57, 57);
@@ -193,6 +193,10 @@ textarea:focus {
 
 p {
     margin: 0px;
+}
+
+button:focus {
+    outline: 0;
 }
 
 
@@ -660,6 +664,11 @@ p {
     padding: 15px;
     box-sizing: border-box;
     outline: 0;
+    border: 1px solid #E5E5E5;
+}
+
+.bl {
+    display: none;
 }
 
 .btn_like {
@@ -1169,17 +1178,12 @@ footer {
 
 /* Comment Post*/
 
-.form-comment {
-    width: 100%;
-    margin-top: 8px;
-}
 
-.make-comment {
-    width: 100%;
-}
+
+
 
 .form-textarea {
-    width: 96%;
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     resize: vertical;
@@ -1189,6 +1193,9 @@ footer {
     padding: 10px 15px;
     border-radius: 3px;
     margin-bottom: 8px;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .btn-submit {
@@ -1202,6 +1209,9 @@ footer {
     font-size: 14px;
     transition-duration: 0.4s;
     cursor: pointer;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .btn-style {
@@ -1229,20 +1239,6 @@ footer {
     box-sizing: border-box;
 } */
 
-a {
-    color: #03658c;
-    text-decoration: none;
-}
-
-ul {
-    list-style-type: none;
-}
-
-body {
-    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
-    background: #dee1e3;
-}
-
 
 /** ====================
 * Lista de Comentarios
@@ -1250,6 +1246,9 @@ body {
 
 .comments-container {
     width: 100%;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comments-container h1 {
@@ -1279,22 +1278,28 @@ body {
     height: 100%;
     background: #c7cacb;
     position: absolute;
-    left: 32px;
+    left: 22px;
     top: 0;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comments-list:after {
     content: '';
     position: absolute;
     background: #c7cacb;
-    bottom: 0;
-    left: 27px;
+    bottom: -5px;
+    left: 19px;
     width: 7px;
     height: 7px;
     border: 3px solid #dee1e3;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .reply-list:before,
@@ -1304,12 +1309,15 @@ body {
 
 .reply-list li:before {
     content: '';
-    width: 60px;
+    width: 35px;
     height: 2px;
     background: #c7cacb;
     position: absolute;
-    top: 25px;
-    left: -55px;
+    top: 21px;
+    left: -28px;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comments-list li {
@@ -1327,9 +1335,13 @@ body {
 }
 
 .reply-list {
-    padding-left: 88px;
+    padding-left: 50px;
     clear: both;
     margin-top: 15px;
+    box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -1338,25 +1350,26 @@ body {
 ---------------------------*/
 
 .comments-list .comment-avatar {
-    width: 65px;
-    height: 65px;
+    width: 40px;
+    height: 40px;
     position: relative;
-    z-index: 99;
+    z-index: 15;
     float: left;
     border: 3px solid #FFF;
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comments-list .comment-avatar img {
-    width: 100%;
-    height: 100%;
+    width: 35px;
 }
 
-.reply-list .comment-avatar {
-    width: 50px;
-    height: 50px;
+.reply-list .comment-avatar img {
+    width: 35px;
 }
 
 .comment-main-level:after {
@@ -1366,6 +1379,7 @@ body {
     margin-bottom: 20px;
     display: block;
     clear: both;
+
 }
 
 
@@ -1374,12 +1388,13 @@ body {
 ---------------------------*/
 
 .comments-list .comment-box {
-    width: 680px;
-    float: right;
     position: relative;
     border: 1px solid rgba(177, 177, 177, 0.3);
     border-radius: 2px;
-    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); */
+    box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comments-list .comment-box:before,
@@ -1394,6 +1409,9 @@ body {
     border-color: transparent #FCFCFC;
     top: 8px;
     left: -11px;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comments-list .comment-box:before {
@@ -1402,38 +1420,21 @@ body {
     left: -12px;
 }
 
-.reply-list .comment-box {
-    width: 610px;
-}
-
 .comment-box .comment-head {
-    background: #FCFCFC;
-    padding: 10px 12px;
+    
+    padding: 5px 5px;
     border-bottom: 1px solid #E5E5E5;
     overflow: hidden;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
-}
-
-.comment-box .comment-head i {
-    float: right;
-    margin-left: 14px;
-    position: relative;
-    top: 2px;
-    color: #A6A6A6;
-    cursor: pointer;
-    -webkit-transition: color 0.3s ease;
-    -o-transition: color 0.3s ease;
-    transition: color 0.3s ease;
-}
-
-.comment-box .comment-head i:hover {
-    color: #03658c;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .comment-box .comment-name {
-    color: #283035;
+    color: rgb(58, 57, 57);
     font-size: 14px;
     font-weight: 700;
     float: left;
@@ -1441,7 +1442,7 @@ body {
 }
 
 .comment-box .comment-name a {
-    color: #283035;
+    color: rgb(58, 57, 57);
 }
 
 .comment-box .comment-head span {
@@ -1453,8 +1454,12 @@ body {
 }
 
 .comment-box .comment-content {
-    background: #FFF;
-    padding: 12px;
+    width:100%;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+   
+    padding: 5px;
     font-size: 15px;
     color: #595959;
     -webkit-border-radius: 0 0 4px 4px;
@@ -1464,7 +1469,7 @@ body {
 
 .comment-box .comment-name.by-author,
 .comment-box .comment-name.by-author a {
-    color: #03658c;
+    color: rgb(58, 57, 57);
 }
 
 .comment-box .comment-name.by-author:after {
@@ -1478,6 +1483,9 @@ body {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+      -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -1485,17 +1493,7 @@ body {
 * Responsive
 ========================*/
 
-@media only screen and (max-width: 766px) {
-    .comments-container {
-        width: 480px;
-    }
-    .comments-list .comment-box {
-        width: 390px;
-    }
-    .reply-list .comment-box {
-        width: 320px;
-    }
-}
+
 
 
 /* reponsive */
