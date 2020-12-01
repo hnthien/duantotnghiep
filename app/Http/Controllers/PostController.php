@@ -242,7 +242,6 @@ class PostController extends Controller
         $date = $dt->diffForHumans($now);
         
 
-     
         return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date','comments'));
 
     }
