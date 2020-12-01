@@ -71,15 +71,10 @@ Route::get('/comment', function () {
     return view('admin.comment.index');
 });
 
-Route::get('/admin/comment/detail_comment', function () {
-    return view('admin.comment.detail_comment');
-});
-//feedback
 
-//report
-Route::get('/report', function () {
-    return view('admin.report.index');
-});
+
+
+
 
 Route::get('/report/detail_report', function () {
     return view('admin.report.detail_report');
@@ -148,14 +143,21 @@ Route::group(['prefix' => 'admin'], function () {
     // comment
     Route::group(['prefix' => 'comment'], function () {
         Route::get('/', 'CommentController@index');
-
-        // Route::get('/new_category', 'CategoryController@new_category');
+        Route::get('/detail_comment/{id}', 'CommentController@detail_comment');
+        Route::get('/delete_branch/{id}', 'CommentController@delete');
+        Route::get('/report/{id}', 'CommentController@report');
+        Route::get('/hidden/{nur}/{id}', 'CommentController@display_none');
+        Route::get('/comment_view/{id}', 'CommentController@comment_view');
         Route::post('/create_comment', 'CommentController@create_comment');
-        // Route::get('/new_category_branch/{id}', 'CategoryController@new_category_branch');
-        // Route::post('/create_category_branch/{id}', 'CategoryController@create_category_branch');
-        // Route::get('/edit/{id}', 'CategoryController@edit');
-        // Route::post('/update/{id}', 'CategoryController@update');
-        // Route::get('/delete/{id}', 'CategoryController@delete');
+        Route::post('/create_comment_branch/{id}', 'CommentController@create_comment_branch');
+       
+    });
+     //report
+     Route::group(['prefix' => 'report'], function () {
+        Route::get('/', 'ReportController@index');
+        Route::get('/create_report/{id}', 'ReportController@create_report');
+        
+       
     });
 
 });

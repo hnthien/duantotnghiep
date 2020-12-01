@@ -15,30 +15,46 @@
             <form class=" col-4 search" method="POST">
                 <input class="search__input" type="search" placeholder="Search......" />
             </form>
+            <div class="col-4">  
+             <div style="text-align: center;float: right;">{!!$post->links()!!}</div>
+            </div>
         </div>
         <br>
-        <div class="popular-post col-padding">
-        <div class="row text-bold background-gray color-white text-align--center ">
-            <div class="col-1 col-padding">Id</div>
-            <div class="col-6 col-padding">Tên Bài Viết</div>
-            <div class="col-3 col-padding">Số Lượng Bình Luận</div>
-            <div class="col-2 col-padding">Chi Tiết</div>
-        </div>
-        @foreach($comments as $cmt)
+        <table class="popular-post ">
+        <tr >
+            <th>#</th>
+            <th>Tên bài viết</th>
+            <th>Ngày viết</th>
+            <th>Số lượng bình luận</th>
+            <th>Chi tiết</th>
+        </tr>
+        @foreach($post as $row_post)
         
-        <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
-            <div class="col-1 col-padding">{{$cmt->comment_id}}</div>
-            @foreach($post as $p)
-            @if($cmt->post_id == $p->post_id)
-            <div class="col-6 col-padding">{{$p->post_title}}</div>
-            @endif
-            @endforeach
-            <div class="col-3 col-padding">69</div>
-            <div class="col-2 "><a href="{{url('/admin/comment/detail_comment')}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
-        </div>
+        <tr>
+           
+            <td>{{$row_post->post_id}}</td>
+            <td>{{$row_post->post_title}}</td>
+            <td>
+            <p> @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2).'<br>'; echo substr($row_post->created_at ,0,10) ; @endphp</p>
+           
+            </td>
+            <td>
+            @php
+                                $nur= 0;
+                                foreach($comments as $row_comments){
+                                    if($row_comments->post_id ==$row_post->post_id ){
+                                    $nur++;
+                                }
+                                }
+                                
+                                echo '<b>' . $nur . '</b>';
+                                @endphp
+                                </td>
+            <td><a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
+        </tr>
         @endforeach
        
-        </div>
+        </table>
         
 
     </section>

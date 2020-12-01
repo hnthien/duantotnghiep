@@ -26,7 +26,7 @@
                             <span class="hover-dash"></span>
                         </li>
                         <li>
-                            <a href="{{url('/report')}}"><i class="fas fa-clipboard-list"></i>Báo Cáo Vi Phạm <i class="fas fa-angle-right"></i></a>
+                            <a href="{{url('/admin/report')}}"><i class="fas fa-clipboard-list"></i>Báo Cáo Vi Phạm <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
                         <li>

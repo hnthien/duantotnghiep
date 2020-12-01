@@ -15,10 +15,7 @@ class CreateCommentReportTable extends Migration
     {
         Schema::create('comment_report', function (Blueprint $table) {
             $table->bigIncrements('comment_report_id');
-            $table->integer('comment_id');
-            $table->integer('comment_user_id')->nullable();
-            $table->integer('comment_post_id')->nullable();
-            $table->string('comment_report_content',5000)->nullable();
+            $table->integer('comment_id')->nullable();
             $table->integer('comment_report_user_id')->nullable();
             $table->integer('comment_report_status')->nullable();
             $table->timestamps();

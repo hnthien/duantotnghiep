@@ -15,23 +15,48 @@
             </form>
         </div>
         <br>
-        <div class="popular-post col-padding">
-        <div class="row text-bold background-gray color-white text-align--center ">
-            <div class="col-2 col-padding">Trạng Thái</div>
-            <div class="col-4 col-padding">Lỗi Vi Phạm</div>
-            <div class="col-2 col-padding">Người Vi Phạm</div>
-            <div class="col-2 col-padding">Người Gửi</div>
-            <div class="col-2 col-padding">Chi tiết</div>
-        </div>
-        <div class="row col-border-bottom text-align--center  col-padding--top col-padding--bottom">
-            <div class="col-2 col-padding">Chưa xem</div>
-            <div class="col-4 col-padding">Từ Ngữ Thô Tục</div>
-            <div class="col-2 col-padding">hn</div>
-            <div class="col-2 col-padding">thien</div>
-            <div class="col-2 "><a href="{{url('/report/detail_report')}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
-        </div>
-       
-        </div>
+        <table >
+        <tr >
+            <th>Trạng Thái</th>
+            <th>Nội dung bình luận</th>
+            <th>Người Vi Phạm</th>
+            <th>Người Gửi</th>
+            <th>Chi tiết</th>
+        </tr>
+        @foreach($comment_report as $row_comment_report)
+        <tr >
+            <td>@if($row_comment_report->comment_report_status == 0)
+             Chưa xem
+             @endif
+            </td>
+            <td>
+            @foreach($comments as $row_comments)
+            @if($row_comment_report->comment_id ==  $row_comments->comment_id )
+            {{$row_comments->comment_content}} 
+            @endif
+            @endforeach
+            </td>
+            <td> 
+            @foreach($comments as $row_comments)
+            @if($row_comment_report->comment_id ==  $row_comments->comment_id )
+            @foreach($user as $row_user)
+            @if($row_user->id == $row_comments->user_id)
+            {{$row_user->name}} 
+            @endif
+            @endforeach
+            @endif
+            @endforeach
+            </td>
+            <td>
+            @foreach($user as $row_user)
+            @if($row_user->id == $row_comment_report->comment_report_user_id)
+            {{$row_user->name}} 
+            @endif
+            @endforeach</td>
+            <td><a href="{{url('/report/detail_report')}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
+        </tr>
+       @endforeach
+        </table>
         
 
     </section>
