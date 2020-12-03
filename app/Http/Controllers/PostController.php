@@ -247,6 +247,7 @@ class PostController extends Controller
         $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
+
         return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date','comments'));
     }else {
         return abort(404);
