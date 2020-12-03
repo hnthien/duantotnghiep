@@ -47,7 +47,7 @@
         <div class="row">
             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
-                <input class="search__input" id="search" type="search" placeholder="Search......" />
+                <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
             </form>
             <div class="col-4">
@@ -71,7 +71,7 @@
                 <th >Trạng Thái</th>
                 <th >Tiêu Đề</th>
                 <th >Người Gửi</th>
-                <th >Date</th>
+                <th >Ngày</th>
                 <th>Chi Tiết</th>
             </tr>
             <!-- not_seen_box  -->

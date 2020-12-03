@@ -10,9 +10,7 @@
             <span style="font-size: 12px; font-weight: bold;">Vi Phạm <i class="fas fa-angle-right"></i>Quản lý vi phạm</span>
         </div>
         <div class="row">
-            <form class=" col-4 search" method="POST">
-                <input class="search__input" type="search" placeholder="Search......" />
-            </form>
+           
         </div>
         <br>
         <table >

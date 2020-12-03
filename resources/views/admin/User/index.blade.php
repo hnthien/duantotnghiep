@@ -41,7 +41,7 @@
             ?>
             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
-                <input id="search" class="search__input" type="search" placeholder="Search......" />
+                <input id="search" class="search__input" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
 
             </form>
@@ -52,7 +52,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-2 col-margin--bottom">
-                        <button type="submit" onclick="return window.confirm('Đại ca có chắc muốn đuổi tất cả bọn nó ra khỏi hội !');" formaction="{{url('admin/user/delete_all')}}" class="btn background-red">Delete all select</button>
+                        <button type="submit" onclick="return window.confirm('Đại ca có chắc muốn đuổi tất cả bọn nó ra khỏi hội !');" formaction="{{url('admin/user/delete_all')}}" class="btn background-red">Xóa tất cả</button>
                     </div>
                     <div class="col-10 col-padding color-red">
                         @if (session('notification'))
@@ -66,12 +66,12 @@
                         <th><input type="checkbox" class="selectall" /></th>
                         <th >Id</th>
                         <th >Ảnh</th>
-                        <th >User name</th>
+                        <th >Tên</th>
                         <th >Email</th>
-                        <th >Phone</div>
-                        <th >Role</th>
-                        <th >Delete</th>
-                        <th >Edit</th>
+                        <th >Số điện thoại</div>
+                        <th >Chức vụ</th>
+                        <th >Xóa</th>
+                        <th >Sửa</th>
                     </tr>
                     @foreach ($data as $row)
                     <tr >

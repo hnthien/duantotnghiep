@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 
 
 class PostController extends Controller
@@ -223,8 +224,12 @@ class PostController extends Controller
         $user = User::all();
         //post
         $post = Post::find($id);
-        $post->post_view = ($post->post_view) + 1;
-        $post->save();
+        $blogId = 'blog_' . $id;
+
+        if (!Session::has($blogId)) {
+        $post->increment('post_view');
+        Session::put($blogId, 1);
+        }
         //like
         if (Auth::check()) {
             $post_like = new Post_like();
@@ -242,7 +247,6 @@ class PostController extends Controller
         $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
         $now = Carbon::now();
         $date = $dt->diffForHumans($now);
-        
 
         return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date','comments'));
     }else {
