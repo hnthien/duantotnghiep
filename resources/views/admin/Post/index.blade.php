@@ -31,11 +31,11 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button class="btn background-greed">+ Add New Post</button></a>
+                <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button class="btn background-greed">+ Thêm mới</button></a>
             </div>
             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
-                <input class="search__input" id="search" type="search" placeholder="Search......" />
+                <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
             </form>
         </div>
@@ -44,18 +44,18 @@
         <div class="row">
             <div class="col-2">
                 <a href="{{url('admin/post')}}">
-                    <button id="your_all" class="btn background-gray">All articles</button>
+                    <button id="your_all" class="btn background-gray">Tất cả bài viết</button>
                 </a>
 
             </div>
             <div class="col-2">
                 <a href="{{url('admin/post/is_not_approved')}}">
-                    <button id="your_is_not_approved" class="btn background-red">My unapproved articles</button>
+                    <button id="your_is_not_approved" class="btn background-red">Chưa kiểm duyệt</button>
                 </a>
             </div>
             <div class="col-2">
                 <a href="{{url('admin/post/is_approved')}}">
-                    <button id="your_is_approved" class="btn background-greed">My approved articles</button>
+                    <button id="your_is_approved" class="btn background-greed">Đã kiểm duyệt</button>
                 </a>
             </div>
 
@@ -86,11 +86,11 @@
                     <th>Chủ đề</th>
                     <th>Tác giả</th>
                     <th>Phê duyệt</th>
-                    <th style="width:80px;text-align: center;">Date</th>
+                    <th style="width:80px;text-align: center;">Ngày viết</th>
                     <th>View</th>
-                    <th>Status</th>
-                    <th>Delete</th>
-                    <th>Update</th>
+                    <th>Trạng thái</th>
+                    <th>Xóa</th>
+                    <th>Sửa</th>
                 </tr>
             </thead>
             <tbody>

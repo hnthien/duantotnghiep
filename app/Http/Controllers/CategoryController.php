@@ -119,17 +119,20 @@ class CategoryController extends Controller
             'category_title' =>'required',
             'category_slug' => 'required',
         ]);
-        $check = Category::where('category_id', $category_id)->where('category_slug', $slug)->first();
-        if (!empty($check)) {
-            $categorys = Category::find($category_id);
-            $categorys->category_title = $request->category_title;
-            $categorys->category_intro = $request->category_intro;
-            $categorys->category_slug = $request->category_slug;
-            $categorys->save();
-            return redirect()->action('CategoryController@index');
-        } else {
-            return abort(404);
+        if ($category_id != null) {
+            $check = Category::where('category_id', $category_id)->where('category_slug', $slug)->first();
+            if (!empty($check)) {
+                $categorys = Category::find($category_id);
+                $categorys->category_title = $request->category_title;
+                $categorys->category_intro = $request->category_intro;
+                $categorys->category_slug = $request->category_slug;
+                $categorys->save();
+                return redirect()->action('CategoryController@index');
+            } else {
+                return abort(404);
+            }
         }
+        return abort(404);
     }
 
     /**

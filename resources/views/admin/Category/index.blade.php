@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-2">
                 <a class="col-margin--bottom" href="{{url('admin/category/new_category')}}">
-                    <button class="btn background-greed">+ Add New Category</button>
+                    <button class="btn background-greed">+ Thêm Danh mục</button>
                 </a>
             </div>
             <div class="col-3">
@@ -29,10 +29,10 @@
             <tr>
                 <th>Id</th>
                 <th>Tên Chủ Đề</th>
-                <th>Sub-Categories</th>
-                <th style="width:140px">Add Subcategory</th>
-                <th>Delete</th>
-                <th>Update</th>
+                <th>Chủ đề con</th>
+                <th style="width:140px">Danh mục con</th>
+                <th>Xóa</th>
+                <th>Sửa</th>
             </tr>
 
             @foreach($categorys as $row)
@@ -67,7 +67,7 @@
                     </table>
                 </td>
                 <td> <a href="{{url('admin/category/new_category_branch')}}/{{ $row->category_id}}">
-                        <button class="btn background-greed">+ Subcategory</button>
+                        <button class="btn background-greed">+ Danh mục</button>
                     </a>
                 </td>
                 <td>
