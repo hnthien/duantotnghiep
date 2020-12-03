@@ -14,29 +14,9 @@ use Illuminate\Support\Carbon;
 class Home extends Controller
 {
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function logout()
     {
         return Auth::logout();
-    }
-    //admin
-    public function admin(Request $request)
-    {
-        $user = User::all();
-        $number = 0;
-        for ($i = 1; $i > $number; $i++) {
-            foreach ($user as $row) {
-                if (($row->role_user) == 0) {
-                    $number + 1;
-                }
-            }
-        }
-        echo $number;
-        return view('admin.index');
     }
     //
     public function index()

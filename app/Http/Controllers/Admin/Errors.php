@@ -16,7 +16,7 @@ class Errors extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->role_user = Auth::user()->role_user;
-            if ($this->role_user == 0) {
+            if ($this->role_user != 1 || $this->role_user != 3) {
                 App::abort(404);
             }
             return $next($request);

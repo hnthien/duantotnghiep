@@ -30,14 +30,24 @@ class Posts extends Controller
 
     public function index()
     {
+        if ($this->role_user == 2) {
+            $user = User::where('id', $this->role_user)->get();
+            $category = Category::get();
+            $posts = Post::where('user_id', $this->role_user)->orderBy('post_id', 'DESC')->paginate(9);
+            return view('admin.post.index', compact('posts', 'category', 'user'));
+        }
         $user = User::all();
         $category = Category::all();
         $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
-
         return view('admin.post.index', compact('posts', 'category', 'user'));
     }
     public function is_approved()
     {
+        if ($this->role_user == 2) {
+            $user = User::where('id', $this->role_user)->get();
+            $category = Category::get();
+            $posts = Post::where('user_id', $this->role_user)->orderBy('post_id', 'DESC')->paginate(9);
+        }
         $user = User::all();
         $category = Category::all();
         $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
@@ -46,6 +56,11 @@ class Posts extends Controller
     }
     public function is_not_approved()
     {
+        if ($this->role_user == 2) {
+            $user = User::where('id', $this->role_user)->get();
+            $category = Category::get();
+            $posts = Post::where('user_id', $this->role_user)->orderBy('post_id', 'DESC')->paginate(9);
+        }
         $user = User::all();
         $category = Category::all();
         $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
@@ -62,7 +77,6 @@ class Posts extends Controller
 
     public function create_post(Request $request)
     {
-
         $message = [
             'post_title.required' => 'Vui lòng nhập tiêu đề',
             'category_id.required' => 'Vui lòng chọn thể loại',
@@ -111,21 +125,23 @@ class Posts extends Controller
         return view('admin.post.new_post', compact('categorys'));
     }
 
-    public function url(Request $request)
-    {
-        $categoryname = $request->post_title;
+    // public function url(Request $request)
+    // {
+    //     $categoryname = $request->post_title;
 
-        $slug = Str::slug($categoryname, '-');
+    //     $slug = Str::slug($categoryname, '-');
 
-        return response()->json(['slug' => $slug]);
-    }
+    //     return response()->json(['slug' => $slug]);
+    // }
 
     public function edit($post_slug, $id)
     {
-        $categorys_branch = Category::all();
-        $categorys = Category::where('category_branch', 0)->get();
-        $post = Post::find($id);
-        return view('admin.post.edit', compact('post', 'categorys', 'categorys_branch'));
+        if ($id) {
+            $categorys_branch = Category::all();
+            $categorys = Category::where('category_branch', 0)->get();
+            $post = Post::find($id);
+            return view('admin.post.edit', compact('post', 'categorys', 'categorys_branch'));
+        }
     }
 
     public function update(Request $request, $post_id)

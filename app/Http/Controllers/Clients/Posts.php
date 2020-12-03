@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
 use App\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
 
 class Posts extends Controller
@@ -24,9 +25,12 @@ class Posts extends Controller
             //post
             $post = Post::find($id);
             if ($post != null) {
-                $post->post_view = ($post->post_view) + 1;
-                $post->save();
 
+                $blogId = 'blog_' . $post->id;
+                if (!Session::has($blogId)) {
+                    $post->increment('post_view');
+                    Session::put($blogId, 1);
+                }
                 //like
                 Carbon::setLocale('vi');
                 $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
@@ -53,20 +57,25 @@ class Posts extends Controller
 
     public function search_posts(Request $request)
     {
-
-        $keyword = $request->keyword;
-        $user = User::all();
-        $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(20)->get();
-        return view('search', compact('search_results', 'user', 'keyword'));
+        if ($request->keyword) {
+            $keyword = $request->keyword;
+            $user = User::all();
+            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(20)->get();
+            return view('search', compact('search_results', 'user', 'keyword'));
+        }
     }
 
     public function view_post_category($category_title, $id)
     {
-
-        $user = User::all();
-        $categorys = Category::find($id);
-        $category_branch = Category::all();
-        $post_category = Post::orderBy('post_id', 'DESC')->paginate(9);
-        return view('catergories', compact('post_category', 'categorys', 'user', 'category_branch',));
+        if ($id) {
+            $user = User::all();
+            $categorys = Category::find($id);
+            if ($categorys != null) {
+                $category_branch = Category::all();
+                $post_category = Post::orderBy('post_id', 'DESC')->paginate(9);
+                return view('catergories', compact('post_category', 'categorys', 'user', 'category_branch',));
+            }
+        }
+        abort(404);
     }
 }
