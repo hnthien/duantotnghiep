@@ -17,8 +17,11 @@
                             <li>
                                 <span>by</span>
                                 @foreach($user as $row_user)
+                                @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                                 @if($row_user->id == $row_pp->user_id)
-                                <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                                <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                 @endif
                                 @endforeach
                             </li>
@@ -47,8 +50,11 @@
                         <li>
                             <span>by</span>
                             @foreach($user as $row_user)
+                            @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                             @if($row_user->id == $row_pp->user_id)
-                            <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                            <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                             @endif
                             @endforeach
                         </li>
@@ -71,8 +77,11 @@
                         <li>
                             <span>by</span>
                             @foreach($user as $row_user)
+                            @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                             @if($row_user->id == $row_pp->user_id)
-                            <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                            <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                             @endif
                             @endforeach
                         </li>
@@ -122,8 +131,11 @@
                                     <li>
                                         <span>by</span>
                                         @foreach($user as $row_user)
+                                        @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                                         @if($row_user->id == $row_post->user_id)
-                                        <a href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                                        <a href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                         @endif
                                         @endforeach
                                     </li>
@@ -131,11 +143,8 @@
                                         @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
                                     </li>
                                     @foreach($category as $row_category)
-                                    @php
-                                    $slug = Str::slug($row_category->category_title,'-');
-                                    @endphp
                                     @if($row_post->category_id == $row_category->category_id)
-                                    <li> <a class="font-size-13" href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
+                                    <li> <a class="font-size-13" href="{{url('/category/')}}/{{$row_category->category_slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
                                     </li>
                                     @endif
                                     @endforeach

@@ -180,11 +180,8 @@
                     $data = $category->where('category_branch',0)->take(6)->get();
                     @endphp
                     @foreach($data as $row_category)
-                    @php
-                    $slug = Str::slug($row_category->category_title,'-');
-                    @endphp
                     <li>
-                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
+                        <a href="{{url('/category/')}}/{{$row_category->category_slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
                         <span class="hover-dash"></span>
                     </li>
                     @endforeach
@@ -213,21 +210,16 @@
                 $data_branch = $category->all();
                 @endphp
                 @foreach($data as $row_category)
-                @php
-                $slug = Str::slug($row_category->category_title,'-');
-                @endphp
                 <li class=" col-2 col-float">
-                    <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">
+                    <a href="{{url('/category/')}}/{{$row_category->category_slug}}/{{$row_category->category_id}}">
                         <div class="vertical_tiles"></div>{{$row_category->category_title}}
                     </a>
                     <ul class="list_category__li__ul">
                         @foreach($data_branch as $row_category_branch)
-                        @php
-                        $slug = Str::slug( $row_category_branch->category_title,'-');
-                        @endphp
+                       
                         @if($row_category->category_id ==$row_category_branch->category_branch )
                         <li>
-                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}">{{$row_category_branch->category_title}}</a>
+                            <a href="{{url('/category/')}}/{{$row_category_branch->category_slug}}/{{$row_category_branch->category_id}}">{{$row_category_branch->category_title}}</a>
                         </li>
                         @endif
                         @endforeach

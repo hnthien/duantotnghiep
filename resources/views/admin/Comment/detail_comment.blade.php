@@ -85,7 +85,7 @@
                                         @if($row_comment_branch->comment_status == 1)
                                         <li >
                                         <div class="row ">
-                                        <div class="col-9">
+                                        <div class="col-10">
                                             <div class="row">
                                                 <!-- Avatar -->
                                                 <div class="comment-avatar col-1">
@@ -122,9 +122,7 @@
                                                 </div>
                                             </div>
                                             </div>
-                                <div class="col-1">
-                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
-                                </div>
+                               
                                 <div class="col-1">
                                 <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
                                 </div>
@@ -136,7 +134,7 @@
                                         @else
                                         <li>
                                         <div class="row">
-                                        <div class="col-10">
+                                        <div class="col-11">
                                             <div class="row">
                                                 <!-- Avatar -->
                                                 <div class="comment-avatar col-1">
@@ -172,9 +170,7 @@
                                                 </div>
                                             </div>
                                             </div>
-                                <div class="col-1">
-                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
-                                </div>
+                                
                                 <div class="col-1">
                                 <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
                                 </div>
@@ -248,7 +244,7 @@
                                         @if($row_comment_branch->comment_status == 1)
                                         <li >
                                         <div class="row ">
-                                        <div class="col-9">
+                                        <div class="col-10">
                                             <div class="row">
                                                 <!-- Avatar -->
                                                 <div class="comment-avatar col-1">
@@ -285,9 +281,7 @@
                                                 </div>
                                             </div>
                                             </div>
-                                <div class="col-1">
-                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
-                                </div>
+                               
                                 <div class="col-1">
                                 <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
                                 </div>
@@ -299,7 +293,7 @@
                                         @else
                                         <li>
                                         <div class="row">
-                                        <div class="col-10">
+                                        <div class="col-11">
                                             <div class="row">
                                                 <!-- Avatar -->
                                                 <div class="comment-avatar col-1">
@@ -335,9 +329,7 @@
                                                 </div>
                                             </div>
                                             </div>
-                                <div class="col-1">
-                                <a href="{{url('admin/comment/delete_branch')}}/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
-                                </div>
+                              
                                 <div class="col-1">
                                 <a href="{{url('admin/comment/hidden')}}/1/{{$row_comment_branch->comment_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a> 
                                 </div>

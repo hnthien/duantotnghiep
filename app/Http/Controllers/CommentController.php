@@ -46,7 +46,7 @@ class CommentController extends Controller
         $comment->delete();
         return back();
     }
-    public function display_none($nur,$id)
+    public function hidden($nur,$id)
     { 
         $comment = Comment::find($id);
         $comment->comment_status = $nur;

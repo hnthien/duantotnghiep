@@ -1,4 +1,5 @@
-@extends('layouts.admin') @section('admin','Quản lý bài viết - New post')
+@extends('layouts.admin') 
+@section('admin','Quản lý bài viết - New post')
 @section('content')
 <script>
     $(document).ready(function() {

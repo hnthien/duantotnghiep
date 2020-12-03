@@ -21,13 +21,21 @@
             <th>Nội dung bình luận</th>
             <th>Người Vi Phạm</th>
             <th>Người Gửi</th>
-            <th>Chi tiết</th>
+            <th>Hành động</th>
+           
         </tr>
         @foreach($comment_report as $row_comment_report)
         <tr >
-            <td>@if($row_comment_report->comment_report_status == 0)
-             Chưa xem
-             @endif
+            <td>
+            @foreach($comments as $row_comments)
+            @if($row_comment_report->comment_id ==  $row_comments->comment_id )
+            @if($row_comments->comment_status == 0) 
+            <span class="color-green">Bình thường</span>
+            @else
+            <span class="color-red">Bị ẩn</span>
+            @endif
+            @endif
+            @endforeach
             </td>
             <td>
             @foreach($comments as $row_comments)
@@ -53,7 +61,17 @@
             {{$row_user->name}} 
             @endif
             @endforeach</td>
-            <td><a href="{{url('/report/detail_report')}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
+            
+            @foreach($comments as $row_comments)
+            @if($row_comment_report->comment_id ==  $row_comments->comment_id )
+            @if($row_comments->comment_status == 0)
+            <td> <a href="{{url('admin/report/hidden')}}/1/{{$row_comments->comment_id}}/{{$row_comment_report->comment_report_id}} " title="Ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a>    </td>        
+            @else
+            <td>  <a href="{{url('admin/report/hidden')}}/0/{{$row_comments->comment_id}}/{{$row_comment_report->comment_report_id}}" title="Bỏ ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a>  </td>
+            @endif
+            @endif
+            @endforeach
+           
         </tr>
        @endforeach
         </table>
