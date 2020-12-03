@@ -27,11 +27,13 @@
         <div class="col-margin--bottom">
             <h1 class="col-12" style="font-size: 20px;margin:10px 0px">Quản lý bài viết</h1>
             <hr>
-            <span style="font-size: 12px; font-weight: bold;">Bài viết <i class="fas fa-angle-right"></i>Quản lý bài viết</span>
+            <span style="font-size: 12px; font-weight: bold;">Bài viết <i class="fas fa-angle-right"></i>Quản lý bài
+                viết</span>
         </div>
         <div class="row">
             <div class="col-2">
-                <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button class="btn background-greed">+ Add New Post</button></a>
+                <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button
+                        class="btn background-greed">+ Add New Post</button></a>
             </div>
             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
@@ -42,7 +44,7 @@
 
         <br>
         <div class="row">
-        <div class="col-2">
+            <div class="col-2">
                 <a href="{{url('admin/post')}}">
                     <button id="your_all" class="btn background-gray">All articles</button>
                 </a>
@@ -58,23 +60,23 @@
                     <button id="your_is_approved" class="btn background-greed">My approved articles</button>
                 </a>
             </div>
-           
+
             <div class="col-5">
             </div>
 
         </div>
         <br>
         <div class="row">
-            <div class="col-3"> 
+            <div class="col-3">
                 <p id="all_p" class="color-light-gray" style="font-size:12px;">Tất cả bài viết.</p>
             </div>
             <div class="col-6"></div>
             <div class="col-3">
-             <div  style="text-align: center;float: right;">{!!$posts->links()!!}</div>
+                <div style="text-align: center;float: right;">{!!$posts->links()!!}</div>
             </div>
         </div>
-       
-        
+
+
         <br>
         <table class="popular-post col-padding">
             <thead>
@@ -96,18 +98,19 @@
                 <tr class="font-size-13">
                     <td>{{$p->post_id}}</td>
                     <td>
-                        <img width="140px" height="80px" src="{{ URL::asset('images/post_image') }}/{{$p->post_image}}" alt="logo" />
+                        <img src="{{ URL::asset('images/post_image') }}/{{$p->post_image}}" alt="logo"
+                            style="with: 100px;height: 100px; object-fit: cover;  " />
                     </td>
                     <td>{{$p->post_title}}</td>
                     <td>{{$p->post_intro}}</td>
                     <td>
-                       
+
                         @foreach($category as $row)
                         @if($row->category_id == $p->category_id)
-                        <span class="col-border-category">{{$row->category_title}}</span>
+                        <span class=" col-border-category">{{$row->category_title}}</span>
                         @endif
                         @endforeach
-                       
+
                     </td>
                     <td>
                         @foreach($user as $row1)
@@ -117,7 +120,8 @@
                         @endforeach
                     </td>
                     <td style="font-size: 14px;">
-                        <p> @php echo substr($p->created_at ,10,3).':'.substr($p->created_at ,14,2).'<br>'; echo substr($p->created_at ,0,10) ; @endphp</p>
+                        <p> @php echo substr($p->created_at ,10,3).':'.substr($p->created_at ,14,2).'<br>'; echo
+                            substr($p->created_at ,0,10) ; @endphp</p>
                     </td>
                     <td>
                         @if($p->post_status ==1 )
@@ -136,7 +140,9 @@
                         @endif
                         @endif
                     </td>
-                    <td><a href="{{url('admin/post/delete')}}/{{$p->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> </td>
+                    <td><a href="{{url('admin/post/delete')}}/{{$p->post_id}}"><button
+                                onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');"
+                                class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> </td>
                     <td>
                         @if(Auth::user()->role_user == 3)
                         <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
@@ -149,7 +155,7 @@
             </tbody>
 
         </table>
-       
+
 
 
 

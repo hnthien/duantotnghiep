@@ -86,15 +86,17 @@
         <a href="#"><i style="font-size: 20px;" class="fab fa-instagram"></i></a>
     </div>
     <div class="col-2  text-align--center ">
-        @if (Route::has('login'))
-        @auth
+        @if (!Auth::guest())
         <ul class="menuheader row">
-            <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px" src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
+            <li class="col-3"><img style="border-radius: 50%;" width="40px" height="40px"
+                    src="{{ URL::asset('images/user') }}/{{ Auth::user()->images_user }}" /> </li>
             <li class="menuheaderli col-9">
-                <span style="text-transform: capitalize" class="text-bold">@php echo substr(Auth::user()->name ,0,10) @endphp <i class="fas fa-caret-down"></i></span>
+                <span style="text-transform: capitalize" class="text-bold">@php echo substr(Auth::user()->name ,0,10)
+                    @endphp <i class="fas fa-caret-down"></i></span>
                 <ul class="menuheaderli__droplist">
                     <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt"></i>{{ __('Đăng xuất') }}
                         </a>
 
@@ -102,24 +104,20 @@
                             @csrf
                         </form>
                     </li>
-                    <li><a href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
-                    <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi mật khẩu</a></li>
+                    <li><a href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i
+                                class="fas fa-info-circle"></i>Thông tin</a></li>
+                    <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi mật khẩu</a>
+                    </li>
                     @if(Auth::user()->role_user == 1 or Auth::user()->role_user == 2 or Auth::user()->role_user == 3 )
                     <li> <a href="{{url('/admin')}}"><i class="fas fa-users-cog"></i>Vào admin</a></li>
                     @endif
                 </ul>
             </li>
         </ul>
-
         @else
         <div class="col-margin--top">
-            <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ route('login') }}">Đăng nhập</a>
-
+            <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ url('login') }}">Đăng nhập</a>
         </div>
-
-
-        @endauth
-
         @endif
     </div>
 </div>
@@ -182,7 +180,7 @@
                     </li>
 
                     @php
-                    $category = new App\Category();
+                    $category = new App\Models\Category();
                     $data = $category->where('category_branch',0)->take(6)->get();
                     @endphp
                     @foreach($data as $row_category)
@@ -190,7 +188,8 @@
                     $slug = Str::slug($row_category->category_title,'-');
                     @endphp
                     <li>
-                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
+                        <a
+                            href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
                         <span class="hover-dash"></span>
                     </li>
                     @endforeach
@@ -214,7 +213,7 @@
             <div style=" margin-bottom: 0px;" class="col-1"></div>
             <ul class="col-10 list_category__li">
                 @php
-                $category = new App\Category();
+                $category = new App\Models\Category();
                 $data = $category->where('category_branch',0)->take(12)->get();
                 $data_branch = $category->all();
                 @endphp
@@ -233,7 +232,8 @@
                         @endphp
                         @if($row_category->category_id ==$row_category_branch->category_branch )
                         <li>
-                            <a href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}">{{$row_category_branch->category_title}}</a>
+                            <a
+                                href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}">{{$row_category_branch->category_title}}</a>
                         </li>
                         @endif
                         @endforeach
@@ -257,18 +257,23 @@
             <div class="col-4"></div>
             <div class="col-4 col-padding ">
                 <div style="height: 600px;" class="popular-post col-position col-padding--bottom col-padding--top">
-                    <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
-                    <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data" class="form col-padding">
+                    <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;"
+                            class="fas fa-times"></i></div>
+                    <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data"
+                        class="form col-padding">
                         @csrf
                         <h3 class="form__name">FEEDBACK</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-heading"></i>
-                            <input type="text" name="feedback_title" class="@error('feedback_title') is-invalid @enderror" value="{{ old('feedback_title') }}" id="feedback_title" placeholder=" Title..." />
+                            <input type="text" name="feedback_title"
+                                class="@error('feedback_title') is-invalid @enderror"
+                                value="{{ old('feedback_title') }}" id="feedback_title" placeholder=" Title..." />
                             <span class="text-danger"><b>{{ $errors->first('feedback_title') }}</b></span>
                         </div>
                         <div class="form__input">
                             <i class="fas fa-comment-alt"></i>
-                            <textarea name="feedback_content" class="@error('feedback_content') is-invalid @enderror" rows="5">{{ old('feedback_content') }}</textarea>
+                            <textarea name="feedback_content" class="@error('feedback_content') is-invalid @enderror"
+                                rows="5">{{ old('feedback_content') }}</textarea>
                             <span class="text-danger"><b>{{ $errors->first('feedback_content') }}</b></span>
                         </div>
                         @if(Auth::user() == null)
@@ -289,7 +294,8 @@
                         @endif
                     </form>
                     <div class="text-align--center " style="margin-top: 10px;">
-                        <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
+                        <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px"
+                                alt="logo" /></a>
                         <p>© 2018 T20News | Made by T20</p>
                     </div>
 
@@ -310,23 +316,28 @@
             <div class="col-4"></div>
             <div class="col-4 col-padding">
                 <div style="height: 600px;" class="popular-post col-position col-padding--bottom col-padding--top">
-                    <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
-                    <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data" class="form col-padding">
+                    <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i>
+                    </div>
+                    <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data"
+                        class="form col-padding">
                         @csrf
                         <h3 class="form__name">ERROR</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-wave-square"></i>
-                            <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{ old('error_url') }}" id="error_url" placeholder=" Error url..." />
+                            <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror"
+                                value="{{ old('error_url') }}" id="error_url" placeholder=" Error url..." />
                             <samp class="text-danger"><b>{{ $errors->first('error_url') }}</b></samp>
                         </div>
                         <div class="form__input box_input">
                             <i class="fas fa-heading"></i>
-                            <input type="text" name="error_title" class="@error('error_title') is-invalid @enderror" value="{{ old('error_title') }}" id="error_title" placeholder=" Error title..." />
+                            <input type="text" name="error_title" class="@error('error_title') is-invalid @enderror"
+                                value="{{ old('error_title') }}" id="error_title" placeholder=" Error title..." />
                             <samp class="text-danger"><b>{{ $errors->first('error_title') }}</b></samp>
                         </div>
                         <div class="form__input">
                             <i class="fas fa-comment-alt"></i>
-                            <textarea name="error_content" class="@error('error_content') is-invalid @enderror" rows="5">{{ old('error_content') }}</textarea>
+                            <textarea name="error_content" class="@error('error_content') is-invalid @enderror"
+                                rows="5">{{ old('error_content') }}</textarea>
                             <samp class="text-danger"><b>{{ $errors->first('error_content') }}</b></samp>
                         </div>
                         @if(Auth::user() == null)
@@ -347,7 +358,8 @@
                         @endif
                     </form>
                     <div class="text-align--center" style="margin-top: 10px;">
-                        <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px" alt="logo" /></a>
+                        <a href="index.html"><img src="{{ URL::asset('images') }}/t20.png" width="100px"
+                                alt="logo" /></a>
                         <p>© 2018 T20News | Made by T20</p>
                     </div>
                 </div>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     protected $primaryKey = 'post_id';
-    protected $table ="post";
+    protected $table = "post";
     protected $casts = [
         'post_tag' => 'array',
     ];

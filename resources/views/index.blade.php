@@ -8,12 +8,20 @@
             <div class="col-4 ">
                 @foreach($popular_post as $row_pp)
                 <div style="padding: 5px;" class="row popular-post">
+                    <div class="col-4 col-position ">
+                        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}"
+                            alt="image post" />
 
-                    <div class="col-8 col-right ">
+                    </div>
+                    <div class="col-8">
                         <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
-                            <h4 style="margin: 0px;">{{$row_pp->post_title}}</h4>
+                            <h4 style="margin: 10px; margin-top: 0;">{{$row_pp->post_title}}</h4>
                         </a>
-                        <ul class="list-horizontal font-size-13">
+                        <ul style="margin: 10px; margin-top: 0;" class="list-horizontal font-size-13">
+                            <li>
+                                {{ \Illuminate\Support\Str::limit($row_pp->post_intro, 100 , '...')}}
+
+                            </li>
                             <li>
                                 <span>by</span>
                                 @foreach($user as $row_user)
@@ -22,22 +30,22 @@
                                 @endif
                                 @endforeach
                             </li>
+
                             <li>
-                                @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,0,10) ; @endphp
+                                @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." ";
+                                echo substr($row_pp->created_at ,0,10) ; @endphp
                             </li>
                         </ul>
                     </div>
-                    <div class="col-4 col-position ">
-                        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
 
-                    </div>
                 </div>
                 @endforeach
             </div>
             <div style="padding: 5px;" class="col-5 popular-post">
                 @foreach($popular_post1 as $row_pp)
                 <div class="col-position">
-                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
+                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}"
+                        alt="image post" />
                 </div>
                 <div style="padding: 5px;">
                     <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
@@ -53,7 +61,8 @@
                             @endforeach
                         </li>
                         <li>
-                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,0,10) ; @endphp
+                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo
+                            substr($row_pp->created_at ,0,10) ; @endphp
                         </li>
                     </ul>
                     <p class="color-light-gray ">{{$row_pp->post_intro}}</p>
@@ -63,7 +72,8 @@
             <div class="col-3">
                 @foreach($popular_post2 as $row_pp)
                 <div style="padding: 5px;" class=" popular-post">
-                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
+                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}"
+                        alt="image post" />
                     <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
                         <h3 style="margin: 0px;">{{$row_pp->post_title}}</h3>
                     </a>
@@ -77,7 +87,8 @@
                             @endforeach
                         </li>
                         <li>
-                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,0,10) ; @endphp
+                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo
+                            substr($row_pp->created_at ,0,10) ; @endphp
                         </li>
                     </ul>
                 </div>
@@ -92,16 +103,16 @@
                 <hr>
                 <article>
                     <h2>TIN MỚI NHẤT</h2>
-                    <p class="color-light-gray" style="font-size:12px;"><a href="{{ route('login') }}">Đăng nhập</a> để bình luận những bài viết mà bạn thích</p>
+                    <p class="color-light-gray" style="font-size:12px;"><a href="{{ url('login') }}">Đăng nhập</a> để
+                        bình luận những bài viết mà bạn thích</p>
                     <br>
-
                     @foreach($post as $row_post)
 
                     <div class="row">
                         <div style="padding: 5px;" class="row popular-post ">
                             <div class="col-4 col-position ">
-                                <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
-
+                                <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}"
+                                    alt="image post" />
                             </div>
                             <div class="col-8 col-margin-left">
                                 <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
@@ -110,7 +121,9 @@
                                 @php
                                 $carbon = new Illuminate\Support\Carbon;
                                 $carbon::setLocale('vi');
-                                $dt = $carbon::create(substr($row_post->created_at, 0, 4), substr($row_post->created_at, 5, 2), substr($row_post->created_at, 8, 2), substr($row_post->created_at, 11, 2), substr($row_post->created_at, 14, 2), substr($row_post->created_at, 17, 2));
+                                $dt = $carbon::create(substr($row_post->created_at, 0, 4), substr($row_post->created_at,
+                                5, 2), substr($row_post->created_at, 8, 2), substr($row_post->created_at, 11, 2),
+                                substr($row_post->created_at, 14, 2), substr($row_post->created_at, 17, 2));
                                 $now = $carbon::now();
                                 $date = $dt->diffForHumans($now);
                                 @endphp
@@ -128,28 +141,27 @@
                                         @endforeach
                                     </li>
                                     <li>
-                                        @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                                        @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at
+                                        ,14,2)." "; echo
+                                        substr($row_post->created_at,5,2).'/'.substr($row_post->created_at
+                                        ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
                                     </li>
                                     @foreach($category as $row_category)
                                     @php
                                     $slug = Str::slug($row_category->category_title,'-');
                                     @endphp
                                     @if($row_post->category_id == $row_category->category_id)
-                                    <li> <a class="font-size-13" href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
+                                    <li> <a class="font-size-13"
+                                            href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a>
                                     </li>
                                     @endif
                                     @endforeach
                                 </ul>
-
                                 <p class="color-light-gray font-size-13">{{$row_post->post_intro}}</p>
-
                             </div>
-
                         </div>
                     </div>
                     @endforeach
-
-
                 </article>
             </div>
             <div class="col-4 ">
@@ -159,21 +171,29 @@
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
                             <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
-                                <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
+                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i
+                                            class="fab fa-facebook-f"></i> FACEBOOK</button></a>
+                                <a href="#"><button class="btn col-margin--bottom background-blue"><i
+                                            class="fab fa-twitter"></i> TWITTER</button></a>
+                                <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i>
+                                        YOUTUBE</button></a>
                             </div>
                             <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-orangered"><i class="fab fa-google-plus-g"></i> GOOGLE</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-orchid"><i class="fab fa-instagram"></i> INSTAGRAM</button></a>
-                                <a href="#"><button class="btn background-oranger"><i class="fas fa-rss"></i>RSS</button></a>
+                                <a href="#"><button class="btn col-margin--bottom background-orangered"><i
+                                            class="fab fa-google-plus-g"></i> GOOGLE</button></a>
+                                <a href="#"><button class="btn col-margin--bottom background-orchid"><i
+                                            class="fab fa-instagram"></i> INSTAGRAM</button></a>
+                                <a href="#"><button class="btn background-oranger"><i
+                                            class="fas fa-rss"></i>RSS</button></a>
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="col-margin--bottom" style="  box-shadow: 0 19px 12px -7px rgba(0, 0, 0, 0.31)">
                         <a href="#">
-                            <img class="img" src="https://deothemes.com/envato/deus/html/img/content/placeholder_336.jpg" alt="placeholder" />
+                            <img class="img"
+                                src="https://deothemes.com/envato/deus/html/img/content/placeholder_336.jpg"
+                                alt="placeholder" />
 
                         </a>
                     </div>
@@ -183,7 +203,7 @@
                     <!-- recommended -->
                     @include('recommended')
                     <!-- end recommended -->
-               
+
                 </aside>
             </div>
         </div>
@@ -198,25 +218,29 @@
         </div>
         <div class="row">
             <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_1.jpg" alt="carousel post" />
+                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_1.jpg"
+                    alt="carousel post" />
                 <a class="text-title text-align--center" href="#">
                     <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
                 </a>
             </div>
             <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_2.jpg" alt="carousel post" />
+                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_2.jpg"
+                    alt="carousel post" />
                 <a class="text-title text-align--center" href="#">
                     <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
                 </a>
             </div>
             <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_3.jpg" alt="carousel post" />
+                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_3.jpg"
+                    alt="carousel post" />
                 <a class="text-title text-align--center" href="#">
                     <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
                 </a>
             </div>
             <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_4.jpg" alt="carousel post" />
+                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_4.jpg"
+                    alt="carousel post" />
                 <a class="text-title text-align--center" href="#">
                     <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
                 </a>
@@ -231,14 +255,16 @@
                 <div class="vertical_tiles"></div> {{$row_categorys->category_title}}
             </h2>
             @php
-            $data = new App\Post();
+            $data = new App\Models\Post();
             $post_all = $data::all();
-            $post_category = $data::where('category_id',$row_categorys->category_id)->orderBy('post_id', 'DESC')->take(1)->get();
-            $data_ct = new App\Category();
+            $post_category = $data::where('category_id',$row_categorys->category_id)->orderBy('post_id',
+            'DESC')->take(1)->get();
+            $data_ct = new App\Models\Category();
             $category_ct = $data_ct::where('category_branch',$row_categorys->category_id)->take(2)->get();
             @endphp
             @foreach($post_category as $row_post_category)
-            <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category->post_image}}" alt="image post" />
+            <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category->post_image}}"
+                alt="image post" />
             <a href="{{url('/post')}}/{{$row_post_category->post_slug}}/{{$row_post_category->post_id}}">
                 <h3>{{$row_post_category->post_title}}</h3>
             </a>
@@ -247,7 +273,8 @@
             @if($row_post_all->category_id ==$row_category_ct->category_id )
             <div class="row col-border-top">
                 <div class="col-4">
-                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}" alt="image post" />
+                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}"
+                        alt="image post" />
                 </div>
                 <div class="col-8">
                     <a href="{{url('/post')}}/{{$row_post_all->post_slug}}/{{$row_post_all->post_id}}">
@@ -268,7 +295,7 @@
         @endforeach
     </section>
     <div class="clearfix col-margin--bottom"></div>
-    
+
 </main>
 
 @endsection

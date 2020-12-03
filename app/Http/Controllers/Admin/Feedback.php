@@ -1,17 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Feedback;
+use App\Http\Controllers\Controller;
+use App\Models\Feedback as Feedbacks;
 use Illuminate\Support\Facades\Auth;
-class FeedbackController extends Controller
+use Illuminate\Support\Facades\App;
+
+class Feedback extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $role_user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->role_user = Auth::user()->role_user;
+            if ($this->role_user == 0) {
+                App::abort(404);
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         return view('admin.feedback.index');
@@ -24,19 +35,19 @@ class FeedbackController extends Controller
      */
     public function create_feedback(Request $request)
     {
-           $request->validate([
+        $request->validate([
             'feedback_title' => 'required|min:5',
             'feedback_content' => 'required|min:10',
-          
+
 
         ]);
-        $feedback = new Feedback();
-        $feedback->user_id= Auth::user()->id;
-        $feedback->feedback_title= $request->feedback_title;
-        $feedback->feedback_content= $request->feedback_content;
-        $feedback->feedback_status=0;
+        $feedback = new Feedbacks();
+        $feedback->user_id = Auth::user()->id;
+        $feedback->feedback_title = $request->feedback_title;
+        $feedback->feedback_content = $request->feedback_content;
+        $feedback->feedback_status = 0;
         $feedback->save();
-        return redirect(url('user/successful'))->with('status','Cám ơn bạn đã đóng góp ý kiến.');;
+        return redirect(url('user/successful'))->with('status', 'Cám ơn bạn đã đóng góp ý kiến.');;
     }
 
     /**
@@ -46,14 +57,13 @@ class FeedbackController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
-    {      
-            $keyword = $request->keyword;
-            if($keyword == null or $keyword == " "){
-    
-            }else{
-                $search_results = Feedback::where('feedback_title','like','%'.$keyword.'%')->get();    
-                return view('admin.feedback.search_results',compact('search_results'));
-            }  
+    {
+        $keyword = $request->keyword;
+        if ($keyword == null or $keyword == " ") {
+        } else {
+            $search_results = Feedbacks::where('feedback_title', 'like', '%' . $keyword . '%')->get();
+            return view('admin.feedback.search_results', compact('search_results'));
+        }
     }
 
     /**
@@ -64,11 +74,11 @@ class FeedbackController extends Controller
      */
     public function detail_feedback($id)
     {
-       $data = Feedback::findOrFail($id);
-       $feedback = Feedback::find($id);
-       $feedback->feedback_status=1;
-       $feedback->save();
-       return view('admin.feedback.detail_feedback',compact('data'));
+        $data = Feedbacks::findOrFail($id);
+        $feedback = Feedbacks::find($id);
+        $feedback->feedback_status = 1;
+        $feedback->save();
+        return view('admin.feedback.detail_feedback', compact('data'));
     }
 
     /**

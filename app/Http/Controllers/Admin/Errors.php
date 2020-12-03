@@ -1,18 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Error;
+use App\Http\Controllers\Controller;
+use App\Models\Error;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
-class ErrorController extends Controller
+class Errors extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $role_user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->role_user = Auth::user()->role_user;
+            if ($this->role_user == 0) {
+                App::abort(404);
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         return view('admin.error.index');
@@ -39,7 +49,7 @@ class ErrorController extends Controller
         $error->error_content = $request->error_content;
         $error->error_status = 0;
         $error->save();
-        return redirect(url('user/successful'))->with('status','Cám ơn bạn đã báo lỗi ! Chúng tôi sẽ tìm cách nhanh nhất để fix nó');
+        return redirect(url('user/successful'))->with('status', 'Cám ơn bạn đã báo lỗi ! Chúng tôi sẽ tìm cách nhanh nhất để fix nó');
     }
 
     /**

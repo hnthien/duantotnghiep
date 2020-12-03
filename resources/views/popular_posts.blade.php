@@ -1,7 +1,8 @@
 @php
 $dtt = new Illuminate\Support\Carbon;
-$post = new App\Post();
-$popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(7),$dt = $dtt::now()])->orderBy('post_view','DESC')->take(8)->get();
+$post = new App\Models\Post();
+$popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(7),$dt =
+$dtt::now()])->orderBy('post_view','DESC')->take(8)->get();
 $user = new App\User();
 $data_user = $user::all();
 @endphp
@@ -13,7 +14,7 @@ $data_user = $user::all();
     @foreach($popular_post as $row_post)
     <div class="row ">
         <div style="margin-left: 0px;" class="col-3">
-            <img class="img "  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+            <img class="img " src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
         </div>
         <div class="col-9">
             <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
@@ -29,7 +30,8 @@ $data_user = $user::all();
                     @endforeach
                 </li>
                 <li>
-                @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,0,10) ; @endphp
+                    @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo
+                    substr($row_post->created_at ,0,10) ; @endphp
                 </li>
             </ul>
         </div>
