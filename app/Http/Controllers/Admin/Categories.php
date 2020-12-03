@@ -36,8 +36,13 @@ class Categories extends Controller
     }
     public function new_category_branch($category_id)
     {
-        $categorys = Category::find($category_id);
-        return view('admin.category.new_category_branch', compact('categorys'));
+        if ($category_id) {
+            $categorys = Category::find($category_id);
+            if ($categorys != null) {
+                return view('admin.category.new_category_branch', compact('categorys'));
+            }
+        }
+        abort(404);
     }
 
     public function create_category(Request $request)
@@ -60,9 +65,13 @@ class Categories extends Controller
     public function create_category_branch(Request $request, $category_id)
     {
         if ($category_id) {
+            $message = [
+                'category_title.required' => 'Vui lòng nhập tên thể loại'
+            ];
+
             $request->validate([
                 'category_title' => 'required',
-            ]);
+            ], $message);
 
             $category_name = Category::where('category_title', $request->category_title)->get();
 

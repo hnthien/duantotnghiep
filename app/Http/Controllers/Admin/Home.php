@@ -30,16 +30,12 @@ class Home extends Controller
 
     public function index()
     {
-        if (Auth::user()->role_user == 0) {
-            return redirect(url('/'));
-        } else {
-            $category = ModelsCategory::all();
-            $feedback = Feedback::all();
-            $error = Error::all();
-            $user = User::all();
-            $post_all =  Post::all();
-            $post =  Post::orderBy('post_id', 'DESC')->take(6)->get();
-            return view('admin.index', compact('post', 'post_all', 'category', 'user', 'feedback', 'error'));
-        }
+        $category = ModelsCategory::all();
+        $feedback = Feedback::all();
+        $error = Error::all();
+        $user = User::all();
+        $post_all =  Post::all();
+        $post =  Post::orderBy('post_id', 'DESC')->take(6)->get();
+        return view('admin.index', compact('post', 'post_all', 'category', 'user', 'feedback', 'error'));
     }
 }

@@ -28,11 +28,6 @@ class Errors extends Controller
         return view('admin.error.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create_error(Request $request)
     {
         $request->validate([
@@ -52,12 +47,6 @@ class Errors extends Controller
         return redirect(url('user/successful'))->with('status', 'Cám ơn bạn đã báo lỗi ! Chúng tôi sẽ tìm cách nhanh nhất để fix nó');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function search(Request $request)
     {
         $keyword = $request->keyword;
@@ -68,53 +57,17 @@ class Errors extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function detail_error($id)
     {
-        $data = Error::findOrFail($id);
-        $error = Error::find($id);
-        $error->error_status = 1;
-        $error->save();
-        return view('admin.error.detail_error', compact('data'));
-    }
+        if ($id) {
+            $error = Error::find($id);
+            if ($error != null) {
+                $error->error_status = 1;
+                $error->save();
+                return view('admin.error.detail_error', compact('data'));
+            }
+        }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        abort(404);
     }
 }

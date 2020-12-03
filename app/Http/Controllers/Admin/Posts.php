@@ -53,11 +53,6 @@ class Posts extends Controller
         return view('admin.post.is_not_approved', compact('posts', 'category', 'user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function new_post()
     {
         $categorys_branch = Category::all();
@@ -65,49 +60,49 @@ class Posts extends Controller
         return view('admin.post.new_post', compact('categorys', 'categorys_branch'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function create_post(Request $request)
     {
+
+        $message = [
+            'post_title.required' => 'Vui lòng nhập tiêu đề',
+            'category_id.required' => 'Vui lòng chọn thể loại',
+            'post_slug.required' => 'Url không được để trống',
+            'post_intro.required' => 'Vui lòng nhập mô tả ngắn',
+            'post_image.required' => 'Vui lòng chọn ảnh',
+            'post_image.image' => 'Vui lòng chọn đúng định dạng ảnh',
+            'post_tag.required' => 'Nhập 1 ít thẻ tag',
+            'post_content.required' => 'Vui lòng nhập nội dung'
+        ];
 
         $request->validate([
             'post_title' => 'required',
             'category_id' => 'required',
-            'post_slug' => 'required',
-            'post_intro' => 'required',
-            'post_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'post_tag' => 'required',
+            'post_slug' => 'required|max:255',
+            'post_intro' => 'required|max:1000',
+            'post_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'post_tag' => 'required|max:1000',
             'post_content' => 'required',
 
-        ]);
-        $posts = new Post();
-        $posts->post_title = $request->post_title;
+        ], $message);
 
-        $posts->category_id = $request->category_id;
-        $posts->user_id = Auth::user()->id;
-        $posts->post_slug = $request->post_slug;
-
-        if ($request->post_status == 1) {
-            $posts->post_status = $request->post_status;
-        } else {
-            $posts->post_status = 0;
-        }
-
-        $posts->censor_status = 0;
-        $posts->post_view = 0;
-        $posts->post_intro = $request->post_intro;
         $file = $request->file('post_image');
-        $posts['post_image'] = $file->getClientOriginalName();
         $file->move(public_path('images/post_image'), $file->getClientOriginalName());
-        $posts->post_tag = preg_split('/,/', $request->post_tag);
-        $posts->post_content = $request->post_content;
-        $posts->save();
 
-        return redirect()->action('PostController@index');
+        Post::create([
+            'user_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'post_status' => $request->post_status,
+            'censor_status' => 0,
+            'post_title' => $request->post_title,
+            'post_slug' => $request->post_slug,
+            'post_tag' => preg_split('/,/', $request->post_tag),
+            'post_intro' => $request->post_intro,
+            'post_image' => $file->getClientOriginalName(),
+            'post_content' => $request->post_content,
+            'post_view' => 0,
+        ]);
+
+        return redirect()->action('Admin\Posts@index');
     }
 
     public function create_posts()
@@ -116,12 +111,6 @@ class Posts extends Controller
         return view('admin.post.new_post', compact('categorys'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function url(Request $request)
     {
         $categoryname = $request->post_title;
@@ -131,12 +120,6 @@ class Posts extends Controller
         return response()->json(['slug' => $slug]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($post_slug, $id)
     {
         $categorys_branch = Category::all();
@@ -145,13 +128,6 @@ class Posts extends Controller
         return view('admin.post.edit', compact('post', 'categorys', 'categorys_branch'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $post_id)
     {
         $request->validate([
@@ -183,20 +159,14 @@ class Posts extends Controller
         $posts->post_tag = preg_split('/,/', $request->post_tag);;
         $posts->post_content = $request->post_content;
         $posts->save();
-        return redirect()->action('PostController@index');
+        return redirect()->action('Admin\Posts@index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function delete($id)
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect()->action('PostController@index');
+        return redirect()->action('Admin\Posts@index');
     }
     public function search(Request $request)
     {
