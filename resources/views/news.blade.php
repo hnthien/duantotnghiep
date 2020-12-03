@@ -9,22 +9,16 @@
             @foreach($categorys_branch as $category)
             @if($post->category_id == $category->category_id)
             @foreach($categorys as $row_category)
-            @php
-            $slug = Str::slug($row_category->category_title,'-');
-            @endphp
             @if($category->category_branch == $row_category->category_id )
-            <li class="color-red text-bold"> <a href="{{url('/category/')}}/{{$slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a> <i class="fas fa-angle-right"></i> </li>
+            <li class="color-red text-bold"> <a href="{{url('/category/')}}/{{$row_category->category_slug}}/{{$row_category->category_id}}">{{$row_category->category_title}}</a> <i class="fas fa-angle-right"></i> </li>
             @endif
             @endforeach
             @endif
             @endforeach
             <li class="color-red text-bold">
                 @foreach($categorys_branch as $category)
-                @php
-                $slug = Str::slug($category->category_title,'-');
-                @endphp
                 @if($post->category_id == $category->category_id)
-                <a href="{{url('/category/')}}/{{$slug}}/{{$category->category_id}}">{{$category->category_title}}</a>
+                <a href="{{url('/category/')}}/{{$category->category_slug}}/{{$category->category_id}}">{{$category->category_title}}</a>
                 @endif
                 @endforeach
             </li>
@@ -40,22 +34,17 @@
                             @foreach($categorys_branch as $category)
                             @if($post->category_id == $category->category_id)
                             @foreach($categorys as $row_category)
-                            @php
-                            $slug = Str::slug($row_category->category_title,'-');
-                            @endphp
+                           
                             @if($category->category_branch == $row_category->category_id )
-                            <a href="{{url('/category')}}/{{$slug}}/{{$row_category->category_id}}"><button class="col-border-categorys_title">{{$row_category->category_title}}</button></a>
+                            <a href="{{url('/category')}}/{{$row_category->category_slug}}/{{$row_category->category_id}}"><button class="col-border-categorys_title">{{$row_category->category_title}}</button></a>
                             @endif
                             @endforeach
                             @endif
                             @endforeach
                             <!--  -->
                             @foreach($categorys_branch as $category)
-                            @php
-                            $slug = Str::slug($category->category_title,'-');
-                            @endphp
                             @if($post->category_id == $category->category_id)
-                            <a href="{{url('/category')}}/{{$slug}}/{{$category->category_id}}"><button class="col-border-categorys">{{$category->category_title}}</button></a>
+                            <a href="{{url('/category')}}/{{$category->category_slug}}/{{$category->category_id}}"><button class="col-border-categorys">{{$category->category_title}}</button></a>
                             @endif
                             @endforeach
 
@@ -69,8 +58,11 @@
                                         <span>by</span>
 
                                         @foreach($user as $row_user)
+                                        @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                                         @if($row_user->id == $post->user_id)
-                                        <a href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                                        <a href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                         @endif
                                         @endforeach
 

@@ -28,6 +28,9 @@ foreach($post_author as $row_data_post)
                         </div>
                     </div>
                     @foreach($post_author as $row_post)
+                    @php
+                    $slug = Str::slug($user_author->name, '-');
+                    @endphp
                     <div style="padding: 5px;" class="row popular-post ">
                         <div class="col-4 col-position ">
                             <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
@@ -40,7 +43,7 @@ foreach($post_author as $row_data_post)
                             <ul class="list-horizontal font-size-13">
                                 <li>
                                     <span>by</span>
-                                    <a style="text-transform: capitalize" href="#">{{$user_author->name}}</a>
+                                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$user_author->id}}">{{$user_author->name}}</a>
                                 </li>
                                 <li>
                                     @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp

@@ -1,6 +1,24 @@
 @extends('layouts.admin')
 @section('admin','Quản lý chủ đề -T20 News ')
 @section('content')
+<script>
+    $(document).ready(function() {
+        $('#category_title').keyup(function() {
+            var category_title = $('#category_title').val();
+            $.ajax({
+                url: "{{url('admin/category/url')}}",
+                type: "get",
+                data: {
+                    category_title: category_title
+                },
+                success: function(res) {
+                    $('#category_slug').val(res.slug);
+                }
+            })
+
+        })
+    })
+</script>
 <main >
     <section class="section ">
     <div class="col-margin--bottom">
@@ -14,8 +32,12 @@
             <div class="popular-post col-padding">
             <h2 >Thuộc chủ đề: {{$categorys->category_title}}</h2>
                     <h3>Tên chủ đề:</h3>
-                    <input class="input" type="text" name="category_title"/>
+                    <input class="input" type="text" name="category_title" id="category_title"/>
                     <span  class="text-danger"><b>{{ $errors->first('category_title') }}</b></span>
+                    <h3>Url:</h3>
+                    <input class="input" type="text" name="category_slug" id="category_slug" value="{{ old('category_slug') }}"/>
+                    <span  class="text-danger"><b>{{ $errors->first('category_slug') }}</b></span>
+
                     <h3>Intro:</h3>
                     <input class="input" type="text" name="category_intro"/>
                    

@@ -132,12 +132,13 @@ Route::group(['prefix' => 'admin'], function () {
     //category
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', 'CategoryController@index');
+        Route::get('/url', 'CategoryController@url');
         Route::get('/new_category', 'CategoryController@new_category');
         Route::post('/create_category', 'CategoryController@create_category');
         Route::get('/new_category_branch/{id}', 'CategoryController@new_category_branch');
         Route::post('/create_category_branch/{id}', 'CategoryController@create_category_branch');
-        Route::get('/edit/{id}', 'CategoryController@edit');
-        Route::post('/update/{id}', 'CategoryController@update');
+        Route::get('/edit/{slug}/{id}', 'CategoryController@edit');
+        Route::post('/update/{slug}/{id}', 'CategoryController@update');
         Route::get('/delete/{id}', 'CategoryController@delete');
     });
     // comment
@@ -146,7 +147,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/detail_comment/{id}', 'CommentController@detail_comment');
         Route::get('/delete_branch/{id}', 'CommentController@delete');
         Route::get('/report/{id}', 'CommentController@report');
-        Route::get('/hidden/{nur}/{id}', 'CommentController@display_none');
+        Route::get('/hidden/{nur}/{id}', 'CommentController@hidden');
         Route::get('/comment_view/{id}', 'CommentController@comment_view');
         Route::post('/create_comment', 'CommentController@create_comment');
         Route::post('/create_comment_branch/{id}', 'CommentController@create_comment_branch');
@@ -156,6 +157,7 @@ Route::group(['prefix' => 'admin'], function () {
      Route::group(['prefix' => 'report'], function () {
         Route::get('/', 'ReportController@index');
         Route::get('/create_report/{id}', 'ReportController@create_report');
+        Route::get('/hidden/{nur}/{id}/{idd}', 'CommentController@hidden');
         
        
     });
@@ -196,11 +198,8 @@ Route::group(['prefix' => 'post'], function () {
 });
 // category client
 Route::group(['prefix' => 'category'], function () {
-    Route::get('/{category_title}/{id}', 'PostController@view_post_category');
+    Route::get('/{category_slug}/{id}', 'PostController@view_post_category');
 });
-// Route::group(['prefix' => 'category_branch'], function () {
-//     Route::get('/{category_title}/{id}', 'PostController@view_post_category_branch');
-// });
 
 // post like
 Route::group(['prefix' => 'post_like'], function () {
@@ -208,17 +207,6 @@ Route::group(['prefix' => 'post_like'], function () {
     Route::get('/{id}', 'PostLikeController@view_like');
 });
 // index
-Route::get('/', function () {
-    
-    $popular_post = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(3)->take(5)->get();
-    $popular_post1 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->take(1)->get();
-    $popular_post2 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(1)->take(2)->get();
-    $category = Category::all();
-    $category_p = Category::where('category_branch',0)->take(12)->get();
-    $user = User::all();
-    $post =  Post::where('post_status',2)->orderBy('post_id', 'DESC')->take(30)->get();
-    return view('index', compact('post', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
-});
-
+Route::get('/', 'PostController@home');
 Route::get('posts/searchs/{tag}', 'PostController@search_posts_tag');
 

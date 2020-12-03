@@ -54,7 +54,7 @@
 
                         </td>
                         <td class="col-1 ">
-                            <a href="{{url('admin/category/edit')}}/{{ $row_branch->category_id}}">
+                            <a href="{{url('admin/category/edit')}}/{{ $row_branch->category_slug}}/{{ $row_branch->category_id}}">
                                 <button class="btn-admin background-blue">
                                     <i class="fas fa-edit"></i>
                                 </button>
@@ -79,7 +79,7 @@
 
                 </td>
                 <td class="col-1 ">
-                    <a href="{{url('admin/category/edit')}}/{{ $row->category_id}}">
+                    <a href="{{url('admin/category/edit')}}/{{ $row->category_slug}}/{{ $row->category_id}}">
                         <button class="btn-admin background-blue">
                             <i class="fas fa-edit"></i>
                         </button>

@@ -117,9 +117,9 @@ class PostController extends Controller
      */
     public function url(Request $request)
     {
-        $categoryname = $request->post_title;
+        $post_slug = $request->post_title;
 
-        $slug = Str::slug($categoryname, '-');
+        $slug = Str::slug($post_slug, '-');
 
         return response()->json(['slug' => $slug]);
     }
@@ -215,6 +215,8 @@ class PostController extends Controller
     // view post
     public function view_post($post_slug, $id)
     {
+        $check = Post::where('post_id',$id)->where('post_slug',$post_slug)->first();
+        if(!empty($check)){
         $categorys_branch = Category::all();
         $comments = Comment::where('comment_branch', 0)->where('post_id', $id)->get();
         $categorys = Category::where('category_branch', 0)->get();
@@ -243,17 +245,24 @@ class PostController extends Controller
         
 
         return view('news', compact('post', 'user', 'categorys_branch', 'categorys', 'date','comments'));
-
+    }else {
+        return abort(404);
     }
-    public function view_post_category($category_title, $id)
+    }
+    public function view_post_category($category_slug, $id)
     {
+        $check = Category::where('category_id',$id)->where('category_slug',$category_slug)->first();
+        if(!empty($check)){
 
-        $user = User::all();
-        $categorys = Category::find($id);
-        $category_branch = Category::all();
-        $post_categoryt = Post::where('category_id', $id)->orderBy('post_id', 'DESC')->paginate(10);
-        return view('catergories', compact('post_categoryt', 'categorys', 'user', 'category_branch',));
-    }
+            $user = User::all();
+            $categorys = Category::find($id);
+            $category_branch = Category::all();
+            $post_categoryt = Post::where('category_id', $id)->orderBy('post_id', 'DESC')->paginate(10);
+            return view('catergories', compact('post_categoryt', 'categorys', 'user', 'category_branch',));
+          }else {
+             return abort(404);
+         }
+           }
     //   search_post
 
     public function search_post(Request $request)
@@ -281,5 +290,17 @@ class PostController extends Controller
         $user = User::all();
         $search_results = Post::orderBy('post_id', 'DESC')->get();
         return view('search_tag', compact('search_results', 'user', 'keyword'));
+    }
+    public function home(Request $request)
+    {
+        $popular_post = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(3)->take(5)->get();
+        $popular_post1 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->take(1)->get();
+        $popular_post2 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(1)->take(2)->get();
+        $category = Category::all();
+        $category_p = Category::where('category_branch',0)->take(12)->get();
+        $user = User::all();
+        $post =  Post::where('post_status',2)->orderBy('post_id', 'DESC')->take(30)->get();
+        return view('index', compact('post', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
+    
     }
 }

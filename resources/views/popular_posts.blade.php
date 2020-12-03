@@ -23,8 +23,11 @@ $data_user = $user::all();
                 <li>
                     <span>by</span>
                     @foreach($data_user as $row_user)
+                    @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                     @if($row_user->id == $row_post->user_id)
-                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                     @endif
                     @endforeach
                 </li>

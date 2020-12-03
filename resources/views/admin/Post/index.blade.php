@@ -83,9 +83,11 @@
                     <th>Ảnh</th>
                     <th>Tiêu đề</th>
                     <th>Giới thiệu</th>
-                    <th style="width:100px;text-align: center;">Chủ đề</th>
-                    <th style="width:100px;text-align: center;">Người viết</th>
+                    <th>Chủ đề</th>
+                    <th>Tác giả</th>
+                    <th>Phê duyệt</th>
                     <th style="width:80px;text-align: center;">Date</th>
+                    <th>View</th>
                     <th>Status</th>
                     <th>Delete</th>
                     <th>Update</th>
@@ -117,8 +119,18 @@
                         @endif
                         @endforeach
                     </td>
+                    <td>
+                        @foreach($user as $row1)
+                        @if($row1->id == $p->censor_id)
+                        {{$row1->name}}
+                        @endif
+                        @endforeach
+                    </td>
                     <td style="font-size: 14px;">
                         <p> @php echo substr($p->created_at ,10,3).':'.substr($p->created_at ,14,2).'<br>'; echo substr($p->created_at ,0,10) ; @endphp</p>
+                    </td>
+                    <td>
+                    {{$p->post_view}}
                     </td>
                     <td>
                         @if($p->post_status ==1 )

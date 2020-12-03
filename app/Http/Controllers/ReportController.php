@@ -45,6 +45,17 @@ class ReportController extends Controller
             return back()->with('report','Bạn đã báo cáo bình luận này , Chúng tôi sẽ tiến hành xử lí bình luận vi phạm này !');  
         }
     }
+    public function hidden($nur, $id, $idd)
+    { 
+        $comment = Comment::find($id);
+        $comment->comment_status = $nur;
+        $comment->save();
+        $comment_report = Comment_report::find($idd);
+        $comment_report->comment_report_status = $nur;
+        $comment_report->save();
+        
+        return back();
+    }
 
     /**
      * Store a newly created resource in storage.

@@ -1,14 +1,12 @@
 @extends('layouts.client')
 @section('client',$categorys->category_title)
 @section('content')
-@php
-$slug = Str::slug($categorys->category_title,'-');
-@endphp
+
 <main class="content col-margin--top col-padding ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
             <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
-            <li><a href="{{url('/category/')}}/{{$slug}}/{{$categorys->category_id}}">{{$categorys->category_title}}</a></li>
+            <li><a href="{{url('/category/')}}/{{$categorys->category_slug}}/{{$categorys->category_id}}">{{$categorys->category_title}}</a></li>
         </ul>
     </div>
     <section class="section">
@@ -18,11 +16,9 @@ $slug = Str::slug($categorys->category_title,'-');
                     <div>
                         <h1 class="col-12 col-margin-left" style="font-size: 30px;text-transform: uppercase;margin-left: 0px;">{{$categorys->category_title}}</h1>
                         @foreach($category_branch as $row_category_branch)
-                        @php
-                        $slug = Str::slug($row_category_branch->category_title,'-');
-                        @endphp
+                      
                         @if($row_category_branch->category_branch == $categorys->category_id)
-                        <a href="{{url('/category/')}}/{{$slug}}/{{$row_category_branch->category_id}}"><button class="col-border-categorys">{{$row_category_branch->category_title}}</button></a>
+                        <a href="{{url('/category/')}}/{{$row_category_branch->category_slug}}/{{$row_category_branch->category_id}}"><button class="col-border-categorys">{{$row_category_branch->category_title}}</button></a>
                         @endif
                         @endforeach
                     </div>
@@ -95,10 +91,13 @@ $slug = Str::slug($categorys->category_title,'-');
                                 <li>
                                     <span>by</span>
                                     @foreach($user as $row_user)
+                                    @php
+                                        $slug = Str::slug($row_user->name, '-');
+                                        @endphp
                                     @if($row_user->id == $row_post->user_id)
 
 
-                                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$row_user->name}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                                    <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
 
                                     @endif
                                     @endforeach
@@ -140,7 +139,9 @@ $slug = Str::slug($categorys->category_title,'-');
                             </div>
                         </div>
                     </div>
-
+ <!-- recommended -->
+ @include('recommended')
+                    <!-- end recommended -->
                 </aside>
             </div>
         </div>
