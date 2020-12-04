@@ -67,13 +67,13 @@
         </div>
     </div>
     <div class="row">
-        <header class=" col-margin--none col-2">
+        <header class=" col-margin--none">
          @include('admin.header');
 
         </header>
 
 
-        <div style="margin-top:65px" class="col-10 col-padding">
+        <div style="margin-top:65px;padding-left:235px; box-sizing: border-box;" class="col-12 col-padding">
             @yield('content')
         </div>
     </div>

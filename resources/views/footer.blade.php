@@ -23,7 +23,7 @@
             <div style="background: none;" class="col-4 post">            
                 <h2 class="text-color-white">Tin mới nhất</h2>
                 @php 
-                $post = new App\Post();
+                $post = new App\Models\Post();
                 $data_post = $post->orderBy('post_id','DESC')->take(2)->get();
                 $user = new App\User();
                 $data_user = $user::all();

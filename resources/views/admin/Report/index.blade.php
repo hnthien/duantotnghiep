@@ -19,6 +19,7 @@
             <th>Nội dung bình luận</th>
             <th>Người Vi Phạm</th>
             <th>Người Gửi</th>
+            <th>Thời gian</th>
             <th>Hành động</th>
            
         </tr>
@@ -59,7 +60,11 @@
             {{$row_user->name}} 
             @endif
             @endforeach</td>
-            
+            <td>
+            <p>@php echo substr($row_comment_report->created_at ,0,10) @endphp</p>
+                        <p> @php echo substr($row_comment_report->created_at ,10,3).' giờ : '.substr($row_comment_report->created_at ,14,2).' phút' @endphp</p>
+
+            </td>
             @foreach($comments as $row_comments)
             @if($row_comment_report->comment_id ==  $row_comments->comment_id )
             @if($row_comments->comment_status == 0)

@@ -67,7 +67,7 @@
                                     <!-- Respuestas de los comentarios -->
                                     <ul class="comments-list reply-list ">
                                         @php
-                                        $comment_branch = new App\Comment();
+                                        $comment_branch = new App\Models\Comment();
                                         $data_comment_branch = $comment_branch->where('comment_branch',$cmt->comment_id)->where('comment_status',0)->orderBy('comment_id', 'DESC')->take(5)->get()
                                         @endphp
                                         @foreach($data_comment_branch as $row_comment_branch)
@@ -100,7 +100,9 @@
                                                         $dateb = $dt->diffForHumans($now);
                                                         @endphp
                                                         <span>{{$dateb}}</span>
-
+                                                        <a href="{{url('admin/report/create_report')}}/{{$row_comment_branch->comment_id}}">
+                                                        <button onclick="return window.confirm('Bạn có chắc chắn bình luận này vi phạm Tiêu chuẩn cộng đồng và muốn Báo cáo?');" class="col-margin-left col-border--none color-red">Báo cáo vi phạm</button>
+                                                        <a/>
                                                     </div>
                                                     <div class="comment-content">
                                                         {{$row_comment_branch->comment_content}}
@@ -120,7 +122,7 @@
                         var post_id = $('#post_id').val();
                        
                         $.ajax({
-                            url: "{{url('admin/comment/create_comment_branch')}}/{{$cmt->comment_id}}",
+                            url: "{{url('comment/create_comment_branch')}}/{{$cmt->comment_id}}",
                             cache: false,
                             type: "post",
                             data: {
@@ -130,7 +132,7 @@
                             },
                             success: function(data) {                             
                                  $('#comment_contentt').val("");                     
-                                 $('#comment_view').load("{{url('admin/comment/comment_view')}}/{{$post->post_id}}"); 
+                                 $('#comment_view').load("{{url('comment/comment_view')}}/{{$post->post_id}}"); 
                             },
                            
                         })
@@ -144,7 +146,7 @@
                                     @if (Auth::check())
                                     <div class="bl" id="bl{{$cmt->comment_id}}"> 
                                        <div style="margin-left:40px; box-sizing: border-box;">
-                                            <form   id="form_comment_branch{{$cmt->comment_id}}" action="{{url('admin/comment/create_comment_branch')}}/{{$cmt->comment_id}}" method="post">
+                                            <form   id="form_comment_branch{{$cmt->comment_id}}" action="{{url('comment/create_comment_branch')}}/{{$cmt->comment_id}}" method="post">
                                                 @csrf                                                   
                                                         <input id="comment_contentt" name="comment_contentt" class="input" placeholder="Nhập bình luận..." />
                                                         <input id="post_id" type=hidden name="post_id" value="{{$post->post_id}}" />

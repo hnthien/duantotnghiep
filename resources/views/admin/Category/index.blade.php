@@ -1,11 +1,7 @@
-@extends('layouts.admin') @section('admin','Quản lý chủ đề - T20 News')
+@extends('layouts.admin') 
+@section('admin','Quản lý chủ đề - T20 News')
 @section('content')
 
-<script>
-    function myFunction() {
-        alert("Bạn có muốn xóa!!");
-    }
-</script>
 <main>
 
     <section>
@@ -28,9 +24,9 @@
         <table class="popular-post col-padding">
             <tr>
                 <th>Id</th>
-                <th>Tên Chủ Đề</th>
-                <th>Chủ đề con</th>
-                <th style="width:140px">Danh mục con</th>
+                <th>Danh mục</th>
+                <th>Danh mục con</th>
+                <th style="width:140px">Thêm Danh mục con</th>
                 <th>Xóa</th>
                 <th>Sửa</th>
             </tr>

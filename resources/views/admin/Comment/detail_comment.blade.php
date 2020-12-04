@@ -78,7 +78,7 @@
                                     <!-- Respuestas de los comentarios -->
                                     <ul class="comments-list reply-list ">
                                         @php
-                                        $comment_branch = new App\Comment();
+                                        $comment_branch = new App\Models\Comment();
                                         $data_comment_branch = $comment_branch->where('comment_branch',$cmt->comment_id)->orderBy('comment_id', 'DESC')->get()
                                         @endphp
                                         @foreach($data_comment_branch as $row_comment_branch)
@@ -237,7 +237,7 @@
                                     <!-- Respuestas de los comentarios -->
                                     <ul class="comments-list reply-list ">
                                         @php
-                                        $comment_branch = new App\Comment();
+                                        $comment_branch = new App\Models\Comment();
                                         $data_comment_branch = $comment_branch->where('comment_branch',$cmt->comment_id)->orderBy('comment_id', 'DESC')->get()
                                         @endphp
                                         @foreach($data_comment_branch as $row_comment_branch)

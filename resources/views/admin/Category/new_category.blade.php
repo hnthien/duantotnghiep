@@ -34,6 +34,9 @@
                     <h3>Tên Chủ Đề:</h3>
                     <input class="input" type="text" name="category_title" id="category_title" value="{{ old('category_title') }}"/>
                     <span  class="text-danger"><b>{{ $errors->first('category_title') }}</b></span>
+                    @if (session('error'))                    
+                    <span  class="text-danger">{{ session('error') }}</span>
+                    @endif
                     <h3>Url:</h3>
                     <input class="input" type="text" name="category_slug" id="category_slug" value="{{ old('category_slug') }}"/>
                     <span  class="text-danger"><b>{{ $errors->first('category_slug') }}</b></span>

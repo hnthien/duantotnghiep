@@ -176,7 +176,7 @@
                     </li>
 
                     @php
-                    $category = new App\Category();
+                    $category = new App\Models\Category();
                     $data = $category->where('category_branch',0)->take(6)->get();
                     @endphp
                     @foreach($data as $row_category)
@@ -205,7 +205,7 @@
             <div style=" margin-bottom: 0px;" class="col-1"></div>
             <ul class="col-10 list_category__li">
                 @php
-                $category = new App\Category();
+                $category = new App\Models\Category();
                 $data = $category->where('category_branch',0)->take(12)->get();
                 $data_branch = $category->all();
                 @endphp
@@ -234,15 +234,19 @@
     </div>
 </div>
 
-
+                    @if (session('status'))
+                    <script>
+                    alert("{{ session('status') }}");
+                    </script>               
+                    @endif   
 
 <!-- feedback -->
 <div class="col-position">
     <div class="feedback_box " id="feedback_box">
-        <div class="row col-margin--top">
+        <div class="row box-margin--top">
             <div class="col-4"></div>
             <div class="col-4 col-padding ">
-                <div style="height: 600px;" class="popular-post col-position col-padding--bottom col-padding--top">
+                <div   class="popular-post col-position col-padding--bottom col-padding--top">
                     <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                     <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data" class="form col-padding">
                         @csrf
@@ -292,10 +296,10 @@
 </div>
 <div class="col-position">
     <div class="error_box " id="error_box">
-        <div class="row col-margin--top">
+        <div class="row box-margin--top">
             <div class="col-4"></div>
             <div class="col-4 col-padding">
-                <div style="height: 600px;" class="popular-post col-position col-padding--bottom col-padding--top">
+                <div   class="popular-post col-position col-padding--bottom col-padding--top">
                     <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                     <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data" class="form col-padding">
                         @csrf

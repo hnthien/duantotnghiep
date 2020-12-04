@@ -107,7 +107,7 @@
                 @include('ckfinder::setup')
                 <span class="text-danger"><b>{{ $errors->first('post_content') }}</b></span>
                 <br>
-                <input type="checkbox" name="post_status" class="selectbox" value="1" />Lưu bản nháp             
+                <input type="checkbox" name="post_status" id="checked-changes" class="selectbox" value="" />Lưu bản nháp            
             </div>
             <br>
             <div class="row col-4">
@@ -119,4 +119,15 @@
 
     </section>
 </main>
+<script>
+    let checked = $("#checked-changes").val(this.checked);
+        $("#checked-changes").change(function(e){            
+            e.preventDefault();
+            if(this.checked){
+                checked.val(1);
+            }else{
+                checked.val(0);
+            }
+        });
+</script>
 @endsection

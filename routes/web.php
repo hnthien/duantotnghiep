@@ -1,18 +1,8 @@
 <?php
 
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
-use App\Post;
-use App\Category;
-use App\Comment;
-use App\Feedback;
-use App\User;
-use App\Error;
-use Illuminate\Support\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,40 +36,7 @@ Route::get('/account', function () {
 Route::get('/404', function () {
     return view('404');
 });
-//admin
-Route::get('/admin', function () {
-    if (Auth::check()) {
-        if (Auth::user()->role_user == 0) {
-            return redirect(url('/'));
-        } else {
-            $category = Category::all();
-            $feedback = Feedback::all();
-            $error = Error::all();
-            $user = User::all();
-            $post_all =  Post::all();
-            $post =  Post::orderBy('post_id', 'DESC')->take(6)->get();
-            return view('admin.index', compact('post','post_all', 'category', 'user', 'feedback', 'error'));
-        }
-    } else {
-        return redirect(url('/login'));
-    }
-});
-//news
 
-//comment
-Route::get('/comment', function () {
-    return view('admin.comment.index');
-});
-
-
-
-
-
-
-Route::get('/report/detail_report', function () {
-    return view('admin.report.detail_report');
-});
-//error
 
 
 Auth::routes();
@@ -89,75 +46,71 @@ Route::get('/home', function () {
     return view('home');
 });
 // phần ngon phần này làm ngon nên đừng đụng vào với lại nếu làm ở phần admin thêm vào đây
-Route::group(['prefix' => 'admin'], function () {
-
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', 'Admin\Home@index');
 
     // account admin
     Route::group(['prefix' => 'user'], function () {
-        Route::get('/', 'Admin_UserController@index');
-        Route::get('/search', 'Admin_UserController@search');
-        Route::get('/editt/{id}', 'Admin_UserController@edit');
-        Route::post('/edit/{id}', 'Admin_UserController@edit');
-        Route::post('/updata/{id}', 'Admin_UserController@updata');
-        Route::post('/delete/{id}', 'Admin_UserController@delete');
-        Route::post('/delete_all', 'Admin_UserController@delete_all');
+        Route::get('/', 'Admin\User@index');
+        Route::get('/search', 'Admin\User@search');
+        Route::get('/editt/{id}', 'Admin\User@edit');
+        Route::get('/edit/{id}', 'Admin\User@edit');
+        Route::post('/updata/{id}', 'Admin\User@updata');
+        Route::get('/delete/{id}', 'Admin\User@delete');
     });
     //feedback
     Route::group(['prefix' => 'feedback'], function () {
-        Route::get('/', 'FeedbackController@index');
-        Route::get('/search', 'FeedbackController@search');
-        Route::get('/detail_feedback/{id}', 'FeedbackController@detail_feedback');
-        Route::post('/create_feedback', 'FeedbackController@create_feedback');
+        Route::get('/', 'Admin\Feedback@index');
+        Route::get('/search', 'Admin\Feedback@search');
+        Route::get('/detail_feedback/{id}', 'Admin\Feedback@detail_feedback');
+        Route::post('/create_feedback', 'Clients\Feedback@create_feedback');
     });
     //error
     Route::group(['prefix' => 'error'], function () {
-        Route::get('/', 'ErrorController@index');
-        Route::get('/search', 'ErrorController@search');
-        Route::get('/detail_error/{id}', 'ErrorController@detail_error');
-        Route::post('/create_error', 'ErrorController@create_error');
+        Route::get('/', 'Admin\Errors@index');
+        Route::get('/search', 'Admin\Errors@search');
+        Route::get('/detail_error/{id}', 'Admin\Errors@detail_error');
+        Route::post('/create_error', 'Clients\Errors@create_error');
     });
     //post
     Route::group(['prefix' => 'post'], function () {
-        Route::get('/', 'PostController@index');
-        Route::get('/is_approved', 'PostController@is_approved');
-        Route::get('/is_not_approved', 'PostController@is_not_approved');
-        Route::get('/url', 'PostController@url');
-        Route::get('/new_post', 'PostController@new_post');
-        Route::post('/create_post', 'PostController@create_post');
-        Route::get('/edit/{post_slug}/{id}', 'PostController@edit');
-        Route::post('/update/{id}', 'PostController@update');
-        Route::get('/delete/{id}', 'PostController@delete');
-        Route::get('/search', 'PostController@search');
+        Route::get('/', 'Admin\Posts@index');
+        Route::get('/is_approved', 'Admin\Posts@is_approved');
+        Route::get('/is_not_approved', 'Admin\Posts@is_not_approved');
+        Route::get('/url', 'Admin\Posts@url');
+        Route::get('/new_post', 'Admin\Posts@new_post');
+        Route::post('/create_post', 'Admin\Posts@create_post');
+        Route::get('/edit/{post_slug}/{id}', 'Admin\Posts@edit');
+        Route::post('/update/{id}', 'Admin\Posts@update');
+        Route::get('/delete/{id}', 'Admin\Posts@delete');
+        Route::get('/search', 'Admin\Posts@search');
     });
     //category
     Route::group(['prefix' => 'category'], function () {
-        Route::get('/', 'CategoryController@index');
-        Route::get('/url', 'CategoryController@url');
-        Route::get('/new_category', 'CategoryController@new_category');
-        Route::post('/create_category', 'CategoryController@create_category');
-        Route::get('/new_category_branch/{id}', 'CategoryController@new_category_branch');
-        Route::post('/create_category_branch/{id}', 'CategoryController@create_category_branch');
-        Route::get('/edit/{slug}/{id}', 'CategoryController@edit');
-        Route::post('/update/{slug}/{id}', 'CategoryController@update');
-        Route::get('/delete/{id}', 'CategoryController@delete');
+        Route::get('/', 'Admin\Categories@index');
+        Route::get('/url', 'Admin\Categories@url');
+        Route::get('/new_category', 'Admin\Categories@new_category');
+        Route::post('/create_category', 'Admin\Categories@create_category');
+        Route::get('/new_category_branch/{id}', 'Admin\Categories@new_category_branch');
+        Route::post('/create_category_branch/{id}', 'Admin\Categories@create_category_branch');
+        Route::get('/edit/{slug}/{id}', 'Admin\Categories@edit');
+        Route::post('/update/{slug}/{id}', 'Admin\Categories@update');
+        Route::get('/delete/{id}', 'Admin\Categories@delete');
     });
     // comment
     Route::group(['prefix' => 'comment'], function () {
-        Route::get('/', 'CommentController@index');
-        Route::get('/detail_comment/{id}', 'CommentController@detail_comment');
-        Route::get('/delete_branch/{id}', 'CommentController@delete');
-        Route::get('/report/{id}', 'CommentController@report');
-        Route::get('/hidden/{nur}/{id}', 'CommentController@hidden');
-        Route::get('/comment_view/{id}', 'CommentController@comment_view');
-        Route::post('/create_comment', 'CommentController@create_comment');
-        Route::post('/create_comment_branch/{id}', 'CommentController@create_comment_branch');
+        Route::get('/', 'Admin\Comments@index');
+        Route::get('/detail_comment/{id}', 'Admin\Comments@detail_comment');
+        Route::get('/delete_branch/{id}', 'Admin\Comments@delete');
+        Route::get('/hidden/{nur}/{id}', 'Admin\Comments@hidden');
+        //
        
     });
      //report
      Route::group(['prefix' => 'report'], function () {
-        Route::get('/', 'ReportController@index');
-        Route::get('/create_report/{id}', 'ReportController@create_report');
-        Route::get('/hidden/{nur}/{id}/{idd}', 'CommentController@hidden');
+        Route::get('/', 'Admin\Report_comment@index');
+        Route::get('/create_report/{id}', 'Clients\Comments@create_report');
+        Route::get('/hidden/{nur}/{id}/{idd}', 'Admin\Report_comment@hidden');
         
        
     });
@@ -181,32 +134,34 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/dong-gop-y-kien', function () {
         return view('feedback');
     });
-    Route::get('/author/{name}/{id}','HomeController@author');
-    
-    Route::get('/change_password', 'HomeController@password');
-    // Route::post('/edit_password/{id}','HomeController@edit_password');
-    Route::post('/edit_pass', 'HomeController@edit_pass');
-    // Route::get('/successfully','HomeController@index1');
-    Route::get('/logout', 'HomeController@logout');
-    Route::post('/account', 'HomeController@account');
+    Route::get('/author/{name}/{id}','Clients\Home@author');
+    Route::get('/change_password', 'Clients\Home@password');
+    Route::post('/edit_pass', 'Clients\Home@edit_pass');
+    Route::get('/logout', 'Clients\Home@logout');
+    Route::post('/account', 'Clients\Home@account');
 });
 //News client
+Route::group(['prefix' => 'comment'], function () {
+    Route::get('/comment_view/{id}', 'Clients\Comments@comment_view');
+    Route::post('/create_comment', 'Clients\Comments@create_comment');
+    Route::post('/create_comment_branch/{id}', 'Clients\Comments@create_comment_branch');
+});
 Route::group(['prefix' => 'post'], function () {
-    Route::get('/{url}/{id}', 'PostController@view_post');
-    Route::get('/search', 'PostController@search_post');
-    Route::post('/searchs', 'PostController@search_posts');
+    Route::get('/{url}/{id}', 'Clients\Posts@view_post');
+    Route::get('/search', 'Clients\Postsr@search_post');
+    Route::post('/searchs', 'Clients\Posts@search_posts');
 });
 // category client
 Route::group(['prefix' => 'category'], function () {
-    Route::get('/{category_slug}/{id}', 'PostController@view_post_category');
+    Route::get('/{category_slug}/{id}', 'Clients\Posts@view_post_category');
 });
 
 // post like
 Route::group(['prefix' => 'post_like'], function () {
-    Route::post('/like/{id}', 'PostLikeController@post_like');
-    Route::get('/{id}', 'PostLikeController@view_like');
+    Route::post('/like/{id}', 'Clients\Posts_like@post_like');
+    Route::get('/{id}', 'Clients\Posts_like@view_like');
 });
 // index
-Route::get('/', 'PostController@home');
-Route::get('posts/searchs/{tag}', 'PostController@search_posts_tag');
+Route::get('/', 'Clients\Home@index');
+Route::get('/posts/searchs/{tag}', 'Clients\Posts@search_posts_tag');
 

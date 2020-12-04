@@ -135,7 +135,7 @@
         @endif
         @if($row_post_like->post_like == 0 and $row_post_like->post_dislike == 1)
         <input id="id_like" type="hidden" value="{{$row_post_like->id}}"/>
-        <button class="btn_like" type='submit' id="resetlike" title="Bỏ dislike"><i   class="fas fa-thumbs-up color-light-blue " ></i></button>
+        <button class="btn_like" type='submit' id="resetlike" title="Bỏ dislike"><i   class="fas fa-thumbs-down color-light-blue " ></i></button>
         @endif
         @endif
         @endforeach

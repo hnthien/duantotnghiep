@@ -22,7 +22,7 @@
 
                     use Illuminate\Support\Facades\Auth;
 
-                    $feedback = new App\Feedback();
+                    $feedback = new App\Models\Feedback();
                     $data = $feedback->where('user_id', Auth::user()->id)->orderBy('feedback_id', 'DESC')->get();
                     ?>
                     <h1>Ý kiến Đã đóng góp</h1>

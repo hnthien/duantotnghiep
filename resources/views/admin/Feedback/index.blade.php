@@ -45,11 +45,11 @@
             <span style="font-size: 12px; font-weight: bold;">Phản hồi <i class="fas fa-angle-right"></i>Quản lý phản hồi</span>
         </div>
         <div class="row">
-            <form class=" col-4 search" method="POST">
+            <div class=" col-4 search">
                 <span class="item"><i class="fa fa-search"></i></span>
                 <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
-            </form>
+            </div>
             <div class="col-4">
                 <div class="row">
                     <button class="btn col-6 background-red" id="not_seen">Chưa xem</button>
@@ -57,13 +57,13 @@
                 </div>
             </div>
         </div>
-        <?php
-        $feedback = new App\Feedback();
+        @php
+        $feedback = new App\Models\Feedback();
         $not_seen = $feedback->where('feedback_status', 0)->orderBy('feedback_id', 'DESC')->paginate(9);
         $watched = $feedback->where('feedback_status', 1)->orderBy('feedback_id', 'DESC')->paginate(9);
         $user = new App\User();
         $data1 = $user->all();
-        ?>
+        @endphp
         <br>
         <table class="popular-post col-padding">
             <tr>
@@ -93,7 +93,7 @@
                     </td>
                     <td >
                         <p>@php echo substr($row->created_at ,0,10) @endphp</p>
-                        <p>@php echo substr($row->created_at ,10,3).' giờ '.substr($row->created_at ,14,2).' phút' @endphp</p>
+                        <p>@php echo substr($row->created_at ,10,3).' giờ : '.substr($row->created_at ,14,2).' phút' @endphp</p>
                     </td>
                     <td><a href="{{url('/admin/feedback/detail_feedback')}}/{{$row->feedback_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>      
                 </tr>

@@ -39,31 +39,19 @@
             $data = $user->orderBy('id', 'DESC')->paginate(9);
 
             ?>
-            <form class=" col-4 search" method="POST">
+            <div class=" col-4 search">
                 <span class="item"><i class="fa fa-search"></i></span>
                 <input id="search" class="search__input" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
 
-            </form>
+            </div>
         </div>
         <br>
         <div class="row">
-            <form class="col-12" method="POST">
-                @csrf
-                <div class="row">
-                    <div class="col-2 col-margin--bottom">
-                        <button type="submit" onclick="return window.confirm('Đại ca có chắc muốn đuổi tất cả bọn nó ra khỏi hội !');" formaction="{{url('admin/user/delete_all')}}" class="btn background-red">Xóa tất cả</button>
-                    </div>
-                    <div class="col-10 col-padding color-red">
-                        @if (session('notification'))
-                        <b>{{ session('notification') }}</b>
-                        @endif
-                    </div>
-                </div>
+           
 
                 <table class="popular-post col-12 ">
                     <tr>
-                        <th><input type="checkbox" class="selectall" /></th>
                         <th >Id</th>
                         <th >Ảnh</th>
                         <th >Tên</th>
@@ -75,7 +63,6 @@
                     </tr>
                     @foreach ($data as $row)
                     <tr >
-                        <td><input type="checkbox" name="ids[]" class="selectbox" value="{{$row->id}}" /></td>
                         <td >{{$row->id}}</td>
                         <td >
                             <img src="{{ URL::asset('images/user') }}/{{$row->images_user}}" style="width:50px;height:50px;border-radius:50%" />
@@ -98,15 +85,13 @@
                             @endif
                             @endif
                         </td>
-                        <!-- <div class="col-1 col-padding--top"><a href="{{url('admin/user/delete')}}/{{$row->id}}" onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');"><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></div>
-                        <div class="col-1 col-padding--top"><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></div>
-                    -->
-                        <td ><button  onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');" formaction="{{url('admin/user/delete')}}/{{$row->id}}" class="btn-admin background-red"><i class="fas fa-trash"></i></button></td>
-                        <td ><button formaction="{{url('admin/user/edit')}}/{{$row->id}}" class="btn-admin background-blue"><i class="fas fa-edit"></i></button></td>                                                    
-                    </tr>
+                        <td><a href="{{url('admin/user/delete')}}/{{$row->id}}" onclick="return window.confirm('Đại ca muốn đuổi thằng  này chứ !');"><button class="btn-admin background-red"><i class="fas fa-trash"></i></button></a></td>
+                        <td><a href="{{url('admin/user/edit')}}/{{$row->id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
+                   
+                         </tr>
                     @endforeach
                 </table>
-            </form>
+           
        
         </div>
 
@@ -115,19 +100,5 @@
 
     </section>
 </main>
-<script type="text/javascript">
-    $('.selectall').click(function() {
-        $('.selectbox').prop('checked', $(this).prop('checked'));
-    });
 
-    $('.selectbox').change(function() {
-        var total = $('.selectall').length;
-        var number = $('.selectall:checked').length;
-        if (total == number) {
-            $('.selectall').prop('checked', true);
-        } else {
-            $('.selectall').prop('checked', false);
-        }
-    });
-</script>
 @endsection

@@ -33,7 +33,7 @@
                         <div class="vertical_tiles"></div> {{$row_category_branch->category_title}}
                     </h2>
                     @php
-                    $post = new App\Post();
+                    $post = new App\Models\Post();
                     $data_post = $post->all();
                     $nub = 0;
                     foreach($data_post as $row_data_post)
@@ -43,7 +43,7 @@
                     <br>
                     <div style="padding: 5px;" class="row popular-post ">
                         @php
-                        $data = new App\Post();
+                        $data = new App\Models\Post();
                         $post_category1 = $data::where('category_id',$row_category_branch->category_id)->orderBy('post_id', 'DESC')->take(4)->get();
                         @endphp
                         @foreach($post_category1 as $row_post_category1)
@@ -68,7 +68,7 @@
                         <div class="vertical_tiles"></div> Mới Nhất
                     </h2>
                     @php
-                    $post = new App\Post();
+                    $post = new App\Models\Post();
                     $data_post = $post->all();
                     $nub = 0;
                     foreach($data_post as $row_data_post)

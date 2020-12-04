@@ -1,6 +1,6 @@
 @php
 $dttt = new Illuminate\Support\Carbon;
-$post = new App\Post();
+$post = new App\Models\Post();
 $post_recommended = $post->whereBetween('created_at', [$dt = $dttt::now()->subDays(7),$dt = $dttt::now()])->inRandomOrder()->take(2)->get();
 $user = new App\User();
 $data_user = $user::all();

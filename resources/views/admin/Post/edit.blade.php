@@ -54,7 +54,7 @@
                                 <button class="btn background-gray col-border--none" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 
                                 <div class="image-upload-wrap">
-                                    <input class="file-upload-input" name="post_image" id="images_user" type='file' onchange="readURL(this);" />
+                                    <input class="file-upload-input" name="post_image" id="images_user"  type='file' onchange="readURL(this);" />
                                     <div class="drag-text">
                                         <h3>Drag and drop a file or select add Image</h3>
                                     </div>
@@ -78,9 +78,7 @@
                 </div>
                 <span class="text-danger"><b>{{ $errors->first('post_image') }}</b></span>
 
-                <h3>Chủ Đề Đã Chọn:</h3>
-
-              
+                
                 <h3>Chủ Đề:</h3>
                 @foreach($categorys as $row_categorys)
                 <ul style="margin:0px" class="col-3 col-float">
@@ -147,7 +145,7 @@
                 <input checked type="checkbox" name="post_status" class="selectbox" value="1" />Lưu bản nháp
                 @endif
                
-                @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 2)
+                @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
                 <select name="post_status">
                     @if($post->post_status == 0)
                     <option selected value="0">Đang phê duyệt</option>

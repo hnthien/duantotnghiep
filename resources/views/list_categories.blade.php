@@ -4,7 +4,7 @@
         <div class="col-12">
             <ul class="list-vertical list-category">
                 @php
-                $category = new App\Category();        
+                $category = new App\Models\Category();        
                 $data_category = $category->where('category_branch',0)->get();                      
                 @endphp
                 @foreach($data_category as $row_category)

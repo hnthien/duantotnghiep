@@ -51,8 +51,8 @@
                             <span>by</span>
                             @foreach($user as $row_user)
                             @php
-                                        $slug = Str::slug($row_user->name, '-');
-                                        @endphp
+                            $slug = Str::slug($row_user->name, '-');
+                            @endphp
                             @if($row_user->id == $row_pp->user_id)
                             <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                             @endif
@@ -78,8 +78,8 @@
                             <span>by</span>
                             @foreach($user as $row_user)
                             @php
-                                        $slug = Str::slug($row_user->name, '-');
-                                        @endphp
+                            $slug = Str::slug($row_user->name, '-');
+                            @endphp
                             @if($row_user->id == $row_pp->user_id)
                             <a style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                             @endif
@@ -240,10 +240,10 @@
                 <div class="vertical_tiles"></div> {{$row_categorys->category_title}}
             </h2>
             @php
-            $data = new App\Post();
+            $data = new App\Models\Post();
             $post_all = $data::where('post_status',2)->get();
             $post_category = $data::where('post_status',2)->where('category_id',$row_categorys->category_id)->orderBy('post_id', 'DESC')->take(1)->get();
-            $data_ct = new App\Category();
+            $data_ct = new App\Models\Category();
             $category_ct = $data_ct::where('category_branch',$row_categorys->category_id)->take(2)->get();
             @endphp
             @foreach($post_category as $row_post_category)

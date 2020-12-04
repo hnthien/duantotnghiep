@@ -33,11 +33,11 @@
             <div class="col-2">
                 <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button class="btn background-greed">+ Thêm mới</button></a>
             </div>
-            <form class=" col-4 search" method="POST">
+            <div class=" col-4 search" >
                 <span class="item"><i class="fa fa-search"></i></span>
                 <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
-            </form>
+            </div>
         </div>
 
         <br>
@@ -127,8 +127,10 @@
                         @endforeach
                     </td>
                     <td style="font-size: 14px;">
-                        <p> @php echo substr($p->created_at ,10,3).':'.substr($p->created_at ,14,2).'<br>'; echo substr($p->created_at ,0,10) ; @endphp</p>
-                    </td>
+                    <p>@php echo substr($p->created_at ,0,10) @endphp</p>
+                        <p> @php echo substr($p->created_at ,10,3).' giờ : '.substr($p->created_at ,14,2).' phút' @endphp</p>
+
+                         </td>
                     <td>
                     {{$p->post_view}}
                     </td>
@@ -154,17 +156,27 @@
                     </td>
                     @endif
                     <td>
-                        @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 2)
+                        @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
+                        <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
+                            <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
+                        </a>
+                        @else
+                        @if(Auth::user()->role_user == 2)
+                        <a target="_blank" href="{{url('/post')}}/{{$p->post_slug}}/{{$p->post_id}}">
+                            <button class="btn-admin background-blue">Xem bài viết</button>
+                        </a>
+                        @else
+                        @if($p->user_id == Auth::user()->id)
                         <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
                             <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
                         </a>
                         @endif
-                        @if(Auth::user()->role_user == 1)
-                        <a target="_blank" href="{{url('/post')}}/{{$p->post_slug}}/{{$p->post_id}}">
-                            <button class="btn-admin background-blue">Xem bài viết</button>
-                        </a>
+                        @endif
                         @endif
                         
+                       
+                       
+                      
                     </td>
                 </tr>
                 @endif

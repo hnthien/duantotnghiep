@@ -1,6 +1,6 @@
 @php
 $dtt = new Illuminate\Support\Carbon;
-$post = new App\Post();
+$post = new App\Models\Post();
 $popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(7),$dt = $dtt::now()])->orderBy('post_view','DESC')->take(8)->get();
 $user = new App\User();
 $data_user = $user::all();

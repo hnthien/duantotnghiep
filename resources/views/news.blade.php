@@ -137,7 +137,7 @@
                             success: function(data) {                             
                                 $('#comment_content').val("");                     
                                 setTimeout(function() {
-                                    $('#comment_view').load("{{url('admin/comment/comment_view')}}/{{$post->post_id}}");
+                                    $('#comment_view').load("{{url('comment/comment_view')}}/{{$post->post_id}}");
                                 }, 1000);
                             },
                             error: function(data) {
@@ -150,7 +150,7 @@
                 
                 });
                 $(document).ready(function() {
-                    $('#comment_view').load("{{url('admin/comment/comment_view')}}/{{$post->post_id}}");
+                    $('#comment_view').load("{{url('comment/comment_view')}}/{{$post->post_id}}");
                     return;
                 });
                 </script>
@@ -159,7 +159,7 @@
                     
                     <!-- write comment zone -->
                     @if (Auth::check())
-                    <form id='form_comment' action="{{url('admin/comment/create_comment')}}" method="post">
+                    <form id='form_comment' action="{{url('comment/create_comment')}}" method="post">
                         @csrf
                         <div class="form-comment">
                             <div class="make-comment">
