@@ -26,11 +26,23 @@
                             <button type="submit"   class="btn background-gray col-border--none">Lưu</button>
                         </div>
                         <div class="col-9 col-col-margin-left ">
-                            {{Auth::user()->intro_user}}
+                          
                            </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            <br>
+                        <span class="text-bold" ><i class="fas fa-user-edit"></i>Giới Thiệu.</span>
+                       <br>
+                       <textarea style="resize: none;" id="intro_user" name="intro_user" cols="35" rows="300">{{Auth::user()->intro_user}}</textarea>
+                       <script src="{{url('ckeditor/ckeditor.js') }}"></script>
+                        <script>
+                         CKEDITOR.replace('intro_user', {
+                         filebrowserBrowseUrl: "{{route('ckfinder_browser')}}",
+
+                          });
+                         </script>
+                          @include('ckfinder::setup')
                             <div class="form__input box_input">
                                 <i class="fas fa-user"></i>
                                 <input type="text" name="name" id="name" value="{{ Auth::user()->name }}" />

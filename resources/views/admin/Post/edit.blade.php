@@ -168,12 +168,14 @@
             </div>
             <br>
             <div class="row col-3">
-                <button type="submit" class="btn background-greed ">Gửi Bài Phê Duyệt</button>
+                <button type="submit" class="btn background-greed ">Cập nhật </button>
             </div>
         </form>
         <br>
         <div class="row ">
+        @if(Auth::user()->role_user == 3)
             <a class="col-3" href="{{url('admin/post/delete')}}/{{$post->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn background-red"><i class="fas fa-trash"></i></button></a>
+       @endif
         </div>
 
     </section>

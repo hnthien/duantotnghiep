@@ -50,7 +50,15 @@
                                 echo '<b>' . $nur . '</b>';
                                 @endphp
                                 </td>
-            <td><a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
+            <td>
+            @if($row_post->user_id == Auth::user()->id)
+                <a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>
+            @else 
+            @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
+            <a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>            
+            @endif 
+            @endif
+            </td>
         </tr>
         @endforeach
        

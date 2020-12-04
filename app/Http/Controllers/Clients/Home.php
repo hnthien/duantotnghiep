@@ -20,9 +20,9 @@ class Home extends Controller
     // view home index 
     public function index(Request $request)
     {
-        $popular_post = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(3)->take(5)->get();
-        $popular_post1 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->take(1)->get();
-        $popular_post2 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(7),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(1)->take(2)->get();
+        $popular_post = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(14),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(3)->take(5)->get();
+        $popular_post1 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(14),$dt = Carbon::now()])->orderBy('post_view','DESC')->take(1)->get();
+        $popular_post2 = Post::where('post_status',2)->whereBetween('created_at', [$dt = Carbon::now()->subDays(14),$dt = Carbon::now()])->orderBy('post_view','DESC')->skip(1)->take(2)->get();
         $category = Category::all();
         $category_p = Category::where('category_branch',0)->take(12)->get();
         $user = User::all();
@@ -63,7 +63,7 @@ class Home extends Controller
          $news->phone_user= $request->phone_user;
          $news->intro_user=$request->intro_user;
          $news->save();
-         return redirect(url('/account'));
+         return redirect(url('/account'))->with('status', 'Cập nhật tài khoản thành công !');
      }
     
      // edit pass

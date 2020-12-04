@@ -91,6 +91,7 @@
                     <th>Trạng thái</th>
                     <th>Xóa</th>
                     <th>Sửa</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -155,28 +156,24 @@
                         <a href="{{url('admin/post/delete')}}/{{$p->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> 
                     </td>
                     @endif
+                   
                     <td>
-                        @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
-                        <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
-                            <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
-                        </a>
-                        @else
-                        @if(Auth::user()->role_user == 2)
-                        <a target="_blank" href="{{url('/post')}}/{{$p->post_slug}}/{{$p->post_id}}">
-                            <button class="btn-admin background-blue">Xem bài viết</button>
-                        </a>
-                        @else
+                    
                         @if($p->user_id == Auth::user()->id)
                         <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
                             <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
                         </a>
+                        @else 
+                        @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
+                        <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
+                            <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>
+                        </a> 
+                        @else
+                        <a target="_blank" href="{{url('/post')}}/{{$p->post_slug}}/{{$p->post_id}}">
+                            <button class="btn-admin background-blue">Xem bài viết</button>
+                        </a>    
+                        @endif 
                         @endif
-                        @endif
-                        @endif
-                        
-                       
-                       
-                      
                     </td>
                 </tr>
                 @endif
