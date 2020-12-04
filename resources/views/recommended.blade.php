@@ -1,7 +1,7 @@
 @php
 $dttt = new Illuminate\Support\Carbon;
 $post = new App\Models\Post();
-$post_recommended = $post->whereBetween('created_at', [$dt = $dttt::now()->subDays(7),$dt = $dttt::now()])->inRandomOrder()->take(2)->get();
+$post_recommended = $post->whereBetween('created_at', [$dt = $dttt::now()->subDays(14),$dt = $dttt::now()])->inRandomOrder()->take(2)->get();
 $user = new App\User();
 $data_user = $user::all();
 @endphp
@@ -19,7 +19,7 @@ $data_user = $user::all();
 
         <ul class="list-horizontal font-size-13 color-light-gray">
             <li>
-                <span>by</span>
+                <span>Từ</span>
                 @foreach($data_user as $row_user)
                 @php
                                         $slug = Str::slug($row_user->name, '-');

@@ -55,7 +55,7 @@
                             <div class="col-12">
                                 <ul class="list-horizontal">
                                     <li>
-                                        <span>by</span>
+                                        <span>Từ</span>
 
                                         @foreach($user as $row_user)
                                         @php

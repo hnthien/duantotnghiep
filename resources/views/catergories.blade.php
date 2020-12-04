@@ -89,7 +89,7 @@
                             </a>
                             <ul class="list-horizontal font-size-13">
                                 <li>
-                                    <span>by</span>
+                                    <span>Từ</span>
                                     @foreach($user as $row_user)
                                     @php
                                         $slug = Str::slug($row_user->name, '-');

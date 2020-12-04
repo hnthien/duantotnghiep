@@ -1,7 +1,7 @@
 @php
 $dtt = new Illuminate\Support\Carbon;
 $post = new App\Models\Post();
-$popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(7),$dt = $dtt::now()])->orderBy('post_view','DESC')->take(8)->get();
+$popular_post = $post->whereBetween('created_at', [$dt = $dtt::now()->subDays(14),$dt = $dtt::now()])->orderBy('post_view','DESC')->take(8)->get();
 $user = new App\User();
 $data_user = $user::all();
 @endphp
@@ -21,7 +21,7 @@ $data_user = $user::all();
             </a>
             <ul style="font-size: 12px;" class="list-horizontal color-light-gray">
                 <li>
-                    <span>by</span>
+                    <span>Từ</span>
                     @foreach($data_user as $row_user)
                     @php
                                         $slug = Str::slug($row_user->name, '-');

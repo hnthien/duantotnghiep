@@ -14,8 +14,8 @@
                             <h4 style="margin: 0px;">{{$row_pp->post_title}}</h4>
                         </a>
                         <ul class="list-horizontal font-size-13">
-                            <li>
-                                <span>by</span>
+                            <li >
+                                <span>Từ</span>
                                 @foreach($user as $row_user)
                                 @php
                                         $slug = Str::slug($row_user->name, '-');
@@ -48,7 +48,7 @@
                     </a>
                     <ul style="margin-top: 10px;" class="list-horizontal font-size-13">
                         <li>
-                            <span>by</span>
+                            <span>Từ</span>
                             @foreach($user as $row_user)
                             @php
                             $slug = Str::slug($row_user->name, '-');
@@ -75,7 +75,7 @@
                     </a>
                     <ul style="margin-top: 10px;" class="list-horizontal font-size-13">
                         <li>
-                            <span>by</span>
+                            <span>Từ</span>
                             @foreach($user as $row_user)
                             @php
                             $slug = Str::slug($row_user->name, '-');
@@ -129,7 +129,7 @@
                                         <p class="color-light-gray font-size-13">{{$date}}</p>
                                     </li>
                                     <li>
-                                        <span>by</span>
+                                        <span>Từ</span>
                                         @foreach($user as $row_user)
                                         @php
                                         $slug = Str::slug($row_user->name, '-');
