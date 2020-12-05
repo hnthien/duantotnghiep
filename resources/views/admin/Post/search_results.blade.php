@@ -5,7 +5,7 @@
         <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" />
     </div>
     <div class="col-9">
-        <a  href="{{url('admin/post/edit')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+        <a  href="{{url('admin/post/approval')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
             <h4 style="margin: 0px;" class="font-size-13">{{$row_post->post_title}}</h4>
         </a>
         <ul class="list-horizontal font-size-13">

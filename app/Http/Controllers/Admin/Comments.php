@@ -17,16 +17,17 @@ class Comments extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->role_user = Auth::user()->role_user;
-            if ($this->role_user == 0){
-                return redirect(url('/'));
+            if ($this->role_user == 0 ){
+                App::abort(404);
+            }else{
+                return $next($request);
             }
-            return $next($request);
         });
     }
     public function index()
     { 
         $user = User::all();
-        $post = Post::orderBy('post_id', 'DESC')->paginate(10);
+        $post = Post::where('post_status',2)->orderBy('post_id', 'DESC')->paginate(10);
         $comments = Comment::where('comment_branch', 0)->get();
         return view('admin.comment.index',compact('comments','post','user'));
     }

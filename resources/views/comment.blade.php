@@ -100,9 +100,11 @@
                                                         $dateb = $dt->diffForHumans($now);
                                                         @endphp
                                                         <span>{{$dateb}}</span>
+                                                        @if (Auth::check())
                                                         <a href="{{url('admin/report/create_report')}}/{{$row_comment_branch->comment_id}}">
                                                         <button onclick="return window.confirm('Bạn có chắc chắn bình luận này vi phạm Tiêu chuẩn cộng đồng và muốn Báo cáo?');" class="col-margin-left col-border--none color-red">Báo cáo vi phạm</button>
                                                         <a/>
+                                                        @endif
                                                     </div>
                                                     <div class="comment-content">
                                                         {{$row_comment_branch->comment_content}}

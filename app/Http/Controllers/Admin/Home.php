@@ -21,8 +21,9 @@ class Home extends Controller
             $this->role_user = Auth::user()->role_user;
             if ($this->role_user == 0) {
                 App::abort(404);
+            }else{
+                return $next($request);
             }
-            return $next($request);
         });
     }
 

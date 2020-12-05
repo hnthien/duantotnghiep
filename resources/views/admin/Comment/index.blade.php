@@ -33,7 +33,7 @@
         <tr>
            
             <td>{{$row_post->post_id}}</td>
-            <td>{{$row_post->post_title}}</td>
+            <td class="text-bold"><a target="_blank" href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">{{$row_post->post_title}}</a></td>
             <td>
             <p> @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2).'<br>'; echo substr($row_post->created_at ,0,10) ; @endphp</p>
            

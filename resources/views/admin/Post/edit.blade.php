@@ -146,7 +146,7 @@
                 @endif
                
                 @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
-                <select name="post_status">
+                <select name="post_status" class="input">
                     @if($post->post_status == 0)
                     <option selected value="0">Đang phê duyệt</option>
                     <option value="2">Phê duyệt</option>
@@ -172,10 +172,10 @@
             </div>
         </form>
         <br>
-        <div class="row ">
-        @if(Auth::user()->role_user == 3)
+        <div class="row">
+        @if(Auth::user()->role_user == 3 || Auth::user()->id == $post->user_id )
             <a class="col-3" href="{{url('admin/post/delete')}}/{{$post->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn background-red"><i class="fas fa-trash"></i></button></a>
-       @endif
+        @endif
         </div>
 
     </section>

@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Carbon;
 
 class Posts extends Controller
 {
@@ -22,8 +23,10 @@ class Posts extends Controller
             $this->role_user = Auth::user()->role_user;
             if ($this->role_user == 0) {
                 App::abort(404);
+            }else{
+                return $next($request);
             }
-            return $next($request);
+           
         });
     }
     //home post
@@ -63,7 +66,6 @@ class Posts extends Controller
     // them moi 
     public function create_post(Request $request)
     {
-
         $message = [
             'post_title.required' => 'Vui lòng nhập tiêu đề',
             'category_id.required' => 'Vui lòng chọn thể loại',
@@ -74,7 +76,6 @@ class Posts extends Controller
             'post_tag.required' => 'Nhập 1 ít thẻ tag',
             'post_content.required' => 'Vui lòng nhập nội dung'
         ];
-
         $request->validate([
             'post_title' => 'required',
             'category_id' => 'required',
@@ -85,10 +86,8 @@ class Posts extends Controller
             'post_content' => 'required',
 
         ], $message);
-
         $file = $request->file('post_image');
         $file->move(public_path('images/post_image'), $file->getClientOriginalName());
-
         Post::create([
             'user_id' => Auth::user()->id,
             'category_id' => $request->category_id,
@@ -101,9 +100,7 @@ class Posts extends Controller
             'post_image' => $file->getClientOriginalName(),
             'post_content' => $request->post_content,
             'post_view' => 0,
-        ]);
-
-        return redirect()->action('Admin\Posts@index');
+        ]);return redirect()->action('Admin\Posts@index');
     }
     // slug
     public function url(Request $request)
@@ -122,6 +119,40 @@ class Posts extends Controller
             $categorys = Category::where('category_branch', 0)->get();
             $post = Post::find($id);
             return view('admin.post.edit', compact('post', 'categorys', 'categorys_branch'));
+        }
+      return  abort(404);
+    }
+    // phe duyet
+    public function approval($post_slug, $id)
+    {
+        if ($id) {
+            $categorys_branch = Category::all();
+            $categorys = Category::where('category_branch', 0)->get();
+            $post = Post::find($id);
+            $user = User::all();
+            Carbon::setLocale('vi');
+            $dt = Carbon::create(substr($post->created_at, 0, 4), substr($post->created_at, 5, 2), substr($post->created_at, 8, 2), substr($post->created_at, 11, 2), substr($post->created_at, 14, 2), substr($post->created_at, 17, 2));
+            $now = Carbon::now();
+            $date = $dt->diffForHumans($now);
+            return view('admin.post.view_post', compact('post', 'categorys', 'categorys_branch','user','date'));
+        }
+      return  abort(404);
+    }
+    //
+    public function approval_updata(Request $request, $post_id)
+    {
+        if ($post_id) {
+            $posts = Post::find($post_id);
+            if ($request->post_status != 0) {
+                $posts->post_status = $request->post_status;
+                $posts->censor_id = Auth::user()->id;  
+            }else{
+                if ($request->post_status == 0) {
+                    $posts->post_status = 0;
+                }
+            } 
+            $posts->save();
+            return redirect()->action('Admin\Posts@index');    
         }
       return  abort(404);
     }
@@ -154,15 +185,11 @@ class Posts extends Controller
         $posts->category_id = $request->category_id;
         if ($request->post_status != 0) {
             $posts->post_status = $request->post_status;
-        }
-        if ($request->post_status == 0) {
-            $posts->post_status = 0;
-        }
-        if ($request->post_status == 2) {
             if (Auth::user()->role_user == 3 or Auth::user()->role_user == 2) {
                 $posts->censor_id = Auth::user()->id;
             }
         }
+       
         $posts->post_slug = $request->post_slug;
         $posts->post_intro = $request->post_intro;
         if ($request->hasFile('post_image')) {
@@ -174,7 +201,7 @@ class Posts extends Controller
         $posts->post_tag = $tag;
         $posts->post_content = $request->post_content;
         $posts->save();
-        return redirect()->action('Admin\Posts@index');
+        return back();
     }
     // xoa
     public function delete($id)

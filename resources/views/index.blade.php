@@ -8,8 +8,11 @@
             <div class="col-4 ">
                 @foreach($popular_post as $row_pp)
                 <div style="padding: 5px;" class="row popular-post">
+                <div class="col-4 col-position ">
+                        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
 
-                    <div class="col-8 col-right ">
+                    </div>
+                    <div class="col-8 ">
                         <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
                             <h4 style="margin: 0px;">{{$row_pp->post_title}}</h4>
                         </a>
@@ -30,15 +33,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-4 col-position ">
-                        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
-
-                    </div>
+                    
                 </div>
                 @endforeach
             </div>
             <div style="padding: 5px;" class="col-5 popular-post">
-                @foreach($popular_post1 as $row_pp)
+          
+            @foreach($popular_post1 as $row_pp)
+            <div  >
                 <div class="col-position">
                     <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
                 </div>
@@ -64,7 +66,11 @@
                     </ul>
                     <p class="color-light-gray ">{{$row_pp->post_intro}}</p>
                 </div>
+                </div>
                 @endforeach
+              
+               
+              
             </div>
             <div class="col-3">
                 @foreach($popular_post2 as $row_pp)
@@ -102,7 +108,7 @@
                 <article>
                     <h2>TIN MỚI NHẤT</h2>
                     <p class="color-light-gray" style="font-size:12px;"><a href="{{ route('login') }}">Đăng nhập</a> để bình luận những bài viết mà bạn thích</p>
-                    <br>
+                   
 
                     @foreach($post as $row_post)
 

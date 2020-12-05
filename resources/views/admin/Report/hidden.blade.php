@@ -80,8 +80,8 @@
                         <p> @php echo substr($row_comment_report->created_at ,10,3).' giờ : '.substr($row_comment_report->created_at ,14,2).' phút' @endphp</p>
 
             </td>
-           
-            <td> <a href="{{url('admin/report/hidden')}}/1/{{$row_comments->comment_id}}/{{$row_comment_report->comment_report_id}} " title="Ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a>    </td>        
+            
+            <td>  <a href="{{url('admin/report/hidden')}}/0/{{$row_comments->comment_id}}/{{$row_comment_report->comment_report_id}}" title="Bỏ ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a>  </td>
            
            
         </tr>

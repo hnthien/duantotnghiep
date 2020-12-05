@@ -16,15 +16,14 @@ class Categories extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->role_user = Auth::user()->role_user;
-            if ($this->role_user == 3 ||  $this->role_user ==1 ) {
-    
+            if ($this->role_user == 3 || $this->role_user == 1) {
                 return $next($request);
-            } 
-            if ($this->role_user == 0){
-                return redirect(url('/'));
+            }else{
+                    App::abort(404);
             }
-            App::abort(404);
-           
+            
+            
+            
         });
     }
     // home category

@@ -84,8 +84,8 @@
                     <th>Tiêu đề</th>
                     <th>Giới thiệu</th>
                     <th style="width:100px;text-align: center;">Chủ đề</th>
-                    <th style="width:100px;text-align: center;">Người viết</th>
-                    <th style="width:100px;text-align: center;">Người phê duyệt</th>
+                    <th style="width:100px;text-align: center;">Tác giả</th>
+                    <th style="width:100px;text-align: center;">Phê duyệt</th>
                     <th style="width:80px;text-align: center;">Ngày viết</th>
                     <th>Trạng thái</th>
                     <th>Xóa</th>

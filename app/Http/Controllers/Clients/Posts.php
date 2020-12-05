@@ -71,15 +71,17 @@ class Posts extends Controller
              return abort(404);
          }
     }
-    //   search_post
 
+    //   search_post
     public function search_post(Request $request)
     {
         $keyword = $request->keyword;
         if ($keyword == null or $keyword == " ") {
         } else {
             $user = User::all();
-            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orWhere('post_tag', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(10)->get();
+            $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')
+            ->orWhere('post_intro', 'like', '%' . $keyword . '%')
+            ->orderBy('post_id', 'DESC')->take(10)->get();
             return view('search_results', compact('search_results', 'user'));
         }
     }

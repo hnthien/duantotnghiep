@@ -15,14 +15,14 @@ class Feedback extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->role_user = Auth::user()->role_user;
-            if ($this->role_user == 1 || $this->role_user == 3) {
-                
+            if ($this->role_user == 3 || $this->role_user == 1) {
                 return $next($request);
+            }else{
+                    App::abort(404);
+              
             }
-            if ($this->role_user == 0){
-                return redirect(url('/'));
-            }
-            App::abort(404);
+            
+            
             
         });
     }

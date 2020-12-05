@@ -17,14 +17,13 @@ class Report_comment extends Controller
     {
         $this->middleware(function ($request, $next) {
             $this->role_user = Auth::user()->role_user;
-            if ($this->role_user == 3 ||$this->role_user == 1) {
-              
+            if ($this->role_user == 3 || $this->role_user == 1) {
                 return $next($request);
+            }else{       
+                    App::abort(404);
             }
-            if ($this->role_user == 0){
-                return redirect(url('/'));
-            }
-            App::abort(404);
+            
+            
             
         });
     }
@@ -32,19 +31,29 @@ class Report_comment extends Controller
     {
         $user = User::all();
         $comments = Comment::all();
-        $comment_report = Comment_report::orderBy('comment_report_id', 'DESC')->get();
+        $comment_report = Comment_report::where('comment_report_status',0)->orderBy('comment_report_id', 'DESC')->paginate(20);
         return view('admin.report.index',compact('comments','user','comment_report'));
+    }
+    public function hiddencomment()
+    {
+        $user = User::all();
+        $comments = Comment::all();
+        $comment_report = Comment_report::where('comment_report_status',1)->orderBy('comment_report_id', 'DESC')->paginate(20);;
+        return view('admin.report.hidden',compact('comments','user','comment_report'));
     }
    
     public function hidden($nur, $id, $idd)
     { 
-        $comment = Comment::find($id);
-        $comment->comment_status = $nur;
-        $comment->save();
-        $comment_report = Comment_report::find($idd);
-        $comment_report->comment_report_status = $nur;
-        $comment_report->save();
         
-        return back();
+            $comment = Comment::find($id);
+            $comment->comment_status = $nur;
+            $comment->save();
+            $comment_report = Comment_report::find($idd);
+            $comment_report->comment_report_status = $nur;
+            $comment_report->save();
+            
+            return back();
+        
+        
     }
 }

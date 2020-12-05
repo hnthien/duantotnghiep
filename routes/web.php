@@ -46,6 +46,7 @@ Route::get('/home', function () {
     return view('home');
 });
 // phần ngon phần này làm ngon nên đừng đụng vào với lại nếu làm ở phần admin thêm vào đây
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'Admin\Home@index');
 
@@ -81,6 +82,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/new_post', 'Admin\Posts@new_post');
         Route::post('/create_post', 'Admin\Posts@create_post');
         Route::get('/edit/{post_slug}/{id}', 'Admin\Posts@edit');
+        Route::get('/approval/{post_slug}/{id}', 'Admin\Posts@approval');
+        Route::post('/approval_updata/{id}', 'Admin\Posts@approval_updata');
         Route::post('/update/{id}', 'Admin\Posts@update');
         Route::get('/delete/{id}', 'Admin\Posts@delete');
         Route::get('/search', 'Admin\Posts@search');
@@ -109,6 +112,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
      //report
      Route::group(['prefix' => 'report'], function () {
         Route::get('/', 'Admin\Report_comment@index');
+        Route::get('/hidden', 'Admin\Report_comment@hiddencomment');
         Route::get('/create_report/{id}', 'Clients\Comments@create_report');
         Route::get('/hidden/{nur}/{id}/{idd}', 'Admin\Report_comment@hidden');
         
