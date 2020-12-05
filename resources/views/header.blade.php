@@ -58,7 +58,7 @@
     });
    
 </script>
-<div class="row col-padding">
+<div style="padding-top:10px" class="row">
 
     <div class="col-3 text-align--center ">
         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" alt="logo" /></a>

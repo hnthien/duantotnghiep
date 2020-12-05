@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-4 ">
                 @foreach($popular_post as $row_pp)
-                <div style="padding: 5px;" class="row popular-post">
+                <div  class="row col-border-bottom ">
                 <div class="col-4 col-position ">
                         <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
 
                     </div>
-                    <div class="col-8 ">
+                    <div style="padding: 5px;" class="col-8 ">
                         <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
                             <h4 style="margin: 0px;">{{$row_pp->post_title}}</h4>
                         </a>
@@ -37,7 +37,7 @@
                 </div>
                 @endforeach
             </div>
-            <div style="padding: 5px;" class="col-5 popular-post">
+            <div class="col-5 ">
           
             @foreach($popular_post1 as $row_pp)
             <div  >
@@ -74,7 +74,7 @@
             </div>
             <div class="col-3">
                 @foreach($popular_post2 as $row_pp)
-                <div style="padding: 5px;" class=" popular-post">
+                <div  class="col-margin--bottom">
                     <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
                     <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
                         <h3 style="margin: 0px;">{{$row_pp->post_title}}</h3>
@@ -113,7 +113,7 @@
                     @foreach($post as $row_post)
 
                     <div class="row">
-                        <div style="padding: 5px;" class="row popular-post ">
+                        <div style="padding: 5px 0px;" class="row popular-post  col-border-bottom ">
                             <div class="col-4 col-position ">
                                 <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
 
@@ -241,7 +241,7 @@
 
     <section class="section">
         @foreach($category_p as $row_categorys)
-        <div class="col-3 col-float ">
+        <div style=" padding: 0px 5px;" class="col-3 col-float ">
             <h2>
                 <div class="vertical_tiles"></div> {{$row_categorys->category_title}}
             </h2>

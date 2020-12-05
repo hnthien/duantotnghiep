@@ -123,9 +123,32 @@
 
                 <span class="text-danger"><b>{{ $errors->first('category_id') }}</b></span>
                 <div class="clearfix"></div>
+               
+                <script src="{{ URL::asset('js/js_tags') }}/jquery.min.js"></script>
+                    <script src="{{ URL::asset('js/js_tags') }}/jqueryui.js"></script>
+                    <script src="{{ URL::asset('js/js_tags') }}/selectize.js"></script>
+                    <script src="{{ URL::asset('js/js_tags') }}/index.js"></script>
+                    <link rel="stylesheet" href="{{ URL::asset('css/dist/css') }}/selectize.default.css">
+                <div class="control-group">
                 <h3>Tag:</h3>
-                <input class="input" type="text" name="post_tag" value="@foreach($post->post_tag as $tag){{$tag}},@endforeach" />
-                <span class="text-danger"><b>{{ $errors->first('post_tag') }}</b></span>
+               <input type="text" id="input-tags" name="post_tag" class="input-tags  demo-default" value="@foreach($post->post_tag as $tag){{$tag}}, @endforeach">
+               <span class="text-danger"><b>{{ $errors->first('post_tag') }}</b></span>  
+                </div>
+               <script>
+                $('#input-tags').selectize({
+                plugins: ['remove_button'],
+                persist: false,
+                create: true,
+                render: {
+                item: function(data, escape) {
+                    return '<div>"' + escape(data.text) + '"</div>';
+                }
+                 },
+                onDelete: function(values) {
+                    return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+                }
+                 });
+                </script>
 
             </div>
             <div class="popular-post col-padding">

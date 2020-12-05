@@ -6,13 +6,13 @@ $user = new App\User();
 $data_user = $user::all();
 @endphp
 
-<div class="popular-post col-padding">
+<div class="popular-post " style="padding: 8px;">
     <h2>BÀI VIẾT PHỔ BIẾN</h2>
     <p class="color-light-gray" style="font-size:12px;">Bài viết được đọc nhiều nhất trong một tuần.</p>
-    <br>
+    
     @foreach($popular_post as $row_post)
-    <div class="row ">
-        <div style="margin-left: 0px;" class="col-3">
+    <div style="margin:3px 0px" class="row col-border-bottom ">
+        <div style="margin-left: 0px;padding:0px" class="col-3">
             <img class="img "  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
         </div>
         <div class="col-9 ">

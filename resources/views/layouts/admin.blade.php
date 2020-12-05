@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="{{ URL::asset('images')}}/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('admin')</title>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -12,6 +14,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js') }}/images.js"></script>
     <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />
+    
+  
+  
+   
+    
 
 </head>
 

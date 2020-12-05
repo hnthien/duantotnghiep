@@ -90,12 +90,13 @@ class Home extends Controller
                  $news = User::find(Auth::user()->id);
                  $news->password = Hash::make($request->confirmpassword);
                  $news->save();
-                 return redirect(url('/user/logout'));
+                 Auth::logout();
+                 return redirect(url('/login'))->with('log', 'Đổi mật khẩu thành công !.');
              } else {
-                 return redirect()->action('Clients/Home@password')->with('pass', 'Password is incorrect.');
+                 return redirect()->action('Clients\Home@password')->with('pass', 'Password is incorrect.');
              }
          } else {
-             return redirect()->action('Clients/Home@password')->with('email', 'Email is incorrect.');
+             return redirect()->action('Clients\Home@password')->with('email', 'Email is incorrect.');
          }
         
          return;

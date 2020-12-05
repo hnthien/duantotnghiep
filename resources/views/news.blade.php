@@ -155,7 +155,11 @@
                 });
                 </script>
                 <div class="popular-post post-contect ">
-                <h2>Bình Luận</h2>
+                <h2>Bình Luận (@php
+                                $dislike = 0;
+                                foreach($comments as $row_comments){$dislike++;}
+                                echo '<b>' . $dislike . '</b>';
+                                @endphp)</h2>
                     
                     <!-- write comment zone -->
                     @if (Auth::check())
