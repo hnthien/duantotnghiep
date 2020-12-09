@@ -24,7 +24,7 @@
                 <h2 class="text-color-white">Tin mới nhất</h2>
                 @php 
                 $post = new App\Models\Post();
-                $data_post = $post->orderBy('post_id','DESC')->take(2)->get();
+                $data_post = $post->where('post_status',2)->orderBy('post_id','DESC')->take(2)->get();
                 $user = new App\User();
                 $data_user = $user::all();
                 @endphp

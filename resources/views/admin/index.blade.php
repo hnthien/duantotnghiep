@@ -12,7 +12,7 @@
             <div class="col-4 popular-post col-padding col-height">
                 <h4 class="color-young-green"><i class="fas fa-user-shield"></i>Kiểm Duyệt</h4>
                 <p>Number of Moderators</p>
-                <?php            
+                @php            
                 $number = 0;
                 foreach ($user as $rowu) {
                     if ($rowu->role_user == 1) {
@@ -20,27 +20,27 @@
                     }
                 }
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
 
 
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-young-green"><i class="fas fa-user-edit"></i>Nhà Báo</h4>
                 <p>Number of Journalists</p>
-                <?php               
+                @php                
                 $number = 0;
-                foreach ($user as $u) {
-                    if ($rowu->role_user == 2) {
+                foreach ($user as $rowb) {
+                    if ($rowb->role_user == 2) {
                         $number++;
                     }
                 }
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-blue"><i class="fas fa-users"></i>Người dùng</h4>
                 <p>Number of User</p>
-                <?php             
+                @php               
                 $number = 0;
                 foreach ($user as $rowu) {
                     if ($rowu->role_user == 0) {
@@ -48,68 +48,83 @@
                     }
                 }
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
             </div>
         </div>
         <div class="row">
             <div class="col-4 popular-post col-padding col-height">
                 <h4 class="color-light-blue"><i class="fas fa-comments"></i>Bình Luận</h4>
                 <p>Number of Comments</p>
+                @php              
+                $number = 0;
+                foreach ($comment as $rowc) {
+                    $number++;
+                }
 
+                echo  '<b>' . $number . '</b>';
+                @endphp
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-light-blue"><i class="fas fa-comment-dots"></i>Đóng Góp Ý kiến</h4>
                 <p>Number of Feedback</p>
-                <?php
+                @php
                 $number = 0;
                 foreach ($feedback as $rowf) {
                    $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-brown"> <i class="fas fa-marker"></i>Bài Viết</h4>
                 <p>Number of Articles</p>
-                <?php               
+                @php              
                 $number = 0;
                 foreach ($post_all as $row) {
                    $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
             </div>
         </div>
         <div class="row">
             <div class="col-4 popular-post col-padding col-height">
                 <h4 class="color-red"><i class="fas fa-exclamation-triangle"></i>Báo Cáo Vi Phạm</h4>
                 <p>Number of Violation Reports</p>
+                @php              
+                $number = 0;
+                foreach ($comment_report as $rowr) {
+                    $number++;
+                }
+
+                echo  '<b>' . $number . '</b>';
+                @endphp
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-red"><i class="fas fa-exclamation-circle"></i>Báo Cáo Lỗi</h4>
                 <p>Number of Bug</p>
-                <?php               
+                @php              
                 $number = 0;
                 foreach ($error as $rowe) {
                     $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
             </div>
             <div class="col-4 popular-post col-padding col-height col-margin-left">
                 <h4 class="color-green"><i class="fas fa-th-list"></i>Chủ Đề</h4>
                 <p>Number of Categories</p>
-                <?php               
+                @php              
                 $number = 0;
                 foreach ($category as $rowc) {
                      $number++;
                 }
 
                 echo  '<b>' . $number . '</b>';
-                ?>
+                @endphp
             </div>
         </div>
     </section>

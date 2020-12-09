@@ -170,21 +170,7 @@
             <div class="col-4 ">
                 <aside>
 
-                    <div class="popular-post col-padding background-white">
-                        <h2>LET'S HANG OUT ON SOCIAL</h2>
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
-                                <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-orangered"><i class="fab fa-google-plus-g"></i> GOOGLE</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-orchid"><i class="fab fa-instagram"></i> INSTAGRAM</button></a>
-                                <a href="#"><button class="btn background-oranger"><i class="fas fa-rss"></i>RSS</button></a>
-                            </div>
-                        </div>
-                    </div>
+                   
                    
                     <div class="col-margin--bottom" style="  box-shadow: 0 19px 12px -7px rgba(0, 0, 0, 0.31)">
                         <a href="#">
@@ -204,40 +190,7 @@
         </div>
     </section>
     <hr>
-    <section class="section">
-        <div class="row">
-            <div class="9">
-                <h2>EDITORS PICKS</h2>
-            </div>
-            <div class="3"></div>
-        </div>
-        <div class="row">
-            <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_1.jpg" alt="carousel post" />
-                <a class="text-title text-align--center" href="#">
-                    <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
-                </a>
-            </div>
-            <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_2.jpg" alt="carousel post" />
-                <a class="text-title text-align--center" href="#">
-                    <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
-                </a>
-            </div>
-            <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_3.jpg" alt="carousel post" />
-                <a class="text-title text-align--center" href="#">
-                    <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
-                </a>
-            </div>
-            <div class="col-3 col-position">
-                <img class="img" src="https://deothemes.com/envato/deus/html/img/content/carousel/carousel_post_4.jpg" alt="carousel post" />
-                <a class="text-title text-align--center" href="#">
-                    <h3>Gov’t Toughens Rules to Ensure 3rd Telco Player Doesn’t Slack Off</h3>
-                </a>
-            </div>
-        </div>
-    </section>
+   
 
     <section class="section">
         @foreach($category_p as $row_categorys)

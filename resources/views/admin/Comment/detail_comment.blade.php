@@ -8,9 +8,7 @@
             <h1 class="col-12 col-center" style="font-size: 30px;">Quản Lý Bình Luận</h1>
         </div>
         <div class="row">
-            <form class=" col-4 search" method="POST">
-                <input class="search__input" type="search" placeholder="Search......" />
-            </form>
+           
             <div class="col-4">  
              <div style="text-align: center;float: right;">{!!$comments->links()!!}</div>
             </div>

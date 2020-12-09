@@ -152,7 +152,7 @@ Route::group(['prefix' => 'comment'], function () {
 });
 Route::group(['prefix' => 'post'], function () {
     Route::get('/{url}/{id}', 'Clients\Posts@view_post');
-    Route::get('/search', 'Clients\Postsr@search_post');
+    Route::get('/search', 'Clients\Posts@search_post');
     Route::post('/searchs', 'Clients\Posts@search_posts');
 });
 // category client

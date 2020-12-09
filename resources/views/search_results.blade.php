@@ -1,4 +1,5 @@
 @foreach($search_results as $row_post)
+@if($row_post->post_status == 2)
 <div class="row">
     <div class="col-3">
         <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" />
@@ -23,4 +24,5 @@
 
     </div>
 </div>
+@endif
 @endforeach

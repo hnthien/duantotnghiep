@@ -80,7 +80,7 @@ class Posts extends Controller
         } else {
             $user = User::all();
             $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')
-            ->orWhere('post_intro', 'like', '%' . $keyword . '%')
+            ->orWhere('post_intro', 'like', '%' . $keyword . '%')->where('post_status',2)
             ->orderBy('post_id', 'DESC')->take(10)->get();
             return view('search_results', compact('search_results', 'user'));
         }
@@ -91,14 +91,14 @@ class Posts extends Controller
 
         $keyword = $request->keyword;
         $user = User::all();
-        $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orderBy('post_id', 'DESC')->take(20)->get();
+        $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->where('post_status',2)->orderBy('post_id', 'DESC')->take(20)->get();
         return view('search', compact('search_results', 'user', 'keyword'));
     }
     public function search_posts_tag(Request $request, $tag)
     {
         $keyword = $tag;
         $user = User::all();
-        $search_results = Post::orderBy('post_id', 'DESC')->get();
+        $search_results = Post::orderBy('post_id', 'DESC')->where('post_status',2)->get();
         return view('search_tag', compact('search_results', 'user', 'keyword'));
     }
 }
