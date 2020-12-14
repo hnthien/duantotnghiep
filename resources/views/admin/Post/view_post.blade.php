@@ -116,13 +116,25 @@
                     </select>
                    
                    </div>
-                   
+                  
                     <br>
                     <div class="row col-3">
                      <button type="submit" class="btn background-greed ">Phê duyệt </button>
                     </div>
                     </form>
                     @endif
+                    @if($post->post_status==2)
+                   <div>
+                   <h3>Xem bình luận</h3>
+                   @if($post->user_id == Auth::user()->id)
+                   <a href="{{url('/admin/comment/detail_comment')}}/{{$post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>
+                  @else 
+                   @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
+                   <a href="{{url('/admin/comment/detail_comment')}}/{{$post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>            
+                   @endif 
+                     @endif
+                   </div>
+                   @endif
 </section>
 </main>
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('admin','Quản lý bài viết - T20 News')
+@section('admin','Quản lý bài viết - Tất cả bài viết - T20 News')
 @section('content')
 <script>
     $(document).ready(function() {

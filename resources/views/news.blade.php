@@ -126,7 +126,7 @@
                         var post_id = $('#post_id').val();
                        
                         $.ajax({
-                            url: "{{url('admin/comment/create_comment')}}",
+                            url: "{{url('comment/create_comment')}}",
                             cache: false,
                             type: "post",
                             data: {

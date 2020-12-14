@@ -25,7 +25,7 @@
        echo $nur;
        @endphp
        </p>
-       <p>Bao nhiêu người bình luận:</p>
+     
                     
                         <div class="comments-container">
                             <ul id="comments-list" class="comments-list">

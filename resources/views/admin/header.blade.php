@@ -15,6 +15,10 @@
                             <a href="{{url('/admin/post')}}"><i class="fas fa-clipboard-list"></i>Bài viết  <i class="fas fa-angle-right"></i></a>
                             <span class="hover-dash"></span>
                         </li>
+                        <li>
+                            <a href="{{url('admin/post/my_is_approved')}}"><i class="fas fa-clipboard-list"></i>Bài viết của tôi  <i class="fas fa-angle-right"></i></a>
+                            <span class="hover-dash"></span>
+                        </li>
                         @if(Auth::user()->role_user == 3  || Auth::user()->role_user == 1 )
                         <li>
                             <a href="{{url('/admin/category')}}"><i class="fas fa-clipboard-list"></i>Danh mục <i class="fas fa-angle-right"></i></a>

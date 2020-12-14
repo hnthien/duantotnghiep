@@ -28,7 +28,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <p style="font-size: 13px;margin-top:5px">Kiểm tra email để đặt lại mật khẩu</p>
                             </div>
+                           
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

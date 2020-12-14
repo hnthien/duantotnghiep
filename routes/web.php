@@ -78,6 +78,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/', 'Admin\Posts@index');
         Route::get('/is_approved', 'Admin\Posts@is_approved');
         Route::get('/is_not_approved', 'Admin\Posts@is_not_approved');
+        Route::get('/my_is_approved', 'Admin\Posts@my_is_approved');
+        Route::get('/my_is_not_approved', 'Admin\Posts@my_is_not_approved');
         Route::get('/url', 'Admin\Posts@url');
         Route::get('/new_post', 'Admin\Posts@new_post');
         Route::post('/create_post', 'Admin\Posts@create_post');

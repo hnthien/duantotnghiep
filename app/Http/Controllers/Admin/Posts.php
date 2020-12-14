@@ -35,7 +35,7 @@ class Posts extends Controller
         $user = User::all();
         $category = Category::all();
         $comments = Comment::all();
-        $posts = Post::orderBy('post_id', 'DESC')->paginate(9);
+        $posts = Post::where('post_status', 0)->orWhere('post_status', 3)->orwhere('post_status', 2)->orderBy('post_id', 'DESC')->paginate(15);
 
         return view('admin.post.index', compact('posts', 'category', 'user'));
     }
@@ -44,7 +44,7 @@ class Posts extends Controller
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(9);
+        $posts = Post::where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(15);
 
         return view('admin.post.is_approved', compact('posts', 'category', 'user'));
     }
@@ -53,8 +53,26 @@ class Posts extends Controller
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::where('post_status', 0)->orWhere('post_status', 1)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(9);
+        $posts = Post::where('post_status', 0)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(15);
         return view('admin.post.is_not_approved', compact('posts', 'category', 'user'));
+    }
+    //
+    // cua toi da phe duyet
+    public function my_is_approved()
+    {
+        $user = User::all();
+        $category = Category::all();
+        $posts = Post::where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(15);
+
+        return view('admin.my_post.index', compact('posts', 'category', 'user'));
+    }
+    // cua toi chua phe duyet
+    public function my_is_not_approved()
+    {
+        $user = User::all();
+        $category = Category::all();
+        $posts = Post::where('post_status', 0)->orWhere('post_status', 1)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(15);
+        return view('admin.my_post.is_not_approved', compact('posts', 'category', 'user'));
     }
     // new post
     public function new_post()
@@ -183,12 +201,7 @@ class Posts extends Controller
         $posts = Post::find($post_id);
         $posts->post_title = $request->post_title;
         $posts->category_id = $request->category_id;
-        if ($request->post_status != 0) {
-            $posts->post_status = $request->post_status;
-            if (Auth::user()->role_user == 3 or Auth::user()->role_user == 2) {
-                $posts->censor_id = Auth::user()->id;
-            }
-        }
+           
        
         $posts->post_slug = $request->post_slug;
         $posts->post_intro = $request->post_intro;
