@@ -169,5 +169,9 @@ Route::group(['prefix' => 'post_like'], function () {
 });
 // index
 Route::get('/', 'Clients\Home@index');
+Route::get('/gioi-thieu-t20news', function () {
+    return view('introduce');
+}
+);
 Route::get('/posts/searchs/{tag}', 'Clients\Posts@search_posts_tag');
 

@@ -138,7 +138,7 @@
                                 $('#comment_content').val("");                     
                                 setTimeout(function() {
                                     $('#comment_view').load("{{url('comment/comment_view')}}/{{$post->post_id}}");
-                                }, 1000);
+                                }, 500);
                             },
                             error: function(data) {
                                
@@ -172,7 +172,7 @@
                                 <input id="post_id"  type=hidden name="post_id" value="{{$post->post_id}}" />
 
                             </div>
-                            <button type="submit" class="btn-submit btn-style">Post Comment</button>
+                            <button type="submit" class="btn-submit btn-style">Đăng bình luận</button>
                         </div>
                     </form>
                     @else

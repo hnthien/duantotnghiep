@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User as Users;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\Post_like;
+use App\Models\Comment_report;
+use App\Models\Error;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -62,12 +68,15 @@ class User extends Controller
     public function delete($id)
     {
         if ($id) {
-            $user = Users::find($id);
-            if ($user == true) {
-                $user->delete();
+                Users::where('id',$id)->delete();
+                Comment::where('user_id',$id)->delete();
+                Post::where('user_id',$id)->delete();
+                Post_like::where('user_id',$id)->delete();
+                Error::where('user_id',$id)->delete();
+                Feedback::where('user_id',$id)->delete();
+                Comment_report::where('comment_report_user_id',$id)->delete();
                 return redirect()->action('Admin\User@index');
-            }
-            abort(404);
+            
         }
          abort(404);
     }

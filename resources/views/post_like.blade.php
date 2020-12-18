@@ -83,8 +83,8 @@
         })
     })
 </script>
-<div class="row col-border-bottom">
-    <div class="col-6">
+<div class="row like col-border-bottom">
+    <div class="col-6" >
         @if(Auth::check())
         @foreach($post_like as $row_post_like)
         @if($row_post_like->user_id == Auth::user()->id)

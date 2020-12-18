@@ -576,6 +576,11 @@ button:focus {
     font-size: 13px;
 }
 
+.col-hover:hover {
+    color: red;
+    background: white;
+}
+
 
 /* background */
 
@@ -743,7 +748,7 @@ button:focus {
 }
 
 
-/* menu nổi */
+/* menu n峄昳 */
 
 .fix {
     width: 100%;
@@ -921,7 +926,7 @@ button:focus {
 .list_category__li>li {
     background: #222;
     padding: 10px;
-    height: 155px;
+    height: 180px;
     box-sizing: border-box;
     font-weight: bold;
     margin-bottom: 0px;
@@ -955,7 +960,7 @@ button:focus {
 }
 
 
-/* xóa */
+/* x贸a */
 
 .list-theme {
     padding: 5px 15px;
@@ -1006,7 +1011,7 @@ button:focus {
 .results_search {
     position: absolute;
     width: 100%;
-    z-index: 1;
+    z-index: 30;
     margin-top: 0px;
     overflow: auto;
     max-height: 200px;
@@ -1016,7 +1021,6 @@ button:focus {
 .results_search a {
     margin-bottom: 5px;
     box-sizing: border-box;
-    background: rgb(207, 207, 207);
 }
 
 .theme-selector {
@@ -1032,6 +1036,11 @@ button:focus {
 
 .height_img {
     height: 180px;
+}
+
+.text-success {
+    color: #00e600!important;
+    font-size: 12px;
 }
 
 .text-danger {
@@ -1679,6 +1688,12 @@ footer {
     }
     .popular-post .row {
         display: flex;
+    }
+    .row .like [class*="col-"] {
+        width: 50%;
+    }
+    .row .like {
+        display: flex!important;
     }
     .popular-post .row .col-2 {
         width: 25%;

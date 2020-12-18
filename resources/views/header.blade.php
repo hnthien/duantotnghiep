@@ -1,63 +1,65 @@
-<script>
+
+
+<script >
     $(document).ready(function() {
-        $('#error').click(function() {
-            $("#error_box").show();
-            // $("#error_box").slideToggle('slow');
-            $("#feedback_box").hide();
-
-        });
-
-        $('#error_closed').click(function() {
-            $("#error_box").hide();
-            // $("#dialog_box").slideToggle('slow');
-
-        });
-        $('#feedback').click(function() {
-            $("#feedback_box").show();
-            // $("#feedback_box").slideToggle('slow');
-            $("#error_box").hide();
-
-        });
-
-        $('#feedback_closed').click(function() {
-            $("#feedback_box").hide();
-            // $("#dialog_box").slideToggle('slow');
-
-        });
-        $('#category_show').click(function() {
-            $("#list_category_menu").slideToggle('slow');
-            $("#category_show1").show();
-            $("#category_show").hide();
-
-        });
-        $('#category_show1').click(function() {
-            $("#list_category_menu").hide();
-            $("#category_show").show();
-            $("#category_show1").hide();
-        });
-        
-        $('#search').keyup(function() {
-            var keyword = $('#search').val();
-            $.ajax({
-                url: "{{url('post/search')}}",
-                type: "get",
-                data: {
-                    keyword: keyword
-                },
-                success: function(res) {
-                    $('#SearchResults').html(res);
-                },
-                error: function(error) {
-                    alert('lỗi');
-                }
-            })
-
-        })
-
+    $('#error').click(function() {
+        $("#error_box").show();
+        // $("#error_box").slideToggle('slow');
+        $("#feedback_box").hide();
 
     });
-   
+
+    $('#error_closed').click(function() {
+        $("#error_box").hide();
+        // $("#dialog_box").slideToggle('slow');
+
+    });
+    $('#feedback').click(function() {
+        $("#feedback_box").show();
+        // $("#feedback_box").slideToggle('slow');
+        $("#error_box").hide();
+
+    });
+
+    $('#feedback_closed').click(function() {
+        $("#feedback_box").hide();
+        // $("#dialog_box").slideToggle('slow');
+
+    });
+    $('#category_show').click(function() {
+        $("#list_category_menu").slideToggle('slow');
+        $("#category_show1").show();
+        $("#category_show").hide();
+
+    });
+    $('#category_show1').click(function() {
+        $("#list_category_menu").hide();
+        $("#category_show").show();
+        $("#category_show1").hide();
+    });
+
+    $('#search').keyup(function() {
+        var keyword = $('#search').val();
+        $.ajax({
+            url: "{{url('post/search')}}",
+            type: "get",
+            data: {
+                keyword: keyword
+            },
+            success: function(res) {
+                $('#SearchResults').html(res);
+            },
+            error: function(error) {
+                alert('lỗi');
+            }
+        })
+
+    })
+
+
+});
 </script>
+
 <div style="padding-top:10px" class="row">
 
     <div class="col-3 text-align--center ">
@@ -95,8 +97,10 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    </li>
-                    <li><a href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
+                    </li>@php
+                        $slug = Str::slug(Auth::user()->name, '-');
+                        @endphp
+                    <li><a href="{{url('/user/profile')}}/{{$slug}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
                     <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi mật khẩu</a></li>
                     @if(Auth::user()->role_user == 1 or Auth::user()->role_user == 2 or Auth::user()->role_user == 3 )
                     <li> <a href="{{url('/admin')}}"><i class="fas fa-users-cog"></i>Vào admin</a></li>
@@ -306,7 +310,7 @@
                         <h3 class="form__name">ERROR</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-wave-square"></i>
-                            <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{ old('error_url') }}" id="error_url" placeholder=" Error url..." />
+                            <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{url()->current()}}" disabled id="error_url" placeholder=" Error url..." />
                             <samp class="text-danger"><b>{{ $errors->first('error_url') }}</b></samp>
                         </div>
                         <div class="form__input box_input">

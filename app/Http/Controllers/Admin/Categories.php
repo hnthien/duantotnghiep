@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use App\Models\Post;
 class Categories extends Controller
 {
     protected $role_user;
@@ -66,8 +67,8 @@ class Categories extends Controller
             'category_slug' => 'required',
         ], $message);
 
-        $category_name = Category::where('category_title', $request->category_title)->get();
-        if ($category_name == null) {
+        $category_name = Category::where('category_title', $request->category_title)->doesntExist();
+        if ($category_name ) {
             Category::create([
                 'category_title' => $request->category_title,
                 'category_slug' => $request->category_slug,
@@ -82,7 +83,8 @@ class Categories extends Controller
     // them moi category con
     public function create_category_branch(Request $request, $category_id)
     {
-        if ($category_id) {
+        $category_name = Category::where('category_title', $request->category_title)->doesntExist();
+        if ($category_name) {
             $message = [
                 'category_title.required' => 'Vui lòng nhập tên thể loại',
                 'category_slug.required' => 'Vui lòng nhập url'
@@ -92,8 +94,8 @@ class Categories extends Controller
                 'category_title' => 'required',
                 'category_slug' => 'required',
             ], $message);
-            $category_name = Category::where('category_title', $request->category_title)->get();
-            if ($category_name == null) {
+            
+            if ($category_id != null) {
                 Category::create([
                     'category_title' => $request->category_title,
                     'category_slug' => $request->category_slug,
@@ -102,6 +104,8 @@ class Categories extends Controller
                 ]);
                 return redirect()->action('Admin\Categories@index');
             }
+            abort(404); 
+        }else{
             return redirect()->back()->with('error', 'Thể loại đã tồn tại');
         }
 
@@ -149,8 +153,8 @@ class Categories extends Controller
     public function delete($category_id)
     {
         if ($category_id) {
-            $categorys = Category::find($category_id);
-            $categorys->delete();
+            Category::where('category_id',$category_id)->orWhere('category_branch',$category_id)->delete();
+            Post::where('category_id',$category_id)->delete(); 
             return redirect()->action('Admin\Categories@index');
         }
         abort(404);

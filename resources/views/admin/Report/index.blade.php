@@ -97,7 +97,7 @@
 
             </td>
            
-            <td> <a href="{{url('admin/report/hidden')}}/1/{{$row_comments->comment_id}}/{{$row_comment_report->comment_report_id}} " title="Ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a>    </td>        
+            <td> <a href="{{url('admin/report/hidden')}}/1/{{$row_comment_report->comment_id}}/{{$row_comment_report->comment_report_id}} " title="Ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye-slash"></i></button></a>    </td>        
            
            
         </tr>

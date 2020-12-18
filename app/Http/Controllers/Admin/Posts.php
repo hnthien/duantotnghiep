@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Post_like;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -219,9 +220,13 @@ class Posts extends Controller
     // xoa
     public function delete($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect()->action('Admin\Posts@index');
+        if($id){
+            Comment::where('post_id',$id)->delete();
+            Post::where('post_id',$id)->delete();
+            Post_like::where('post_id',$id)->delete();
+            return redirect()->action('Admin\Posts@index');
+        } return  abort(404);
+     
     }
     //tim kiem
     public function search(Request $request)

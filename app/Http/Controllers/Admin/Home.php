@@ -13,6 +13,7 @@ use App\Models\Comment;
 use App\Models\Comment_report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Carbon;
 class Home extends Controller
 {
     protected $role_user;
@@ -30,15 +31,38 @@ class Home extends Controller
     }
 
     public function index()
-    {
-        $category = ModelsCategory::all();
-        $feedback = Feedback::all();
-        $comment = Comment::where('comment_branch',0)->get();
-        $comment_report= Comment_report::all();
-        $error = Error::all();
-        $user = User::all();
-        $post_all =  Post::all();
-        $post =  Post::orderBy('post_id', 'DESC')->take(6)->get();
-        return view('admin.index', compact('post', 'post_all', 'category', 'user', 'feedback', 'error','comment','comment_report'));
+    {  
+        $feedback = Feedback::count();
+        $comment = Comment::where('comment_branch',0)->count();
+        $comment_report= Comment_report::count();
+        $error = Error::count();
+        $user_kd = User::where('role_user',1)->count();
+        $user_nd = User::where('role_user',0)->count();
+        $user_tg = User::where('role_user',2)->count();
+        $user = User::count();
+        $post_all =  Post::where('post_status',2)->count();
+        $post =  Post::where('post_status',0)->orWhere('post_status', 3)->count();
+       
+        // show chartjs 12 months 
+        $monthsData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        // tgian hiện tại
+        $time = Carbon::now();
+        // năm hiện tại
+        $current_year = $time->year;
+        // foreach data 12 tháng
+        foreach ($monthsData as $month) {
+            // thêm tháng của năm hiện tại vào countMonth có số lượng bài viết
+            $countMonth[] = Post::whereYear('created_at', $current_year)->whereMonth('created_at', $month)->count();
+        }
+        foreach ($monthsData as $month) {
+            // thêm tháng của năm hiện tại vào countMonth có số lượng bài viết
+            $countMonth_user[] = User::whereYear('created_at', $current_year)->whereMonth('created_at', $month)->count();
+        }
+        // tháng hiện tại = tháng hiện tại - 1 để tính tháng trước của tháng hiện tại
+        $month_current = $time->month - 1;
+        // tính số lượng bài viết của tháng hiện tại trừ số lượng bài viết của tháng trước
+        $count_month_current = $countMonth[$month_current] - $countMonth[$month_current - 1];
+        $count_month_current_user = $countMonth_user[$month_current] - $countMonth_user[$month_current - 1];
+        return view('admin.index', compact( 'post','post_all','user_kd','user_nd','user_tg', 'user', 'feedback', 'error','comment','comment_report','countMonth', 'count_month_current','countMonth_user', 'count_month_current_user'));
     }
 }

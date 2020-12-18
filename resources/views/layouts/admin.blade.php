@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,15 +11,8 @@
     <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js') }}/images.js"></script>
-    <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />
-    
-  
-  
-   
-    
-
+    <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />  
 </head>
-
 <body>
 
 

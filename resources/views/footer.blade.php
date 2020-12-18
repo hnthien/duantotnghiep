@@ -17,7 +17,7 @@
                 <h2 class="text-color-white">Liên kết hữu ích</h2>
                 <ul class="list-vertical">
 
-                    <li><a href="#"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
+                    <li><a href="{{url('gioi-thieu-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
                 </ul>
             </div>
             <div style="background: none;" class="col-4 post">            
