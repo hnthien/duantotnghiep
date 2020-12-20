@@ -9,28 +9,7 @@
             <span style="font-size: 12px; font-weight: bold;">Bài viết <i class="fas fa-angle-right"></i>Quản lý bài viết</span>
         </div>
         <br>
-        <div class="row">
-            <div class="col-2">
-                <a href="{{url('admin/post')}}">
-                    <button id="your_all" class="btn background-gray">Tất cả bài viết</button>
-                </a>
-
-            </div>
-            <div class="col-2">
-                <a href="{{url('admin/post/is_not_approved')}}">
-                    <button id="your_is_not_approved" class="btn background-red">Chưa kiểm duyệt</button>
-                </a>
-            </div>
-            <div class="col-2">
-                <a href="{{url('admin/post/is_approved')}}">
-                    <button id="your_is_approved" class="btn background-greed">Đã kiểm duyệt</button>
-                </a>
-            </div>
-
-            <div class="col-5">
-            </div>
-
-            </div>
+        
 </section>
 <section class="post-contect">
     <h1 class="text-title-post" style="font-size: 20px;">{{$post->post_title}}</h1>

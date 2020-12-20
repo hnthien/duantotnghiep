@@ -105,6 +105,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // comment
     Route::group(['prefix' => 'comment'], function () {
         Route::get('/', 'Admin\Comments@index');
+        Route::get('/all_comment', 'Admin\Comments@all');
         Route::get('/detail_comment/{id}', 'Admin\Comments@detail_comment');
         Route::get('/delete_branch/{id}', 'Admin\Comments@delete');
         Route::get('/hidden/{nur}/{id}', 'Admin\Comments@hidden');
@@ -172,7 +173,12 @@ Route::group(['prefix' => 'post_like'], function () {
 Route::get('/', 'Clients\Home@index');
 Route::get('/gioi-thieu-t20news', function () {
     return view('introduce');
-}
-);
+});
+Route::get('/chinh-sach-t20news', function () {
+    return view('policy');
+});
+Route::get('/quy-dinh-t20news', function () {
+    return view('regulations');
+});
 Route::get('/posts/searchs/{tag}', 'Clients\Posts@search_posts_tag');
 

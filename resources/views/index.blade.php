@@ -242,7 +242,7 @@
                 <div class="col-8">
                     <a href="{{url('/post')}}/{{$row_post_all->post_slug}}/{{$row_post_all->post_id}}">
 
-                        <h4 class="font-size-13 " style="margin: 0px;padding-left:3px">
+                        <h4 class="font-size-13 " style="margin: 0px;padding-left:3px ;object-fit: cover">
                             {{$row_post_all->post_title}}
                         </h4>
                     </a>

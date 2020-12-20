@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('admin','Quản lý bình luận - T20 News')
+@section('admin','Quản lý tất cả bình luận - T20 News')
 @section('content')
 
 <script>
@@ -41,16 +41,14 @@
              <div style="text-align: center;float: right;">{!!$post->links()!!}</div>
             </div>
         </div>
-        @if(Auth::user()->role_user == 3 || Auth::user()->role_user == 1)
         <br>
         <div class="row">
         <div class="col-2">
-                <a href="{{url('admin/comment/all_comment')}}">
-                    <button  class="btn background-gray">Tất cả bài viết</button>
+                <a href="{{url('admin/comment/')}}">
+                    <button  class="btn background-gray">Bài viết của tôi</button>
                 </a>
             </div>
         </div>
-        @endif
         <br>
         <table class="popular-post ">
         <tr >

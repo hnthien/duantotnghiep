@@ -18,6 +18,9 @@
                 <ul class="list-vertical">
 
                     <li><a href="{{url('gioi-thieu-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
+                    <li><a href="{{url('chinh-sach-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Chính Sách</a></li>
+                    <li><a href="{{url('quy-dinh-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Quy Định</a></li>
+
                 </ul>
             </div>
             <div style="background: none;" class="col-4 post">            

@@ -27,12 +27,19 @@ class Comments extends Controller
     public function index()
     { 
         $user = User::all();
-        $post = Post::where('user_id',Auth::user()->id)->where('post_status',2)->orderBy('post_id', 'DESC')->paginate(10);
+        $post = Post::where('user_id',Auth::user()->id)->where('post_status',2)->orderBy('post_id', 'DESC')->paginate(15);
         $comments = Comment::where('comment_branch', 0)->get();
         return view('admin.comment.index',compact('comments','post','user'));
     }
    
-  
+    public function all()
+    { 
+        $user = User::all();
+        $post = Post::where('post_status',2)->orderBy('post_id', 'DESC')->paginate(15);
+        $comments = Comment::where('comment_branch', 0)->get();
+        return view('admin.comment.all',compact('comments','post','user'));
+    }
+   
     
     public function delete($id)
     { 

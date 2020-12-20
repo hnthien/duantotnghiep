@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button class="btn background-greed">+ Add New Post</button></a>
+                <a class="col-margin--bottom" href="{{url('admin/post/new_post')}}"><button class="btn background-greed">+ Thêm bài viết</button></a>
             </div>
             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
