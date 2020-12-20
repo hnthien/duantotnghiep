@@ -29,7 +29,7 @@
                                 @endforeach
                             </li>
                             <li>
-                                @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,0,10) ; @endphp
+                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
                             </li>
                         </ul>
                     </div>
@@ -61,7 +61,7 @@
                             @endforeach
                         </li>
                         <li>
-                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,0,10) ; @endphp
+                        @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
                         </li>
                     </ul>
                     <p class="color-light-gray ">{{$row_pp->post_intro}}</p>
@@ -92,7 +92,7 @@
                             @endforeach
                         </li>
                         <li>
-                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,0,10) ; @endphp
+                        @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
                         </li>
                     </ul>
                 </div>
@@ -118,7 +118,7 @@
                                 <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
 
                             </div>
-                            <div class="col-8 col-margin-left">
+                            <div style="padding:0px 5px" class="col-8 col-margin-left">
                                 <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
                                     <h3>{{$row_post->post_title}}</h3>
                                 </a>
@@ -146,7 +146,7 @@
                                         @endforeach
                                     </li>
                                     <li>
-                                        @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                                        @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
                                     </li>
                                     @foreach($category as $row_category)
                                     @if($row_post->category_id == $row_category->category_id)
@@ -215,21 +215,27 @@
             </h2>
             @php
             $data = new App\Models\Post();
-            $post_all = $data::where('post_status',2)->get();
+            $post_all = $data::where('post_status',2)->take(1)->get();
             $post_category = $data::where('post_status',2)->where('category_id',$row_categorys->category_id)->orderBy('post_id', 'DESC')->take(1)->get();
             $data_ct = new App\Models\Category();
             $category_ct = $data_ct::where('category_branch',$row_categorys->category_id)->take(2)->get();
             @endphp
             @foreach($post_category as $row_post_category)
             <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category->post_image}}" alt="image post" />
+            <div style=" object-fit: cover " class="height-news">
             <a href="{{url('/post')}}/{{$row_post_category->post_slug}}/{{$row_post_category->post_id}}">
                 <h3>{{$row_post_category->post_title}}</h3>
             </a>
+            </div>
+           
             @endforeach
             @foreach($category_ct as $row_category_ct)
+            @php
+            $post_all = $data::where('post_status',2)->where('category_id',$row_category_ct->category_id)->take(1)->get();
+            @endphp
             @foreach($post_all as $row_post_all)
-            @if($row_post_all->category_id == $row_category_ct->category_id )
-            <div class="row col-border-top">
+            
+            <div  class="row col-border-top height-news">
                 <div class="col-4">
                     <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}" alt="image post" />
                 </div>
@@ -244,7 +250,7 @@
 
             </div>
 
-            @endif
+          
             @endforeach
             @endforeach
             

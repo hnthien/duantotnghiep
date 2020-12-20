@@ -5,7 +5,7 @@
 <main class="content col-margin--top col-padding ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
-            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
+            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Trang chủ <i class="fas fa-angle-right"></i></b></a></li>
             <li><a href="{{url('/category/')}}/{{$categorys->category_slug}}/{{$categorys->category_id}}">{{$categorys->category_title}}</a></li>
         </ul>
     </div>
@@ -103,7 +103,7 @@
                                     @endforeach
                                 </li>
                                 <li>
-                                    @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at,5,2).'/'.substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                                    @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
                                 </li>
                             </ul>
                             <p class="color-light-gray font-size-13">{{$row_post->post_intro}}</p>

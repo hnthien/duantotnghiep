@@ -45,15 +45,23 @@ class Home extends Controller
        
         // show chartjs 12 months 
         $monthsData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        $datesData = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
         // tgian hiện tại
         $time = Carbon::now();
         // năm hiện tại
         $current_year = $time->year;
+        $months = $time->month;
+        $day = $time->toDateString();
         // foreach data 12 tháng
-        foreach ($monthsData as $month) {
+       foreach ($monthsData as $month) {
             // thêm tháng của năm hiện tại vào countMonth có số lượng bài viết
-            $countMonth[] = Post::whereYear('created_at', $current_year)->whereMonth('created_at', $month)->count();
-        }
+            $countMonth[] = Post::where('post_status',2)->whereYear('created_at', $current_year)->whereMonth('created_at', $month)->count();
+        } 
+        // foreach data 1 tháng
+        foreach ($datesData as $date) {
+            
+            $countDate[] = Post::where('post_status',2)->whereMonth('created_at',$months)->whereDay('created_at',$date)->count();
+        } 
         foreach ($monthsData as $month) {
             // thêm tháng của năm hiện tại vào countMonth có số lượng bài viết
             $countMonth_user[] = User::whereYear('created_at', $current_year)->whereMonth('created_at', $month)->count();
@@ -63,6 +71,6 @@ class Home extends Controller
         // tính số lượng bài viết của tháng hiện tại trừ số lượng bài viết của tháng trước
         $count_month_current = $countMonth[$month_current] - $countMonth[$month_current - 1];
         $count_month_current_user = $countMonth_user[$month_current] - $countMonth_user[$month_current - 1];
-        return view('admin.index', compact( 'post','post_all','user_kd','user_nd','user_tg', 'user', 'feedback', 'error','comment','comment_report','countMonth', 'count_month_current','countMonth_user', 'count_month_current_user'));
+        return view('admin.index', compact( 'post','post_all','user_kd','user_nd','user_tg', 'user', 'feedback', 'error','comment','comment_report','countMonth', 'count_month_current','countMonth_user', 'count_month_current_user','countDate','months','day'));
     }
 }

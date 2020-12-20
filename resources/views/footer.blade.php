@@ -45,12 +45,12 @@
                                         $slug = Str::slug($row_user->name, '-');
                                         @endphp
                                 @if($row_user->id == $row_post->user_id)
-                                <a  style="text-transform: capitalize" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                                <a  style="text-transform: capitalize;  color: rgb(160, 6, 6);"  href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                 @endif
                                 @endforeach
                             </li>
                             <li  class="text-color-white">
-                             @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,0,10) ; @endphp
+                            @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
                             </li>
                         </ul>
                     </div>

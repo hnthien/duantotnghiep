@@ -6,6 +6,10 @@ body {
     font-size: 15px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 img {
     object-fit: cover !important;
 }
@@ -81,6 +85,10 @@ img {
 
 .col-12 {
     width: 100%;
+}
+
+.height-news {
+    height: 80px;
 }
 
 
@@ -209,7 +217,7 @@ button:focus {
 /* test color */
 
 .text-color-white {
-    color: rgb(107, 105, 105)
+    color: rgb(240, 240, 240)
 }
 
 .text-bold {
@@ -1404,6 +1412,35 @@ footer {
 }
 
 
+/* Create a Scroll To Top Button */
+
+#myBtn {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 1%;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background: rgb(160, 6, 6);
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#myBtn:hover {
+    background: black;
+    color: white;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+
 /**
 * Caja del Comentario
 ---------------------------*/
@@ -1627,6 +1664,9 @@ footer {
     .menu {
         display: block;
     }
+    .height-news {
+        height: 100%;
+    }
     .menu .col-9 {
         width: 100%;
     }
@@ -1732,28 +1772,42 @@ footer {
     .popular-post .row {
         display: block;
     }
-    .popular-post .row .col-2 {
-        width: 100%;
-        margin: 0px 5px;
-    }
-    .popular-post .row .col-10 {
+    .popular-post .row .col-3 {
         width: 100%;
     }
-    .popular-post .row .col-2 img {
-        width: 80px;
+    .popular-post .row .col-9 {
+        width: 100%;
+    }
+    .popular-post .row .col-3 img {
+        width: 100%;
     }
     /*  */
     .post .col-2 img {
-        width: 80px;
+        width: 100%;
     }
     .post .row {
-        display: flex;
+        display: block;
     }
-    .post .row .col-2 {
-        width: 25%;
-        margin: 0px 5px;
+}
+
+@media only screen and (max-width: 280px) {
+    .popular-post .row {
+        display: block;
     }
-    .post .row .col-10 {
-        width: 75%;
+    .popular-post .row .col-3 {
+        width: 100%;
+    }
+    .popular-post .row .col-9 {
+        width: 100%;
+    }
+    .popular-post .row .col-3 img {
+        width: 100%;
+    }
+    /*  */
+    .post .col-2 img {
+        width: 100%;
+    }
+    .post .row {
+        display: block;
     }
 }

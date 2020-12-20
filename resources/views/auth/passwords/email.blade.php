@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+@section('app','Lấy lại mật khẩu')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-               <h1 class="form__name">{{ __('Reset Password') }}</h1>
+               <h1 class="form__name">{{ __('Lấy lại mật khẩu') }}</h1>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,7 +18,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail Address') }}</b></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail') }}</b></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -35,7 +35,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <div class="btn--hover">
-                                    <button type="submit" class="btn__button col-padding-btn"> {{ __('Send Password Reset Link') }}</button>
+                                    <button type="submit" class="btn__button col-padding-btn"> {{ __('Gửi đến email') }}</button>
                                     <div class="btn__hover"></div>
                                 </div>
                             </div>

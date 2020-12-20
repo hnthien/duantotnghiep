@@ -30,7 +30,7 @@ $data_user = $user::all();
                 @endforeach
             </li>
             <li>
-                @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,0,10) ; @endphp
+            @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
             </li>
         </ul>
     </div>

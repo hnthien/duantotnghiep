@@ -1,19 +1,19 @@
 
 @foreach($search_results as $row_post)
-<div style="margin-top: 5px;" class="row">
-    <div class="col-3">
-        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" />
-    </div>
-    <div class="col-9">
+<div style="margin-top: 5px; padding:5px 10px" class="row">
+    <div class="col-12">
         <a  href="{{url('admin/post/approval')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
             <h4 style="margin: 0px;" class="font-size-13">{{$row_post->post_title}}</h4>
         </a>
         <ul class="list-horizontal font-size-13">
             <li class="text-color-white">
-                <span>by</span>
+                <span>Từ</span>
                 @foreach($user as $row_user)
                 @if($row_user->id == $row_post->user_id)
-                <a href="#">{{$row_user->name}}</a>
+                @php
+                $slug = Str::slug($row_user->name, '-');
+                @endphp
+                <a href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                 @endif
                 @endforeach
             </li>

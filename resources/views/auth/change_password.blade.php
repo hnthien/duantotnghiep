@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('app','Change Passwword')
+@section('app','Đổi mật khẩu')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <h1 class="form__name">CHANGE PASSWORD</h1>
+                <h1 class="form__name">Đổi Mật Khẩu</h1>
                 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(function() {
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right"><b>Old Password</b></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right"><b>Mật khẩu cũ</b></label>
 
                             <div class="col-md-6">
 
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="newpassword" class="col-md-4 col-form-label text-md-right"><b>New Password</b></label>
+                            <label for="newpassword" class="col-md-4 col-form-label text-md-right"><b>Mật khẩu mới</b></label>
 
                             <div class="col-md-6">
 
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="confirmpassword" class="col-md-4 col-form-label text-md-right"><b>Confirm Password</b></label>
+                            <label for="confirmpassword" class="col-md-4 col-form-label text-md-right"><b>Nhập lại mật khẩu</b></label>
 
                             <div class="col-md-6">
 
@@ -116,7 +116,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <div class="btn--hover">
-                                    <button type="submit" class="btn__button col-padding-btn">Change Password</button>
+                                    <button type="submit" class="btn__button col-padding-btn">Đổi mật khẩu/button>
                                     <div class="btn__hover"></div>
                                 </div>
                             </div>

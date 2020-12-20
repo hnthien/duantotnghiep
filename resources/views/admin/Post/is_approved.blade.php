@@ -35,7 +35,7 @@
             </div>
             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
-                <input class="search__input" id="search" type="search" placeholder="Search......" />
+                <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
             </form>
         </div>

@@ -4,7 +4,7 @@
 <main class="content col-margin--top ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
-            <li><a href="index.html"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
+            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Trang chủ<i class="fas fa-angle-right"></i></b></a></li>
             <li><a class="color-gray" href="{{url('gioi-thieu-t20news')}}">Giới thiệu</a></li>
         </ul>
     </div>

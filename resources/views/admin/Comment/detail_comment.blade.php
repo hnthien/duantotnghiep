@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('admin','Quản lý bình luận - T20 News')
 @section('content')
+
 <main >
 
     <section class="section ">

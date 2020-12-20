@@ -108,6 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/detail_comment/{id}', 'Admin\Comments@detail_comment');
         Route::get('/delete_branch/{id}', 'Admin\Comments@delete');
         Route::get('/hidden/{nur}/{id}', 'Admin\Comments@hidden');
+        
         //
        
     });

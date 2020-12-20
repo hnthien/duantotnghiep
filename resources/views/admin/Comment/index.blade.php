@@ -2,7 +2,27 @@
 @section('admin','Quản lý bình luận - T20 News')
 @section('content')
 
+<script>
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            var keyword = $('#search').val();
+            $.ajax({
+                url: "{{url('admin/post/search')}}",
+                type: "get",
+                data: {
+                    keyword: keyword
+                },
+                success: function(res) {
+                    $('#SearchResults').html(res);
+                },
+                error: function(error) {
+                    alert('lỗi');
+                }
+            })
 
+        })
+    })
+</script>
 <main >
 
     <section class="section ">
@@ -13,7 +33,9 @@
         </div>
         <div class="row">
             <form class=" col-4 search" method="POST">
-                <input class="search__input" type="search" placeholder="Search......" />
+                <span class="item"><i class="fa fa-search"></i></span>
+                <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
+                <div class="results_search" id="SearchResults"></div>
             </form>
             <div class="col-4">  
              <div style="text-align: center;float: right;">{!!$post->links()!!}</div>
@@ -51,13 +73,9 @@
                                 @endphp
                                 </td>
             <td>
-            @if($row_post->user_id == Auth::user()->id)
-                <a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>
-            @else 
-            @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
+           
             <a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>            
-            @endif 
-            @endif
+           
             </td>
         </tr>
         @endforeach

@@ -4,8 +4,8 @@
 <main class="content">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
-            <li><a href="index.html"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
-            <li><a href="#">Account <i class="fas fa-angle-right"></i></a></li>
+            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Trang chủ <i class="fas fa-angle-right"></i></b></a></li>
+            <li><a href="#">Thông tin tài khoản <i class="fas fa-angle-right"></i></a></li>
 
         </ul>
     </div>
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-8 ">
                 <div class="row popular-post ">
-                    <h1 class="col-12 col-margin-left" style="font-size: 30px;">User Profile</h1>
+                    <h1 class="col-12 col-margin-left" style="font-size: 30px;">Thông tin tài khoản</h1>
                 </div>
                 <form action="{{url('user/account')}}" method="POST" class="box-shadow col-padding background-white" enctype="multipart/form-data">
                     @csrf

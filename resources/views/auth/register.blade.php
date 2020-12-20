@@ -1,18 +1,18 @@
 @extends('layouts.app')
-@section('app','Register')
+@section('app','Đăng ký')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-            <h1 class="form__name">{{ __('REGISTER') }}</h1>
+            <h1 class="form__name">{{ __('Đăng ký') }}</h1>
                 <div class="card-body">
                     
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><b>{{ __('Name') }}</b></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right"><b>{{ __('Tên') }}</b></label>
 
                             <div class="col-md-6">
                            
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail Address') }}</b></label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail') }}</b></label>
 
                             <div class="col-md-6">
                                 <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Password') }}</b></label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Mật khẩu') }}</b></label>
 
                             <div class="col-md-6">
                                 <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><b>{{ __('Confirm Password') }}</b></label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><b>{{ __('Nhập lại mật khẩu') }}</b></label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" placeholder="Password confirm"  type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
@@ -79,7 +79,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <div class="btn--hover">
-                                    <button type="submit" class="btn__button col-padding-btn">  {{ __('Register') }}</button>
+                                    <button type="submit" class="btn__button col-padding-btn">  {{ __('Đăng ký') }}</button>
                                     <div class="btn__hover"></div>
                                 </div>
                             </div>

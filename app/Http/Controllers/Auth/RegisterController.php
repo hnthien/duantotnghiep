@@ -51,12 +51,31 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $message = [
+            'name.required' => 'Vui lòng nhập tên ',
+            'name.string' => 'Tên được nhập theo kiểu string',
+            'name.max' => 'Tên được nhập tối đa 40 kí tự',
+            'email.required' => 'Vui lòng nhập email',
+            'email.string' => 'Tên được nhật theo kiểu string',
+            'email.email' => 'Vui lòng nhập đúng định dạng email',
+            'email.max' => 'Email được nhập tối da 255 kí tự',
+            'email.unique' => 'Email đã tồn tại',
+          
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.string' => 'Mật khẩu được nhập theo kiểu string',
+            'password.min' => 'Mật khẩu dài ít nhất 8 kí tự',
+            'password.confirmed' => 'Vui lòng nhập đúng xác nhận mật khẩu',
+
+            'phone_user.required' => 'Vui lòng nhập số điện thoại',
+            'phone_user.min' => 'Vui số điện thoại gồm 10 số',
+            'phone_user.max' => 'Vui số điện thoại gồm 10 số',
+        ];
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:40'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_user' => ['required','min:10','max:10'],
-        ]);
+        ],$message);
     }
 
     /**

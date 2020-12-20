@@ -1,15 +1,11 @@
 @extends('layouts.client')
 @section('client','Tác giả '.$user_author->name)
 @section('content')
-@php
-$nub = 0;
-foreach($post_author as $row_data_post)
-{$nub++;}
-@endphp
+
 <main class="content col-margin--top ">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
-            <li><a href="index.html"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
+            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Trang chủ <i class="fas fa-angle-right"></i></b></a></li>
             <li><a href="#">Tác giả <i class="fas fa-angle-right"></i></a></li>
             <li><a href="#">{{$user_author->name}}</a></li>
         </ul>
@@ -21,7 +17,7 @@ foreach($post_author as $row_data_post)
                     <div class="popular-post col-padding ">
                         <h1 class="col-margin-left" style="font-size: 30px; margin:0px;">Tác Giả {{$user_author->name}}</h1>
                        <br>
-                        <p class="color-light-gray" style="font-size:12px;">Tổng số bài viết là {{$nub}}.</p>
+                        <p class="color-light-gray" style="font-size:12px;">Tổng số bài viết là {{$post_count}}.</p>
                         <br>
                         <div class="color-light-gray" style="font-size:12px;"> 
                          @php echo $user_author->intro_user @endphp

@@ -63,7 +63,7 @@ class Posts extends Controller
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(15);
+        $posts = Post::where('user_id',Auth::user()->id)->where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(15);
 
         return view('admin.my_post.index', compact('posts', 'category', 'user'));
     }
@@ -72,7 +72,7 @@ class Posts extends Controller
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::where('post_status', 0)->orWhere('post_status', 1)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(15);
+        $posts = Post::where('user_id',Auth::user()->id)->where('post_status', 0)->orWhere('post_status', 1)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(15);
         return view('admin.my_post.is_not_approved', compact('posts', 'category', 'user'));
     }
     // new post
@@ -171,7 +171,7 @@ class Posts extends Controller
                 }
             } 
             $posts->save();
-            return redirect()->action('Admin\Posts@index');    
+            return redirect()->action('Admin\Posts@my_is_approved');    
         }
       return  abort(404);
     }
@@ -214,8 +214,8 @@ class Posts extends Controller
 
         $posts->post_tag = $tag;
         $posts->post_content = $request->post_content;
-        $posts->save();
-        return back();
+        $posts->save(); 
+        return redirect()->action('Admin\Posts@my_is_approved');      
     }
     // xoa
     public function delete($id)

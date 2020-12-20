@@ -243,7 +243,26 @@
                     alert("{{ session('status') }}");
                     </script>               
                     @endif   
-
+<!--Create a Scroll To Top Button  -->
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i style="font-size: 18px;" class="fas fa-angle-double-up"></i></button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
 <!-- feedback -->
 <div class="col-position">
     <div class="feedback_box " id="feedback_box">
@@ -254,7 +273,7 @@
                     <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                     <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data" class="form col-padding">
                         @csrf
-                        <h3 class="form__name">FEEDBACK</h3>
+                        <h3 class="form__name">Đóng góp ý kiến</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-heading"></i>
                             <input type="text" name="feedback_title" class="@error('feedback_title') is-invalid @enderror" value="{{ old('feedback_title') }}" id="feedback_title" placeholder=" Title..." />
@@ -307,7 +326,7 @@
                     <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                     <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data" class="form col-padding">
                         @csrf
-                        <h3 class="form__name">ERROR</h3>
+                        <h3 class="form__name">Báo lỗi</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-wave-square"></i>
                             <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{url()->current()}}" disabled id="error_url" placeholder=" Error url..." />

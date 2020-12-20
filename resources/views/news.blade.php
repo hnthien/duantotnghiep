@@ -4,8 +4,8 @@
 <main class="content col-margin--top col-padding">
     <div class=" col-margin--bottom">
         <ul class="list-horizontal">
-            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Home <i class="fas fa-angle-right"></i></b></a></li>
-            <li class="color-red text-bold">Tin Tức <i class="fas fa-angle-right"></i></li>
+            <li><a href="{{url('/')}}"><b><i class="fas fa-home text-color--gray"></i> Trang chủ <i class="fas fa-angle-right"></i></b></a></li>
+            <li><span style="color: rgb(90, 89, 89);" class=" text-bold">Tin tức</span> <i class="fas fa-angle-right"></i></li>
             @foreach($categorys_branch as $category)
             @if($post->category_id == $category->category_id)
             @foreach($categorys as $row_category)
@@ -68,7 +68,7 @@
 
                                     </li>
                                     <li>{{$date}}
-                                        @php echo substr($post->created_at ,10,3).':'.substr($post->created_at ,14,2)." "; echo substr($post->created_at,5,2).'/'.substr($post->created_at ,8,2).'/'.substr($post->created_at,0,4) ; @endphp
+                                        @php echo substr($post->created_at ,10,3).':'.substr($post->created_at ,14,2)." ";echo substr($post->created_at ,8,2).'/'.substr($post->created_at,5,2).'/'.substr($post->created_at,0,4) ; @endphp
                                     </li>
                                 </ul>
                             </div>

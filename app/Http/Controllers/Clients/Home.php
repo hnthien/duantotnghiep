@@ -44,7 +44,8 @@ class Home extends Controller
              if (Str::slug($check->name, '-')==$name) {
                  $user_author= User::find($id);
                  $post_author = Post::where('user_id', $id)->orderBy('post_id', 'DESC')->paginate(10);
-                 return view('author', compact('user_author', 'post_author'));
+                 $post_count = Post::where('user_id', $id)->count();
+                 return view('author', compact('user_author', 'post_author','post_count'));
              } else {
                  return abort(404);
              }
@@ -75,13 +76,21 @@ class Home extends Controller
      // edit pass
      public function edit_pass(Request $request)
      {
+        $message = [
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Vui lòng nhập đúng định dạng email',
+          
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'newpassword.required' => 'Vui lòng nhập mật khẩu mới',
+            'confirmpassword.same' => 'Mật khẩu xác thực phải trùng với mật khẩu mới',
+        ];
          $request->validate([
              'email' => 'required|email',
              'password' => 'required',
              'newpassword' => 'required',
-             'confirmpassword' => 'required|same:newpassword',
+             'confirmpassword' => 'same:newpassword',
  
-         ]);
+         ],$message);
          $email = $request->email;
          $password = $request->password;
          $result = User::where('email', $email)->find(Auth::user()->id);
@@ -93,10 +102,10 @@ class Home extends Controller
                  Auth::logout();
                  return redirect(url('/login'))->with('log', 'Đổi mật khẩu thành công !.');
              } else {
-                 return redirect()->action('Clients\Home@password')->with('pass', 'Password is incorrect.');
+                 return redirect()->action('Clients\Home@password')->with('pass', 'Mật khẩu không chính xác');
              }
          } else {
-             return redirect()->action('Clients\Home@password')->with('email', 'Email is incorrect.');
+             return redirect()->action('Clients\Home@password')->with('email', 'Email không chính xác');
          }
         
          return;
