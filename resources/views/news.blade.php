@@ -210,7 +210,7 @@
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
                             <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
+                                <a href="https://www.facebook.com/TheT20News" target="_blank"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
                                 <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
                                 <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
                             </div>

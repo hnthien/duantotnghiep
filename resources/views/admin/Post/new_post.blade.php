@@ -33,7 +33,9 @@
                 <h3>Tên Bài Viết:</h3>
                 <input class="input" type="text" name="post_title" id="post_title" value="{{ old('post_title') }}" />
                 <span class="text-danger"><b>{{ $errors->first('post_title') }}</b></span>
-
+                @if (session('error'))                    
+                    <span  class="text-danger">{{ session('error') }}</span>
+                    @endif
                 <h3>Url:</h3>
                 <input class="input" type="text" name="post_slug" id="post_slug" value="{{ old('post_slug') }}" />
                 <span class="text-danger"><b>{{ $errors->first('post_slug') }}</b></span>

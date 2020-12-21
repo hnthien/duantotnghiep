@@ -49,7 +49,9 @@
                         @foreach($post_category1 as $row_post_category1)
                         @if($row_post_category1->category_id == $row_category_branch->category_id)
                         <div class="col-3 col-position">
-                            <img class="img height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
+                            <a href="{{url('/post')}}/{{$row_post_category1->post_slug}}/{{$row_post_category1->post_id}}">
+                            <img title="{{$row_post_category1->post_title}}" class="img height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
+                             </a>
                             <a href="{{url('/post')}}/{{$row_post_category1->post_slug}}/{{$row_post_category1->post_id}}">
                                 <h3 class="font-size-13 height-newss">{{$row_post_category1->post_title}}</h3>
                             </a>
@@ -80,7 +82,9 @@
                     @if($row_post->category_id == $categorys->category_id )
                     <div style="padding: 5px;" class="row popular-post ">
                         <div class="col-4 col-position ">
-                            <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
+                              <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+                            <img title="{{$row_post->post_title}}" class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
+                             </a>
 
                         </div>
                         <div class="col-8 col-margin-left">
@@ -125,21 +129,9 @@
                     @include('list_categories')
                     <!-- end category -->
 
-                    <div class="popular-post col-padding">
-                        <h2>LET'S HANG OUT ON SOCIAL</h2>
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
-                                <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-orangered"><i class="fab fa-google-plus-g"></i> GOOGLE</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-orchid"><i class="fab fa-instagram"></i> INSTAGRAM</button></a>
-                                <a href="#"><button class="btn background-oranger"><i class="fas fa-rss"></i>RSS</button></a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- follow_my -->
+                    @include('follow_my')
+                    <!-- end follow_my -->
  <!-- recommended -->
  @include('recommended')
                     <!-- end recommended -->

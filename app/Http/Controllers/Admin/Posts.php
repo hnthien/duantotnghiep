@@ -116,6 +116,8 @@ class Posts extends Controller
         ], $message);
         $file = $request->file('post_image');
         $file->move(public_path('images/post_image'), $file->getClientOriginalName());
+         $slug_name = Post::where('post_slug', $request->post_slug)->doesntExist();
+    if ($slug_name) {
         Post::create([
             'user_id' => Auth::user()->id,
             'category_id' => $request->category_id,
@@ -128,7 +130,10 @@ class Posts extends Controller
             'post_image' => $file->getClientOriginalName(),
             'post_content' => $request->post_content,
             'post_view' => 0,
-        ]);return redirect()->action('Admin\Posts@my_index');
+        ]);
+        return redirect()->action('Admin\Posts@my_index');
+    }
+        return redirect()->back()->with('error', 'Bài viết có lẽ đã tồn tại');
     }
     // slug
     public function url(Request $request)

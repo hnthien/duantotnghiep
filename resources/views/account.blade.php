@@ -55,6 +55,9 @@
                             <div class="form__input box_input">
                                 <i class="fas fa-phone-alt"></i>
                                 <input type="text" name="phone_user" id="phone_user" value="{{ Auth::user()->phone_user}}" />
+                                @error('phone_user')
+                                <span  class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                            
                          
@@ -108,32 +111,19 @@
 
             <div class="col-4">
             <aside>
-                    <!-- popular_posts -->
+                 <!-- popular_posts -->
                     @include('popular_posts')
                     <!-- end popular_posts -->
-                   
-                    <div class="popular-post col-padding background-white">
-                        <h2>FAN PAGE</h2>
-
-                    </div>
-                    <div class="popular-post col-padding background-white">
-                        <h2>LET'S HANG OUT ON SOCIAL</h2>
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
-                                <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-orangered"><i class="fab fa-google-plus-g"></i> GOOGLE</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-orchid"><i class="fab fa-instagram"></i> INSTAGRAM</button></a>
-                                <a href="#"><button class="btn background-oranger"><i class="fas fa-rss"></i>RSS</button></a>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- category -->
-                     @include('list_categories')
+                    <!-- category -->
+                    @include('list_categories')
                     <!-- end category -->
+
+                    <!-- follow_my -->
+                    @include('follow_my')
+                    <!-- end follow_my -->
+ <!-- recommended -->
+ @include('recommended')
+                    <!-- end recommended -->
 
                 </aside>
             </div>

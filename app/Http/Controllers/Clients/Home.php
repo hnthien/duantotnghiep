@@ -45,7 +45,7 @@ class Home extends Controller
          if (!empty($check)) {
              if (Str::slug($check->name, '-')==$name) {
                  $user_author= User::find($id);
-                 $post_author = Post::where('user_id', $id)->where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(10);
+                 $post_author = Post::where('user_id', $id)->where('post_status',2)->orderBy('post_id', 'DESC')->paginate(10);
                   $post_count = Post::where('user_id', $id)->count();
                  return view('author', compact('user_author', 'post_author','post_count'));
              } else {
@@ -63,6 +63,14 @@ class Home extends Controller
      // edit user
      public function account(Request $request)
      {
+        $message = [
+            'phone_user.required' => 'Vui lòng nhập số điện thoại',
+            'phone_user.min' => 'Vui số điện thoại gồm 10 số',
+            'phone_user.max' => 'Vui số điện thoại gồm 10 số',
+        ];
+        $request->validate([
+            'phone_user' => ['required','min:10','max:10'],
+        ],$message);
          $news = User::find(Auth::user()->id);
          if ($request->hasFile('images_user')) {
              $news->images_user = $request->file('images_user')->getClientOriginalName();

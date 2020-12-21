@@ -5,8 +5,9 @@
                         <a href="#"><img width="120px" src="{{ URL::asset('images') }}/t20l.png" alt="logo" /></a>
                     </div>
                 </div>
-                <p class="col-margin--bottom text-color-white"> © 2018 T20News | Made by T20</p>
-                <a href="#" class="text-color-white"><i style="font-size: 20px;" class="fab fa-facebook-f"></i></a>
+                <p class="col-margin--bottom text-color-white"> © 2020 T20News | Made by T20</p>
+                <p style="margin-bottom:5px;" class="font-size-13 text-color-white">Theo dõi chúng tôi</p>
+                <a href="https://www.facebook.com/TheT20News" target="_blank" class="text-color-white"><i style="font-size: 20px;" class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-color-white"><i style="font-size: 20px;" class="fab fa-twitter"></i></a>
                 <a href="#" class="text-color-white"><i style="font-size: 20px;" class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="text-color-white"><i style="font-size: 20px;" class="fab fa-youtube"></i></a>
@@ -33,7 +34,9 @@
                 @foreach($data_post as $row_post)
                 <div class="row col-margin--bottom">
                     <div class="col-4">
-                        <img width="100%" class="height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+                         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+                        <img title="{{$row_post->post_title}}" width="100%" class="height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+                         </a>
                     </div>
                     <div class="col-8 col-margin-left ">
                         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">

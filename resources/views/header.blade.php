@@ -73,7 +73,7 @@
         </form>
     </div>
     <div class="col-3 text-align--center col-margin--top  ">
-        <a href="#"><i style="font-size: 20px;" class="fab fa-facebook-f"></i></a>
+        <a href="https://www.facebook.com/TheT20News" target="_blank"><i style="font-size: 20px;" class="fab fa-facebook-f"></i></a>
         <a href="#"><i style="font-size: 20px;" class="fab fa-twitter"></i></a>
         <a href="#"><i style="font-size: 20px;" class="fab fa-google-plus-g"></i></a>
         <a href="#"><i style="font-size: 20px;" class="fab fa-youtube"></i></a>

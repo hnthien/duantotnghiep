@@ -65,7 +65,7 @@ class Posts extends Controller
             $user = User::all();
             $categorys = Category::find($id);
             $category_branch = Category::all();
-            $post_categoryt = Post::where('category_id', $id)->where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(10);
+            $post_categoryt = Post::where('category_id', $id)->where('post_status',2)->orderBy('post_id', 'DESC')->paginate(10);
             return view('catergories', compact('post_categoryt', 'categorys', 'user', 'category_branch',));
           }else {
              return abort(404);

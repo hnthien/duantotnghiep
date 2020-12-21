@@ -14,12 +14,13 @@
                 @foreach($popular_post as $row_pp)
                 <div  class="row col-border-bottom ">
                 <div class="col-4 col-position ">
-                        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
-
+                     <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
+                        <img title="{{$row_pp->post_title}}" class="img height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
+ </a>
                     </div>
                     <div style="padding: 5px;" class="col-8 ">
                         <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
-                            <h4 style="margin: 0px;">{{$row_pp->post_title}}</h4>
+                            <h4 class="height-newss" style="margin: 0px;">{{$row_pp->post_title}}</h4>
                         </a>
                         <ul class="list-horizontal font-size-13">
                             <li >
@@ -48,7 +49,9 @@
             @foreach($popular_post1 as $row_pp)
             <div  >
                 <div class="col-position">
-                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
+                    <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
+                    <img title="{{$row_pp->post_title}}" class="img height_imggg" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
+                    </a>
                 </div>
                 
                 <div style="padding: 5px;">
@@ -83,9 +86,10 @@
             <div class="col-3">
                 @foreach($popular_post2 as $row_pp)
                 <div  class="col-margin--bottom">
-                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
                     <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
-                        <h3 style="margin: 0px;">{{$row_pp->post_title}}</h3>
+                    <img title="{{$row_pp->post_title}}" class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
+                    
+                        <h3  style="margin: 0px;">{{$row_pp->post_title}}</h3>
                     </a>
                     <ul style="margin-top: 10px;" class="list-horizontal font-size-13">
                         <li>
@@ -125,7 +129,7 @@
     @foreach($post_giaitri as $row_post_giaitri)
     <div  class="itemr col-padding">
     <a style="outline:none"  href="{{url('/post')}}/{{$row_post_giaitri->post_slug}}/{{$row_post_giaitri->post_id}}">
-    <img class="img" height="150px" src="{{ URL::asset('images/post_image') }}/{{$row_post_giaitri->post_image}}" alt="image post" />
+    <img title="{{$row_post_giaitri->post_title}}" class="img" height="150px" src="{{ URL::asset('images/post_image') }}/{{$row_post_giaitri->post_image}}" alt="image post" />
     </a>
     <a style="outline:none" href="{{url('/post')}}/{{$row_post_giaitri->post_slug}}/{{$row_post_giaitri->post_id}}">
     <h3 style="font-size: 13px;" class="height-newss" >{{$row_post_giaitri->post_title}}</h3>
@@ -192,8 +196,9 @@ $(document).ready(function() {
                     <div class="row">
                         <div style="padding: 5px 0px;" class="row popular-post  col-border-bottom ">
                             <div class="col-4 col-position ">
-                                <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
-
+                                 <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+                                <img title="{{$row_post->post_title}}" class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
+                               </a>
                             </div>
                             <div style="padding:0px 10px; " class="col-8 ">
                                 <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
@@ -259,21 +264,9 @@ $(document).ready(function() {
                     <!-- category -->
                     @include('list_categories')
                     <!-- end category -->
-                     <div class="popular-post col-padding">
-                        <h2>LET'S HANG OUT ON SOCIAL</h2>
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-dark-blue"><i class="fab fa-facebook-f"></i> FACEBOOK</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-blue"><i class="fab fa-twitter"></i> TWITTER</button></a>
-                                <a href="#"><button class="btn background-red"><i class="fab fa-youtube"></i> YOUTUBE</button></a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#"><button class="btn col-margin--bottom background-orangered"><i class="fab fa-google-plus-g"></i> GOOGLE</button></a>
-                                <a href="#"><button class="btn col-margin--bottom background-orchid"><i class="fab fa-instagram"></i> INSTAGRAM</button></a>
-                                <a href="#"><button class="btn background-oranger"><i class="fas fa-rss"></i>RSS</button></a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- follow_my -->
+                    @include('follow_my')
+                    <!-- end follow_my -->
                     <!-- recommended -->
                     @include('recommended')
                     <!-- end recommended -->
@@ -299,7 +292,9 @@ $(document).ready(function() {
             $category_ct = $data_ct::where('category_branch',$row_categorys->category_id)->take(2)->get();
             @endphp
             @foreach($post_category as $row_post_category)
-            <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category->post_image}}" alt="image post" />
+             <a href="{{url('/post')}}/{{$row_post_category->post_slug}}/{{$row_post_category->post_id}}">
+            <img title="{{$row_post_category->post_title}}" class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category->post_image}}" alt="image post" />
+             </a>
             <div style=" object-fit: cover "  class="height-news">
             <a href="{{url('/post')}}/{{$row_post_category->post_slug}}/{{$row_post_category->post_id}}">
                 <h3>{{$row_post_category->post_title}}</h3>
@@ -314,7 +309,10 @@ $(document).ready(function() {
            
             <div class="row col-border-top height-news">
                 <div class="col-4">
-                    <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}" alt="image post" />
+                     <a href="{{url('/post')}}/{{$row_post_all->post_slug}}/{{$row_post_all->post_id}}">
+
+                    <img title="{{$row_post_all->post_title}}" class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}" alt="image post" />
+                    </a>
                 </div>
                 <div class="col-8">
                     <a href="{{url('/post')}}/{{$row_post_all->post_slug}}/{{$row_post_all->post_id}}">

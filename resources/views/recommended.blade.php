@@ -11,10 +11,12 @@ $data_user = $user::all();
     <p class="color-light-gray" style="font-size:12px;">Bài viết được đề xuất ngẫu nhiêu.</p>
      <br>
     @foreach($post_recommended as $row_post)
-    <div>
-        <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="review post" />
+    <div style="margin-bottom:10px">
         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
-            <h4 style="margin: 0px;">{{$row_post->post_title}}</h4>
+        <img title="{{$row_post->post_title}}" class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="review post" />
+         </a>
+        <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
+            <h4 class="height-newsss" style="margin: 0px;">{{$row_post->post_title}}</h4>
         </a>
 
         <ul class="list-horizontal font-size-13 color-light-gray">
@@ -35,6 +37,6 @@ $data_user = $user::all();
             </li>
         </ul>
     </div>
-    <br>
+   
     @endforeach
 </div>

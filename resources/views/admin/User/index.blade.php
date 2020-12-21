@@ -34,16 +34,19 @@
                     })
                 })
             </script>
-            <?php
+           @php
             $user = new App\User();
-            $data = $user->orderBy('id', 'DESC')->paginate(9);
+            $data = $user->orderBy('id', 'DESC')->paginate(15);
 
-            ?>
+            @endphp
             <div class=" col-4 search">
                 <span class="item"><i class="fa fa-search"></i></span>
                 <input id="search" class="search__input" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
 
+            </div>
+            <div class="col-4">
+                <div  style="text-align: center;float: right;">{!!$data->links()!!}</div>
             </div>
         </div>
         <br>
@@ -96,7 +99,7 @@
         </div>
 
 
-        <div style="position: relative;left: 40%;text-align: center;width:20%">{!!$data->links()!!}</div>
+     
 
     </section>
 </main>
