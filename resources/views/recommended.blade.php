@@ -11,8 +11,8 @@ $data_user = $user::all();
     <p class="color-light-gray" style="font-size:12px;">Bài viết được đề xuất ngẫu nhiêu.</p>
      <br>
     @foreach($post_recommended as $row_post)
-    <div >
-        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="review post" />
+    <div>
+        <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="review post" />
         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
             <h4 style="margin: 0px;">{{$row_post->post_title}}</h4>
         </a>
@@ -30,7 +30,8 @@ $data_user = $user::all();
                 @endforeach
             </li>
             <li>
-            @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                           @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+
             </li>
         </ul>
     </div>

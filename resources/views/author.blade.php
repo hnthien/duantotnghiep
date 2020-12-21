@@ -50,6 +50,7 @@
                         </div>
                     </div>
                     @endforeach
+                    <div style="text-align: center;float: right;">{!!$post_author->links()!!}</div>
                 </article>
             </div>
             <div class="col-4">

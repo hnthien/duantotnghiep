@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('admin','Quản lý bình luận - T20 News')
 @section('content')
-
 <script>
     $(document).ready(function() {
         $('#search').keyup(function() {
@@ -23,6 +22,7 @@
         })
     })
 </script>
+
 <main >
 
     <section class="section ">
@@ -32,16 +32,17 @@
             <span style="font-size: 12px; font-weight: bold;">Bình luận <i class="fas fa-angle-right"></i>Quản lý bình luận</span>
         </div>
         <div class="row">
-            <form class=" col-4 search" method="POST">
+             <form class=" col-4 search" method="POST">
                 <span class="item"><i class="fa fa-search"></i></span>
                 <input class="search__input" id="search" type="search" placeholder="Tìm kiếm......" />
                 <div class="results_search" id="SearchResults"></div>
             </form>
-            <div class="col-4">  
+            <div class="col-4"> 
+            
              <div style="text-align: center;float: right;">{!!$post->links()!!}</div>
-            </div>
+              </div>
         </div>
-        @if(Auth::user()->role_user == 3 || Auth::user()->role_user == 1)
+         @if(Auth::user()->role_user == 3 || Auth::user()->role_user == 1)
         <br>
         <div class="row">
         <div class="col-2">
@@ -61,9 +62,8 @@
             <th>Chi tiết</th>
         </tr>
         @foreach($post as $row_post)
-        
         <tr>
-           
+            
             <td>{{$row_post->post_id}}</td>
             <td class="text-bold"><a target="_blank" href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">{{$row_post->post_title}}</a></td>
             <td>
@@ -84,9 +84,11 @@
                                 </td>
             <td>
            
-            <a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>            
            
+                <a href="{{url('/admin/comment/detail_comment')}}/{{$row_post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>
+            
             </td>
+            
         </tr>
         @endforeach
        

@@ -17,10 +17,9 @@
                 <h2 class="text-color-white">Liên kết hữu ích</h2>
                 <ul class="list-vertical">
 
-                    <li><a href="{{url('gioi-thieu-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
-                    <li><a href="{{url('chinh-sach-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Chính Sách</a></li>
+                    <li><a href="{{url('gioi-thieu-t20news')}}" class="text-color-white"><i class="fas fa-angle-right"></i>Giới Thiệu</a></li>
+                                        <li><a href="{{url('chinh-sach-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Chính Sách</a></li>
                     <li><a href="{{url('quy-dinh-t20news')}}"class="text-color-white"><i class="fas fa-angle-right"></i>Quy Định</a></li>
-
                 </ul>
             </div>
             <div style="background: none;" class="col-4 post">            
@@ -34,7 +33,7 @@
                 @foreach($data_post as $row_post)
                 <div class="row col-margin--bottom">
                     <div class="col-4">
-                        <img width="100%"  src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
+                        <img width="100%" class="height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="post small" />
                     </div>
                     <div class="col-8 col-margin-left ">
                         <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
@@ -48,12 +47,13 @@
                                         $slug = Str::slug($row_user->name, '-');
                                         @endphp
                                 @if($row_user->id == $row_post->user_id)
-                                <a  style="text-transform: capitalize;  color: rgb(160, 6, 6);"  href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
+                                <a   style="text-transform: capitalize ; color: rgb(160, 6, 6);" href="{{url('/user/author')}}/{{$slug}}/{{$row_user->id}}">{{$row_user->name}}</a>
                                 @endif
                                 @endforeach
                             </li>
                             <li  class="text-color-white">
-                            @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                                                                    @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+
                             </li>
                         </ul>
                     </div>

@@ -1,8 +1,13 @@
 @extends('layouts.client')
-@section('client', 'Trang Chủ')
+@section('client', 'T20News - Trang tin tức uy tín và chính xác  ')
+@section('title','Trang Chủ')
+@foreach($popular_post1 as $row_pp)
+@section('images',$row_pp->post_image)
+@section('keywords',$row_pp->post_title)
+@endforeach
 @section('content')
-
 <main class="content">
+    
     <section class="section">
         <div class="row">
             <div class="col-4 ">
@@ -29,7 +34,8 @@
                                 @endforeach
                             </li>
                             <li>
-                            @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
+                                                     @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
+
                             </li>
                         </ul>
                     </div>
@@ -44,6 +50,7 @@
                 <div class="col-position">
                     <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_pp->post_image}}" alt="image post" />
                 </div>
+                
                 <div style="padding: 5px;">
                     <a href="{{url('/post')}}/{{$row_pp->post_slug}}/{{$row_pp->post_id}}">
                         <h2 style="margin: 0px;">{{$row_pp->post_title}}</h2>
@@ -61,7 +68,8 @@
                             @endforeach
                         </li>
                         <li>
-                        @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
+                                                 @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
+
                         </li>
                     </ul>
                     <p class="color-light-gray ">{{$row_pp->post_intro}}</p>
@@ -92,7 +100,8 @@
                             @endforeach
                         </li>
                         <li>
-                        @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
+                                                   @php echo substr($row_pp->created_at ,10,3).':'.substr($row_pp->created_at ,14,2)." "; echo substr($row_pp->created_at ,8,2).'/'.substr($row_pp->created_at,5,2).'/'.substr($row_pp->created_at,0,4) ; @endphp
+
                         </li>
                     </ul>
                 </div>
@@ -100,7 +109,75 @@
             </div>
         </div>
     </section>
+<section class="section">
+<div class="row">
+<div class="col-2 ">
+<h2>TIN GIẢI TRÍ</h2>
+</div>
+<div style="padding-top:20px;box-sizing: border-box;" class="col-10 ">
+<hr>
+</div>
+</div>
+<div style="height: 200px;" >
+<div class="slide responsive">
 
+
+    @foreach($post_giaitri as $row_post_giaitri)
+    <div  class="itemr col-padding">
+    <a style="outline:none"  href="{{url('/post')}}/{{$row_post_giaitri->post_slug}}/{{$row_post_giaitri->post_id}}">
+    <img class="img" height="150px" src="{{ URL::asset('images/post_image') }}/{{$row_post_giaitri->post_image}}" alt="image post" />
+    </a>
+    <a style="outline:none" href="{{url('/post')}}/{{$row_post_giaitri->post_slug}}/{{$row_post_giaitri->post_id}}">
+    <h3 style="font-size: 13px;" class="height-newss" >{{$row_post_giaitri->post_title}}</h3>
+    </a>
+    </div>
+    @endforeach
+
+
+</div>
+
+<script>
+$(document).ready(function() {
+    $('.slide').slick({
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+    });
+   
+});
+</script>
+
+</div>
+
+</section>
     <section class="section reponsive_8_4">
         <div class="row">
             <div class="col-8 ">
@@ -115,10 +192,10 @@
                     <div class="row">
                         <div style="padding: 5px 0px;" class="row popular-post  col-border-bottom ">
                             <div class="col-4 col-position ">
-                                <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
+                                <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
 
                             </div>
-                            <div style="padding:0px 5px" class="col-8 col-margin-left">
+                            <div style="padding:0px 10px; " class="col-8 ">
                                 <a href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
                                     <h3>{{$row_post->post_title}}</h3>
                                 </a>
@@ -146,7 +223,8 @@
                                         @endforeach
                                     </li>
                                     <li>
-                                        @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                                                                          @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+
                                     </li>
                                     @foreach($category as $row_category)
                                     @if($row_post->category_id == $row_category->category_id)
@@ -181,7 +259,7 @@
                     <!-- category -->
                     @include('list_categories')
                     <!-- end category -->
-                    <div class="popular-post col-padding">
+                     <div class="popular-post col-padding">
                         <h2>LET'S HANG OUT ON SOCIAL</h2>
                         <div class="row">
                             <div class="col-6">
@@ -215,34 +293,33 @@
             </h2>
             @php
             $data = new App\Models\Post();
-            $post_all = $data::where('post_status',2)->take(1)->get();
+           
             $post_category = $data::where('post_status',2)->where('category_id',$row_categorys->category_id)->orderBy('post_id', 'DESC')->take(1)->get();
             $data_ct = new App\Models\Category();
             $category_ct = $data_ct::where('category_branch',$row_categorys->category_id)->take(2)->get();
             @endphp
             @foreach($post_category as $row_post_category)
             <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category->post_image}}" alt="image post" />
-            <div style=" object-fit: cover " class="height-news">
+            <div style=" object-fit: cover "  class="height-news">
             <a href="{{url('/post')}}/{{$row_post_category->post_slug}}/{{$row_post_category->post_id}}">
                 <h3>{{$row_post_category->post_title}}</h3>
             </a>
             </div>
-           
             @endforeach
             @foreach($category_ct as $row_category_ct)
-            @php
+             @php
             $post_all = $data::where('post_status',2)->where('category_id',$row_category_ct->category_id)->take(1)->get();
             @endphp
             @foreach($post_all as $row_post_all)
-            
-            <div  class="row col-border-top height-news">
+           
+            <div class="row col-border-top height-news">
                 <div class="col-4">
                     <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_all->post_image}}" alt="image post" />
                 </div>
                 <div class="col-8">
                     <a href="{{url('/post')}}/{{$row_post_all->post_slug}}/{{$row_post_all->post_id}}">
 
-                        <h4 class="font-size-13 " style="margin: 0px;padding-left:3px ;object-fit: cover">
+                        <h4 style="margin: 0px;padding-left:3px;object-fit: cover;font-size:12px">
                             {{$row_post_all->post_title}}
                         </h4>
                     </a>

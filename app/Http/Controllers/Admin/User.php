@@ -67,7 +67,7 @@ class User extends Controller
 
     public function delete($id)
     {
-        if ($id) {
+         if ($id) {
                 Users::where('id',$id)->delete();
                 Comment::where('user_id',$id)->delete();
                 Post::where('user_id',$id)->delete();

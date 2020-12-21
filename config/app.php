@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/DuAnTotNghiep/public/'),
+    'url' => env('APP_URL', 'https://t20news.xyz/'),
 
     'asset_url' => env('ASSET_URL', null),
 

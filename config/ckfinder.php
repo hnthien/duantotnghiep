@@ -29,8 +29,8 @@ $config['authentication'] = '\App\Http\Middleware\CustomCKFinderAuth';
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = 'localhost';
-$config['licenseKey']  = 'S737U94JM63HNNVJEVEA477Q6FBCB';
+$config['licenseName'] = 'https://t20news.xyz/';
+$config['licenseKey']  = 'LPCTR57FCKDS525XQTMFNM4NJGTAYAL1';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

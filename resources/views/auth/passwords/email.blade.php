@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-               <h1 class="form__name">{{ __('Lấy lại mật khẩu') }}</h1>
+               <h1 class="form__name">{{ __('Lấy Lại Mật Khẩu') }}</h1>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -35,7 +35,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <div class="btn--hover">
-                                    <button type="submit" class="btn__button col-padding-btn"> {{ __('Gửi đến email') }}</button>
+                                    <button type="submit" class="btn__button col-padding-btn"> {{ __('Gửi đến mail') }}</button>
                                     <div class="btn__hover"></div>
                                 </div>
                             </div>

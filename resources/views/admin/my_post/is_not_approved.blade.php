@@ -145,7 +145,7 @@
                         @endif
                         @endif
                     </td>
-                    <td><a href="{{url('admin/post/delete')}}/{{$p->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> </td>
+                    <td><a href="{{url('admin/post/delete_my')}}/{{$p->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn-admin background-red"><i class="fas fa-trash"></i></button></a> </td>
                     <td>
                         <a href="{{url('admin/post/edit')}}/{{$p->post_slug}}/{{$p->post_id}}">
                             <button class="btn-admin background-blue"><i class="fas fa-edit"></i></button>

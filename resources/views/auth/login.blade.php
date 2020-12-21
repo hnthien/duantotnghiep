@@ -5,13 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <h1 class="form__name">{{ __('Đăng nhập') }}</h1>
+                <h1 class="form__name">{{ __('Đăng Nhập') }}</h1>
 
 
                 <div class="card-body ">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                       
+                        @if (session('log'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('log') }}
+                        </div> 
+                        @endif
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right "><b>{{ __('E-Mail') }}</b></label>
 
@@ -21,7 +25,6 @@
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
-
                                 </span>
                                 @enderror
                             </div>
@@ -47,7 +50,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Nhơ mật khẩu') }}
+                                        {{ __('Ghi nhớ mật khẩu') }}
                                     </label>
                                 </div>
                             </div>
@@ -62,7 +65,7 @@
 
                                 @if (Route::has('password.request'))
                                 <a style="color: black;" class="btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Nhớ mật khẩu ?') }}
+                                    {{ __('Quên mật khẩu ?') }}
                                 </a>
                                 @endif
                                             </div>

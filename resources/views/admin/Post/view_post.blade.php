@@ -71,6 +71,7 @@
 
                         </div>
                    @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
+                   @if(Auth::user()->id != $post->user_id )
                    <form method="post" action="{{url('/admin/post/approval_updata')}}/{{$post->post_id}}" enctype="multipart/form-data">
                    @csrf          
                    <div>
@@ -95,25 +96,38 @@
                     </select>
                    
                    </div>
-                  
+                   
                     <br>
                     <div class="row col-3">
                      <button type="submit" class="btn background-greed ">Phê duyệt </button>
                     </div>
                     </form>
                     @endif
-                    @if($post->post_status==2)
+                    @endif
+                    
+                     <div class="row">
+                  @if(Auth::user()->id == $post->user_id )
+                 <a class="col-3" href="{{url('admin/post/delete_my')}}/{{$post->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn background-red"><i class="fas fa-trash"></i></button></a>
+                 @else
+                 @if(Auth::user()->role_user == 3)
+                  <a class="col-3" href="{{url('admin/post/delete_my')}}/{{$post->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn background-red"><i class="fas fa-trash"></i></button></a>
+            
+                 @endif
+                 @endif
+        </div>
+                   @if($post->post_status==2)
                    <div>
                    <h3>Xem bình luận</h3>
                    @if($post->user_id == Auth::user()->id)
                    <a href="{{url('/admin/comment/detail_comment')}}/{{$post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>
-                  @else 
+                   @else 
                    @if(Auth::user()->role_user == 3 or Auth::user()->role_user == 1)
                    <a href="{{url('/admin/comment/detail_comment')}}/{{$post->post_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a>            
                    @endif 
                      @endif
                    </div>
                    @endif
+                   
 </section>
 </main>
 @endsection

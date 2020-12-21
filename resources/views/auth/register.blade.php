@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-            <h1 class="form__name">{{ __('Đăng ký') }}</h1>
+            <h1 class="form__name">{{ __('Đăng Ký') }}</h1>
                 <div class="card-body">
                     
                     <form method="POST" action="{{ route('register') }}">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="phone_user" class="col-md-4 col-form-label text-md-right"><b>{{ __('Phone') }}</b></label>
+                            <label for="phone_user" class="col-md-4 col-form-label text-md-right"><b>{{ __('Số điện thoại') }}</b></label>
 
                             <div class="col-md-6">
                                 <input id="phone_user" placeholder="Phone" type="number" class="form-control @error('phone_user') is-invalid @enderror" name="phone_user" value="{{ old('phone_user') }}"  autocomplete="phone_user">

@@ -1,70 +1,68 @@
-
-
-<script >
+<script>
     $(document).ready(function() {
-    $('#error').click(function() {
-        $("#error_box").show();
-        // $("#error_box").slideToggle('slow');
-        $("#feedback_box").hide();
+        $('#error').click(function() {
+            $("#error_box").show();
+            // $("#error_box").slideToggle('slow');
+            $("#feedback_box").hide();
 
-    });
+        });
 
-    $('#error_closed').click(function() {
-        $("#error_box").hide();
-        // $("#dialog_box").slideToggle('slow');
+        $('#error_closed').click(function() {
+            $("#error_box").hide();
+            // $("#dialog_box").slideToggle('slow');
 
-    });
-    $('#feedback').click(function() {
-        $("#feedback_box").show();
-        // $("#feedback_box").slideToggle('slow');
-        $("#error_box").hide();
+        });
+        $('#feedback').click(function() {
+            $("#feedback_box").show();
+            // $("#feedback_box").slideToggle('slow');
+            $("#error_box").hide();
 
-    });
+        });
 
-    $('#feedback_closed').click(function() {
-        $("#feedback_box").hide();
-        // $("#dialog_box").slideToggle('slow');
+        $('#feedback_closed').click(function() {
+            $("#feedback_box").hide();
+            // $("#dialog_box").slideToggle('slow');
 
-    });
-    $('#category_show').click(function() {
-        $("#list_category_menu").slideToggle('slow');
-        $("#category_show1").show();
-        $("#category_show").hide();
+        });
+        $('#category_show').click(function() {
+            $("#list_category_menu").slideToggle('slow');
+            $("#category_show1").show();
+            $("#category_show").hide();
 
-    });
-    $('#category_show1').click(function() {
-        $("#list_category_menu").hide();
-        $("#category_show").show();
-        $("#category_show1").hide();
-    });
+        });
+        $('#category_show1').click(function() {
+            $("#list_category_menu").hide();
+            $("#category_show").show();
+            $("#category_show1").hide();
+        });
+        
+        $('#search').keyup(function() {
+            var keyword = $('#search').val();
+            $.ajax({
+                url: "{{url('post/search')}}",
+                type: "get",
+                data: {
+                    keyword: keyword
+                },
+                success: function(res) {
+                    $('#SearchResults').html(res);
+                },
+                error: function(error) {
+                    alert('lỗi');
+                }
+            })
 
-    $('#search').keyup(function() {
-        var keyword = $('#search').val();
-        $.ajax({
-            url: "{{url('post/search')}}",
-            type: "get",
-            data: {
-                keyword: keyword
-            },
-            success: function(res) {
-                $('#SearchResults').html(res);
-            },
-            error: function(error) {
-                alert('lỗi');
-            }
         })
 
-    })
 
-
-});
+    });
+   
 </script>
-
 <div style="padding-top:10px" class="row">
 
     <div class="col-3 text-align--center ">
         <a href="{{url('/')}}"><img src="{{ URL::asset('images') }}/t20.png" alt="logo" /></a>
-        <p class="color-light-gray" style="font-size:12px;">Website thử nghiệm.</p>
+
     </div>
     <div class="col-4  ">
         <form class="search" method="POST" action="{{url('post/searchs')}}">
@@ -91,16 +89,17 @@
                 <ul class="menuheaderli__droplist">
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i>{{ __('Logout') }}
+                            <i class="fas fa-sign-out-alt"></i>{{ __('Đăng xuất') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    </li>@php
+                    </li>
+                        @php
                         $slug = Str::slug(Auth::user()->name, '-');
                         @endphp
-                    <li><a href="{{url('/user/profile')}}/{{$slug}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
+                    <li><a href="{{url('/user/thong-tin-tai-khoan')}}/{{$slug}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
                     <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi mật khẩu</a></li>
                     @if(Auth::user()->role_user == 1 or Auth::user()->role_user == 2 or Auth::user()->role_user == 3 )
                     <li> <a href="{{url('/admin')}}"><i class="fas fa-users-cog"></i>Vào admin</a></li>
@@ -111,7 +110,7 @@
 
         @else
         <div class="col-margin--top">
-            <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ route('login') }}">Login</a>
+            <i class="fas fa-user-circle"></i> <a class="text-bold" href="{{ route('login') }}">Đăng nhập</a>
 
         </div>
 
@@ -123,8 +122,8 @@
 </div>
 <div class="row">
     <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
+    <div style="border-bottom: 2px #494949 solid;" class="col-10">
+        
     </div>
     <div class="col-1"></div>
 </div>
@@ -273,7 +272,7 @@ function topFunction() {
                     <div class="feedback_closed " id="feedback_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                     <form method="POST" action="{{url('admin/feedback/create_feedback')}}" enctype="multipart/form-data" class="form col-padding">
                         @csrf
-                        <h3 class="form__name">Đóng góp ý kiến</h3>
+                        <h3 class="form__name">Góp ý</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-heading"></i>
                             <input type="text" name="feedback_title" class="@error('feedback_title') is-invalid @enderror" value="{{ old('feedback_title') }}" id="feedback_title" placeholder=" Title..." />
@@ -326,10 +325,10 @@ function topFunction() {
                     <div class="error_colsed" id="error_closed"><i style="font-size: 20px;" class="fas fa-times"></i></div>
                     <form method="POST" action="{{url('admin/error/create_error')}}" enctype="multipart/form-data" class="form col-padding">
                         @csrf
-                        <h3 class="form__name">Báo lỗi</h3>
+                        <h3 class="form__name">Báo lỗi website</h3>
                         <div class="form__input box_input">
                             <i class="fas fa-wave-square"></i>
-                            <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{url()->current()}}" disabled id="error_url" placeholder=" Error url..." />
+                            <input type="text" name="error_url" class="@error('error_url') is-invalid @enderror" value="{{url()->current()}}" id="error_url" disabled placeholder=" Error url..." />
                             <samp class="text-danger"><b>{{ $errors->first('error_url') }}</b></samp>
                         </div>
                         <div class="form__input box_input">

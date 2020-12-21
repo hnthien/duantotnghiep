@@ -37,7 +37,12 @@ Route::get('/404', function () {
     return view('404');
 });
 
-
+Route::get('/googled0d7ced230692106.html', function () {
+    return view('googled0d7ced230692106');
+});
+Route::get('/sitemap', function () {
+    return view('sitemap');
+});
 
 Auth::routes();
 
@@ -78,8 +83,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/', 'Admin\Posts@index');
         Route::get('/is_approved', 'Admin\Posts@is_approved');
         Route::get('/is_not_approved', 'Admin\Posts@is_not_approved');
+        // 
+        Route::get('/my_index', 'Admin\Posts@my_index');
         Route::get('/my_is_approved', 'Admin\Posts@my_is_approved');
         Route::get('/my_is_not_approved', 'Admin\Posts@my_is_not_approved');
+        // 
         Route::get('/url', 'Admin\Posts@url');
         Route::get('/new_post', 'Admin\Posts@new_post');
         Route::post('/create_post', 'Admin\Posts@create_post');
@@ -88,6 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/approval_updata/{id}', 'Admin\Posts@approval_updata');
         Route::post('/update/{id}', 'Admin\Posts@update');
         Route::get('/delete/{id}', 'Admin\Posts@delete');
+        Route::get('/delete_my/{id}', 'Admin\Posts@delete_my');
         Route::get('/search', 'Admin\Posts@search');
     });
     //category
@@ -105,11 +114,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // comment
     Route::group(['prefix' => 'comment'], function () {
         Route::get('/', 'Admin\Comments@index');
-        Route::get('/all_comment', 'Admin\Comments@all');
+         Route::get('/all_comment', 'Admin\Comments@all');
         Route::get('/detail_comment/{id}', 'Admin\Comments@detail_comment');
         Route::get('/delete_branch/{id}', 'Admin\Comments@delete');
         Route::get('/hidden/{nur}/{id}', 'Admin\Comments@hidden');
-        
         //
        
     });
@@ -126,7 +134,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 //người dùng client
 Route::group(['prefix' => 'user'], function () {
-    Route::get('/profile/{name}', function () {
+    Route::get('/thong-tin-tai-khoan/{name}', function () {
         return view('account');
     });
     //
@@ -170,7 +178,6 @@ Route::group(['prefix' => 'post_like'], function () {
     Route::get('/{id}', 'Clients\Posts_like@view_like');
 });
 // index
-Route::get('/', 'Clients\Home@index');
 Route::get('/gioi-thieu-t20news', function () {
     return view('introduce');
 });
@@ -180,5 +187,6 @@ Route::get('/chinh-sach-t20news', function () {
 Route::get('/quy-dinh-t20news', function () {
     return view('regulations');
 });
+Route::get('/', 'Clients\Home@index');
 Route::get('/posts/searchs/{tag}', 'Clients\Posts@search_posts_tag');
 

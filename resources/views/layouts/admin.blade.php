@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,8 +13,15 @@
     <link href="{{ URL::asset('css') }}/css.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js') }}/images.js"></script>
-    <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />  
+    <link href="{{ URL::asset('css') }}/login.css" rel="stylesheet" />
+    
+  
+  
+   
+    
+
 </head>
+
 <body>
 
 
@@ -39,7 +48,10 @@
                                         @csrf
                                     </form>
                                 </li>
-                                <li><a href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
+                                 @php
+                        $slug = Str::slug(Auth::user()->name, '-');
+                        @endphp
+                                <li><a href="{{url('/user/thong-tin-tai-khoan')}}/{{$slug}}"><i class="fas fa-info-circle"></i>Thông tin</a></li>
                                 <li> <a href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i>Đổi mật khẩu</a></li>
                                 @if(Auth::user()->role_user == 1 or Auth::user()->role_user == 2 or Auth::user()->role_user == 3 )
                                 <li> <a href="{{url('/')}}"><i class="fas fa-users-cog"></i>Rời khỏi admin</a></li>

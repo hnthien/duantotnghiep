@@ -1,5 +1,11 @@
 @extends('layouts.client')
 @section('client',$post->post_title,$post->post_id)
+@foreach($post->post_tag as $tag)
+@section('keyword',$tag)
+@endforeach
+@section('keywords',$post->post_title)
+@section('title',$post->post_title)
+@section('images',$post->post_image)
 @section('content')
 <main class="content col-margin--top col-padding">
     <div class=" col-margin--bottom">
@@ -68,7 +74,9 @@
 
                                     </li>
                                     <li>{{$date}}
-                                        @php echo substr($post->created_at ,10,3).':'.substr($post->created_at ,14,2)." ";echo substr($post->created_at ,8,2).'/'.substr($post->created_at,5,2).'/'.substr($post->created_at,0,4) ; @endphp
+                                                                                                                       @php echo substr($post->created_at ,10,3).':'.substr($post->created_at ,14,2)." ";echo substr($post->created_at ,8,2).'/'.substr($post->created_at,5,2).'/'.substr($post->created_at,0,4) ; @endphp
+
+
                                     </li>
                                 </ul>
                             </div>
@@ -88,11 +96,7 @@
                                 <div style=" padding-top: 10px;box-sizing: border-box;" class="col-8 col-right">
                                 <span><b>{{$post->post_view}} view </b></span>&ensp;
                                 <span> <i class="fas fa-comments"></i>
-                                @php
-                                $dislike = 0;
-                                foreach($comments as $row_comments){$dislike++;}
-                                echo '<b>' . $dislike . '</b>';
-                                @endphp
+                   <b>{{$comments}}</b>
                                 
                                 </span>
                             </div>
@@ -112,12 +116,16 @@
                             @endforeach
 
                         </div>
+                        <br>
+                        
+                        <span> <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Ft20news.xyz%2Fpost%2F{{$post->post_slug}}%2F{{$post->post_id}}&layout=button_count&size=small&appId=1901956559930785&width=86&height=20" width="86" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></span>
 
                     </div>
 
 
 
                 </div>
+                <br>
                      <script>
                 $(document).ready(function() {
                     $('#form_comment').submit(function(event) {
@@ -136,11 +144,12 @@
                             },
                             success: function(data) {                             
                                 $('#comment_content').val("");                     
-                                setTimeout(function() {
+                                
                                     $('#comment_view').load("{{url('comment/comment_view')}}/{{$post->post_id}}");
-                                }, 500);
+                                
                             },
                             error: function(data) {
+                            
                                
                             },
                         })
@@ -155,11 +164,7 @@
                 });
                 </script>
                 <div class="popular-post post-contect ">
-                <h2>Bình Luận (@php
-                                $dislike = 0;
-                                foreach($comments as $row_comments){$dislike++;}
-                                echo '<b>' . $dislike . '</b>';
-                                @endphp)</h2>
+                <h2>Bình Luận ( <b>{{$comments}}</b>)</h2>
                     
                     <!-- write comment zone -->
                     @if (Auth::check())

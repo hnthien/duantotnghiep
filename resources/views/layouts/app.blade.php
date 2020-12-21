@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -50,12 +51,12 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a>
+                            <a class="nav-link" href="{{ route('login') }}"><b>{{ __('Đăng nhập') }}</b></a>
                         </li>
                         @if (Route::has('register'))
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
+                            <a class="nav-link" href="{{ route('register') }}"><b>{{ __('Đăng ký') }}</b></a>
                         </li>
                         @endif
                         @else
@@ -67,9 +68,12 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
+                                    <i class="fas fa-sign-out-alt"></i> {{ __('Đăng xuất') }}
                                 </a>
-                                <a class="dropdown-item" href="{{url('/user/profile')}}/{{Auth::user()->name}}"><i class="fas fa-info-circle"></i> Thông tin</a>
+                                 @php
+                        $slug = Str::slug(Auth::user()->name, '-');
+                        @endphp
+                                <a class="dropdown-item" href="{{url('/user/thong-tin-tai-khoan')}}/{{$slug}}"><i class="fas fa-info-circle"></i> Thông tin</a>
                                 <a class="dropdown-item" href="{{url('/user/change_password')}}"><i class="fab fa-expeditedssl"></i> Đổi mật khẩu</a>
                                 @if(Auth::user()->role_user != 0)
                                 <a class="dropdown-item" href="{{url('/admin')}}"><i class="fas fa-users-cog"></i> Vào admin</a>

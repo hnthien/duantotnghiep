@@ -1,12 +1,13 @@
 @foreach($search_results as $row_post)
 @if($row_post->post_status == 2)
-<div class="row">
+<div class="search_img">
+<div class="  row ">
     <div class="col-3">
-        <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" />
+        <img class="img height_imgg " src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" />
     </div>
     <div class="col-9">
         <a  href="{{url('/post')}}/{{$row_post->post_slug}}/{{$row_post->post_id}}">
-            <h4 style="margin: 0px;" class="text-color-white">{{$row_post->post_title}}</h4>
+            <h4 style="margin: 0px;" class="text-color-gray">{{$row_post->post_title}}</h4>
         </a>
         <ul class="list-horizontal font-size-13">
             <li class="text-color-white">
@@ -23,6 +24,7 @@
         </ul>
 
     </div>
+</div>
 </div>
 @endif
 @endforeach

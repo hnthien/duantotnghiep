@@ -22,7 +22,7 @@ class Home extends Controller
     {
         $popular_post = Post::where('post_status',2)
         ->whereBetween('created_at', [$dt = Carbon::now()->subDays(14),$dt = Carbon::now()])
-        ->orderBy('post_view','DESC')->skip(3)->take(6)->get();
+        ->orderBy('post_view','DESC')->skip(3)->take(5)->get();
         $popular_post1 = Post::where('post_status',2)
         ->whereBetween('created_at', [$dt = Carbon::now()->subDays(14),$dt = Carbon::now()])
         ->orderBy('post_view','DESC')->take(1)->get();
@@ -32,8 +32,10 @@ class Home extends Controller
         $category = Category::all();
         $category_p = Category::where('category_branch',0)->take(12)->get();
         $user = User::all();
-        $post =  Post::where('post_status',2)->orderBy('post_id', 'DESC')->take(30)->get();
-        return view('index', compact('post', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
+        $post =  Post::where('post_status',2)->orderBy('post_id', 'DESC')->take(12)->get();
+                $post_giaitri =  Post::where('post_status',2)->where('category_id', 34)->orWhere('category_id', 35)->orWhere('category_id', 36)->orWhere('category_id', 37)->orWhere('category_id', 38)->orderBy('post_id', 'DESC')->take(6)->get();
+
+        return view('index', compact('post','post_giaitri', 'category','category_p', 'user','popular_post','popular_post1','popular_post2'));
     
     }
      //author
@@ -43,8 +45,8 @@ class Home extends Controller
          if (!empty($check)) {
              if (Str::slug($check->name, '-')==$name) {
                  $user_author= User::find($id);
-                 $post_author = Post::where('user_id', $id)->orderBy('post_id', 'DESC')->paginate(10);
-                 $post_count = Post::where('user_id', $id)->count();
+                 $post_author = Post::where('user_id', $id)->where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(10);
+                  $post_count = Post::where('user_id', $id)->count();
                  return view('author', compact('user_author', 'post_author','post_count'));
              } else {
                  return abort(404);
@@ -76,7 +78,7 @@ class Home extends Controller
      // edit pass
      public function edit_pass(Request $request)
      {
-        $message = [
+          $message = [
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Vui lòng nhập đúng định dạng email',
           

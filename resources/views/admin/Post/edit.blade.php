@@ -164,10 +164,7 @@
                 @include('ckfinder::setup')
                 <span class="text-danger"><b>{{ $errors->first('post_content') }}</b></span>
                 <br>
-                <!-- @if($post->post_status == 1)
-                <input checked type="checkbox" name="post_status" class="selectbox" value="1" />Lưu bản nháp
-                @endif -->
-               
+                
             </div>
             <br>
             <div class="row col-3">
@@ -175,11 +172,7 @@
             </div>
         </form>
         <br>
-        <div class="row">
-        @if(Auth::user()->role_user == 3 || Auth::user()->id == $post->user_id )
-            <a class="col-3" href="{{url('admin/post/delete')}}/{{$post->post_id}}"><button onclick="return window.confirm('Bạn chắc chắn muốn xóa chứ !');" class="btn background-red"><i class="fas fa-trash"></i></button></a>
-        @endif
-        </div>
+        
 
     </section>
 </main>

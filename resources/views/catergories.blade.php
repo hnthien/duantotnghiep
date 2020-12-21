@@ -34,7 +34,7 @@
                     </h2>
                     @php
                     $post = new App\Models\Post();
-                    $data_post = $post->all();
+                    $data_post = $post->where('post_status',2)->get();
                     $nub = 0;
                     foreach($data_post as $row_data_post)
                     {if($row_data_post->category_id ==$row_category_branch->category_id){$nub++;}}
@@ -44,14 +44,14 @@
                     <div style="padding: 5px;" class="row popular-post ">
                         @php
                         $data = new App\Models\Post();
-                        $post_category1 = $data::where('category_id',$row_category_branch->category_id)->orderBy('post_id', 'DESC')->take(4)->get();
+                        $post_category1 = $data::where('category_id',$row_category_branch->category_id)->where('post_status',2)->orderBy('post_id', 'DESC')->take(4)->get();
                         @endphp
                         @foreach($post_category1 as $row_post_category1)
                         @if($row_post_category1->category_id == $row_category_branch->category_id)
                         <div class="col-3 col-position">
-                            <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
+                            <img class="img height_imgg" src="{{ URL::asset('images/post_image') }}/{{$row_post_category1->post_image}}" alt="image post" />
                             <a href="{{url('/post')}}/{{$row_post_category1->post_slug}}/{{$row_post_category1->post_id}}">
-                                <h3>{{$row_post_category1->post_title}}</h3>
+                                <h3 class="font-size-13 height-newss">{{$row_post_category1->post_title}}</h3>
                             </a>
                         </div>
                         @endif
@@ -69,7 +69,7 @@
                     </h2>
                     @php
                     $post = new App\Models\Post();
-                    $data_post = $post->all();
+                    $data_post = $post->where('post_status',2)->get();
                     $nub = 0;
                     foreach($data_post as $row_data_post)
                     {if($row_data_post->category_id ==$categorys->category_id){$nub++;}}
@@ -80,7 +80,7 @@
                     @if($row_post->category_id == $categorys->category_id )
                     <div style="padding: 5px;" class="row popular-post ">
                         <div class="col-4 col-position ">
-                            <img class="img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
+                            <img class="img height_img" src="{{ URL::asset('images/post_image') }}/{{$row_post->post_image}}" alt="image post" />
 
                         </div>
                         <div class="col-8 col-margin-left">
@@ -103,7 +103,8 @@
                                     @endforeach
                                 </li>
                                 <li>
-                                    @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+                                                                        @php echo substr($row_post->created_at ,10,3).':'.substr($row_post->created_at ,14,2)." "; echo substr($row_post->created_at ,8,2).'/'.substr($row_post->created_at,5,2).'/'.substr($row_post->created_at,0,4) ; @endphp
+
                                 </li>
                             </ul>
                             <p class="color-light-gray font-size-13">{{$row_post->post_intro}}</p>

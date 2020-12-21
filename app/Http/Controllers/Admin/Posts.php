@@ -57,13 +57,22 @@ class Posts extends Controller
         $posts = Post::where('post_status', 0)->orWhere('post_status', 3)->orderBy('post_id', 'DESC')->paginate(15);
         return view('admin.post.is_not_approved', compact('posts', 'category', 'user'));
     }
-    //
-    // cua toi da phe duyet
+     //cua toi post
+    public function my_index()
+    {
+        $user = User::all();
+        $category = Category::all();
+        $comments = Comment::all();
+        $posts = Post::where('user_id',Auth::user()->id)->orderBy('post_id', 'DESC')->paginate(15);
+
+        return view('admin.my_post.my_index', compact('posts', 'category', 'user'));
+    }
+     // cua toi da phe duyet
     public function my_is_approved()
     {
         $user = User::all();
         $category = Category::all();
-        $posts = Post::where('user_id',Auth::user()->id)->where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(15);
+        $posts = Post::where('post_status', 2)->where('user_id',Auth::user()->id)->orderBy('post_id', 'DESC')->paginate(15);
 
         return view('admin.my_post.index', compact('posts', 'category', 'user'));
     }
@@ -119,7 +128,7 @@ class Posts extends Controller
             'post_image' => $file->getClientOriginalName(),
             'post_content' => $request->post_content,
             'post_view' => 0,
-        ]);return redirect()->action('Admin\Posts@index');
+        ]);return redirect()->action('Admin\Posts@my_index');
     }
     // slug
     public function url(Request $request)
@@ -202,7 +211,6 @@ class Posts extends Controller
         $posts = Post::find($post_id);
         $posts->post_title = $request->post_title;
         $posts->category_id = $request->category_id;
-           
        
         $posts->post_slug = $request->post_slug;
         $posts->post_intro = $request->post_intro;
@@ -214,19 +222,27 @@ class Posts extends Controller
 
         $posts->post_tag = $tag;
         $posts->post_content = $request->post_content;
-        $posts->save(); 
-        return redirect()->action('Admin\Posts@my_is_approved');      
+        $posts->save();
+        return redirect()->action('Admin\Posts@my_index');
     }
     // xoa
     public function delete($id)
     {
-        if($id){
+         if($id){
             Comment::where('post_id',$id)->delete();
             Post::where('post_id',$id)->delete();
             Post_like::where('post_id',$id)->delete();
             return redirect()->action('Admin\Posts@index');
         } return  abort(404);
-     
+    }
+    public function delete_my($id)
+    {
+         if($id){
+            Comment::where('post_id',$id)->delete();
+            Post::where('post_id',$id)->delete();
+            Post_like::where('post_id',$id)->delete();
+            return redirect()->action('Admin\Posts@my_index');
+        } return  abort(404);
     }
     //tim kiem
     public function search(Request $request)

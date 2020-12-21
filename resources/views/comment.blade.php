@@ -48,10 +48,9 @@
                                                  @endif
                                                 <span>{{$datec}}</span>
                                                 @if (Auth::check())
-                                                <a href="" class="col-margin-left"> <button id="reply{{$cmt->comment_id}}" class=" col-hover col-border--none color-light-gray">Trả lời</button></a>
-                                               
+                                                <button id="reply{{$cmt->comment_id}}" class="col-margin-left col-border--none color-light-gray col-hover">Trả lời</button>
                                                 <a href="{{url('admin/report/create_report')}}/{{$cmt->comment_id}}">
-                                                <button onclick="return window.confirm('Bạn có chắc chắn bình luận này vi phạm Tiêu chuẩn cộng đồng và muốn Báo cáo?');" class=" col-hover col-border--none color-red">Báo cáo vi phạm</button>
+                                                <button onclick="return window.confirm('Bạn có chắc chắn bình luận này vi phạm Tiêu chuẩn cộng đồng và muốn Báo cáo?');" class="col-hover col-border--none color-red">Báo cáo vi phạm</button>
                                                 <a/>
                                                 @endif
                                                 
@@ -102,8 +101,8 @@
                                                         @endphp
                                                         <span>{{$dateb}}</span>
                                                         @if (Auth::check())
-                                                        <a class="col-margin-left" href="{{url('admin/report/create_report')}}/{{$row_comment_branch->comment_id}}">
-                                                        <button onclick="return window.confirm('Bạn có chắc chắn bình luận này vi phạm Tiêu chuẩn cộng đồng và muốn Báo cáo?');" class=" col-border--none color-red">Báo cáo vi phạm</button>
+                                                        <a href="{{url('admin/report/create_report')}}/{{$row_comment_branch->comment_id}}">
+                                                        <button onclick="return window.confirm('Bạn có chắc chắn bình luận này vi phạm Tiêu chuẩn cộng đồng và muốn Báo cáo?');" class="col-hover col-border--none color-red">Báo cáo vi phạm</button>
                                                         <a/>
                                                         @endif
                                                     </div>
@@ -154,7 +153,7 @@
                                                         <input id="comment_contentt" name="comment_contentt" class="input" placeholder="Nhập bình luận..." />
                                                         <input id="post_id" type=hidden name="post_id" value="{{$post->post_id}}" />
                                                         <span class="text-danger"><b id="review"></b></span>
-                                                        <button type="submit" class=" col-margin--top btn-submit btn-style"> Đăng bình luận</button>
+                                                        <button type="submit" class=" col-margin--top btn-submit btn-style">Đăng bình luận</button>
                                                
                                             </form>
                                        </div>

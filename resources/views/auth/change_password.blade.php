@@ -116,7 +116,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <div class="btn--hover">
-                                    <button type="submit" class="btn__button col-padding-btn">Đổi mật khẩu/button>
+                                    <button type="submit" class="btn__button col-padding-btn">Đổi mật khẩu</button>
                                     <div class="btn__hover"></div>
                                 </div>
                             </div>

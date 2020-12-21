@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('admin','Quản lý bình luận - T20 News')
 @section('content')
-
 <main >
 
     <section class="section ">
@@ -26,7 +25,6 @@
        echo $nur;
        @endphp
        </p>
-     
                     
                         <div class="comments-container">
                             <ul id="comments-list" class="comments-list">

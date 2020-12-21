@@ -21,7 +21,7 @@ class Posts extends Controller
         $check = Post::where('post_id',$id)->where('post_slug',$post_slug)->first();
         if(!empty($check)){
         $categorys_branch = Category::all();
-        $comments = Comment::where('comment_branch', 0)->where('post_id', $id)->get();
+        $comments = Comment::where('comment_branch', 0)->where('post_id', $id)->where('comment_status', 0)->count();
         $categorys = Category::where('category_branch', 0)->get();
         $user = User::all();
         //post
@@ -65,7 +65,7 @@ class Posts extends Controller
             $user = User::all();
             $categorys = Category::find($id);
             $category_branch = Category::all();
-            $post_categoryt = Post::where('category_id', $id)->orderBy('post_id', 'DESC')->paginate(10);
+            $post_categoryt = Post::where('category_id', $id)->where('post_status', 2)->orderBy('post_id', 'DESC')->paginate(10);
             return view('catergories', compact('post_categoryt', 'categorys', 'user', 'category_branch',));
           }else {
              return abort(404);

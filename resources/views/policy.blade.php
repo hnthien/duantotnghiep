@@ -14,24 +14,49 @@
            <div class="row ">
                     <div class=" popular-post post-contect">
                         <h1 class="text-title-post">Chính sách của chúng tôi</h1>
-                        <p class=" font-size-13">Lưu ý : Website chỉ là một dự án thử nghiệm của chúng mình  nên hầu hết các bài viết là của trang <a target="_blank" href="https://zingnews.vn/" class="color-red">zingnews.vn</a>
-                    chúng mình chỉ mượn để sử dụng cho dự án thôi. Xin cám ơn !
-                    </p>
-                       <br>
+                        <br>
                         <p>
 
                             Xin chào tất cả mọi người ! Chào mừng các bạn đã gia nhập ngồi nhà tin tức T20News . Ở đây chúng tôi luôn đăng tải những tin tức mới nhất trong nước và thế giới.
                             Bao gồm rất nhiều thể loại từ xã hội cho đến đời sống giải trí. Chúng tôi cung cấp cho bạn những tin tức mới nhất và luôn luôn đảm bảo chất lượng tin tức chính xác nhất.
                            <br><br>
                             <img class="img" alt="T20news" src="https://erasmusplus.org.ge/files/news/news-1.jpg"/><br><br>
-                            Thông tin từ thị trường quảng cáo số Việt Nam của Adsota, Việt Nam hiện nay có 43,7 triệu người đang sử dụng các thiết bị smartphone trên tổng dân số 97,4 triệu dân, tương đương tỷ lệ 44,9%.<br>
-Theo đó, tính đến cuối năm 2019, Việt Nam lọt vào top 15 thị trường có số lượng người dùng smartphone cao nhất thế giới, đứng đầu trong danh sách này là Trung Quốc với 851,2 triệu người sử dụng.<br>
-Theo báo cáo của Vietnam Digital Advertising 2019, trong năm qua, trung bình hằng ngày mỗi người Việt Nam dành khoảng 6 tiếng 42 phút - tương đương với 1/4 ngày, để truy cập Internet.<br>
-Những con số trên chứng tỏ điều gì? Nó cho ta thấy một thị trường màu mỡ trên internet đang mở rộng ở việt nam. Hiện nay đi trên đường phố hay các quán cà phê hay nhiều nơi khác chúng ta sẽ trông thấy rất nhiều người sử dụng điện thoại, họ dùng điện thoại làm gì? chỉ đơn giản là chơi game, xem phim, lướt mạng xã hội và đọc tin tức.<br>
-Hiện nay đọc tin tức online nó khá là được ưa chuộn vì nó giúp người đọc tiết kiệm thời gian để đi mua báo ở các cửa hàng cũng như tiết kiệm được tiền mua báo và đọc báo online thì nó khá dễ dàng khi ta chỉ cần vào đường google là có thể tìm tin tức mình cần đọc. <br>
-Theo kết quả nghiên cứu mới nhất mà (Broadcasting Board of Governors) và Gallup có được, người Việt Nam rất thích đọc tin tức trên internet. Có 9 trên 10 người trưởng thành (88%) luôn cập nhật thông tin hàng ngày và gần như tất cả (96,8%) đều dõi theo thói quen này ít nhất mỗi tuần một lần. <br>
-Hiện nay trên thế giới có rất nhiều tờ báo lớn cũng đã xây dựng các trang tin tức online trên internet cho mình như là CNN, BBC hay là The New York Times. Điều này chứng tỏ tin tức online trên internet là một chủ đề Hot không chỉ riêng Việt Nam mà cả trên thế giới. Từ những con số thống kê và những tờ báo lớn cũng đang dần chuyển qua dạng tin tức online cho thấy thị trường tin tức online rất màu mỡ và chúng ta cần khai thác nó để nó trở thành con gà đẻ trứng vàng. Vì vậy nhóm 2 chọn thiết kế và xây dựng website tin tức.
+                            Chào mừng bạn đến với T20news
+Cảm ơn bạn đã sử dụng sản phẩm và dịch vụ của chúng tôi ("Dịch vụ"). Dịch vụ được cung cấp bởi T20news. có địa chỉ tại 137 Nguyễn Thị Thập - Hòa Minh - Liên Chiểu - Đà Nẵng.
 
+Bằng cách sử dụng Dịch vụ của chúng tôi, bạn đồng ý với các điều khoản này. Hãy đọc chúng một cách cẩn thận.
+
+Dịch vụ của chúng tôi rất đa dạng, vì vậy đôi khi có thể áp dụng các điều khoản bổ sung hoặc yêu cầu sản phẩm (bao gồm cả yêu cầu về độ tuổi). Các điều khoản bổ sung sẽ có sẵn với các Dịch vụ liên quan và các điều khoản bổ sung đó trở thành một phần trong thỏa thuận của bạn với chúng tôi nếu bạn sử dụng các Dịch vụ đó.
+
+<h3>1. Sử dụng dịch vụ của chúng tôi</h3>
+Bạn phải tuân theo bất kỳ chính sách nào được cung cấp cho bạn trong Dịch vụ.
+
+Đừng lạm dụng Dịch vụ của chúng tôi. Ví dụ: không can thiệp vào Dịch vụ của chúng tôi hoặc cố gắng truy cập chúng bằng phương pháp khác với giao diện và hướng dẫn mà chúng tôi cung cấp. Bạn chỉ có thể sử dụng Dịch vụ của chúng tôi khi được pháp luật cho phép, bao gồm các luật và quy định hiện hành về kiểm soát xuất khẩu và tái xuất khẩu. Chúng tôi có thể tạm ngừng hoặc ngừng cung cấp Dịch vụ của chúng tôi cho bạn nếu bạn không tuân thủ các điều khoản hoặc chính sách của chúng tôi hoặc nếu chúng tôi đang điều tra hành vi sai trái bị nghi ngờ.
+
+Việc sử dụng Dịch vụ của chúng tôi không cung cấp cho bạn quyền sở hữu bất kỳ quyền sở hữu trí tuệ nào trong Dịch vụ của chúng tôi hoặc nội dung bạn truy cập. Bạn không được sử dụng nội dung từ Dịch vụ của chúng tôi trừ khi bạn được chủ sở hữu cho phép hoặc được pháp luật cho phép. Các điều khoản này không cấp cho bạn quyền sử dụng bất kỳ nhãn hiệu hoặc biểu tượng nào được sử dụng trong Dịch vụ của chúng tôi. Không xóa, che khuất hoặc thay đổi bất kỳ thông báo pháp lý nào được hiển thị trong hoặc cùng với Dịch vụ của chúng tôi.
+
+A. Dữ liệu Cá nhân mà chúng tôi thu thập về bạn.
+Dữ liệu Cá nhân là bất kỳ thông tin nào liên quan đến một cá nhân được xác định hoặc nhận dạng được. Dữ liệu Cá nhân mà bạn cung cấp trực tiếp cho chúng tôi thông qua Trang web của chúng tôi sẽ rõ ràng theo ngữ cảnh mà bạn cung cấp dữ liệu. Đặc biệt:
+
+Khi bạn đăng ký tài khoản T20news, chúng tôi sẽ thu thập họ tên, địa chỉ email và thông tin đăng nhập tài khoản của bạn.
+Khi bạn điền vào biểu mẫu trực tuyến của chúng tôi để liên hệ với nhóm bán hàng của chúng tôi, chúng tôi sẽ thu thập họ tên, email công việc, quốc gia của bạn và bất kỳ thông tin nào khác mà bạn cho chúng tôi biết về dự án, nhu cầu và tiến trình của bạn.
+Khi bạn sử dụng tính năng "Ghi nhớ thông tin" của Front Checkout, chúng tôi sẽ thu thập địa chỉ email, số thẻ thanh toán, mã CVC và ngày hết hạn của bạn.
+Khi bạn trả lời email hoặc khảo sát của Mặt trận, chúng tôi sẽ thu thập địa chỉ email, tên và bất kỳ thông tin nào khác mà bạn chọn để đưa vào nội dung email hoặc phản hồi của mình. Nếu bạn liên hệ qua điện thoại, chúng tôi sẽ thu thập số điện thoại bạn dùng để gọi cho Front. Nếu bạn liên hệ với chúng tôi qua điện thoại với tư cách là Người dùng chính, chúng tôi có thể thu thập thêm thông tin để xác minh danh tính của bạn.
+
+B. Thông tin mà chúng tôi thu thập tự động trên Trang web của chúng tôi.
+Chúng tôi cũng có thể thu thập thông tin về các hoạt động trực tuyến của bạn trên các trang web và thiết bị được kết nối theo thời gian và trên các trang web, thiết bị, ứng dụng của bên thứ ba và các tính năng và dịch vụ trực tuyến khác. Chúng tôi sử dụng Google Analytics trên Trang web của mình để giúp chúng tôi phân tích việc Bạn sử dụng Trang web của chúng tôi và chẩn đoán các vấn đề kỹ thuật.
+
+Để tìm hiểu thêm về các cookie có thể được cung cấp qua Trang web của chúng tôi và cách Bạn có thể kiểm soát việc sử dụng cookie và phân tích của bên thứ ba của chúng tôi, vui lòng xem Chính sách Cookie của chúng tôi.
+
+<h3>2. Bảo vệ quyền riêng tư và bản quyền</h3>
+Các chính sách bảo mật của Front giải thích cách chúng tôi xử lý dữ liệu cá nhân của bạn và bảo vệ quyền riêng tư của bạn khi bạn sử dụng Dịch vụ của chúng tôi. Bằng cách sử dụng Dịch vụ của chúng tôi, bạn đồng ý rằng Front có thể sử dụng dữ liệu đó theo chính sách bảo mật của chúng tôi.
+
+Chúng tôi phản hồi các thông báo bị cáo buộc vi phạm bản quyền và chấm dứt tài khoản của những người tái vi phạm theo quy trình được quy định trong Đạo luật Bản quyền Thiên niên kỷ Kỹ thuật số của Hoa Kỳ.
+
+Chúng tôi cung cấp thông tin để giúp chủ sở hữu bản quyền quản lý tài sản trí tuệ của họ trực tuyến. Nếu bạn cho rằng ai đó đang vi phạm bản quyền của bạn và muốn thông báo cho chúng tôi, bạn có thể tìm thông tin về cách gửi thông báo và chính sách của Mặt trận về phản hồi thông báo trong Trung tâm trợ giúp của chúng tôi .
+
+<h3>3. Nội dung của bạn trong các dịch vụ của chúng tôi</h3>
+Một số Dịch vụ của chúng tôi cho phép bạn tải lên, gửi, lưu trữ, gửi hoặc nhận nội dung. Bạn giữ quyền sở hữu bất kỳ quyền sở hữu trí tuệ nào mà bạn có trong nội dung đó. Tóm lại, những gì thuộc về bạn vẫn là của bạn.
                         </p>
                     </div>
            </div>

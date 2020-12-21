@@ -6,14 +6,14 @@ body {
     font-size: 15px;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 img {
     object-fit: cover !important;
 }
-
+hr {
+    height: 2px;
+    background: rgb(58, 57, 57);
+    border: none;
+}
 .row {
     display: flex;
     justify-content: space-between;
@@ -87,10 +87,6 @@ img {
     width: 100%;
 }
 
-.height-news {
-    height: 80px;
-}
-
 
 /*  */
 
@@ -103,7 +99,36 @@ img {
     margin: 0px auto;
 }
 
+/* Create a Scroll To Top Button */
 
+html {
+    scroll-behavior: smooth;
+}
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 1.5%;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    padding: 10px 14px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background: rgb(160, 6, 6);
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#myBtn:hover {
+    background: black;
+    color: white;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
 /*  */
 
 #not_seen_box,
@@ -134,7 +159,16 @@ img {
     background: rgb(160, 6, 6);
     color: white;
 }
-
+.height-news {
+    height: 75px;
+    overflow: hidden;
+    white-space: normal;
+}
+.height-newss {
+    height: 60px;
+    overflow: hidden;
+    white-space: normal;
+}
 
 /*  */
 
@@ -407,7 +441,7 @@ button:focus {
     box-sizing: border-box;
     border-radius: 50%;
     bottom: 120px;
-    right: 1%;
+    right: 1.5%;
     z-index: 21;
     background: rgb(160, 6, 6);
     color: white;
@@ -427,8 +461,8 @@ button:focus {
     padding: 10px 16px;
     box-sizing: border-box;
     border-radius: 50%;
-    bottom: 60px;
-    right: 1%;
+    bottom: 67px;
+    right: 1.5%;
     z-index: 21;
     background: rgb(160, 6, 6);
     color: white;
@@ -582,11 +616,6 @@ button:focus {
 
 .font-size-13 {
     font-size: 13px;
-}
-
-.col-hover:hover {
-    color: red;
-    background: white;
 }
 
 
@@ -756,7 +785,7 @@ button:focus {
 }
 
 
-/* menu n峄昳 */
+/* menu nổi */
 
 .fix {
     width: 100%;
@@ -840,7 +869,7 @@ button:focus {
 .menu-nav .menu-nav__ul li {
     position: relative;
     display: inline-block;
-    padding: 15px 0px;
+    padding: 8px 0px;
 }
 
 .menu-nav__ul li a {
@@ -944,9 +973,20 @@ button:focus {
     transform: skewX(-10deg);
     float: left;
     background: red;
-    height: 15px;
-    width: 3px;
+    height: 18px;
+    width: 5px;
     margin-right: 10px;
+}
+/*slide  */
+
+.slide {
+    display: flex;
+}
+
+.slick-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -968,7 +1008,7 @@ button:focus {
 }
 
 
-/* x贸a */
+/* xóa */
 
 .list-theme {
     padding: 5px 15px;
@@ -1029,6 +1069,7 @@ button:focus {
 .results_search a {
     margin-bottom: 5px;
     box-sizing: border-box;
+   
 }
 
 .theme-selector {
@@ -1043,17 +1084,22 @@ button:focus {
 }
 
 .height_img {
-    height: 180px;
+    height: 160px;
 }
-
+.height_imgg {
+    height: 80px;
+}
 .text-success {
     color: #00e600!important;
-    font-size: 12px;
+    font-size: 13px;
 }
-
 .text-danger {
     color: #e3342f!important;
-    font-size: 12px;
+    font-size: 13px;
+}
+.col-hover:hover {
+    color: red;
+    background: white;
 }
 
 .box-shadow {
@@ -1136,7 +1182,7 @@ footer {
 
 .menu-nav .list-vertical-admin li {
     position: relative;
-    padding: 15px 10px;
+    padding: 10px 10px;
     margin-top: 5px;
     box-sizing: border-box;
 }
@@ -1412,35 +1458,6 @@ footer {
 }
 
 
-/* Create a Scroll To Top Button */
-
-#myBtn {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 1%;
-    z-index: 99;
-    width: 40px;
-    height: 40px;
-    padding: 10px 15px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    background: rgb(160, 6, 6);
-    color: white;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-#myBtn:hover {
-    background: black;
-    color: white;
-    transform: scale(1.1);
-    transition: 0.5s;
-}
-
-
 /**
 * Caja del Comentario
 ---------------------------*/
@@ -1664,7 +1681,10 @@ footer {
     .menu {
         display: block;
     }
-    .height-news {
+     .height-news {
+        height: 100%;
+    }
+     .height-newss {
         height: 100%;
     }
     .menu .col-9 {
@@ -1681,6 +1701,12 @@ footer {
     }
     .menu-none .menu-nav {
         display: none;
+    }
+       .row .like [class*="col-"] {
+        width: 50%;
+    }
+    .row .like {
+        display: flex!important;
     }
     .menu-none.responsive .menu-nav {
         float: none;
@@ -1711,6 +1737,9 @@ footer {
     .height_img {
         height: 100%;
     }
+    .height_imgg{
+         height: 100%;
+    }
     .list_category__li>li {
         height: auto;
     }
@@ -1729,18 +1758,22 @@ footer {
     .popular-post .row {
         display: flex;
     }
-    .row .like [class*="col-"] {
-        width: 50%;
-    }
-    .row .like {
-        display: flex!important;
-    }
     .popular-post .row .col-2 {
         width: 25%;
         margin: 0px 5px;
     }
     .popular-post .row .col-10 {
         width: 75%;
+    }
+    /**/
+    .search_img .row {
+        display: flex;
+    }
+    .search_img .row .col-3{
+        width: 25%;
+    }
+     .search_img .row .col-9{
+          width: 75%;
     }
     /*  */
     .post .col-2 img {

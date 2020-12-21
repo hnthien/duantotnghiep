@@ -42,17 +42,21 @@ class Report_comment extends Controller
         return view('admin.report.hidden',compact('comments','user','comment_report'));
     }
    
-    public function hidden($nur, $id, $idd)
+    public function hidden($nur,$id,$idd)
     { 
-        
-            $comment = Comment::find($id);
-            $comment->comment_status = $nur;
-            $comment->save();
+        if($id!=null){
+             $commentt = Comment::find($id);
+            $commentt->comment_status = $nur;
+            $commentt->save();
             $comment_report = Comment_report::find($idd);
             $comment_report->comment_report_status = $nur;
             $comment_report->save();
-            
             return back();
+            
+        }else{
+              App::abort(404);
+        }
+          
         
         
     }

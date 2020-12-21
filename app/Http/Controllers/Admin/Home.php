@@ -31,7 +31,8 @@ class Home extends Controller
     }
 
     public function index()
-    {  
+    {
+       
         $feedback = Feedback::count();
         $comment = Comment::where('comment_branch',0)->count();
         $comment_report= Comment_report::count();
@@ -72,5 +73,7 @@ class Home extends Controller
         $count_month_current = $countMonth[$month_current] - $countMonth[$month_current - 1];
         $count_month_current_user = $countMonth_user[$month_current] - $countMonth_user[$month_current - 1];
         return view('admin.index', compact( 'post','post_all','user_kd','user_nd','user_tg', 'user', 'feedback', 'error','comment','comment_report','countMonth', 'count_month_current','countMonth_user', 'count_month_current_user','countDate','months','day'));
+ 
+ 
     }
 }

@@ -31,6 +31,7 @@
         <table >
         <tr >
             <th>Trạng Thái</th>
+            <th>Tên bài viết</th>
             <th>Nội dung bình luận</th>
             <th>Người Vi Phạm</th>
             <th>Người Gửi</th>
@@ -48,6 +49,21 @@
             @else
             <span class="color-red">Bị ẩn</span>
             @endif
+            @endif
+            @endforeach
+            </td>
+            <td>
+            @foreach($comments as $row_comments)
+            @if($row_comment_report->comment_id ==  $row_comments->comment_id )
+            @php
+            $data = new App\Models\Post();
+            $post=$data->all();
+            @endphp
+            @foreach($post as $row_post)
+            @if($row_comments->post_id == $row_post->post_id)
+            {{$row_post->post_title}} 
+            @endif
+            @endforeach
             @endif
             @endforeach
             </td>
@@ -81,7 +97,7 @@
 
             </td>
             
-            <td>  <a href="{{url('admin/report/hidden')}}/0/{{$row_comment_report->->comment_id}}/{{$row_comment_report->comment_report_id}}" title="Bỏ ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a>  </td>
+            <td>  <a href="{{url('admin/report/hidden')}}/0/{{$row_comment_report->comment_id}}/{{$row_comment_report->comment_report_id}}" title="Bỏ ẩn bình luận"><button onclick="return window.confirm('Bạn chắc chắn muốn bỏ ẩn bình luận này chứ !');" class="btn-admin background-gray"><i class="fas fa-eye"></i></button></a>  </td>
            
            
         </tr>
