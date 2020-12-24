@@ -4,7 +4,7 @@
 
 
                                 @foreach($comments as $cmt)
-                               
+                               <!-- dùng vl -->
                                 <li>
                                     <div class="comment-main-level row">
                                         <!-- Avatar -->

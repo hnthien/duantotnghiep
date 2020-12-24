@@ -53,7 +53,7 @@
         </div>
         @php
         $error = new App\Models\Error();
-        $not_seen = $error->where('error_status', 0)->orderBy('error_id', 'DESC')->paginate(30);
+        $watched = $error->where('error_status', 1)->orderBy('error_id', 'DESC')->paginate(30);
         $user = new App\User();
         $data1 = $user->all();
         @endphp
@@ -67,12 +67,12 @@
                 <th>ngày</th>
                 <th>Chi Tiết</th>
             </tr>
-            <!-- not_seen_box  -->
            
-                @foreach($not_seen as $row)
-                <tr >
-                    <td>{{$row->error_id}}</td>
-                    <td>@if($row->error_status == 0)<span style="color: red;"><i title="chưa xem" class="fas fa-eye"></i>Chưa xem</span>@endif</td>
+           
+                @foreach($watched as $row)
+                <tr>
+                 <td>{{$row->error_id}}</td>
+                    <td>@if($row->error_status == 0)<span style="color: red;">Chưa xem</span>@else<span style="color:green;"><i title="đã xem" class="fas fa-eye"></i> Đã Xem</span>@endif</td>
                     <td>{{$row->error_title}}</td>
                     <td>
                         @foreach($data1 as $row1)
@@ -84,20 +84,19 @@
                     </td>
                     <td>
                         <p>@php echo substr($row->created_at ,0,10) @endphp</p>
-                        <p> @php echo substr($row->created_at ,10,3).' giờ : '.substr($row->created_at ,14,2).' phút' @endphp</p>
+                        <p>@php echo substr($row->created_at ,10,3).' giờ '.substr($row->created_at ,14,2).' phút' @endphp</p>
 
                     </td>
                     <td><a href="{{url('/admin/error/detail_error')}}/{{$row->error_id}}"><button class="btn-admin background-blue"><i class="fas fa-edit"></i></button></a></td>
 
                 </tr>
                 @endforeach
-           
-           
 
               
 
         </table>
-    <div  style="position: relative;left: 40%;text-align: center;width:20%">{!!$not_seen->links()!!}</div>
+
+        <div  style="position: relative;left: 40%;text-align: center;width:20%">{!!$watched->links()!!}</div>         
             
     </section>
 </main>

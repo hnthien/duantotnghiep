@@ -120,13 +120,7 @@
         @endif
     </div>
 </div>
-<div class="row">
-    <div class="col-1"></div>
-    <div style="border-bottom: 2px #494949 solid;" class="col-10">
-        
-    </div>
-    <div class="col-1"></div>
-</div>
+<hr style="width:80%;text-align: center;">
 
 <script>
     function myFunction() {

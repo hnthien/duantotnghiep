@@ -30,7 +30,10 @@ class Feedback extends Controller
     {
         return view('admin.feedback.index');
     } 
-   
+    public function watched()
+    {
+        return view('admin.feedback.watched');
+    }
     public function search(Request $request)
     {      
             $keyword = $request->keyword;

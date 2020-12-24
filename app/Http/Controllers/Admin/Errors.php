@@ -29,6 +29,10 @@ class Errors extends Controller
     {
         return view('admin.error.index');
     }
+    public function watched()
+    {
+        return view('admin.error.watched');
+    }
    
     public function search(Request $request)
     {

@@ -9,17 +9,17 @@
             <span style="font-size: 12px; font-weight: bold;">Dashboard <i class="fas fa-angle-right"></i>News Dashboard </span>
         </div>
         <div class="row">
-            <div style="margin-bottom: 10px;" class="col-4 popular-post col-padding ">
+        <div style="margin-bottom: 10px;" class="col-4 popular-post col-padding ">
                 <h4 class="color-young-green"><i class="fas fa-user-shield"></i>Kiểm Duyệt ({{$user_kd}})</h4>
                
 
             </div>
             <div style="margin-bottom: 10px;" class="col-4 popular-post col-padding  col-margin-left">
-                <h4 class="color-young-green"><i class="fas fa-user-edit"></i>Nhà Báo ({{$user_nd}})</h4>
+                <h4 class="color-young-green"><i class="fas fa-user-edit"></i>Người dùng ({{$user_nd}})</h4>
                
             </div>
             <div style="margin-bottom: 10px;" class="col-4 popular-post col-padding col-margin-left">
-                <h4 class="color-blue"><i class="fas fa-users"></i>Người dùng ({{$user_tg}})</h4>
+                <h4 class="color-blue"><i class="fas fa-users"></i>Nhà Báo ({{$user_tg}})</h4>
               
             </div>
         </div>

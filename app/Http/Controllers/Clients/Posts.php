@@ -91,7 +91,7 @@ class Posts extends Controller
 
         $keyword = $request->keyword;
         $user = User::all();
-        $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->where('post_status',2)->orderBy('post_id', 'DESC')->take(20)->get();
+        $search_results = Post::where('post_title', 'like', '%' . $keyword . '%')->orWhere('post_intro', 'like', '%' . $keyword . '%')->where('post_status',2)->orderBy('post_id', 'DESC')->take(20)->get();
         return view('search', compact('search_results', 'user', 'keyword'));
     }
     public function search_posts_tag(Request $request, $tag)

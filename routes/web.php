@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //feedback
     Route::group(['prefix' => 'feedback'], function () {
         Route::get('/', 'Admin\Feedback@index');
+        Route::get('/watched', 'Admin\Feedback@watched');
         Route::get('/search', 'Admin\Feedback@search');
         Route::get('/detail_feedback/{id}', 'Admin\Feedback@detail_feedback');
         Route::post('/create_feedback', 'Clients\Feedback@create_feedback');
@@ -74,6 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //error
     Route::group(['prefix' => 'error'], function () {
         Route::get('/', 'Admin\Errors@index');
+        Route::get('/watched', 'Admin\Errors@watched');
         Route::get('/search', 'Admin\Errors@search');
         Route::get('/detail_error/{id}', 'Admin\Errors@detail_error');
         Route::post('/create_error', 'Clients\Errors@create_error');
